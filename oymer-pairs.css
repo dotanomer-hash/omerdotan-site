@@ -1,0 +1,300 @@
+/* ============================================================================
+   oYmer paired windows + electric arrow.
+   The component from the 3D Lab page, lifted out so every suite page uses ONE
+   source. Self-contained: wrap any block in .oylp and drop .oyl-pair rows in.
+   Works on the light suite background as well as the dark lab band - the panels
+   bring their own dark fill.
+   ========================================================================== */
+.oylp{--cy:#02f2ff;--cy-dim:rgba(2,242,255,.28);--cy-hair:rgba(2,242,255,.5);--or:#ff7a00;
+  position:relative;z-index:1}
+.oylp .oyl-mono{font-family:'Share Tech Mono','Rajdhani',ui-monospace,monospace;letter-spacing:.12em}
+
+/* ---- the window ---- */
+/* the panel wears its page's product hue, the same palette the hero is painted in.
+   driven off --c/--cd, which the .c1-.c4 section already sets, so each product page
+   gets its own colour for free. the fallbacks keep it azure if a page forgets. */
+/* the base MUST be hue-neutral. it used to be a navy (#081230->#0b1c46) left over from
+   building this for Family Creator - and the DecisionMaker orange laid over navy mixed
+   to BROWN. over a near-black plum every hue reads as itself. */
+.oylp .oyl-panel{position:relative;
+  background:
+    linear-gradient(160deg, rgba(var(--cd,44,82,196),.62) 0%,
+                            rgba(var(--c,79,125,255),.26) 55%,
+                            rgba(var(--cd,44,82,196),.44) 100%),
+    linear-gradient(160deg,#0b0913 0%,#120e1e 100%);
+  border:1px solid var(--cy-dim);
+  clip-path:polygon(22px 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%,0 22px);
+  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease}
+.oylp .oyl-panel:hover{border-color:var(--cy-hair);box-shadow:0 0 40px rgba(2,242,255,.16);
+  transform:translateY(-3px)}
+.oylp .oyl-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:#04060f;
+  border-bottom:1px solid var(--cy-dim)}
+.oylp .oyl-media video,.oylp .oyl-media img{width:100%;height:100%;object-fit:cover;display:block}
+.oylp .oyl-media::after{content:'';position:absolute;left:0;right:0;height:34%;
+  background:linear-gradient(to bottom,transparent,rgba(2,242,255,.11),transparent);
+  animation:oylp-sweep 5.5s linear infinite}
+@keyframes oylp-sweep{from{top:-40%}to{top:110%}}
+.oylp .oyl-fit video,.oylp .oyl-fit img{object-fit:contain;background:#04060f}
+
+/* ⭐ THE REVIT COMMENT, ENLARGED. Omer 2026-08-11: the write-back writes its decision record
+   into the element's own Comments parameter, and inside a screen recording that text is ~8 px
+   tall - true, and unreadable. This strip reprints the SAME string at a size a person can read
+   across a room.
+   ⛔ It is NOT the old .dm-approval card: that one was a hand-typed SUMMARY sitting on top of
+   the evidence. This is the verbatim parameter value, character for character, so the clip
+   underneath is the proof of the line above it. If the caption in Revit changes, change it here
+   too or delete this - a caption that disagrees with the model is worse than none.
+   z-index clears .oyl-media::after (the cyan sweep), which would otherwise wash across it. */
+/* two captions stack in the same slot and cross-fade as the selection changes in the clip;
+   only .is-on is visible, and the hidden one must not eat pointer events or screen-reader focus */
+.oylp .dm-cap{
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .28s ease, visibility 0s linear .28s;
+  position:absolute;left:0;right:0;bottom:0;z-index:6;
+  padding:10px 14px 11px;
+  font-size:.86rem;line-height:1.35;font-weight:700;letter-spacing:.005em;
+  color:#0a0806;text-align:left;
+  background:linear-gradient(to top, rgba(255,255,255,.96) 0%, rgba(255,255,255,.90) 70%,
+                                     rgba(255,255,255,.72) 100%);
+  -webkit-backdrop-filter:blur(4px) saturate(1.1);
+          backdrop-filter:blur(4px) saturate(1.1);
+  border-top:1.5px solid rgba(0,0,0,.5);
+  box-shadow:0 -8px 22px rgba(0,0,0,.30);
+}
+.oylp .dm-cap.is-on{opacity:1;visibility:visible;transition-delay:0s}
+/* the customer's name is Hebrew inside an otherwise LTR line - it carries its own dir on the
+   element, this just stops the <i> from italicising and keeps it the same weight as the rest */
+.oylp .dm-cap i{font-style:normal;font-weight:800;color:#0a0806}
+/* the little label that says WHERE this text comes from - without it the strip reads as our
+   copywriting rather than as Revit's own field */
+.oylp .dm-cap b{
+  display:block;margin-bottom:3px;
+  font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  opacity:.62;
+}
+@media (max-width:960px){
+  .oylp .dm-cap{font-size:.74rem;padding:8px 11px 9px}
+  .oylp .dm-cap b{font-size:.58rem}
+}
+.oylp .oyl-body{padding:22px 24px 26px}
+.oylp .oyl-kick{display:block;margin-bottom:9px;font-size:.7rem;color:var(--cy);opacity:.85}
+.oylp .oyl-panel h3{margin:0 0 10px;font-size:1.4rem;font-weight:800;color:#fff}
+.oylp .oyl-panel p{margin:0;font-size:1rem;line-height:1.72;color:#9db1cb}
+.oylp .oyl-hud{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.oylp .oyl-hud b{padding:3px 9px;font-size:.66rem;font-weight:500;color:var(--cy);
+  border:1px solid var(--cy-dim);background:rgba(2,242,255,.05)}
+.oylp .oyl-hud b.on{color:var(--or);border-color:rgba(255,122,0,.45);background:rgba(255,122,0,.07)}
+.oylp .oyl-id{position:absolute;top:12px;right:14px;z-index:2;font-size:.68rem;color:var(--cy);
+  padding:2px 8px;background:rgba(5,7,15,.75);border:1px solid var(--cy-dim)}
+.oylp .oyl-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:12px;color:#7f93ad;
+  background:repeating-linear-gradient(-45deg,rgba(2,242,255,.05) 0 12px,transparent 12px 24px),
+    radial-gradient(ellipse at 50% 60%,rgba(2,242,255,.10),transparent 65%)}
+.oylp .oyl-ph strong{font-size:1.05rem;color:#b9cbe2;font-weight:600}
+.oylp .oyl-ph span{font-size:.72rem;color:var(--cy);opacity:.75}
+.oylp .oyl-ph em{position:absolute;inset:16px;border:1px dashed rgba(2,242,255,.3);font-style:normal}
+
+/* ---- rows: window · arrow · window ---- */
+.oylp .oyl-pairs{margin-top:34px;display:grid;gap:30px}
+
+/* ---- the step BETWEEN the pairs (DecisionMaker) ----
+   Pair 1 ends bottom-left (the client standing in VR); pair 2 begins top-right (the
+   client deciding). Nothing joined them, so the page read as two separate stories
+   instead of one round trip. This is the same lightning as the in-pair connector,
+   run diagonally across the gap - top-left down to bottom-right - so the eye is
+   carried from the end of one row into the start of the next.
+   The gap grows to 92px only on the rows that carry it; the other product pages
+   keep their 30px. */
+/* DERIVED, not chosen. The panels are chamfered 22px at top-left and bottom-right, so
+   each cut edge's midpoint sits 11px in from the corner. The run therefore starts at
+   the left panel's bottom-right midpoint and ends at the right panel's top-left one:
+     horizontal = 150 (the middle column) + 11 + 11 = 172px, CONSTANT at any width,
+                  because both panels are 1fr and only the middle column is fixed.
+   A true 45 needs the drop to equal that, so the vertical distance between the pairs
+   must be 172 - 22 = 150px, which with a 16px grid gap either side fixes this row at
+   118px. Change the chamfer or the middle column and these numbers must be redone. */
+.oylp .oyl-pairs:has(.oyl-link){gap:16px}
+.oylp .oyl-link{position:relative;height:118px;pointer-events:none}
+/* It IS one of the other arrows - same markup, same classes, same animations - only
+   longer and turned. 244 x 34 keeps 1 viewBox unit == 1 px exactly as the in-pair
+   arrows do, so stroke weight, dash rhythm and glow are identical rather than scaled.
+   The bolt travels right-to-left in its own box (the flash and the strike line are at
+   x 4-7), so rotating -135deg aims that landing end down-right.
+   243.24px = 172 x sqrt(2), the diagonal between the two chamfer midpoints - so the
+   ends still touch them. */
+/* sized off the BOLT, not the box: the bolt occupies 240 of the 252 viewBox units, and
+   it must render 243.24px long (172 x sqrt(2), the diagonal between the two chamfer
+   midpoints), so the box is 252 x 243.24/240 = 255.4px. Stroke lands at 2.43px against
+   the others' 2.40 - a 1.3% difference, invisible, and the ends are exact instead of
+   12px short, which is what measuring the rotated box's bounding box had hidden. */
+/* NOTE the ancestor in every selector. `.oylp .oyl-arw` further down this file sets
+   display/width/height with the same two-class specificity, and media queries add none -
+   so `.oylp .oyl-link__diag` LOSES to it on source order and the phone rule silently did
+   nothing (both bolts visible, the short one stretched to 319px). Keep .oyl-link in. */
+.oylp .oyl-link .oyl-arw{position:absolute;left:50%;top:50%;overflow:visible}
+.oylp .oyl-link .oyl-arw.oyl-link__diag{width:255.4px;height:34.46px;
+  transform:translate(-50%,-50%) rotate(-135deg)}
+.oylp .oyl-link .oyl-arw.oyl-link__down{display:none}
+@media (max-width:960px){
+  /* The pair collapses to one column here, so there is no diagonal to trace - it points
+     straight down. It gets its OWN short bolt rather than the long one shrunk: squeezing
+     a 252-unit viewBox into the same 96px a 150-unit one gets renders the stroke at
+     0.91px against the in-pair arrow's 1.54px, with 3.4px of zig-zag against 5.8px -
+     40% thinner and 40% flatter, which read as a faint scribble on the phone.
+     This is the in-pair bolt verbatim, so it renders identically to its neighbours. */
+  /* 150 x 34 renders the 150-unit viewBox at scale 1.0, so 1 unit = 1 px and the stroke
+     lands at the full 2.4px with 9px of zig-zag - the same weight as the desktop arrows,
+     and deliberately HEAVIER than the in-pair arrows beside it (1.54px at their 96px).
+     This one is the join between the two halves of the story, not a link inside a pair,
+     so it should carry more weight, and at 0.91px it was reading as a scribble. */
+  /* phone: the label pushed each arrow off to one side, because the flow turns into a
+     row here and the text eats the width. No labels, so every arrow sits on the centre
+     line of the windows it joins. */
+  .oylp .oyl-flow span{display:none}
+  .oylp .oyl-link{height:150px}
+  .oylp .oyl-link .oyl-arw.oyl-link__diag{display:none}
+  .oylp .oyl-link .oyl-arw.oyl-link__down{display:block;width:150px;height:34px;
+    transform:translate(-50%,-50%) rotate(-90deg)}
+}
+@media (prefers-reduced-motion:reduce){
+  .oylp .oyl-link svg *{animation:none!important}
+}
+.oylp .oyl-pair{position:relative;display:grid;grid-template-columns:1fr 150px 1fr;align-items:stretch}
+.oylp .oyl-pair .oyl-panel{display:flex;flex-direction:column}
+.oylp .oyl-pair .oyl-body{flex:1}
+/* reversed rows: the lab object on the right, Revit on the left */
+.oylp .oyl-pairs--rev .oyl-pair > *:nth-child(1){order:3}
+.oylp .oyl-pairs--rev .oyl-pair > *:nth-child(2){order:2}
+.oylp .oyl-pairs--rev .oyl-pair > *:nth-child(3){order:1}
+
+/* ---- the connector ---- */
+.oylp .oyl-flow{position:relative;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:12px}
+/* ---- DecisionMaker connector: the real ribbon button, not an arrow ----
+   on this page the thing that joins the two windows IS the click - the oYmer button in
+   Revit. The lightning still runs underneath it, so the pair keeps the suite's language,
+   but the button is what the eye lands on. */
+.oylp .oyl-dmflow{gap:9px}
+.oylp .oyl-dmbtn{
+  display:block;width:62px;height:auto;border-radius:9px;
+  box-shadow:0 8px 22px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.14),
+             0 0 26px rgba(255,122,0,.30);
+  animation:dmpress 2.6s ease-out infinite;
+}
+@keyframes dmpress{
+  0%{box-shadow:0 8px 22px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.14), 0 0 0 0 rgba(255,122,0,.55)}
+  70%{box-shadow:0 8px 22px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.14), 0 0 0 15px rgba(255,122,0,0)}
+  100%{box-shadow:0 8px 22px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.14), 0 0 0 0 rgba(255,122,0,0)}
+}
+.oylp .oyl-dmflow span{color:#ff7a00;text-shadow:none;font-weight:800}
+@media (prefers-reduced-motion:reduce){ .oylp .oyl-dmbtn{animation:none} }
+
+/* ---- the approval record, as a callout that points AT the window it describes ----
+   sits over the ceiling on purpose: that is dead space in the shot, and putting the
+   record up there lets its tail aim down at the moved (orange) window. */
+/* frosted glass tinted with the hue, pulled a long way toward white so it stays calm -
+   and translucent on purpose, so the drawing underneath still reads through it. the
+   blur is what buys legibility over a busy screenshot without going opaque. */
+.oylp .dm-approval{
+  position:absolute;left:-3.8%;right:auto;width:18.5%;top:56px;z-index:6;
+  display:grid;grid-template-columns:1fr;gap:0;align-items:start;
+  font-size:.66rem;line-height:1.3;letter-spacing:0;
+  background:linear-gradient(160deg, rgba(255,255,255,.80) 0%,
+                                     rgba(var(--c,79,125,255),.42) 100%);
+  -webkit-backdrop-filter:blur(3px) saturate(1.15);
+          backdrop-filter:blur(3px) saturate(1.15);
+  border:1.5px solid rgba(0,0,0,.55);border-radius:10px;padding:9px 10px;
+  box-shadow:0 12px 30px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.55);
+  text-align:left;
+}
+/* the label column - black like the values; separation comes from weight, tracking and
+   case, not colour. a coloured label was reading as a second accent. */
+.oylp .dm-approval b{
+  color:#0a0806;font-weight:800;white-space:nowrap;opacity:.72;
+  letter-spacing:.07em;font-size:.78em;text-transform:uppercase;
+}
+/* the value column - black, this is the part that must carry */
+.oylp .dm-approval i{
+  font-style:normal;color:#0a0806;font-weight:800;text-shadow:none;
+  margin-bottom:5px;display:block;
+}
+.oylp .dm-approval .dm-client{color:#000}
+/* the tail - a rotated square borrowing the bubble's own fill and frame, aimed
+   down-left at the moved window */
+/* the tail matches the bubble's LOWER edge, where it actually joins - the bubble is a
+   gradient, so a flat hue here would show as a bright notch */
+.oylp .dm-approval::after{
+  content:"";position:absolute;bottom:auto;left:auto;top:50%;right:-9px;width:14px;height:14px;
+  background:rgba(var(--c,79,125,255),.42);
+  -webkit-backdrop-filter:blur(3px) saturate(1.15);
+          backdrop-filter:blur(3px) saturate(1.15);
+  border-top:1.5px solid rgba(0,0,0,.55);
+  border-right:1.5px solid rgba(0,0,0,.55);
+  transform:rotate(45deg);border-top-right-radius:3px;
+}
+@media (max-width:960px){
+  /* the pair stacks here, so an absolutely positioned stamp has nothing to sit beside -
+     measured at 375px it covered 100% of the panel and 61% of the video. It joins the
+     flow instead and sits above the pair, where it reads as the record of what follows. */
+  .oylp .dm-approval{position:static;width:auto;left:auto;right:auto;top:auto;
+    margin:26px 0 14px;font-size:.72rem;padding:11px 13px;gap:4px 11px}
+}
+
+/* this label sits BETWEEN the panels, on the page's light ground - the cyan glow it
+   used to carry was near-invisible there. black and heavy, so it actually reads. */
+.oylp .oyl-flow span{font-size:.72rem;font-weight:800;color:#0b0a18;opacity:1;
+  white-space:nowrap;text-shadow:none}
+.oylp .oyl-arw{display:block;width:100%;height:34px;overflow:visible}
+.oylp .oyl-arw__boltGlow{fill:none;stroke:rgba(255,122,0,.5);stroke-width:8;stroke-linecap:round;
+  filter:blur(4px);stroke-dasharray:34 16;animation:oylp-bolt 1.4s linear infinite}
+.oylp .oyl-arw__bolt{fill:none;stroke:#ff8c1a;stroke-width:2.4;stroke-linecap:round;
+  stroke-linejoin:round;stroke-dasharray:34 16;filter:drop-shadow(0 0 6px rgba(255,140,26,.95));
+  animation:oylp-bolt 1.4s linear infinite}
+.oylp .oyl-arw__bolt2{fill:none;stroke:rgba(255,154,60,.75);stroke-width:1.4;stroke-linecap:round;
+  stroke-linejoin:round;stroke-dasharray:12 26;filter:drop-shadow(0 0 5px rgba(255,122,0,.8));
+  animation:oylp-bolt .95s linear infinite}
+.oylp .oyl-arw__core{fill:none;stroke:#fff4e0;stroke-width:1;stroke-linecap:round;
+  stroke-linejoin:round;stroke-dasharray:14 36;animation:oylp-bolt 1.05s linear infinite}
+@keyframes oylp-bolt{from{stroke-dashoffset:0}to{stroke-dashoffset:-50}}
+.oylp .oyl-arw__fork{fill:none;stroke:rgba(255,154,60,.85);stroke-width:1.1;stroke-linecap:round;
+  filter:drop-shadow(0 0 4px rgba(255,122,0,.9));opacity:0;
+  animation:oylp-fork 1.4s steps(1,end) infinite}
+.oylp .oyl-arw__fork:nth-of-type(2){animation-delay:.45s}
+.oylp .oyl-arw__fork:nth-of-type(3){animation-delay:.9s}
+@keyframes oylp-fork{0%,10%{opacity:.9}14%,100%{opacity:0}}
+/* the strike */
+.oylp .oyl-arw__wall{fill:none;stroke:rgba(2,242,255,.55);stroke-width:1.6;stroke-linecap:round;
+  animation:oylp-wall 1.4s ease-out infinite}
+@keyframes oylp-wall{0%,100%{stroke:rgba(2,242,255,.45);filter:none}
+  8%,26%{stroke:#ffd7a8;filter:drop-shadow(0 0 9px rgba(255,140,26,.95))}}
+.oylp .oyl-arw__flash{fill:#fff6e8;transform-box:view-box;transform-origin:7px 17px;
+  filter:drop-shadow(0 0 12px rgba(255,140,26,1));animation:oylp-flash 1.4s ease-out infinite}
+@keyframes oylp-flash{0%{transform:scale(.2);opacity:0}7%{transform:scale(1);opacity:1}
+  34%{transform:scale(1.7);opacity:.3}60%,100%{transform:scale(1.9);opacity:0}}
+.oylp .oyl-arw__spark{fill:none;stroke:#ffb057;stroke-width:1.3;stroke-linecap:round;
+  filter:drop-shadow(0 0 5px rgba(255,140,26,.95));
+  transform-box:view-box;transform-origin:7px 17px;
+  animation:oylp-spark 1.4s cubic-bezier(.15,.7,.3,1) infinite}
+@keyframes oylp-spark{0%{transform:scale(.15);opacity:0}8%{opacity:1}
+  50%{transform:scale(1.25);opacity:.8}78%,100%{transform:scale(1.6);opacity:0}}
+.oylp .oyl-arw__flare{fill:#fff3df;filter:drop-shadow(0 0 10px rgba(255,140,26,1));
+  animation:oylp-flare 1.4s ease-in-out infinite}
+@keyframes oylp-flare{0%,100%{opacity:.5;r:2.4}50%{opacity:1;r:4.4}}
+
+/* ---- one column, current running downward (DecisionMaker) ---- */
+.oylp .oyl-stack{margin-top:34px;display:grid;gap:0;justify-items:center}
+.oylp .oyl-stack .oyl-panel{width:min(760px,100%)}
+.oylp .oyl-down{display:flex;flex-direction:row;align-items:center;justify-content:center;
+  gap:14px;height:104px}
+.oylp .oyl-down span{font-size:.68rem;color:var(--cy);opacity:.95;white-space:nowrap;
+  text-shadow:0 0 12px rgba(2,242,255,.55)}
+.oylp .oyl-down .oyl-arw{width:104px;height:34px;transform:rotate(90deg)}
+
+@media (max-width:960px){
+  .oylp .oyl-pair{grid-template-columns:1fr;gap:0}
+  .oylp .oyl-flow{flex-direction:row;height:96px}
+  .oylp .oyl-flow .oyl-arw{width:96px;height:34px;transform:rotate(90deg)}
+}
+@media (prefers-reduced-motion:reduce){
+  .oylp .oyl-media::after,.oylp .oyl-arw *{animation:none}
+}

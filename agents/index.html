@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>שלוש הצעות - כפתור רוויט, עמוד Viewer, AR</title>
+<style>
+  :root{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--or:#ff7a00}
+  *{box-sizing:border-box}
+  body{margin:0;padding:30px 20px 60px;background:#f6f7f9;color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+  h1{font-size:23px;margin:0 0 6px;text-align:center}
+  .sub{color:var(--mut);font-size:14px;margin:0 0 26px;text-align:center}
+  .grid{display:grid;gap:18px;max-width:900px;margin:0 auto;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;
+    box-shadow:0 1px 2px rgba(15,23,42,.04),0 10px 26px rgba(15,23,42,.06)}
+  .card h2{font-size:17px;margin:0 0 4px}
+  .card .what{color:var(--mut);font-size:13.5px;line-height:1.6;margin:0 0 14px}
+  .card a{display:block;padding:11px 14px;border-radius:10px;text-decoration:none;
+    font-weight:700;font-size:14px;text-align:center;margin-bottom:8px}
+  .go{background:var(--or);color:#1a0f00}
+  .notes{background:#f1f5f9;color:#334155}
+  .flag{font-size:12.5px;color:#b91c1c;margin:10px 0 0;line-height:1.55}
+  .foot{max-width:900px;margin:26px auto 0;font-size:13px;color:var(--mut);line-height:1.7;
+    text-align:center}
+</style>
+</head>
+<body>
+<h1>שלוש הצעות מהסוכנים</h1>
+<p class="sub">אף אחת לא נכנסה לאתר. הכל הצעות בלבד, ממתינות לעין שלך.</p>
+
+<div class="grid">
+  <div class="card" style="border-color:#ff7a00;border-width:2px">
+    <h2>אייקוני הרצועה - 32 פיקסל אמיתיים</h2>
+    <p class="what">הסיבוב הנכון: מעוצב בגודל האמיתי של הרצועה, מול הארבעה שכבר יש לך, מוגדל פי 8 כדי שאפשר יהיה לשפוט. קבצי PNG אמיתיים, מוכנים להעתקה.</p>
+    <a class="go" href="ribbon-32/index.html">להשוות בגודל אמיתי</a>
+    <a class="notes" href="ribbon-32/NOTES.md">הכרעה: כן או לא</a>
+    <p class="flag">הרצועה היא 32 פיקסל, לא 22 - טעות שלי. ⚠ נמצא דרך אגב: ארבעה אייקונים בטאב oYmer הם 192x192 ורוויט מקטין אותם, ולכן הם מטושטשים ליד השכנים.</p>
+  </div>
+
+  <div class="card">
+    <h2>כפתור רוויט - סיבוב שני</h2>
+    <p class="what">אחרי ש"נורא" - ארבע אפשרויות ציוריות באמת: איזומטריות, עם עומק, אור וצל. בלי אריחים ובלי אותיות.</p>
+    <a class="go" href="revit-button-2/index.html">לראות את הארבע</a>
+    <a class="notes" href="revit-button-2/NOTES.md">ההמלצה והנימוק</a>
+    <p class="flag">נמדד ולא נוחש: A ו-C שורדים ב-22 פיקסל, B חלקית, D נופל. אף אחד לא שורד 16 פיקסל ברצועת רוויט.</p>
+  </div>
+
+  <div class="card">
+    <h2>כפתור רוויט - הסיבוב הראשון</h2>
+    <p class="what">שלושת האריחים שפסלת. נשמר להשוואה בלבד.</p>
+    <a class="notes" href="revit-button/index.html">לראות את השלושה</a>
+  </div>
+
+  <div class="card">
+    <h2>עמוד ה-Viewer</h2>
+    <p class="what">הצעה מלאה, שבעה חלקים, מלמעלה למטה. מלבנים צבעוניים במקום מדיה שעוד לא צולמה.</p>
+    <a class="go" href="viewer/index.html">לראות את ההצעה</a>
+    <a class="notes" href="viewer/NOTES.md">מה משתנה ומה צריך לצלם</a>
+    <p class="flag">הסוכן לא ראה את זה מרונדר. הכל נמדד מהקוד, לא מהעין.</p>
+  </div>
+
+  <div class="card">
+    <h2>AR ל-Type Studio</h2>
+    <p class="what">דף בדיקה אמיתי לקווסט - בודק אם הקירות מגיעים לדפדפן עם התוויות שלהם - ותוכנית ב-9 שלבים.</p>
+    <a class="go" href="ar/spike.html">דף הבדיקה (בקווסט)</a>
+    <a class="notes" href="ar/PLAN.md">התוכנית</a>
+    <p class="flag">דף הבדיקה דורש HTTPS ומשקפיים. בדפדפן רגיל הוא יגיד שאין AR - זה תקין.</p>
+  </div>
+</div>
+
+<p class="foot">
+  הכל יושב ב-<code>agents/</code> בענף bim-suite. שום דבר מזה לא מחובר לתפריט ולא מקושר משום עמוד.
+</p>
+</body>
+</html>

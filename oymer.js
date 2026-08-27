@@ -3,15 +3,32 @@
    and a self-hosted accessibility menu. Vanilla JS, no dependencies. */
 
 window.OYMER_FAQ = [
+  /* --- כללי (FAQ.html, same order as the questions there) --- */
   "מציאות מדומה (VR) היא טכנולוגיה שמכניסה את המשתמש לתוך סביבה תלת־מימדית \"כאילו הוא נמצא שם\". באדריכלות זה מאפשר לחוות חלל בקנה מידה 1:1, להבין פרופורציות, זרימה ותחושה מרחבית - לפני הבנייה.",
   "היתרון המרכזי הוא מעבר מ\"דמיון מתוך שרטוט\" לחוויה מרחבית אמיתית. כך קל יותר לזהות בזמן: מסדרון צר, חלון גבוה מדי, זרימה לא נכונה, קשרי מבט, פרופורציות ותחושת מרחב כללית. כשזה מתגלה מוקדם - התיקון מהיר וזול יותר.",
   "כי VR מפחית אי־הבנות, \"מיישר קו\" בין צוותי תכנון ובין אדריכל-לקוח, ומקצר זמן החלטות. בנוסף - זו חוויה רגשית חזקה שמעלה אמון וביטחון בהחלטות התכנון.",
   "כמעט בכל פרויקט שבו חשוב להבין חלל לפני ביצוע: דירות ובתים פרטיים, משרדים, מסחר, לובאים, מבני ציבור, וגם פרויקטים יזמיים שבהם נדרש שילוב של תכנון + מכירה/שיווק.",
   "כן. סיור VR (ובעיקר סיור מוכן מראש) הוא כלי מצוין להצגת הפתרון המוצע ללקוח, להמחשה ברורה של ערך הפרויקט וליצירת \"וואו\". מתאים למצגות מכירה, שיווק פרויקטים והדגמות.",
   "אין צורך בידע מוקדם. המערכת פשוטה לתפעול ומלווה בהדרכה ברורה, כך שגם משתמשים חדשים יכולים להתנסות ולחוות סיור וירטואלי בקלות. כמובן שככל שצוברים יותר שעות בתוך סביבת ה-VR כך משתפרת תחושת הנוחות.",
+  /* --- שירותים (FAQ.html, same order as the questions there) --- */
   "לא בהכרח. ניתן לבצע סיור דינמי גם מרחוק ולהצטרף ממחשב/טאבלט/טלפון. יחד עם זאת, החוויה המלאה מתקבלת בתוך החלל הוירטואלי בעת חבישת קסדת VR.",
   "סוג הסיור נגזר מצרכי הפרויקט. מטרתו העיקרית של סיור דינמי - תכנון אדריכלי בחלל וירטואלי, שיתוף פעולה בין אנשי צוות, מציאת בעיות ועוד. מטרתו העיקרית של סיור מוכן מראש - הצגת הפתרון המוצע ללקוח, והוא מיועד להתרשמות ויזואלית מהחלל המתוכנן לפני בנייתו בפועל.",
-  "תלוי בסוג הסיור. בסיור מודרך שעה עד שעתיים. בסיור מוכן מראש הלקוח קובע את קצב ההתקדמות."
+  "תלוי בסוג הסיור. בסיור מודרך שעה עד שעתיים. בסיור מוכן מראש הלקוח קובע את קצב ההתקדמות.",
+  "הטמעת VR במשרדי אדריכלים (תהליך מלווה, לא אירוע חד-פעמי) · סיורי VR מודרכים בזמן אמת בהדרכת עומר · סיורי VR מוכנים מראש שהלקוח חווה בזמנו החופשי · VR למבנים קיימים (צילום באתר במצלמות VR, בלי מודל) · בדיקת תכנון ב-VR · וסיור רב-משתתפים בזמן אמת. לכל שירות עמוד משלו בתפריט \"השירותים שלנו\".",
+  "חמישה שלבים: הכרת המשרד (פרויקטים, צוות, טכנולוגיות, תיאום ציפיות) · תכנית עבודה (התאמת ה-VR לפרויקטים, תשתית, תכנית הדרכה, פיילוט) · הדרכה (VR + תוכנות תומכות) · קיבוע תהליכים (סטנדרט משרדי) · ותמיכה שוטפת. המטרה: VR ככלי עבודה קבוע ורציף במשרד, לא הדגמה חד-פעמית.",
+  "סיור VR של מבנה קיים שמבוסס על צילום באתר במצלמות VR - בלי צורך במודל תלת-ממדי. מתאים למתווכי נדל\"ן שרוצים להציג נכס בלי הגעה פיזית, ולאדריכלים שרוצים ללמוד מבנה מרחוק או לתכנן שיפוץ.",
+  /* --- מוצרים (FAQ.html, same order as the questions there) --- */
+  "חבילת מוצרי BIM בסביבת VR, המשלימים זה את זה ונותנים מענה של מציאות מדומה לעולם הבנייה:\noYmer DecisionMaker - פגישת אישור בקנה מידה 1:1\noYmer Viewer - מודל ה-BIM בתוך ה-VR\noYmer Family Creator - יצירת משפחות דינמיות לרוויט\noYmer Type Studio - יצירת טיפוסים חדשים בתוך רוויט\nלצידם:\noYmer VR Tours - סיורי 360°\noYmer VR Lab - מעבדת המחקר והפיתוח שלנו",
+  "פגישת אישור בקנה מידה 1:1. הלקוח נכנס לאותו חלל שטרם נבנה, בגודל אמיתי - לא מצגת, הוא עומד בפנים - ומחליט מתוך ה-VR: מחליף גימור, מחליף ריהוט, מזיז חלון. אין \"לא הבנתי\" ואין \"לא ראיתי\". ההחלטות חוזרות אל קובץ הרוויט שלכם יחד עם רשומת האישור - לא לענן של אף אחד.",
+  "לא. ההחלטות נכתבות לעותק חדש של הקובץ (Save As): הקיר נסגר, החלון זז ורשומת האישור נשמרת - והמקור נשאר בדיוק כפי שהיה. המודל נשאר אצלכם, במשרד.",
+  "להיות שם - לראות, להרגיש, להחליט. מייצאים את המודל מרוויט ומסתובבים בתוכו בקנה מידה 1:1 במשקפי VR (ואפשר גם בדפדפן) - בוחנים חלל וחומרים לפני הבנייה. בלי התקנה, חינם.",
+  "יצירה אוטומטית של משפחות רוויט דינמיות - מקטלוג יצרן או מתיאור חופשי - ישר לקובץ ‎.rfa‎ אמיתי שנשאר שלכם: פרמטרי, מדיד, מוכן לפרויקט. כל פרמטר מזיז גאומטריה אמיתית (מידות, מגירות, חזיתות, ידיות), והפרמטרים תואמים לסטנדרט BIM. לא צריך יותר לבנות משפחות ידנית.",
+  "טיפוס חדש, בלי להקליד פרמטרים. בוחרים משפחה שכבר נמצאת בפרויקט, מזיזים סרגלים ורואים את השינוי חי בתלת-ממד - ובלחיצה אחת נוצר טיפוס חדש ישירות ברוויט. לא צריך לקרוא ולהבין פרמטרים, רק ללחוץ, להזיז ולנסות. הכל רץ על הרוויט שלכם, במחשב שלכם - שום דבר לא עוזב את המשרד. ואפשר גם במציאות מעורבת (Quest 3): השולחן עומד בסלון בגודל אמיתי, ומזיזים לו את הפרמטרים במקום.",
+  "Family Creator יוצר משפחה חדשה מאפס - קובץ ‎.rfa‎ חדש מתוך קטלוג או תיאור. Type Studio עובד על משפחה שכבר קיימת בפרויקט ויוצר ממנה טיפוסים חדשים בהזזת סרגלים. האחד יוצר, השני מתאים - ושניהם חוסכים את עבודת הפרמטרים הידנית.",
+  "עורך סיורי 360° חינמי: יוצרים סיור מהטלפון או מהמודל, ומציגים אותו בדפדפן או במשקפי Quest בקנה מידה 1:1. שמות החדרים בעברית בתוך הסיור עצמו, חיצי ניווט כדי שהלקוח לא ילך לאיבוד, ואפשרות לסיור מודרך - עוצרים בכל נקודה ומסבירים.",
+  "מעבדת המחקר והפיתוח של מוצרי המציאות המדומה שלנו. כל אובייקט - השרביט שמחליף את הבקר ביד, נקודות הניווט והמידע, האובייקטים שמשנים את החדר - נבנה ונבחן במעבדה בכל גודל ובכל מצב, לפני שהוא נכנס לסיור ולמוצרים.",
+  "ל-Viewer ול-VR Tours מספיק דפדפן; החוויה המלאה - עם משקפי Meta Quest 3. DecisionMaker, Family Creator ו-Type Studio עובדים יחד עם Revit במשרד - הם יוצאים מהמודל שלכם וחוזרים אליו. אין צורך בידע מוקדם ב-VR, אנחנו מלווים.",
+  "Viewer ו-VR Tours - חינם. שאר המוצרים תלויים בהיקף ובאופי הפרויקט, והדרך הנכונה להתחיל היא הדגמה קצרה על פרויקט שלכם. דברו איתי."
 ];
 
 var OYMER_SERVICES = [
@@ -145,10 +162,11 @@ var OYMER_SERVICES = [
     ["oYmer DecisionMaker", "DecisionMaker.html"],
     ["oYmer VR Tours", "VRTours.html"],
     ["oYmer BIM Viewer", "BIMViewer.html"],
-    ["oYmer 3D Lab", "Lab3D.html"]
+    ["oYmer VR Lab", "Lab3D.html"]
   ];
 
   /* ---- shared dropdown builder ---- */
+  var DROPDOWNS = [];   // every dropdown registers a closer here, so one can close the others
   function makeDropdown(btn, links) {
     var wrap = btn.parentNode;
     if (!wrap || wrap.querySelector(".oymer-submenu")) return;
@@ -164,9 +182,25 @@ var OYMER_SERVICES = [
       menu.appendChild(a);
     });
     wrap.appendChild(menu);
-    var open = false;
+    var open = false, leaveTimer = null;
     function set(o) { open = o; menu.style.display = o ? "block" : "none"; btn.setAttribute("aria-expanded", o); }
-    btn.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); set(!open); });
+    /* Opening one dropdown closes every other one - services and products can
+       never be down at the same time. Each builder registers its own closer. */
+    DROPDOWNS.push(function (except) { if (except !== set && open) set(false); });
+    function closeOthers() { DROPDOWNS.forEach(function (c) { c(set); }); }
+    /* Open on HOVER, on pointer devices only: a touch tap also fires mouseenter,
+       and the click handler right after it would close what the tap just opened. */
+    function canHover() { return !window.matchMedia || window.matchMedia("(hover:hover)").matches; }
+    wrap.addEventListener("mouseenter", function () {
+      if (!canHover()) return;
+      clearTimeout(leaveTimer); closeOthers(); set(true);
+    });
+    wrap.addEventListener("mouseleave", function () {
+      if (!canHover()) return;
+      clearTimeout(leaveTimer);
+      leaveTimer = setTimeout(function () { set(false); }, 180);  // forgiving gap between button and menu
+    });
+    btn.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); closeOthers(); set(!open); });
     document.addEventListener("click", function () { if (open) set(false); });
     menu.addEventListener("click", function (e) { e.stopPropagation(); });
   }
@@ -240,7 +274,7 @@ var OYMER_SERVICES = [
           panel.style.cssText = "opacity:0;transition:opacity .25s ease;";
           var p = document.createElement("p");
           p.className = "mt-4 text-slate-600 leading-relaxed";
-          p.style.cssText = "text-align:right;margin-top:16px;";
+          p.style.cssText = "text-align:right;margin-top:16px;white-space:pre-line;";
           p.textContent = ans;
           panel.appendChild(p);
           btn.appendChild(panel);
@@ -280,6 +314,7 @@ var OYMER_SERVICES = [
       }
       (container || menu).appendChild(a);
     }
+    var SECTIONS = [];   // one open section at a time, like the desktop dropdowns
     function collapsible(title, rows) {
       var btn = document.createElement("button");
       btn.style.cssText = "display:flex;width:100%;align-items:center;justify-content:space-between;padding:13px 8px;background:none;border:0;border-bottom:1px solid #f1f5f9;font-size:16px;font-weight:700;color:#0f172a;cursor:pointer;font-family:inherit;";
@@ -290,12 +325,19 @@ var OYMER_SERVICES = [
       var body = document.createElement("div"); body.style.display = "none";
       rows.forEach(function (l) { link(l, true, body); });
       var open = rows.some(function (l) { return (l[1] || "").toLowerCase() === curPage; });  // auto-open the section you're in
-      if (open) { body.style.display = "block"; arrow.style.transform = "rotate(180deg)"; }
+      function set(o) {
+        open = o;
+        body.style.display = o ? "block" : "none";
+        arrow.style.transform = o ? "rotate(180deg)" : "";
+      }
+      if (open) set(true);
+      /* Same rule as the desktop dropdowns: one section at a time. Without this
+         a tap on המוצרים left השירותים open above it and the menu was a wall. */
+      SECTIONS.push(function (except) { if (except !== set && open) set(false); });
       btn.addEventListener("click", function (e) {
         e.preventDefault(); e.stopPropagation();
-        open = !open;
-        body.style.display = open ? "block" : "none";
-        arrow.style.transform = open ? "rotate(180deg)" : "";
+        SECTIONS.forEach(function (c) { c(set); });
+        set(!open);
       });
       menu.appendChild(btn); menu.appendChild(body);
     }
@@ -304,8 +346,35 @@ var OYMER_SERVICES = [
     [["שאלות? תשובות!", "FAQ.html"], ["סיפורי לקוחות", "ClientStories.html"], ["בלוג", "Blog.html"],
      ["אודות", "About.html"], ["צור קשר", "Contact.html"]].forEach(function (l) { link(l, false); });
     document.body.appendChild(menu);
-    var open = false;
-    burger.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); open = !open; menu.style.display = open ? "block" : "none"; });
+    /* A transparent backdrop under the menu: a tap on the page that shows below
+       the menu closes it (and never reaches the page). Lives below the menu
+       (z 48 < 49) and below the fixed header (z 50), so the burger stays live. */
+    var backdrop = document.createElement("div");
+    backdrop.className = "oymer-mobile-backdrop";
+    backdrop.style.cssText = "position:fixed;inset:0;z-index:48;display:none;background:transparent;";
+    document.body.appendChild(backdrop);
+    /* Scroll lock. body{overflow:hidden} alone does not hold on iOS Safari, so
+       the body is pinned with position:fixed at the current scroll offset and
+       put back (same offset) on close. The header is fixed, so it is unmoved. */
+    var open = false, lockedY = 0;
+    function set(o) {
+      open = o;
+      menu.style.display = o ? "block" : "none";
+      backdrop.style.display = o ? "block" : "none";
+      burger.setAttribute("aria-expanded", o ? "true" : "false");
+      var b = document.body.style;
+      if (o) {
+        lockedY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        b.position = "fixed"; b.top = (-lockedY) + "px"; b.left = "0"; b.right = "0";
+        b.width = "100%"; b.overflow = "hidden";
+      } else {
+        b.position = ""; b.top = ""; b.left = ""; b.right = ""; b.width = ""; b.overflow = "";
+        window.scrollTo(0, lockedY);
+      }
+    }
+    burger.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); set(!open); });
+    backdrop.addEventListener("click", function (e) { e.preventDefault(); set(false); });
+    backdrop.addEventListener("touchmove", function (e) { e.preventDefault(); }, { passive: false });
   }
 
   /* ---- self-hosted accessibility menu (נגישות) ---- */
