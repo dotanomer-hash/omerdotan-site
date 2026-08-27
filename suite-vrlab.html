@@ -481,7 +481,7 @@ header[role="banner"]{transition:background .4s ease,box-shadow .4s ease}
         <article class="oyl-panel">
           <div class="oyl-media">
             <span class="oyl-id oyl-mono">USE_01</span>
-            <video src="media/lab/nav-hotspot.mp4" poster="media/lab/nav-hotspot-poster.jpg" autoplay muted loop playsinline></video>
+            <video src="media/lab/wand-use.mp4?v=1" poster="media/lab/wand-use-poster.jpg?v=1" autoplay muted loop playsinline></video>
           </div>
           <div class="oyl-body">
             <span class="oyl-kick oyl-mono">IN THE TOUR</span>
@@ -596,25 +596,29 @@ header[role="banner"]{transition:background .4s ease,box-shadow .4s ease}
 
 
 <script>
-/* Clips idle until they are worth watching. They start ONE viewport-height before
-   they arrive, so a clip is already running by the time it is on screen instead of
-   beginning from frame 0 under the reader's nose - and they pause once well past,
-   so six loops are not decoding at once. */
+/* Clips idle until the reader has actually scrolled to them. The first pass started a clip
+   ONE viewport-height BEFORE it arrived, which meant the top pair was already looping the
+   moment the page landed - his ask (2026-08-27) is the opposite: nothing moves until the
+   pair is being looked at. So the test is now a visible FRACTION of the clip's own box
+   (>=55%), it rewinds to frame 0 the first time it qualifies, and it pauses again on the
+   way out so six loops never decode at once.
+   ⛔ Still a plain scroll read, not an IntersectionObserver: frame-driven observers stop
+   firing in a throttled tab and leave clips stuck in the wrong state. */
 (function () {
   var vids = [].slice.call(document.querySelectorAll('.oyl-pair video'));
   if (!vids.length) return;
   vids.forEach(function (v) { v.autoplay = false; v.preload = 'metadata'; v.pause(); });
   function sweep() {
-    var lead = innerHeight;                      // start this far before it arrives
     vids.forEach(function (v) {
       var r = v.getBoundingClientRect();
-      var near = r.bottom > -lead * 0.5 && r.top < innerHeight + lead;
-      if (near) { if (v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }
-      else if (!v.paused) v.pause();
+      if (!r.height) return;
+      var vis = (Math.min(r.bottom, innerHeight) - Math.max(r.top, 0)) / r.height;
+      if (vis >= 0.55) {
+        if (!v.dataset.seen) { v.dataset.seen = '1'; try { v.currentTime = 0; } catch (e) {} }
+        if (v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      } else if (!v.paused) v.pause();
     });
   }
-  // plain scroll read, same reasoning as the header below: frame-driven observers
-  // stop firing in a throttled tab and leave clips stuck in the wrong state
   addEventListener('scroll', sweep, { passive: true });
   addEventListener('resize', sweep);
   sweep();

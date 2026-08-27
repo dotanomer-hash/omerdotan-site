@@ -151,7 +151,7 @@
         <article class="oyl-panel">
           <div class="oyl-media">
             <span class="oyl-id oyl-mono">MR_01</span>
-            <video src="media/lab/desk-mr.mp4?v=3" poster="media/lab/desk-mr-poster.jpg?v=3" autoplay muted loop playsinline></video>
+            <video class="dm-hold" src="media/lab/desk-mr.mp4?v=3" poster="media/lab/desk-mr-poster.jpg?v=3" muted loop playsinline preload="metadata"></video>
           </div>
           <div class="oyl-body">
             <span class="oyl-kick oyl-mono">MR</span>
@@ -230,5 +230,33 @@
 
 <script src="menu-preview.js?v=8"></script>
 <script src="suite-morph.js?v=17"></script>
+<script>
+  /* The LOWER pair holds still until it is actually on screen, so the upper pair gets watched
+     first instead of every clip looping at once. Two things had to be true, not one:
+       - no `autoplay` on .dm-hold - the poster holds the frame;
+       - suite-morph.js's lazyVideo() calls v.play() ITSELF the moment a video comes within
+         300px of the viewport, so a one-shot observer here would be overruled a beat later.
+     Hence the "play" listener: whatever starts a held clip, it is paused straight back unless
+     the observer has said it is >=55% visible. Same block as suite-decisionmaker.html. */
+  (function () {
+    var held = [].slice.call(document.querySelectorAll("video.dm-hold"));
+    if (!held.length) return;
+    function play(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if (!("IntersectionObserver" in window)) { held.forEach(play); return; }
+    held.forEach(function (v) {
+      v.addEventListener("play", function () { if (!v.dataset.seen) v.pause(); });
+    });
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting) {
+          if (!v.dataset.seen) { v.dataset.seen = "1"; try { v.currentTime = 0; } catch (e) {} }
+          play(v);
+        } else if (!v.paused) { v.pause(); }
+      });
+    }, { threshold: 0.55 });
+    held.forEach(function (v) { io.observe(v); });
+  })();
+</script>
 </body>
 </html>
