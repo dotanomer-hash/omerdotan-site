@@ -1,6 +1,3 @@
 User-agent: *
-Disallow: /viewer/
-Disallow: /viewer-data/
-Disallow: /BIMViewer-preview.html
 
 Sitemap: https://omerdotan.com/
