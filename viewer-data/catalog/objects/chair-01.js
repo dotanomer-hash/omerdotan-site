@@ -1,4 +1,4 @@
-// white-model/catalog/objects/chair-01.js
+// viewer-data/catalog/objects/chair-01.js
 // Simple dining chair. Origin at floor-center, front toward +Z, real meters (MASTER §C6).
 window.WMOBJ_chair01 = function (THREE) {
   var g = new THREE.Group();

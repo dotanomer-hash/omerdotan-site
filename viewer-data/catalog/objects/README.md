@@ -8,7 +8,7 @@
    dial proportions until it matches the photo.
 4. Append one entry to `objects.json` (id, Hebrew+English names, kind:"builder", src, global,
    footprint [w,d], height, optional revit family mapping).
-5. Run `node --test white-model/test/objects-catalog.test.js` (once U-tests exist). Done — the viewer
+5. Run `node --test viewer-data/test/objects-catalog.test.js` (once U-tests exist). Done — the viewer
    picks it up at runtime, no rebuild. Downloaded GLB assets instead: put the .glb in objects/,
    entry kind:"glb", file:"objects/x.glb" (served mode only).
 

@@ -1,4 +1,4 @@
-// white-model/catalog/objects/tv-01.js
+// viewer-data/catalog/objects/tv-01.js
 // Wall TV / flat panel. Origin at CENTER, screen faces +Z, natural ~50" (1.11 x 0.65 x 0.055 m).
 // Designed for FIT-TO-BBOX swap: the swapper scales this to the replaced Revit element's real size,
 // so a 50" and a 65" both come out right. White frame (bezel) + recessed glossy black screen.

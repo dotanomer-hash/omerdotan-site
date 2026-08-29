@@ -1,4 +1,4 @@
-// white-model/catalog/objects/sofa-01.js
+// viewer-data/catalog/objects/sofa-01.js
 // Two-seat fabric sofa. Origin at floor-center, front toward +Z, real meters (MASTER §C6).
 window.WMOBJ_sofa01 = function (THREE) {
   var g = new THREE.Group();

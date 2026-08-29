@@ -1,4 +1,4 @@
-<!-- white-model/viewer/_viewer.template.html
+<!-- viewer-data/viewer/_viewer.template.html
      White-Model viewer — built to Media Assets/white-model-viewer.html by build.js.
      NEVER edit the built file; edit sources + rebuild. Plugin units add ONE marker line each. -->
 <!DOCTYPE html>
@@ -6399,7 +6399,7 @@ THREE.RoomEnvironment = RoomEnvironment; window.RoomEnvironment = RoomEnvironmen
 
 })();
 </script>
-<script>// white-model/viewer/wm-core.js
+<script>// viewer-data/viewer/wm-core.js
 // White-Model viewer core. Defines window.WM (MASTER §C4). Classic script, no modules.
 // Frozen VR mapping: RIGHT trigger = pick (panels first, then model->tool). LEFT trigger on
 // floor = teleport. RIGHT stick X = 45° snap turn. EITHER grip = summon/toggle tool panel at 1.3m.
@@ -6564,7 +6564,7 @@ WM.toggleFly = function () { setMoveMode(move.mode === 'fly' ? 'off' : 'fly'); }
 var DEFAULT_PACK = 'MKD_AR_ARM_M3_R24_16';   // Dir El Asad — loads when no ?pack is given
 function packUrlBase() {
   var q = new URLSearchParams(location.search).get('pack');   // ?pack=<id> overrides the default
-  return '../white-model/packs/' + (q || DEFAULT_PACK) + '/';
+  return '../viewer-data/packs/' + (q || DEFAULT_PACK) + '/';
 }
 
 WM.loadPackFromUrl = function (base) {
@@ -7177,13 +7177,13 @@ window.__wm = WM;                                              // eval-driven te
 WM._move = move; WM._stepMove = stepMove;                     // headless move-physics test hooks
 })();
 </script>
-<script>// white-model/viewer/wm-paint.js — per-element PBR paint with world-space tri-planar mapping.
+<script>// viewer-data/viewer/wm-paint.js — per-element PBR paint with world-space tri-planar mapping.
 // Ops: material.set {elementIds, materialId|null} (MASTER §C2). Exposes window.WMPaint (read-only).
 (function () {
 'use strict';
 if (!window.WM) return console.error('[wm-paint] WM core missing');
 var WM = window.WM, THREE = WM.THREE;
-var CATALOG_BASE = '../white-model/catalog/';
+var CATALOG_BASE = '../viewer-data/catalog/';
 
 var entries = [], byId = {};              // catalog
 var mats = {};                            // materialId -> THREE material singleton
@@ -7428,7 +7428,7 @@ fetch(CATALOG_BASE + 'materials.json').then(function (r) { return r.json(); }).t
 }).catch(function () { WM.setStatus('paint: catalog unavailable (serve the folder, file:// cannot fetch)'); });
 })();
 </script>
-<script>// white-model/viewer/wm-objects.js — place/move/rotate/remove/SWAP catalog objects,
+<script>// viewer-data/viewer/wm-objects.js — place/move/rotate/remove/SWAP catalog objects,
 // and REPLACE Revit elements (sofa in the BIM model -> catalog chair) via element.swap.
 // Ops (MASTER §C2): object.place/move/remove; object.place with same objId + different catalogId
 // = swap-in-place; element.swap {elementId, catalogId|null, pos, rotY} hides the BIM element and
@@ -7438,7 +7438,7 @@ fetch(CATALOG_BASE + 'materials.json').then(function (r) { return r.json(); }).t
 'use strict';
 if (!window.WM) return console.error('[wm-objects] WM core missing');
 var WM = window.WM, THREE = WM.THREE;
-var BASE = '../white-model/catalog/';
+var BASE = '../viewer-data/catalog/';
 var FLOOR_CATS = ['Floors', 'Roofs', 'Topography', 'Site', 'Toposolid'];
 var SWAPPABLE_CATS = ['Furniture', 'Casework', 'Plumbing Fixtures', 'Generic Models', 'Specialty Equipment'];
 
@@ -7723,7 +7723,7 @@ fetch(BASE + 'objects.json').then(function (r) { return r.json(); }).then(functi
 }).catch(function () { WM.setStatus('objects: catalog unavailable (serve the folder)'); });
 })();
 </script>
-<script>// white-model/viewer/wm-light.js — realism lighting plugin (isolated; core untouched).
+<script>// viewer-data/viewer/wm-light.js — realism lighting plugin (isolated; core untouched).
 // IBL environment (PMREM RoomEnvironment) + ACES tone mapping + shadow-casting sun with
 // time-of-day presets + glass windows (sun comes THROUGH). All switches are in-VR choices.
 // Honest ceiling: realtime archviz, not path-traced GI — final mood stays the render layer.
@@ -7900,7 +7900,7 @@ console.log('[wm-light] realism lighting active (IBL + ACES + sun shadows + glas
 })();
 </script>
 <script></script>
-<script>// white-model/viewer/wm-autopaint.js — RULE-BASED auto-paint (NO AI).
+<script>// viewer-data/viewer/wm-autopaint.js — RULE-BASED auto-paint (NO AI).
 // Assigns a catalog material to every surface by CATEGORY / TYPE / LEVEL, then emits the existing
 // wm-paint 'material.set' ops (so it reuses the whole paint pipeline + write-back, no duplicate code).
 // Room-based rules ("kitchen floor -> tile") need room data added to the packer — TODO.
@@ -8003,7 +8003,7 @@ WM.registerTool({
 console.log('[wm-autopaint] ready (rule-based)');
 })();
 </script>
-<script>// white-model/viewer/wm-autoswap.js — RULE-BASED auto-swap (NO AI): replace Revit family instances
+<script>// viewer-data/viewer/wm-autoswap.js — RULE-BASED auto-swap (NO AI): replace Revit family instances
 // with catalog objects by family/type keyword. Reuses wm-objects' 'element.swap' op (hides the BIM
 // element + stands our object on its footprint). Unmatched families are reported as a "needs library"
 // list — the object-foundry shopping list. Grows automatically as the catalog grows.
@@ -8131,7 +8131,7 @@ WM.registerTool({
 console.log('[wm-autoswap] ready (rule-based)');
 })();
 </script>
-<script>// white-model/viewer/wm-detailpaint.js — RULE-BASED object detailing (NO AI):
+<script>// viewer-data/viewer/wm-detailpaint.js — RULE-BASED object detailing (NO AI):
 // (1) ELEMENT base material for every non-swapped object, chosen by reading its family/type name
 //     (Hebrew + English): desk->oak, TV->metal, basin->marble, shelf->walnut, etc.
 // (2) SUB-PART accent: detect the object's disjoint geometry islands; small islands at the BOTTOM
@@ -8298,7 +8298,7 @@ console.log('[wm-detailpaint] ready (rule-based objects + sub-part)');
 })();
 </script>
 <script></script>
-<script>// white-model/viewer/wm-menu.js — IN-VR TOOL SWITCHER + always-visible menu button.
+<script>// viewer-data/viewer/wm-menu.js — IN-VR TOOL SWITCHER + always-visible menu button.
 // The desktop tool toolbar (#wmTools) is DOM = invisible in XR, so in VR you were stranded on the
 // desktop-active tool (default Info = a text readout, no buttons). This adds:
 //   1) a root menu ("כלים") listing every registered tool; press one -> WM.setTool(id) shows it;
@@ -8362,7 +8362,7 @@ WM.on('xrend', function () { closeMenu(); if (launcher) launcher.group.visible =
 console.log('[wm-menu] ready (☰ launcher + grip = tool switcher)');
 })();
 </script>
-<script>// white-model/viewer/wm-vrmove.js — SMOOTH WALK + FLY in VR (thumbstick locomotion).
+<script>// viewer-data/viewer/wm-vrmove.js — SMOOTH WALK + FLY in VR (thumbstick locomotion).
 // Core VR locomotion was teleport (left trigger) + snap-turn (right stick X) only — no smooth move.
 // This adds:  LEFT stick = WALK (horizontal, relative to where the head looks · x=strafe, y=fwd/back);
 //             RIGHT stick Y = FLY up/down.  Right stick X stays the core's snap-turn (untouched).
@@ -8415,7 +8415,7 @@ WM.on('frame', function () {
 console.log('[wm-vrmove] ready (left stick = walk · right stick up/down = fly)');
 })();
 </script>
-<script>// white-model/viewer/wm-depthfix.js — handle REAL Revit coincidence without Z-fighting (shimmer).
+<script>// viewer-data/viewer/wm-depthfix.js — handle REAL Revit coincidence without Z-fighting (shimmer).
 //   1) DEPTH LADDER: coplanar surfaces of DIFFERENT categories (a wall bottom on a floor top, a ceiling
 //      on a wall) get a per-category polygon-offset so one always wins the depth test -> no flicker.
 //      Applied to each category's foam material (the whole white walkthrough is foam).
@@ -8514,7 +8514,7 @@ setTimeout(function () { if (WM.pack) applyLadder(); }, 1500);   // re-assert af
 console.log('[wm-depthfix] ready (per-category depth ladder + coincident-duplicate hide)');
 })();
 </script>
-<script>// white-model/viewer/wm-ao.js — baked per-vertex ambient occlusion + Before/After (A/B) tool.
+<script>// viewer-data/viewer/wm-ao.js — baked per-vertex ambient occlusion + Before/After (A/B) tool.
 // Isolated plugin: pure math helpers (Node-tested) + a browser section that uses only public
 // WM hooks. AO is computed on-device at load (hemisphere rays vs a uniform triangle grid),
 // baked into vertex colors, and recomputed (debounced, chunked on 'frame') when the scene
@@ -8925,7 +8925,7 @@ window.__wmAO = {
 console.log('[wm-ao] baked vertex AO active (load bake + move re-bake)');
 })();
 </script>
-<script>// white-model/viewer/wm-glass.js — REAL glass reflections via a scene reflection probe.
+<script>// viewer-data/viewer/wm-glass.js — REAL glass reflections via a scene reflection probe.
 //
 // THE PROBLEM (Omer spotted this in the headset): glass reflected `RoomEnvironment` — a built-in
 // three.js DEMO STUDIO made of a few glowing boxes, meant as neutral lighting for product shots.
@@ -9073,7 +9073,7 @@ window.__wmGlass = {
 };
 })();
 </script>
-<script>// white-model/viewer/wm-bakedlight.js — THROWAWAY EXPERIMENT. Loads Blender-baked bounce light
+<script>// viewer-data/viewer/wm-bakedlight.js — THROWAWAY EXPERIMENT. Loads Blender-baked bounce light
 // into the viewer as per-vertex colours.  URL: ?baked=1   (default OFF — nothing changes without it)
 //
 // WHY THIS EXISTS: bounce light was proven (2026-07-16) to be the realism gap — Blender A/B with
@@ -9106,7 +9106,7 @@ var WM = window.WM, THREE = WM.THREE;
 // e.g. the no-Topo reproduction — carry its own bake without disturbing the beloved one.
 var FALLBACK = '../../Blender-GI-Test/';
 var DEFAULT_PACK = 'MKD_AR_ARM_M3_R24_16';
-function packBaked() { return '../white-model/packs/' + (q.get('pack') || DEFAULT_PACK) + '/baked/'; }
+function packBaked() { return '../viewer-data/packs/' + (q.get('pack') || DEFAULT_PACK) + '/baked/'; }
 var BASE = FALLBACK;                                            // resolved in apply()
 function resolveBase() {
   return fetch(packBaked() + 'vlm_manifest.json', { method: 'HEAD' })
@@ -9216,7 +9216,7 @@ window.__wmBaked = {
 };
 })();
 </script>
-<script>// white-model/viewer/wm-lightmap.js — apply the factory-baked GI lightmap.  URL: ?lm=1
+<script>// viewer-data/viewer/wm-lightmap.js — apply the factory-baked GI lightmap.  URL: ?lm=1
 // Default OFF: without the flag the viewer is byte-identical to today.
 //
 // WHY: bounce light IS the realism gap (proven 2026-07-16 — Blender A/B, diffuse_bounces 0 vs 4,
@@ -9243,7 +9243,7 @@ var lm = null, tex = null, applied = false;
 // pack lives one level up. (wm-core is verified code; mirror it, don't touch it.)
 var DEFAULT_PACK = 'MKD_AR_ARM_M3_R24_16';   // same default as wm-core
 function packBase() {
-  return '../white-model/packs/' + (q.get('pack') || DEFAULT_PACK) + '/';
+  return '../viewer-data/packs/' + (q.get('pack') || DEFAULT_PACK) + '/';
 }
 
 // ?set=<name> selects an ALTERNATE bake: lightmap.<name>.json (default = lightmap.json). This lets
@@ -9266,7 +9266,7 @@ function apply() {
   applied = true;
   WM.setStatus('loading baked light…');
   fetch(packBase() + lightmapName()).then(function (r) {
-    if (!r.ok) throw new Error('no ' + lightmapName() + ' — run: node white-model/tools/wm-lightbake.js <pack_dir>');
+    if (!r.ok) throw new Error('no ' + lightmapName() + ' — run: node viewer-data/tools/wm-lightbake.js <pack_dir>');
     return r.json();
   }).then(function (j) {
     lm = j;
@@ -9497,7 +9497,7 @@ window.__wmLightmap = {
 console.log('[wm-lightmap] baked GI mode armed (?lm=1)');
 })();
 </script>
-<script>// white-model/viewer/wm-reflect.js — real sky + baked-scene reflections. URL flags (default OFF):
+<script>// viewer-data/viewer/wm-reflect.js — real sky + baked-scene reflections. URL flags (default OFF):
 //   ?sky=1       real equirect sky background (gradient + sun disc at the BAKED sun az35/el40)
 //   ?probe=1     re-capture the wm-glass probe AFTER baked light applies, and make the painted
 //                glass Fresnel-mix sample THAT instead of the fake wmSky gradient
@@ -9648,7 +9648,7 @@ window.__wmReflect = { rebuild: build, setSky: applySky };
 console.log('[wm-reflect] armed — sky:' + WANT_SKY + ' probe:' + WANT_PROBE + ' env:' + WANT_ENV);
 })();
 </script>
-<script>// white-model/viewer/wm-lmtune.js — live sliders for the lightmap look-tuning knobs, so the look
+<script>// viewer-data/viewer/wm-lmtune.js — live sliders for the lightmap look-tuning knobs, so the look
 // can be A/B'd by eye without a re-shoot each time. OPT-IN ONLY: &tune=1 (Omer 2026-07-17 — the
 // agreed look must never change by default; knobs appear only when explicitly requested).
 //
@@ -9725,7 +9725,7 @@ WM.on('ready', function () { ready(build); });
 if (WM.pack) ready(build);
 })();
 </script>
-<script>// white-model/viewer/wm-autopaintload.js — apply Auto-paint automatically on load: ?autopaint=1
+<script>// viewer-data/viewer/wm-autopaintload.js — apply Auto-paint automatically on load: ?autopaint=1
 //
 // Additive only. It does NOT reimplement any painting rule: it calls the REAL wm-autopaint by
 // activating that tool (WM.setTool renders its panel, which wires #wmApAll.onclick = autopaint)
