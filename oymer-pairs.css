@@ -284,7 +284,7 @@
 /* ---- one wide clip panel (Family Creator pitch, 2026-10-04) - plays with controls, so no sweep over it ---- */
 .oylp .oyl-stack .oyl-panel.oyl-clip{width:min(1100px,100%)}
 .oylp .oyl-clip:hover{transform:none}
-.oylp .oyl-clip .oyl-media{aspect-ratio:1920/1040}
+.oylp .oyl-clip .oyl-media{aspect-ratio:1920/1040;border-bottom:0}
 .oylp .oyl-clip .oyl-media::after{display:none}
 .oylp .oyl-clip .oyl-media video{object-fit:contain}
 
