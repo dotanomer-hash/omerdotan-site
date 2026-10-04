@@ -182,7 +182,8 @@
       box.classList.add("is-playing");
       var p = v.play(); if (p && p.catch) p.catch(function () { box.classList.remove("is-playing"); });
     });
-    v.addEventListener("ended", function () { v.controls = false; box.classList.remove("is-playing"); });
+    /* the clip already holds its end card; when it ends, go back to the Revit poster + play button */
+    v.addEventListener("ended", function () { v.controls = false; v.load(); box.classList.remove("is-playing"); });
   })();
 </script>
 </body>
