@@ -36,7 +36,7 @@
     "suite-familycreator.html": {
       hue: "c3",
       name: 'Family Creator',
-      sub: 'יצירת משפחות דינמיות לרוויט.',
+      sub: 'יצירת משפחות רוויט דינמיות מטקסט ו/או מקובץ.',
       /* what the window looks like back in the suite grid - the back face of the return flip */
       ix: '03',
       video: 'media/lab/kitchen-lab.mp4',
