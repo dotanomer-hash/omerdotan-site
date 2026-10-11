@@ -92,7 +92,15 @@
         <article class="oyl-panel oyl-clip">
           <div class="oyl-media">
             <!-- data-src, not src: suite-morph.js lazyVideo() auto-plays every video[src][poster];
-                 this one waits for the play button so nobody misses the start -->
+                 these wait for the play button so nobody misses the start -->
+            <video data-src="media/lab/fc-pitch-2.mp4?v=1" poster="media/lab/fc-pitch-2-poster.jpg?v=1" playsinline preload="none" aria-label="oYmer Family Creator - הדגמה, דקה"></video>
+            <button type="button" class="oyl-play" aria-label="הפעלת הסרטון">
+              <span class="oyl-play__ring" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+          </div>
+        </article>
+        <article class="oyl-panel oyl-clip">
+          <div class="oyl-media">
             <video data-src="media/lab/fc-pitch.mp4?v=6" poster="media/lab/fc-pitch-poster.jpg?v=3" playsinline preload="none" aria-label="oYmer Family Creator - דקה וחצי"></video>
             <button type="button" class="oyl-play" aria-label="הפעלת הסרטון">
               <span class="oyl-play__ring" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 5.5v13l11-6.5z"/></svg></span>
@@ -170,19 +178,23 @@
 <script src="menu-preview.js?v=8"></script>
 <script src="suite-morph.js?v=18"></script>
 <script>
-  /* The pitch clip starts only from its play button, with sound, from 0:00. */
+  /* Each pitch clip starts only from its play button, with sound, from 0:00; starting one pauses the other. */
   (function () {
-    var box = document.querySelector(".oyl-clip .oyl-media");
-    if (!box) return;
-    var v = box.querySelector("video"), b = box.querySelector(".oyl-play");
-    b.addEventListener("click", function () {
-      if (!v.getAttribute("src")) { v.src = v.dataset.src; v.preload = "auto"; }
-      v.muted = false; v.controls = true; v.currentTime = 0;
-      box.classList.add("is-playing");
-      var p = v.play(); if (p && p.catch) p.catch(function () { box.classList.remove("is-playing"); });
+    var boxes = document.querySelectorAll(".oyl-clip .oyl-media");
+    if (!boxes.length) return;
+    function reset(box) { var v = box.querySelector("video"); v.pause(); v.controls = false; v.load(); box.classList.remove("is-playing"); }
+    boxes.forEach(function (box) {
+      var v = box.querySelector("video"), b = box.querySelector(".oyl-play");
+      b.addEventListener("click", function () {
+        boxes.forEach(function (o) { if (o !== box && o.classList.contains("is-playing")) reset(o); });
+        if (!v.getAttribute("src")) { v.src = v.dataset.src; v.preload = "auto"; }
+        v.muted = false; v.controls = true; v.currentTime = 0;
+        box.classList.add("is-playing");
+        var p = v.play(); if (p && p.catch) p.catch(function () { box.classList.remove("is-playing"); });
+      });
+      /* the clip already holds its end card; when it ends, go back to the poster + play button */
+      v.addEventListener("ended", function () { reset(box); });
     });
-    /* the clip already holds its end card; when it ends, go back to the Revit poster + play button */
-    v.addEventListener("ended", function () { v.controls = false; v.load(); box.classList.remove("is-playing"); });
   })();
 </script>
 </body>
