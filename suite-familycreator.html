@@ -37,6 +37,11 @@
   box-shadow:0 0 40px rgba(2,242,255,.7),inset 0 0 14px rgba(2,242,255,.25)}
 .oylp .oyl-play:focus-visible{outline:none}
 .oylp .oyl-clip .is-playing .oyl-play{display:none}
+/* the new clip carries its caption band (the bottom 164/1040 of the frame = 8.54% of the width): the play ring sits in it */
+.oylp .oyl-clip--band .oyl-play{justify-content:flex-end;padding-bottom:calc(4.27% - 30px)}
+.oylp .oyl-clip--band .oyl-play__ring{width:60px;height:60px}
+.oylp .oyl-clip--band .oyl-play__ring svg{width:26px;height:26px;margin-inline-start:4px}
+@media (max-width:640px){.oylp .oyl-clip--band .oyl-play{padding-bottom:calc(4.27% - 20px)}.oylp .oyl-clip--band .oyl-play__ring{width:40px;height:40px}.oylp .oyl-clip--band .oyl-play__ring svg{width:18px;height:18px}}
 @media (max-width:640px){.oylp .oyl-play__ring{width:64px;height:64px}.oylp .oyl-play__ring svg{width:28px;height:28px}}
 </style>
 </head>
@@ -90,7 +95,7 @@
     </div>
     <div class="inner oylp">
       <div class="oyl-stack">
-        <article class="oyl-panel oyl-clip">
+        <article class="oyl-panel oyl-clip oyl-clip--band">
           <div class="oyl-media">
             <!-- data-src, not src: suite-morph.js lazyVideo() auto-plays every video[src][poster];
                  these wait for the play button so nobody misses the start -->
