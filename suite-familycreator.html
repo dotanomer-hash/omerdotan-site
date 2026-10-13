@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head><meta content="Omer Dotan" property="og:title"><meta content="VR Solutions" property="og:description"><meta content="https://omerdotan.com/media/share-card-2.jpg" property="og:image"><meta content="400" property="og:image:width"><meta content="400" property="og:image:height"><meta content="https://omerdotan.com/suite-familycreator.html" property="og:url"><meta content="website" property="og:type"><meta content="oYmer VR" property="og:site_name"><meta content="summary" name="twitter:card"><meta content="Omer Dotan" name="twitter:title"><meta content="VR Solutions" name="twitter:description"><meta content="https://omerdotan.com/media/share-card-2.jpg" name="twitter:image"><meta content="https://omerdotan.com/suite-familycreator.html" name="twitter:url">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="bimsuite-mockup.css?v=53" rel="stylesheet">
 <link rel="preload" as="image" href="media/hero-family.jpg">
+<link rel="prefetch" as="image" href="media/fc-how/s3-family-table.jpg?v=2">
+<link rel="prefetch" as="image" href="media/fc-how/s2-type-25d.jpg">
+<link rel="prefetch" as="image" href="media/fc-how/s2-type-2d.jpg">
+<link rel="prefetch" as="image" href="media/fc-how/s2-bed-25d.jpg">
+<link rel="prefetch" as="image" href="media/fc-how/s2-cad-catalogue.jpg?v=2">
 <link rel="preload" as="image" href="media/hero-viewer.jpg">
 <link rel="preload" as="image" href="media/hero-ribbon.jpg">
 <link href="suite-pipe.css?v=4" rel="stylesheet">
@@ -43,23 +48,390 @@
 .oylp .oyl-clip--band .oyl-play__ring svg{width:26px;height:26px;margin-inline-start:4px}
 @media (max-width:640px){.oylp .oyl-clip--band .oyl-play{padding-bottom:calc(4.27% - 20px)}.oylp .oyl-clip--band .oyl-play__ring{width:40px;height:40px}.oylp .oyl-clip--band .oyl-play__ring svg{width:18px;height:18px}}
 @media (max-width:640px){.oylp .oyl-play__ring{width:64px;height:64px}.oylp .oyl-play__ring svg{width:28px;height:28px}}
+
+/* ================= MOCKUP 2026-10-13: How it works + the catalogue (English, v2 layout) =================
+   ONE grid for every step: [rail 56] [text 5fr] [media 7fr]. Every main shot 16:9, every thumb 16:10.
+   Spacing scale: 4 8 12 16 24 32 48 64 96. Container = the site's 1180 + 28 gutter. */
+html,body{direction:ltr}
+.suite,.bs-hero{direction:ltr}
+.fch{--fc:#4f7dff;--fcd:#2c52c4;--fcs:#eef2ff;--or:#c2560a;--line:#e6e2f0;--panel:#fff;
+  background:var(--ground);padding:96px 0 32px;color:var(--body)}
+/* the same box as the clips above: .inner 1180 - 2x28 gutter, clip min(1100px,100%) centred */
+.fch .wrap{max-width:1156px;margin:0 auto;padding:0 28px}
+.fch ::selection{background:#d9e3ff;color:#181329}
+
+/* section intro - left, on the text column's line */
+.fch-intro{margin-bottom:48px}
+.fch-intro>div{max-width:720px}
+.fch-intro h2{font:800 clamp(32px,3.4vw,46px)/1.12 "Rubik","Heebo",sans-serif;letter-spacing:-.02em;color:var(--ink);margin:0 0 16px;text-wrap:balance}
+.fch-intro p{font-size:18px;line-height:1.65;margin:0;max-width:62ch}
+
+
+/* one step */
+.fstep{display:grid;grid-template-columns:44px minmax(0,5fr) minmax(0,7fr);column-gap:52px;
+  padding:64px 0;scroll-margin-top:150px;position:relative}
+.frail{position:relative;display:flex;justify-content:center}
+.frail::before{content:"";position:absolute;top:0;bottom:-64px;left:50%;width:1px;background:var(--line);transform:translateX(-.5px)}
+.fstep:first-of-type .frail::before{top:22px}
+.fstep:last-of-type .frail::before{bottom:auto;height:22px}
+.frail b{position:relative;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;
+  background:var(--panel);border:1.5px solid var(--fc);color:var(--fcd);font:700 16px/1 "Rubik",sans-serif;
+  font-variant-numeric:tabular-nums;box-shadow:0 0 0 6px var(--ground)}
+.ftext{min-width:0}
+.ftext h3{font:800 clamp(24px,2.3vw,30px)/1.2 "Rubik","Heebo",sans-serif;letter-spacing:-.015em;color:var(--ink);
+  margin:6px 0 12px;text-wrap:balance}
+.ftext>p{font-size:17px;line-height:1.7;margin:0 0 24px;max-width:56ch}
+.ftext>p:last-child{margin-bottom:0}
+.code{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.92em;color:var(--ink);
+  background:#f1eff7;border-radius:5px;padding:1px 6px}
+
+/* media column: stays in view while the text scrolls */
+.fmedia{min-width:0;position:sticky;top:160px;align-self:start;display:grid;gap:12px}
+.shot{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  box-shadow:0 1px 2px rgba(24,19,41,.04),0 18px 40px -22px rgba(24,19,41,.28)}
+.shot img,.shot video{display:block;width:100%;height:auto;background:#f1eff7}
+/* every screen is shown whole, at its own shape - never cropped to a box (his rule 10-13) */
+.shot figcaption{font-size:14px;line-height:1.45;color:var(--body);padding:10px 14px;border-top:1px solid var(--line)}
+.thumbs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.thumbs .shot img{aspect-ratio:16/10}
+.thumbs .shot figcaption{font-size:13px;padding:8px 12px}
+
+/* the one framed list every detail block uses */
+.dlist{margin:0;padding:0;list-style:none;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.dlist>li{padding:14px 16px;border-top:1px solid var(--line)}
+.dlist>li:first-child{border-top:0}
+.dlist h4{font:700 15px/1.3 "Rubik","Heebo",sans-serif;color:var(--ink);margin:0 0 4px}
+.dlist p{font-size:14.5px;line-height:1.55;margin:0}
+
+/* step 1 - prompt ladder */
+.ladder>li{display:grid;grid-template-columns:104px minmax(0,1fr);column-gap:16px;align-items:baseline}
+.ladder .lv{font:700 12px/1.4 "Rubik",sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--fcd)}
+.ladder q{quotes:none;font:500 14px/1.55 ui-monospace,"Cascadia Mono",Consolas,monospace;color:var(--ink)}
+.ladder small{grid-column:2;display:block;font-size:13px;line-height:1.5;color:var(--body);margin-top:4px}
+.ladder .pro{background:var(--fcs)}
+
+/* step 2 - attach list with a thumbnail */
+.attach>li{display:grid;grid-template-columns:88px minmax(0,1fr);column-gap:14px;align-items:center}
+.attach img,.attach .rfa{width:88px;aspect-ratio:4/3;border-radius:8px;object-fit:cover;object-position:top;border:1px solid var(--line);display:block}
+.attach .rfa{display:grid;place-items:center;background:var(--fcs);color:var(--fcd);font:700 12px/1 "Rubik",sans-serif}
+
+/* step 3 - the conversation (media column) */
+.chat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:10px;
+  box-shadow:0 1px 2px rgba(24,19,41,.04),0 18px 40px -22px rgba(24,19,41,.28)}
+/* the conversation wears the panel prompt's look: Segoe UI, dark text on white, the orange frame (his ask 10-13) */
+.msg{max-width:82%;padding:10px 14px;border-radius:10px;font:400 15px/1.5 "Segoe UI",system-ui,sans-serif;color:#181329;background:#fff}
+.msg .who{display:block;font:700 12px/1 "Segoe UI",system-ui,sans-serif;letter-spacing:.05em;margin-bottom:6px;color:#c2560a}
+.msg.ai .who{color:#6e6785}
+.msg.me{justify-self:end;border:2px solid #c2560a;box-shadow:0 0 0 4px rgba(232,112,26,.18),0 8px 18px -12px rgba(24,19,41,.45)}
+.msg.ai{justify-self:start;border:1px solid #d6d1e4;background:#faf9fd}
+.msg.sum{max-width:100%;justify-self:stretch;background:#fff;border:2px solid #c2560a}
+.msg.sum ul{margin:6px 0 0;padding-inline-start:20px;list-style:disc}
+.chat-note{font-size:14px;line-height:1.5;color:var(--body);margin:0}
+
+/* step 4 - cost and time */
+.meter{background:#0f1730;color:#c9d4f7;border-radius:12px;padding:18px 20px;
+  font:500 13.5px/1.55 ui-monospace,"Cascadia Mono",Consolas,monospace;box-shadow:0 18px 40px -22px rgba(15,23,48,.55)}
+.meter .mrow{display:grid;grid-template-columns:1fr 64px 96px;gap:16px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.09)}
+.meter .mrow b{font:600 14px/1 "Rubik",sans-serif;color:#fff}
+.meter .t,.meter .c{text-align:right;font-variant-numeric:tabular-nums}
+.meter .ok{color:#6fe3ad}.meter .run{color:#ffb86b}
+.meter .log{margin-top:12px;height:132px;overflow:hidden;color:#93a5df;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.meter.in-text{margin-top:16px}
+.meter .tot{margin-top:6px;color:#fff;font:500 13px/1.4 "Rubik",sans-serif}
+
+/* step 5 - the four previews */
+.feats>li{display:grid;grid-template-columns:36px minmax(0,1fr);column-gap:14px;align-items:start}
+.feats svg{width:36px;height:36px;padding:8px;border-radius:9px;background:var(--fcs);stroke:var(--fcd);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* step 6 - the three buttons */
+.opts>li{display:grid;grid-template-columns:104px minmax(0,1fr);column-gap:16px;align-items:center}
+.opts .btn{text-align:center;font:700 14px/1 "Rubik",sans-serif;border-radius:8px;padding:10px 8px;border:1px solid var(--rule2);color:var(--ink);background:var(--panel)}
+.opts .btn.go{background:var(--or);border-color:var(--or);color:#fff}
+.note{margin-top:16px;font-size:15px;line-height:1.55;color:var(--ink);background:var(--fcs);border-radius:10px;padding:12px 16px}
+
+/* step 7 - the Revit commands */
+.chain{counter-reset:c}
+.chain>li{counter-increment:c;display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:12px;align-items:baseline;padding:10px 16px;font-size:14.5px;line-height:1.5}
+.chain>li::before{content:counter(c);font:700 12px/1 "Rubik",sans-serif;font-variant-numeric:tabular-nums;color:var(--fcd)}
+.chain b{color:var(--ink);font-weight:700}
+.wall{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:12px;align-items:start;margin-top:16px;
+  font-size:14.5px;line-height:1.55;background:#181329;color:#e9e6f3;border-radius:12px;padding:14px 16px}
+.wall svg{width:22px;height:22px;stroke:#ffb86b;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:1px}
+
+/* step 8 - QC */
+.qcrow{display:grid;grid-template-columns:repeat(3,1fr);background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.qcrow div{padding:14px 16px;border-inline-start:1px solid var(--line)}
+.qcrow div:first-child{border-inline-start:0}
+.qcrow b{display:block;font:800 16px/1.2 "Rubik",sans-serif;color:var(--ink);margin-bottom:4px}
+.qcrow small{font-size:13px;line-height:1.4;color:var(--body)}
+.verdict{display:flex;justify-content:space-between;align-items:center;gap:16px;background:#0f1730;color:#c9d4f7;border-radius:12px;
+  padding:13px 16px;font:600 14px/1 "Rubik",sans-serif;margin-top:16px}
+.verdict .pass{display:inline-flex;align-items:center;gap:8px;color:#6fe3ad}
+.verdict svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* step 9 - where it is saved */
+.tree{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:16px;
+  font:500 13.5px/1.85 ui-monospace,"Cascadia Mono",Consolas,monospace;color:var(--ink);white-space:pre;overflow-x:auto}
+.tree .d{color:var(--fcd);font-weight:700}.tree .n{color:#6e6785}
+
+/* the catalogue */
+.fcat{padding:96px 0 32px;margin-top:32px;border-top:1px solid var(--line)}
+.cat{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  box-shadow:0 1px 2px rgba(24,19,41,.04),0 18px 40px -22px rgba(24,19,41,.28)}
+.cat-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);background:#faf9fd}
+.cat-top .search{flex:1 1 240px;display:flex;align-items:center;gap:8px;border:1px solid var(--rule2);border-radius:8px;padding:8px 12px;font:500 14px/1 "Rubik",sans-serif;color:#6e6785;background:var(--panel)}
+.cat-top .search svg{width:16px;height:16px;stroke:#6e6785;fill:none;stroke-width:2}
+.cat-top .chip{font:600 13px/1 "Rubik",sans-serif;padding:8px 12px;border-radius:99px;border:1px solid var(--rule2);color:var(--body);background:var(--panel)}
+.cat-top .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.cat-scroll{overflow-x:auto}
+.cat-table{width:100%;border-collapse:collapse;font:500 14px/1.4 "Rubik",sans-serif;font-variant-numeric:tabular-nums}
+.cat-table th{text-align:left;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6e6785;padding:12px 16px;border-bottom:1px solid var(--line)}
+.cat-table td{padding:14px 16px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:middle}
+.cat-table tr:last-child td{border-bottom:0}
+.cat-table tbody tr:hover td{background:#faf9fd}
+.cat-table td:first-child{font-weight:600;white-space:nowrap}
+.cat-table .drv span{display:inline-block;font-size:12.5px;background:#f1eff7;border-radius:6px;padding:3px 8px;margin:2px 4px 2px 0;color:var(--body)}
+.cat-table .qc svg{width:18px;height:18px;stroke:#1f9d63;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;display:block}
+.cat-table .acts{white-space:nowrap;text-align:right}
+.cat-table .acts span{display:inline-block;font-size:13px;font-weight:600;color:var(--fcd);border:1px solid #c9d6ff;border-radius:8px;padding:6px 10px;margin-left:6px}
+.catfeats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:32px;border-top:1px solid var(--line)}
+.catfeats div{padding:20px 24px 0 0}
+.catfeats h3{font:700 16px/1.3 "Rubik","Heebo",sans-serif;color:var(--ink);margin:0 0 6px}
+.catfeats p{font-size:14.5px;line-height:1.55;margin:0}
+
+.mock-flag{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99;background:#181329;color:#fff;font:700 12px/1 "Rubik",sans-serif;
+  letter-spacing:.12em;padding:9px 12px;border-radius:8px;opacity:.85}
+
+@media (max-width:1100px){
+}
+@media (max-width:900px){
+  .fch{padding-top:64px}
+  .fstep{grid-template-columns:44px minmax(0,1fr);column-gap:16px;row-gap:24px;padding:48px 0}
+  .frail b{width:36px;height:36px;font-size:14px}
+  .frail::before{bottom:-48px}
+  .fmedia{position:static}
+  .catfeats{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .fch .wrap{padding:0 16px}
+  .fstep{grid-template-columns:1fr}
+  .frail{justify-content:flex-start}
+  .frail::before{display:none}
+  .ladder>li,.opts>li{grid-template-columns:1fr;row-gap:6px}
+  .ladder small{grid-column:1}
+  .opts .btn{justify-self:start;min-width:104px}
+  .qcrow{grid-template-columns:1fr}
+  .qcrow div{border-inline-start:0;border-top:1px solid var(--line)}
+  .qcrow div:first-child{border-top:0}
+  .catfeats{grid-template-columns:1fr}
+  .catfeats div{padding:16px 0 0}
+  .meter .mrow{grid-template-columns:1fr 52px 84px;gap:8px}
+}
+
+/* step 1 - what an expert can define */
+.expert{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.expert h4{font:700 15px/1.3 "Rubik","Heebo",sans-serif;color:var(--ink);margin:0 0 8px}
+.expert ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+.expert li{position:relative;padding-inline-start:16px;font-size:14.5px;line-height:1.5}
+.expert li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--fc)}
+.expert li:last-child{color:#6e6785}
+/* step 3 - the three family kinds */
+.ftypes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ftype{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 12px 14px;text-align:center;
+  box-shadow:0 1px 2px rgba(24,19,41,.04),0 18px 40px -22px rgba(24,19,41,.28)}
+.ftype svg{display:block;width:100%;height:auto;max-width:150px;margin:0 auto 10px;fill:none;stroke:#181329;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.ftype svg .lt{stroke:#9b95ad;stroke-width:1.2}
+.ftype svg .mask{fill:#eef2ff;stroke:none}
+.ftype svg text{fill:#181329;stroke:none;font:600 11px "Rubik",sans-serif}
+.ftype b{display:block;font:800 18px/1.2 "Rubik",sans-serif;color:var(--ink)}
+.ftype small{display:block;font-size:13px;line-height:1.4;color:var(--body);margin-top:2px}
+.ftype.on{border-color:var(--or);box-shadow:0 0 0 1px var(--or),0 18px 40px -22px rgba(24,19,41,.28)}
+.ftype.on b{color:var(--or)}
+@media (max-width:560px){.expert ul{grid-template-columns:1fr}.ftypes{gap:8px}.ftype{padding:12px 6px}.ftype small{font-size:12px}}
+
+/* the step ribbon - a full-width band, sticky under the 80px header.
+   Its inner box is the same 1100 box as the clips and the steps, so the 10 stops line up with the page. */
+.fch-ribbon{position:sticky;top:80px;z-index:30;margin:0 0 24px;
+  background:linear-gradient(180deg,#0d1b45 0%,#0a1536 100%);
+  border-top:1px solid rgba(255,255,255,.06);box-shadow:0 14px 30px -18px rgba(8,18,48,.55)}
+.fch-ribbon .rb-in{position:relative;max-width:1156px;margin:0 auto;padding:14px 28px 12px}
+.rb-steps{position:relative;display:grid;grid-template-columns:repeat(10,1fr)}
+.rb-steps a{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 4px;color:#9fb0e0!important;text-align:center;
+  border-radius:8px;transition:color .25s}
+.rb-steps a i{font-style:normal;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;
+  font:700 13px/1 "Rubik",sans-serif;font-variant-numeric:tabular-nums;color:#c7d3f5;background:#0a1536;
+  border:1.5px solid #3a4f8f;transition:background .25s,border-color .25s,color .25s,box-shadow .25s,transform .25s}
+.rb-steps a span{font:600 13px/1.2 "Heebo",sans-serif;white-space:nowrap}
+.rb-steps a:hover{color:#fff!important}
+.rb-steps a:hover i{border-color:#7f9cff;color:#fff}
+.rb-steps a.done i{background:#2c52c4;border-color:#2c52c4;color:#fff}
+.rb-steps a.done{color:#c7d3f5!important}
+.rb-steps a.on{color:#fff!important}
+.rb-steps a.on i{background:#4f7dff;border-color:#9db5ff;color:#fff;transform:scale(1.12);box-shadow:0 0 0 5px rgba(79,125,255,.25)}
+.rb-steps a:focus-visible{outline:2px solid #9db5ff;outline-offset:3px}
+/* the track runs through the circle centres: from the 1st centre (5%) to the 10th (95%) */
+.rb-track{position:absolute;left:5%;right:5%;top:14px;height:2px;background:#26386e;border-radius:2px}
+.rb-fill{display:block;height:100%;width:var(--p,0%);background:linear-gradient(90deg,#2c52c4,#4f7dff);border-radius:2px;transition:width .35s cubic-bezier(.2,.7,.2,1)}
+@media (max-width:1100px){
+  .fch-ribbon .rb-in{overflow-x:auto;scrollbar-width:none}
+  .fch-ribbon .rb-in::-webkit-scrollbar{display:none}
+  .rb-steps{grid-template-columns:repeat(10,96px)}
+  .rb-track{left:48px;right:auto;width:864px}
+}
+@media (max-width:560px){.fch-ribbon .rb-in{padding:12px 16px 10px}}
+
+/* step 2 - a tile is a button: it lights its own explanation */
+button.ftype{font:inherit;color:inherit;cursor:pointer;width:100%;transition:border-color .2s,box-shadow .2s,transform .2s}
+button.ftype:hover{transform:translateY(-2px);border-color:#c9d6ff}
+button.ftype:focus-visible{outline:2px solid var(--fc);outline-offset:3px}
+.ftype.on svg{stroke:var(--or)}
+.ftx{transition:background .25s}
+.ftx h4{transition:color .25s}
+.ftx.hl{background:#fff4ec}
+.ftx.hl h4{color:var(--or)}
+
+/* the step grid with areas: wide = text left (head over detail), picture right;
+   stacked = head, then the picture, then the detail - the picture never falls under the lists */
+.fstep{grid-template-areas:"rail head media" "rail detail media";grid-template-rows:auto 1fr}
+.fstep>.frail{grid-area:rail}
+.fstep>.fhead{grid-area:head;min-width:0}
+.fstep>.fdetail{grid-area:detail;min-width:0}
+.fstep>.fmedia{grid-area:media}
+.fhead h3{font:800 clamp(24px,2.3vw,30px)/1.2 "Rubik","Heebo",sans-serif;letter-spacing:-.015em;color:var(--ink);margin:6px 0 12px;text-wrap:balance}
+.fhead>p{font-size:17px;line-height:1.7;margin:0 0 24px;max-width:56ch}
+.fdetail>p{font-size:17px;line-height:1.7;margin:0 0 24px;max-width:56ch}
+.fdetail>:last-child{margin-bottom:0}
+@media (max-width:900px){
+  .fstep{grid-template-areas:"rail head" "rail media" "rail detail";grid-template-rows:auto auto auto}
+  .fhead>p:last-child{margin-bottom:0}
+}
+@media (max-width:560px){
+  .fstep{grid-template-areas:"rail" "head" "media" "detail"}
+}
+
+/* step 7 - the choice tiles sit in the text column, above their explanations */
+.ftypes-sm{margin-bottom:16px}
+.ftypes-sm .ftype{padding:12px 8px 10px;box-shadow:0 1px 2px rgba(24,19,41,.04)}
+.ftypes-sm .ftype svg{max-width:64px;margin-bottom:6px;stroke-width:2.2}
+.ftypes-sm .ftype b{font-size:16px}
+.opts2 h4{margin-bottom:2px}
+
+/* step 3 - four file tiles */
+.ftypes-4{grid-template-columns:repeat(4,1fr);gap:8px}
+.ftypes-4 .ftype{padding:10px 4px 9px}
+.ftypes-4 .ftype b{font-size:14.5px}
+.ftypes-4 .ftype small{font-size:12px;white-space:nowrap}
+@media (max-width:560px){.ftypes-4{grid-template-columns:1fr 1fr}}
+
+/* steps 2 + 3 - the real panel screen, its buttons enlarged and pressable over their real row */
+.shotov{position:relative;container-type:inline-size}
+.shotov .sbox{position:relative}
+.shotov>img{position:relative}
+.pbtns{position:absolute;left:var(--x,1.2%);width:var(--w);top:var(--y);transform:translateY(-50%);display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.pbtn{font:600 clamp(10px,1.85cqw,16px)/1.15 "Rubik",sans-serif;padding:1.4cqw .6cqw;border-radius:1.1cqw;border:2px solid #c2560a;
+  background:#fff;color:#181329;cursor:pointer;transition:background .2s,color .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 0 0 .6cqw rgba(232,112,26,.22),0 12px 26px -12px rgba(24,19,41,.55)}
+.pbtn:hover{transform:translateY(-1px);box-shadow:0 0 0 .8cqw rgba(232,112,26,.3),0 12px 26px -12px rgba(24,19,41,.55)}
+.pbtn.on{background:var(--or);border-color:var(--or);color:#fff}
+.pbtn:focus-visible{outline:2px solid var(--fc);outline-offset:2px}
+.shotov .inset{position:absolute;aspect-ratio:16/9;background:#fff;border:1px solid #ddd8ea;border-radius:1.2cqw;overflow:hidden;
+  box-shadow:0 14px 34px -14px rgba(24,19,41,.55)}
+.shotov .inset img,.shotov .inset video{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:auto}
+.shotov .inset [hidden]{display:none}
+
+
+/* step 2 - the real buttons stay as they are, only outlined; their enlarged copy works in the empty 3D view */
+.porig{position:absolute;border:2px solid #c2560a;border-radius:1cqw;box-shadow:0 0 0 .6cqw rgba(232,112,26,.22);pointer-events:none}
+
+/* step 2 - the enlarged buttons sit under the picture (his drawing 10-13), the real ones stay outlined on the screen */
+.pbtns.pbtns-out{position:static;transform:none;width:100%;gap:12px;margin-top:4px}
+.pbtns-out .pbtn{font-size:17px;padding:14px 8px;border-radius:12px;box-shadow:0 0 0 4px rgba(232,112,26,.18),0 10px 22px -12px rgba(24,19,41,.45)}
+.pbtns-out .pbtn:hover{box-shadow:0 0 0 6px rgba(232,112,26,.26),0 10px 22px -12px rgba(24,19,41,.45)}
+
+/* step 3 - each real button has its own outline; the pressed one is lit. Arrows run from each real button to its big copy. */
+.porig{border-color:rgba(194,86,10,.45);box-shadow:none;transition:border-color .2s,box-shadow .2s,background .2s}
+.porig.on{border-color:#c2560a;background:rgba(232,112,26,.14);box-shadow:0 0 0 .6cqw rgba(232,112,26,.25)}
+.inset.inset-fc{border:2px solid #c2560a;box-shadow:0 0 0 .6cqw rgba(232,112,26,.18),0 18px 40px -14px rgba(24,19,41,.55)}
+#s3 .fmedia{position:sticky}
+.parrows{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:3}
+.parrows path.ar{fill:none;stroke:rgba(194,86,10,.38);stroke-width:2;stroke-dasharray:5 5;transition:stroke .2s}
+.parrows path.ar.on{stroke:#c2560a;stroke-dasharray:none;stroke-width:2.5}
+.parrows marker path{fill:#c2560a}
+@media (max-width:900px){#s3 .fmedia{position:relative}}
+
+/* who is it for - one row, four columns divided by rules, no boxes */
+.fwho{margin-bottom:96px}
+.who-row{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.who-row li{padding:28px 28px 0 0;margin-right:28px;border-right:1px solid var(--line)}
+.who-row li:last-child{border-right:0;margin-right:0;padding-right:0}
+.who-row svg{width:40px;height:40px;padding:9px;border-radius:10px;background:var(--fcs);stroke:var(--fcd);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:16px}
+.who-row h3{font:800 20px/1.25 "Rubik","Heebo",sans-serif;color:var(--ink);margin:0 0 8px}
+.who-row p{font-size:15.5px;line-height:1.6;margin:0}
+@media (max-width:900px){.who-row{grid-template-columns:1fr 1fr}.who-row li{margin-right:0;padding:24px 24px 24px 0;border-right:0;border-bottom:1px solid var(--line)}.who-row li:nth-child(odd){padding-right:24px;margin-right:24px;border-right:1px solid var(--line)}}
+@media (max-width:560px){.who-row{grid-template-columns:1fr}.who-row li,.who-row li:nth-child(odd){margin-right:0;padding-right:0;border-right:0}}
+
+/* who is it for - a bubble chart: the product in the centre, who it serves around it */
+.bubbles{position:relative;aspect-ratio:16/10.5;margin-top:8px}
+.bub-lines{position:absolute;inset:0;width:100%;height:100%}
+.bub-lines line{stroke:#c9d6ff;stroke-width:.25;stroke-dasharray:1 1}
+.bub-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:23%;aspect-ratio:1;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:radial-gradient(circle at 35% 30%,#1d3a8f,#0a1536 70%);color:#fff;
+  box-shadow:0 0 0 8px rgba(79,125,255,.14),0 0 0 2px #c2560a inset,0 26px 50px -20px rgba(8,18,48,.6)}
+.bc-o{font:800 clamp(18px,2.2vw,28px)/1 "Rubik",sans-serif}
+.bc-o b{color:#ff8a2a}
+.bc-n{font:800 clamp(16px,2vw,26px)/1.1 "Rubik",sans-serif;margin-top:6px}
+.bub-ring{list-style:none;margin:0;padding:0}
+.bub{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);aspect-ratio:1;border-radius:50%;
+  background:#fff;border:1.5px solid #c9d6ff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding:0 2.2%;box-shadow:0 14px 30px -18px rgba(24,19,41,.4);transition:transform .25s,border-color .25s,box-shadow .25s}
+.bub-l{width:19%}
+.bub-m{width:16%}
+.bub:hover{transform:translate(-50%,-50%) scale(1.05);border-color:#4f7dff;box-shadow:0 0 0 6px rgba(79,125,255,.12),0 18px 34px -18px rgba(24,19,41,.45)}
+.bub svg{width:32px;height:32px;padding:7px;border-radius:9px;background:var(--fcs);stroke:var(--fcd);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:8px;flex:0 0 auto}
+.bub h3{font:800 clamp(13px,1.35vw,17px)/1.2 "Rubik","Heebo",sans-serif;color:var(--ink);margin:0 0 5px}
+.bub p{font-size:clamp(11.5px,1.05vw,13.5px);line-height:1.4;margin:0;color:var(--body)}
+.bub-m h3{font-size:clamp(12.5px,1.2vw,15px)}
+.bub-m p{font-size:clamp(11px,.95vw,12.5px)}
+@media (max-width:860px){
+  .bubbles{aspect-ratio:auto}
+  .bub-lines{display:none}
+  .bub-core{position:relative;left:auto;top:auto;transform:none;width:200px;margin:8px auto 28px}
+  .bub-ring{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .bub{position:static;transform:none;width:auto;aspect-ratio:auto;border-radius:16px;padding:16px;align-items:flex-start;text-align:left}
+  .bub:hover{transform:none}
+}
+@media (max-width:520px){.bub-ring{grid-template-columns:1fr}}
+
+/* step 7 - the human approval stamp from the clip: it slams onto the order form */
+.shotov .sbox img.hstamp{position:absolute;left:3%;top:50%;width:26%;height:auto;aspect-ratio:auto;background:none;pointer-events:none;
+  filter:drop-shadow(0 6px 10px rgba(194,86,10,.25));opacity:0;transform:scale(1.8) rotate(-8deg)}
+.shotov .sbox img.hstamp.slam{animation:slam .55s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes slam{0%{opacity:0;transform:scale(1.8) rotate(-8deg)}60%{opacity:1;transform:scale(.94) rotate(0)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@media (prefers-reduced-motion:reduce){.shotov .sbox img.hstamp.slam{opacity:1;transform:none}.shotov .sbox img.hstamp.slam{animation:none}}
+
+/* an explanation row presses its button */
+.ftx-click{cursor:pointer}
+.ftx-click:hover:not(.hl){background:#faf9fd}
+.ftx-click:focus-visible{outline:2px solid var(--fc);outline-offset:-2px}
 </style>
+
 </head>
 <body>
-<div class="min-h-screen" dir="rtl">
-<header role="banner" class="fixed top-0 right-0 left-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-lg shadow-sm"><div class="container mx-auto px-6"><div class="flex items-center justify-between h-20"><a class="flex items-center gap-3" aria-label="עמוד הבית" href="index.html"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69416d0ccb7ea3d7274916a0/ec944baee_logo_transparent_2.png" alt="לוגו OMER DOTAN - VR Solutions" class="h-16 w-auto self-center" style="filter: none; transform: scale(0.8);"><div style="display:inline-block" dir="ltr"><span class="font-bold text-2xl block leading-tight text-slate-900" style="text-align:justify;text-align-last:justify;letter-spacing:.01em">OMER DOTAN</span><span class="text-base -mt-1 block text-slate-500" style="font-size:1.35rem;letter-spacing:.18em">VR Solutions</span></div></a><nav class="hidden lg:flex items-center gap-1" role="navigation" aria-label="תפריט ניווט ראשי"><div class="relative"><button aria-expanded="false" aria-haspopup="true" class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100">השירותים שלנו<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-4 h-4 transition-transform"><path d="m6 9 6 6 6-6"></path></svg></button></div><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="FAQ.html">שאלות? תשובות!</a><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="Blog.html">בלוג</a><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="About.html">אודות</a><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="Contact.html">צור קשר</a></nav><div class="hidden lg:block"><a class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl font-medium transition-colors shadow-lg shadow-sky-600/25" href="Contact.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-4 h-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>דברו איתי</a></div><button aria-label="פתח תפריט" aria-expanded="false" class="lg:hidden p-2 rounded-lg text-slate-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div></header>
-<section class="bs bs-hero hue-c3" dir="rtl" aria-label="oYmer Family Creator">
+<div class="min-h-screen">
+<header role="banner" class="fixed top-0 right-0 left-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-lg shadow-sm"><div class="container mx-auto px-6"><div class="flex items-center justify-between h-20"><a class="flex items-center gap-3" aria-label="Home" href="index.html"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69416d0ccb7ea3d7274916a0/ec944baee_logo_transparent_2.png" alt="OMER DOTAN - VR Solutions logo" class="h-16 w-auto self-center" style="filter: none; transform: scale(0.8);"><div style="display:inline-block" dir="ltr"><span class="font-bold text-2xl block leading-tight text-slate-900" style="text-align:justify;text-align-last:justify;letter-spacing:.01em">OMER DOTAN</span><span class="text-base -mt-1 block text-slate-500" style="font-size:1.35rem;letter-spacing:.18em">VR Solutions</span></div></a><nav class="hidden lg:flex items-center gap-1" role="navigation" aria-label="Main navigation"><div class="relative"><button aria-expanded="false" aria-haspopup="true" class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100">Our services<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-4 h-4 transition-transform"><path d="m6 9 6 6 6-6"></path></svg></button></div><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="FAQ.html">FAQ</a><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="Blog.html">Blog</a><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="About.html">About</a><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="Contact.html">Contact</a></nav><div class="hidden lg:block"><a class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl font-medium transition-colors shadow-lg shadow-sky-600/25" href="Contact.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-4 h-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>Talk to me</a></div><button aria-label="Open menu" aria-expanded="false" class="lg:hidden p-2 rounded-lg text-slate-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div></header>
+<section class="bs bs-hero hue-c3" aria-label="oYmer Family Creator">
   <div class="bs-herobg" aria-hidden="true">
     <span class="p p1"></span><span class="p p3"></span><span class="p p2"></span><span class="p p4"></span>
   </div>
   <div class="inner">
     <a class="bs-suitetag rev" href="bimsuite.html">o<span class="y">Y</span>mer <b>BIM VR</b> Suite<sup class="oyc">&#169;</sup></a>
     <h1 class="rev"><span class="oy">o<span class="yflash">Y</span>mer</span> Family Creator<sup class="oyc">&#169;</sup></h1>
-    <p class="sub rev">יצירת משפחות רוויט דינמיות מטקסט ו/או מקובץ.</p>
+    <p class="sub rev">Dynamic Revit families from text and/or a file.</p>
   </div>
 </section>
 
-<main class="suite bs" dir="rtl">
+<main class="suite bs">
   <section class="pipesec products c3" id="pipeline">
     <div class="bimbg quiet" aria-hidden="true">
       <span class="plan"></span><span class="iso"></span>
@@ -99,32 +471,377 @@
           <div class="oyl-media">
             <!-- data-src, not src: suite-morph.js lazyVideo() auto-plays every video[src][poster];
                  these wait for the play button so nobody misses the start -->
-            <video data-src="media/lab/fc-pitch-2.mp4?v=1" poster="media/lab/fc-pitch-2-poster.jpg?v=5" playsinline preload="none" aria-label="oYmer Family Creator - הדגמה, דקה"></video>
-            <button type="button" class="oyl-play" aria-label="הפעלת הסרטון">
-              <span class="oyl-play__ring" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-            </button>
-          </div>
-        </article>
-        <article class="oyl-panel oyl-clip">
-          <div class="oyl-media">
-            <video data-src="media/lab/fc-pitch.mp4?v=6" poster="media/lab/fc-pitch-poster.jpg?v=3" playsinline preload="none" aria-label="oYmer Family Creator - דקה וחצי"></video>
-            <button type="button" class="oyl-play" aria-label="הפעלת הסרטון">
-              <span class="oyl-play__ring" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-            </button>
+            <video data-src="media/lab/fc-pitch-2.mp4?v=1" poster="media/lab/fc-pitch-2-poster.jpg?v=5" playsinline preload="none" aria-label="oYmer Family Creator - demo, one minute"></video>
           </div>
         </article>
       </div>
 
-
-
-    </div>
     </div>
   </section>
 
-  <section class="backsuite c3" aria-label="חזרה לחבילה">
+  <!-- ================= MOCKUP 2026-10-13: How it works + the catalogue (English, v2 layout) ================= -->
+  <section class="fch" id="how" aria-label="How it works">
+    <div class="wrap">
+      <!-- who is it for (his ask 10-13) -->
+      <div class="fwho" id="who">
+        <div class="fch-intro"><div>
+          <h2>Who is it for?</h2>
+          <p>Anyone who needs a Revit family - from a first-timer to an office that sets the standard.</p>
+        </div></div>
+        <div class="bubbles">
+          <svg class="bub-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="50" y1="50" x2="50.00" y2="12.00"/><line x1="50" y1="50" x2="84.64" y2="31.00"/><line x1="50" y1="50" x2="84.64" y2="69.00"/><line x1="50" y1="50" x2="50.00" y2="88.00"/><line x1="50" y1="50" x2="15.36" y2="69.00"/><line x1="50" y1="50" x2="15.36" y2="31.00"/></svg>
+          <div class="bub-core"><span class="bc-o">o<b>Y</b>mer</span><span class="bc-n">Family Creator</span></div>
+          <ul class="bub-ring">
+          <li class="bub bub-l" style="--x:50.00%;--y:12.00%"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg><h3>Casual builders</h3><p>No expertise needed. Plain words in, a professional family out.</p></li>
+          <li class="bub bub-m" style="--x:84.64%;--y:31.00%"><svg viewBox="0 0 24 24"><path d="M3 20V9l6 4V9l6 4V5h6v15z"/></svg><h3>Manufacturers</h3><p>A product catalogue or a DWG sheet becomes Revit families.</p></li>
+          <li class="bub bub-l" style="--x:84.64%;--y:69.00%"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg><h3>BIM managers</h3><p>The experts: name the category, nested parts, arrays and parameter types - and keep one set of rules.</p></li>
+          <li class="bub bub-l" style="--x:50.00%;--y:88.00%"><svg viewBox="0 0 24 24"><path d="M5 21V4h9v17M14 9h5v12"/><path d="M8 8h3M8 12h3M8 16h3"/></svg><h3>Large offices</h3><p>Develop and keep office standards across every family.</p></li>
+          <li class="bub bub-m" style="--x:15.36%;--y:69.00%"><svg viewBox="0 0 24 24"><path d="M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><path d="M3 11h18v5H3zM6 16v3M18 16v3"/></svg><h3>Interior & furniture designers</h3><p>Their own pieces as live families, sized by sliders.</p></li>
+          <li class="bub bub-l" style="--x:15.36%;--y:31.00%"><svg viewBox="0 0 24 24"><path d="M4 20V10l8-5 8 5v10"/><path d="M10 20v-5h4v5"/></svg><h3>Small offices</h3><p>Families on demand - no family specialist on staff.</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fch-intro"><div>
+        <h2>How it works</h2>
+        <p>From one sentence to a parametric Revit family in your project, in a couple of steps. The AI plans. Fixed machinery builds, checks and measures. One human check sits in the middle, before anything is built.</p>
+      </div></div>
+
+    </div>
+    <nav class="fch-ribbon" aria-label="The steps">
+      <div class="rb-in">
+        <div class="rb-steps">
+          <div class="rb-track" aria-hidden="true"><span class="rb-fill"></span></div>
+          <a href="#s1"><i>1</i><span>Prompt</span></a>
+          <a href="#s2"><i>2</i><span>Attach</span></a>
+          <a href="#s3"><i>3</i><span>Family kind</span></a>
+          <a href="#s4"><i>4</i><span>Conversation</span></a>
+          <a href="#s5"><i>5</i><span>Create</span></a>
+          <a href="#s6"><i>6</i><span>Order form</span></a>
+          <a href="#s7"><i>7</i><span>Approve</span></a>
+          <a href="#s8"><i>8</i><span>Build</span></a>
+          <a href="#s9"><i>9</i><span>QC</span></a>
+          <a href="#s10"><i>10</i><span>Load family</span></a>
+        </div>
+      </div>
+    </nav>
+    <div class="wrap">
+
+      <!-- 1 -->
+      <article class="fstep" id="s1">
+        <div class="frail"><b>1</b></div>
+        <div class="fhead">
+          <h3>Type what you want, in your own words</h3>
+          <p>Any language, free text. No form to fill in and no terms to learn. A beginner types two words; an expert says exactly which parts are nested families and which are arrays.</p>
+        </div>
+        <div class="fdetail">
+          <ul class="dlist ladder">
+            <li><span class="lv">Two words</span><q>do it</q><small>With a photo attached, that is enough. The AI reads the photo.</small></li>
+            <li><span class="lv">Any language</span><q>mesa redonda con pata cruzada, de 90 a 120 de diámetro</q><small>Spanish, Hebrew, German - the order comes back in English.</small></li>
+            <li><span class="lv">Free text</span><q>a closet with 4 legs, a bottom drawer with handle, two upper doors with handles and 2-5 shelves indise</q><small>The real prompt behind Closet 08, typo included.</small></li>
+            <li class="pro"><span class="lv">Expert</span><q>Furniture. Closet 900x600x2000. Door = nested family, swappable, handle nested in the door. Shelves = array, count 2-5. Legs = group. Sliders: Width, Height, Number of shelves. Panel thickness = type parameter, Width = instance.</q></li>
+          </ul>
+          <div class="expert">
+            <h4>An expert can define</h4>
+            <ul>
+              <li>The family category</li><li>Which parts are nested families</li>
+              <li>Grouping or arrays</li><li>The required sliders</li>
+              <li>Type or instance parameters</li><li>Ranges and default values</li>
+              <li>Materials per part</li><li>Anything left out, the AI decides</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fmedia">
+          <figure class="shot"><video src="media/fc-how/s1-typing.mp4?v=1" poster="media/fc-how/s1-typing-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="The prompt being typed in the Family Creator panel"></video></figure>
+        </div>
+      </article>
+
+      <!-- 2 - attach -->
+      <article class="fstep" id="s2">
+        <div class="frail"><b>2</b></div>
+        <div class="fhead">
+          <h3>Attach a file (optional)</h3>
+          <p>A file gives the AI what is hard to say in words: shape, proportion and real sizes.</p>
+        </div>
+        <div class="fdetail">
+          <ul class="dlist">
+            <li class="ftx hl" id="at-photo"><h4>A photo</h4><p>A product photo from a catalogue or a maker's site. The round table with the crossed leg came from this one.</p></li>
+            <li class="ftx" id="at-family"><h4>An existing family to fix</h4><p>Upload a family and say what to change: <span class="code">make the leg corners round</span>.</p></li>
+            <li class="ftx" id="at-cad1"><h4>CAD, one item</h4><p>A bed from a DWG. One item becomes one family, with no AI at all. The units are asked, never guessed.</p></li>
+            <li class="ftx" id="at-cadmany"><h4>CAD, many items</h4><p>A whole catalogue sheet becomes one family per item, side by side.</p></li>
+          </ul>
+        </div>
+        <div class="fmedia">
+          <figure class="shot shotov">
+            <div class="sbox">
+            <img src="media/fc-how/panel-full.jpg" alt="The Family Creator panel" loading="lazy" style="aspect-ratio:auto">
+            <div class="porig pthumb on" aria-hidden="true" style="left:20.1%;top:29.8%;width:8.55%;height:10.2%"></div>
+            <div class="porig on" data-for="at-photo" aria-hidden="true" style="left:1.25%;top:52.3%;width:9.15%;height:4.4%"></div>
+            <div class="porig" data-for="at-family" aria-hidden="true" style="left:10.3%;top:52.3%;width:9.2%;height:4.4%"></div>
+            <div class="porig" data-for="at-cad1 at-cadmany" aria-hidden="true" style="left:19.35%;top:52.3%;width:9.2%;height:4.4%"></div>
+            <div class="inset inset-fc" style="left:30.1%;width:47%;top:21.8%"><img src="media/fc-how/s3-table-photo.jpg" alt="Upload a file: a product photo - the round table with crossed legs. The order AI reads it." loading="lazy"><video muted loop playsinline preload="none" hidden></video></div>
+            </div>
+            <figcaption>Upload a file: a product photo - the round table with crossed legs. The order AI reads it.</figcaption>
+          </figure>
+          <svg class="parrows" aria-hidden="true"></svg>
+          <div class="pbtns pbtns-out" role="group" aria-label="The upload buttons - press one">
+              <button type="button" class="pbtn on" aria-controls="at-photo" aria-pressed="true" data-img="media/fc-how/s3-table-photo.jpg" data-cap="Upload a file: a product photo - the round table with crossed legs. The order AI reads it.">Upload a file</button>
+              <button type="button" class="pbtn" aria-controls="at-family" aria-pressed="false" data-img="media/fc-how/s2-family-grid.jpg" data-cap="Upload existing family: the round table, open on its sliders. Say in words what to change: make the leg corners round.">Upload existing family</button>
+              <button type="button" class="pbtn" aria-controls="at-cad1 at-cadmany" aria-pressed="false" data-img="media/fc-how/s2-cad-loop.mp4?v=1" data-poster="media/fc-how/s2-cad-poster.jpg" data-cap="Upload a CAD: the original drawing - one bed from a DWG, or a whole sheet of items. One item becomes one family; a sheet becomes one family per item.">Upload a CAD</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 - family kind -->
+      <article class="fstep" id="s3">
+        <div class="frail"><b>3</b></div>
+        <div class="fhead">
+          <h3>Choose the family kind: 3D, 2.5D or 2D</h3>
+          <p>Three buttons under the prompt, picked before Create. The choice goes to the AI with the prompt, so the right Revit template is chosen from the start.</p>
+        </div>
+        <div class="fdetail">
+          <ul class="dlist">
+            <li class="ftx hl" id="ft-3d"><h4>3D</h4><p>A full geometry family: solids, voids, nested parts and arrays. It shows in plan, elevation, 3D and renders. Furniture, casework, windows, fixtures.</p></li>
+            <li class="ftx" id="ft-25d"><h4>2.5D</h4><p>Our own term: a model family with no height - model lines and a masking region, no solids. Light and clean in plan. Ideal for CAD items like beds, sanitary ware and furniture layouts.</p></li>
+            <li class="ftx" id="ft-2d"><h4>2D</h4><p>No 3D geometry at all: a detail item, an annotation, a tag, a symbol or a title block. It has its own Revit template.</p></li>
+          </ul>
+        </div>
+        <div class="fmedia">
+          <figure class="shot shotov">
+            <div class="sbox">
+            <img src="media/fc-how/panel-full.jpg" alt="The Family Creator panel" loading="lazy" style="aspect-ratio:auto">
+            <div class="porig" data-for="ft-2d" aria-hidden="true" style="left:1.25%;top:40%;width:9.15%;height:4.5%"></div>
+            <div class="porig" data-for="ft-25d" aria-hidden="true" style="left:10.3%;top:40%;width:9.2%;height:4.5%"></div>
+            <div class="porig on" data-for="ft-3d" aria-hidden="true" style="left:19.35%;top:40%;width:9.2%;height:4.5%"></div>
+            <div class="inset inset-fc" style="left:30.1%;width:47%;top:21.8%"><img src="media/fc-how/s2-type-3d.jpg" alt="3D example: Closet 08 - full geometry, in 3D and in plan." loading="lazy"></div>
+            </div>
+            <figcaption>3D example: Closet 08 - full geometry, in 3D and in plan.</figcaption>
+          </figure>
+          <svg class="parrows" aria-hidden="true"><defs><marker id="pah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z"/></marker></defs></svg>
+          <div class="pbtns pbtns-out" role="group" aria-label="The family kind buttons - press one">
+              <button type="button" class="pbtn" aria-controls="ft-2d" aria-pressed="false" data-img="media/fc-how/s2-type-2d.jpg" data-cap="2D example: a closet plan symbol - a detail item, drawn in plan only.">2D</button>
+              <button type="button" class="pbtn" aria-controls="ft-25d" aria-pressed="false" data-img="media/fc-how/s2-type-25d.jpg" data-cap="2.5D example: a double bed from CAD - lines and a masking region. In 3D it lies flat, with no height.">2.5D</button>
+              <button type="button" class="pbtn on" aria-controls="ft-3d" aria-pressed="true" data-img="media/fc-how/s2-type-3d.jpg" data-cap="3D example: Closet 08 - full geometry, in 3D and in plan.">3D</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="fstep" id="s4">
+        <div class="frail"><b>4</b></div>
+        <div class="fhead">
+          <h3>Think it through with the AI (optional)</h3>
+          <p>Cognitive Scaffolding. Instead of guessing, the AI asks: only what only you can answer, and only when the answer changes the parts. Each answer builds on the last until the request is complete. Nothing is built before you agree.</p>
+          <p>A misunderstanding here costs one sentence, not a whole family. Every decision the AI made for you is shown in bold, so you can see it and change it.</p>
+        </div>
+        <div class="fdetail">
+        </div>
+        <div class="fmedia">
+          <div class="chat">
+            <div class="msg me"><span class="who">YOU</span>a closet for a kids room</div>
+            <div class="msg ai"><span class="who">AI</span>Two questions before I plan. Doors - hinged or sliding? Shelves - a fixed number, or a slider, for example 2-5?</div>
+            <div class="msg me"><span class="who">YOU</span>hinged, 2 doors. shelves 2-5</div>
+            <div class="msg ai"><span class="who">AI</span>A drawer under the doors, full width?</div>
+            <div class="msg me"><span class="who">YOU</span>yes, one drawer, 300 high</div>
+            <div class="msg ai sum"><span class="who">AI - THE ORDER, IN YOUR WORDS</span>
+              <ul><li>Closet, 2 hinged doors with handles</li><li><b>Shelves: 2-5, on a slider</b></li><li>1 drawer, full width, <b>300 mm</b></li><li><b>Width 800-1200 - my choice, change it</b></li></ul></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="fstep" id="s5">
+        <div class="frail"><b>5</b></div>
+        <div class="fhead">
+          <h3>Press Create. The AI writes the order and plans it</h3>
+          <p>Two AI calls, and that is all. Everything else is machinery. You see live what the AI is doing, how long it has taken and what it has cost.</p>
+        </div>
+        <div class="fdetail">
+          <ul class="dlist">
+            <li><h4>The order</h4><p>The product, the category and the template. Which parts are nested families. Every size, with a range. Read back to you in your own words.</p></li>
+            <li><h4>The plan</h4><p>22 answers for every part: reference planes, locks, parameters and ranges, material, visibility, arrays and formulas.</p></li>
+            <li><h4>The paper gate</h4><p>Before Revit even opens, the whole plan is checked - no AI, no Revit. A fault caught here costs one short call, not a whole build.</p></li>
+          </ul>
+        </div>
+        <div class="fmedia">
+          <figure class="shot"><video src="media/fc-how/s5-planning.mp4?v=1" poster="media/fc-how/s5-planning-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Create is pressed and the AI plans the closet: reference planes, grouping, nesting, voids, joins, solids, arrays, materials, parameters, formulas"></video>
+            <figcaption>Press Create: the AI plans the family the way a professional would - every part, plane and parameter.</figcaption></figure>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="fstep" id="s6">
+        <div class="frail"><b>6</b></div>
+        <div class="fhead">
+          <h3>The order form: see the family before it is built</h3>
+          <p>A full preview of the family before it is built in Revit.</p>
+        </div>
+        <div class="fdetail">
+          <ul class="dlist feats">
+            <li><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><div><h4>Preview the family</h4><p>Every part is drawn where it will stand. Click a part to open its card - the answers the AI planned for it.</p></div></li>
+            <li><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="3"/></svg><div><h4>Origins</h4><p>The origin and the reference planes - where the family is held in your project.</p></div></li>
+            <li><svg viewBox="0 0 24 24"><path d="M4 7l8-4 8 4v10l-8 4-8-4z"/><path d="M4 12h16"/></svg><div><h4>Section box</h4><p>Cut the family open and look inside: shelves, drawer, board thickness.</p></div></li>
+            <li><svg viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.2"/><circle cx="15" cy="17" r="2.2"/></svg><div><h4>Sliders</h4><p>Every parameter with its range. Drag, and the drawing updates at once - no Revit, no AI.</p></div></li>
+            <li><svg viewBox="0 0 24 24"><circle cx="8" cy="9" r="3.2"/><circle cx="16" cy="9" r="3.2"/><circle cx="12" cy="16" r="3.2"/></svg><div><h4>Materials</h4><p>A material for every part, from your own project's materials.</p></div></li>
+          </ul>
+        </div>
+        <div class="fmedia">
+          <figure class="shot"><video src="media/fc-how/s6-section.mp4?v=4" poster="media/fc-how/s6-section-poster.jpg?v=2" autoplay muted loop playsinline preload="metadata" aria-label="The closet on the order form, cut open by the section box: the shelves inside"></video>
+            <figcaption>Preview the family: the section box cuts the closet open - the shelves, the drawer and the boards inside.</figcaption></figure>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="fstep" id="s7">
+        <div class="frail"><b>7</b></div>
+        <div class="fhead">
+          <h3>Human approval</h3>
+          <p>This is the time to adjust, rewrite, or approve and build the planned family.</p>
+        </div>
+        <div class="fdetail">
+          <ul class="dlist opts2">
+            <li class="ftx" id="op-build"><h4>Build it</h4><p>Approve. The form, with the values you set on the sliders, goes to the build.</p></li>
+            <li class="ftx hl" id="op-adjust"><h4>Adjust</h4><p>Change one thing, in words: <span class="code">make the legs round</span>. Only that part is planned again.</p></li>
+            <li class="ftx" id="op-rewrite"><h4>Rewrite</h4><p>Wrong direction? Write it again and the AI plans from the start.</p></li>
+          </ul>
+        </div>
+        <div class="fmedia arr-side">
+          <figure class="shot shotov">
+            <div class="sbox">
+            <img src="media/fc-how/panel-bed.jpg" alt="The order form of the bed, with Build it, Adjust and Rewrite" loading="lazy">
+            <img class="hstamp" src="media/fc-how/human-approved.png" alt="Human approved" loading="lazy">
+            <div class="porig" data-for="op-build" aria-hidden="true" style="left:1.2%;top:21.1%;width:31.5%;height:5.6%"></div>
+            <div class="porig on" data-for="op-adjust" aria-hidden="true" style="left:1.2%;top:27.6%;width:31.5%;height:5.6%"></div>
+            <div class="porig" data-for="op-rewrite" aria-hidden="true" style="left:1.2%;top:34%;width:31.5%;height:5.6%"></div>
+            <div class="inset inset-fc" style="left:40%;width:38%;top:26%"><img src="media/fc-how/s7-build-revit.jpg" alt="The round table as a family in the Revit family editor" loading="lazy" hidden><video src="media/fc-how/s7-adjust.mp4?v=3" poster="media/fc-how/s7-adjust-poster.jpg?v=3" autoplay muted loop playsinline preload="metadata"></video></div>
+            </div>
+          </figure>
+          <svg class="parrows" aria-hidden="true"></svg>
+          <div class="pbtns pbtns-out" role="group" aria-label="Build it, Adjust, Rewrite - press one">
+            <button type="button" class="pbtn" aria-controls="op-build" aria-pressed="false" data-img="media/fc-how/s7-build.mp4?v=2" data-poster="media/fc-how/s7-build-poster.jpg" data-cap="Build it: the closet goes to Revit - the stepper moves to Producer and Revit, and the build log prints every command as it runs.">Build it</button>
+            <button type="button" class="pbtn on" aria-controls="op-adjust" aria-pressed="true" data-img="media/fc-how/s7-adjust.mp4?v=3" data-poster="media/fc-how/s7-adjust-poster.jpg?v=3" data-cap="Adjust: “remove left nightstand” - the bed is planned again without it. Only that part changes.">Adjust</button>
+            <button type="button" class="pbtn" aria-controls="op-rewrite" aria-pressed="false" data-img="media/fc-how/s7-rewrite.mp4" data-poster="media/fc-how/s7-rewrite-poster.jpg" data-cap="Rewrite: write the request again, and the AI plans the family from the start.">Rewrite</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="fstep" id="s8">
+        <div class="frail"><b>8</b></div>
+        <div class="fhead">
+          <h3>Revit builds it, one command at a time</h3>
+          <p>Fixed code with no AI builds the family the way a professional would. Every step is printed to the log as it runs.</p>
+        </div>
+        <div class="fdetail">
+          <ol class="dlist chain">
+            <li><span><b>New family from a template</b> - Furniture, Casework, Generic Model</span></li>
+            <li><span><b>Reference planes</b> and the pinned origin</span></li>
+            <li><span><b>Geometry</b> - extrusion, blend, revolve, sweep, void</span></li>
+            <li><span><b>Parameters and dimensions</b>, with the ranges from the form</span></li>
+            <li><span><b>Nested families</b> - a handle in a door in a closet</span></li>
+            <li><span><b>Arrays</b> - shelves as a real Revit array, the count as a parameter</span></li>
+            <li><span><b>Formulas</b> - last, when everything they name exists</span></li>
+            <li><span><b>Locked faces and materials</b>, then save</span></li>
+          </ol>
+        </div>
+        <div class="fmedia">
+          <figure class="shot"><img src="media/fc-how/s7-build.jpg" alt="The build log beside the closet" loading="lazy">
+            <figcaption>The build log: every command sent to Revit, in order.</figcaption></figure>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="fstep" id="s9">
+        <div class="frail"><b>9</b></div>
+        <div class="fhead">
+          <h3>Quality control: measured, not guessed</h3>
+          <p>The finished family is checked automatically, inside Revit. Every slider is driven to three values:</p>
+        </div>
+        <div class="fdetail">
+          <div class="qcrow">
+            <div><b>Min</b><small>every slider to its lowest</small></div>
+            <div><b>Max</b><small>every slider to its highest</small></div>
+            <div><b>Default</b><small>back to the start value</small></div>
+          </div>
+          <ul class="dlist">
+            <li><p>In every state, every part is measured: its bounding box and its volume. The volume is what sees a hole.</p></li>
+            <li><p>A count, like the shelves, is proven by counting the solids - never by reading the parameter back.</p></li>
+            <li><p>Revit takes pictures from several views, and the pictures are judged against the order.</p></li>
+            <li><p>A failure goes back to the plan with the exact reason.</p></li>
+          </ul>
+          <div class="verdict"><span>Gate</span><span class="pass"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>14 / 14 checks passed</span></div>
+        </div>
+        <div class="fmedia">
+          <figure class="shot"><img src="media/fc-how/s9-qc-camera.jpg" alt="The four QC pictures Revit takes of the closet: two 3D views, the front and the plan" loading="lazy" style="object-fit:contain;background:#fff">
+            <figcaption>The camera: Revit takes four pictures of the built family - two 3D views, the front and the plan - and they are judged against the order.</figcaption></figure>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="fstep" id="s10">
+        <div class="frail"><b>10</b></div>
+        <div class="fhead">
+          <h3>Load it into your project</h3>
+          <p>The result is a normal Revit .rfa file. No add-in and no dependency on us - any office can open it. It is saved with its plan and its build log:</p>
+        </div>
+        <div class="fdetail">
+<div class="tree"><span class="d">Family Catalogue/</span>
+  <span class="d">closet-08/</span>
+    oYmer Closet 08.rfa  <span class="n"># the family</span>
+    plan.json            <span class="n"># the plan</span>
+    build.log            <span class="n"># the Revit log</span></div>
+          <ol class="dlist chain">
+            <li><span>In Revit, <b>Insert - Load Family</b>, or load it straight from the panel.</span></li>
+            <li><span>Place it. Every parameter is live in Properties.</span></li>
+            <li><span>Make your own types - the ranges stay in the family.</span></li>
+          </ol>
+        </div>
+        <div class="fmedia">
+          <figure class="shot"><img src="media/fc-how/s9-project.jpg" alt="The closet in a Revit project" loading="lazy">
+            <figcaption>In the project: a normal Revit family.</figcaption></figure>
+        </div>
+      </article>
+
+      <!-- the catalogue -->
+      <div class="fcat" id="catalogue">
+        <div class="fch-intro"><div>
+          <h2>A catalogue for your families</h2>
+          <p>Every family that passes QC goes into the catalogue, with its plan, its log and its parameters. One place to find, open, change and load.</p>
+        </div></div>
+        <div class="body">
+          <div class="cat">
+            <div class="cat-top">
+              <span class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Search families</span>
+              <span class="chip on">All</span><span class="chip">Furniture</span><span class="chip">Casework</span><span class="chip">Generic Models</span>
+            </div>
+            <div class="cat-scroll">
+            <table class="cat-table">
+              <thead><tr><th>Family</th><th>Category</th><th>Parameters</th><th>QC</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>oYmer Closet 08</td><td>Furniture</td><td class="drv"><span>Panel thickness</span><span>Drawer height</span><span>Number of shelves</span></td><td class="qc"><svg viewBox="0 0 24 24" aria-label="passed"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></td><td class="acts"><span>Sliders</span><span>Load</span></td></tr>
+                <tr><td>oYmer Closet 01</td><td>Furniture</td><td class="drv"><span>Height</span><span>Leg height</span><span>Drawer front height</span><span>Number of shelves</span></td><td class="qc"><svg viewBox="0 0 24 24" aria-label="passed"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></td><td class="acts"><span>Sliders</span><span>Load</span></td></tr>
+                <tr><td>oYmer Closet 03</td><td>Casework</td><td class="drv"><span>Drawer height</span><span>Number of shelves</span></td><td class="qc"><svg viewBox="0 0 24 24" aria-label="passed"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></td><td class="acts"><span>Sliders</span><span>Load</span></td></tr>
+                <tr><td>oYmer Bar Handle 04</td><td>Generic Models</td><td class="drv"><span>Handle centres</span><span>Handle projection</span><span>Handle section</span></td><td class="qc"><svg viewBox="0 0 24 24" aria-label="passed"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></td><td class="acts"><span>Sliders</span><span>Load</span></td></tr>
+                <tr><td>oYmer Shelf Board 04</td><td>Generic Models</td><td class="drv"><span>Board width</span><span>Board depth</span><span>Board thickness</span></td><td class="qc"><svg viewBox="0 0 24 24" aria-label="passed"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></td><td class="acts"><span>Sliders</span><span>Load</span></td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+          <div class="catfeats">
+            <div><h3>Find</h3><p>Search by name, category or parameter.</p></div>
+            <div><h3>Open on sliders</h3><p>Every family opens again in the order form, with its ranges.</p></div>
+            <div><h3>Change</h3><p>Adjust an existing family in words, without starting from zero.</p></div>
+            <div><h3>Reuse parts</h3><p>Handle, shelf, door - every nested part is a family of its own.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="backsuite c3" aria-label="Back to the suite">
     <a class="backsuite__link" href="bimsuite.html">
-      <span class="backsuite__arw ltr" aria-hidden="true">&#8594;</span>
-      <span class="backsuite__txt">חזרה אל <span class="ltr"><span class="oy">oYmer</span> BIM VR Suite<sup class="oyc">&#169;</sup></span></span>
+      <span class="backsuite__arw ltr" aria-hidden="true">&#8592;</span>
+      <span class="backsuite__txt">Back to <span class="ltr"><span class="oy">oYmer</span> BIM VR Suite<sup class="oyc">&#169;</sup></span></span>
     </a>
   </section>
 </main>
@@ -184,22 +901,181 @@
 <script src="menu-preview.js?v=8"></script>
 <script src="suite-morph.js?v=18"></script>
 <script>
-  /* Each pitch clip starts only from its play button, with sound, from 0:00; starting one pauses the other. */
+  /* mockup: a tile or a panel button lights its explanation(s) and swaps the step's example picture */
   (function () {
-    var boxes = document.querySelectorAll(".oyl-clip .oyl-media");
-    if (!boxes.length) return;
-    function reset(box) { var v = box.querySelector("video"); v.pause(); v.controls = false; v.load(); box.classList.remove("is-playing"); }
-    boxes.forEach(function (box) {
-      var v = box.querySelector("video"), b = box.querySelector(".oyl-play");
-      b.addEventListener("click", function () {
-        boxes.forEach(function (o) { if (o !== box && o.classList.contains("is-playing")) reset(o); });
-        if (!v.getAttribute("src")) { v.src = v.dataset.src; v.preload = "auto"; }
-        v.muted = false; v.controls = true; v.currentTime = 0;
-        box.classList.add("is-playing");
-        var p = v.play(); if (p && p.catch) p.catch(function () { box.classList.remove("is-playing"); });
+    document.querySelectorAll(".ftypes, .pbtns").forEach(function (group) {
+      var btns = group.querySelectorAll("button.ftype, button.pbtn");
+      btns.forEach(function (t) {
+        t.addEventListener("click", function () {
+          btns.forEach(function (o) {
+            var me = o === t; o.classList.toggle("on", me); o.setAttribute("aria-pressed", me ? "true" : "false");
+            (o.getAttribute("aria-controls") || "").split(" ").forEach(function (id) {
+              var li = id && document.getElementById(id); if (li) li.classList.toggle("hl", me); });
+          });
+          if (t.dataset.img) {
+            var step = t.closest(".fstep"), inset = step.querySelector(".fmedia .inset"),
+                img = inset ? inset.querySelector("img") : step.querySelector(".fmedia img"),
+                vid = inset ? inset.querySelector("video") : null, cap = step.querySelector(".fmedia figcaption");
+            if (vid && /\.mp4/.test(t.dataset.img)) {
+              img.hidden = true; vid.hidden = false; delete vid.dataset.lazySrc;
+              vid.poster = t.dataset.poster || ""; vid.src = t.dataset.img; var pr = vid.play(); if (pr && pr.catch) pr.catch(function () {});
+            } else if (img) {
+              if (vid) { vid.pause(); vid.hidden = true; }
+              img.hidden = false; img.src = t.dataset.img; img.alt = t.dataset.cap;
+            }
+            if (cap) cap.textContent = t.dataset.cap;
+          }
+        });
       });
-      /* the clip already holds its end card; when it ends, go back to the poster + play button */
-      v.addEventListener("ended", function () { reset(box); });
+    });
+  })();
+</script>
+<script>
+  /* mockup: steps 2 + 3 - arrows from each real button to its big copy; the pressed pair is lit */
+  (function () {
+    var NS = "http://www.w3.org/2000/svg";
+    var media = [].slice.call(document.querySelectorAll(".fmedia")).filter(function (m) { return m.querySelector(".parrows"); });
+    var draws = media.map(function (m) {
+      var svg = m.querySelector(".parrows"), big = [].slice.call(m.querySelectorAll(".pbtns-out .pbtn"));
+      function draw() {
+        [].slice.call(svg.querySelectorAll("path.ar")).forEach(function (p) { p.remove(); });
+        var box = m.getBoundingClientRect();
+        big.forEach(function (b) {
+          var id = b.getAttribute("aria-controls"), small = m.querySelector('.porig[data-for="' + id + '"]'); if (!small) return;
+          var s = small.getBoundingClientRect(), t = b.getBoundingClientRect();
+          var x2 = t.left + t.width / 2 - box.left, y2 = t.top - box.top - 4, p = document.createElementNS(NS, "path"), x1, y1, my;
+          if (m.classList.contains("arr-side")) {
+            /* stacked real buttons: square lanes, no crossings. Each arrow leaves its button's right end into its own
+               lane in the empty floor between the panel and the example, drops, turns once, and drops onto its big
+               button. The lower the button, the further right its lane and the higher its turn. */
+            var k = big.indexOf(b), n = big.length, pic = m.querySelector(".sbox").getBoundingClientRect(),
+                ins = m.querySelector(".inset").getBoundingClientRect(), r = 8;
+            x1 = s.right - box.left + 1; y1 = s.top + s.height / 2 - box.top;
+            var gapL = s.right - box.left, gapR = ins.left - box.left, lx = gapL + (gapR - gapL) * (k + 1) / (n + 1);
+            var ty = pic.top - box.top + pic.height * (0.95 - 0.06 * k);
+            var dir = x2 < lx ? -1 : 1;
+            p.setAttribute("d", "M" + x1 + " " + y1 + " H" + (lx - r) + " Q" + lx + " " + y1 + " " + lx + " " + (y1 + r) +
+              " V" + (ty - r) + " Q" + lx + " " + ty + " " + (lx + dir * r) + " " + ty +
+              " H" + (x2 - dir * r) + " Q" + x2 + " " + ty + " " + x2 + " " + (ty + r) + " V" + y2);
+          } else {
+            x1 = s.left + s.width / 2 - box.left; y1 = s.bottom - box.top + 2; my = (y1 + y2) / 2;
+            p.setAttribute("d", "M" + x1 + " " + y1 + " C" + x1 + " " + my + " " + x2 + " " + my + " " + x2 + " " + y2);
+          }
+          p.setAttribute("class", "ar" + (b.classList.contains("on") ? " on" : "")); p.setAttribute("marker-end", "url(#pah)");
+          svg.appendChild(p);
+        });
+      }
+      big.forEach(function (b) {
+        b.addEventListener("click", function () {
+          var id = b.getAttribute("aria-controls");
+          m.querySelectorAll(".porig:not(.pthumb)").forEach(function (o) { o.classList.toggle("on", o.dataset.for === id); });
+          setTimeout(draw, 0);
+        });
+      });
+      var img = m.querySelector(".sbox > img"); if (img && !img.complete) img.addEventListener("load", draw);
+      return draw;
+    });
+    function all() { draws.forEach(function (f) { f(); }); }
+    window.addEventListener("resize", all); window.addEventListener("load", all); all();
+  })();
+</script>
+<script>
+  /* mockup: step 7 - the stamp shows ONLY while Build it is the pressed button (his rule 10-13): it slams in on
+     Build it and leaves when Adjust or Rewrite is pressed */
+  (function () {
+    var st = document.querySelector("#s7 .hstamp"); if (!st) return;
+    document.querySelectorAll("#s7 .pbtns-out .pbtn").forEach(function (b) {
+      b.addEventListener("click", function () {
+        st.classList.remove("slam");
+        if (b.getAttribute("aria-controls") === "op-build") { void st.offsetWidth; st.classList.add("slam"); }
+      });
+    });
+  })();
+</script>
+<script>
+  /* mockup: an explanation row is a button too - clicking it presses its big button (steps 2, 3, 7) */
+  (function () {
+    document.querySelectorAll(".fstep .ftx[id]").forEach(function (li) {
+      var step = li.closest(".fstep"), btn = null;
+      step.querySelectorAll("button.pbtn, button.ftype").forEach(function (b) {
+        if ((b.getAttribute("aria-controls") || "").split(" ").indexOf(li.id) > -1 && (!btn || b.closest(".pbtns-out"))) btn = b;
+      });
+      if (!btn) return;
+      li.classList.add("ftx-click"); li.setAttribute("role", "button"); li.tabIndex = 0;
+      li.addEventListener("click", function () { btn.click(); });
+      li.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); btn.click(); } });
+    });
+  })();
+</script>
+<script>
+  /* mockup only: the shared site scripts (oymer.js, agent.js) add Hebrew menus, the accessibility
+     panel and the chat at run time. This page shows them in English without touching those scripts. */
+  (function () {
+    var T = {"הטמעת VR במשרדים":"VR implementation for offices","סיורי VR מודרכים":"Guided VR tours",
+      "סיורי VR מוכנים":"Pre-recorded VR tours","VR למבנים קיימים":"VR for existing buildings",
+      "המוצרים שלנו":"Our products","השירותים שלנו":"Our services","סיפורי לקוחות":"Client stories",
+      "שאלות? תשובות!":"FAQ","בלוג":"Blog","אודות":"About","צור קשר":"Contact","דברו איתי":"Talk to me",
+      "נגישות":"Accessibility","א־ טקסט קטן":"A- Smaller text","א+ טקסט גדול":"A+ Larger text",
+      "ניגודיות גבוהה":"High contrast","גווני אפור":"Greyscale","הדגשת קישורים":"Highlight links",
+      "עצירת אנימציות":"Stop animations","איפוס":"Reset","העוזר החכם של עומר דותן":"Omer Dotan's smart assistant",
+      "תפריט נגישות":"Accessibility menu","סגור":"Close","כתבו הודעה...":"Write a message...","הודעה":"Message",
+      "שליחה":"Send","פתח צ'אט עם העוזר החכם":"Open a chat with the smart assistant"};
+    function fix(root) {
+      var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), n;
+      while ((n = w.nextNode())) { var t = n.nodeValue.trim(); if (T[t]) n.nodeValue = n.nodeValue.replace(t, T[t]); }
+      (root.querySelectorAll ? root.querySelectorAll("[aria-label],[placeholder],[title]") : []).forEach(function (e) {
+        ["aria-label", "placeholder", "title"].forEach(function (a) { var v = e.getAttribute(a); if (v && T[v]) e.setAttribute(a, T[v]); });
+      });
+    }
+    fix(document.body);
+    new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (x) { if (x.nodeType === 1) fix(x); }); }); })
+      .observe(document.body, { childList: true, subtree: true });
+    /* some labels are set after the button is added - sweep again once everything has loaded */
+    window.addEventListener("load", function () { fix(document.body); setTimeout(function () { fix(document.body); }, 1500); });
+  })();
+</script>
+<script>
+  /* mockup: the ribbon follows the step on screen - passed steps filled, the current one lit, the track filled to it */
+  (function () {
+    var links = [].slice.call(document.querySelectorAll(".rb-steps a")), fill = document.querySelector(".rb-fill");
+    if (!links.length || !("IntersectionObserver" in window)) return;
+    var ids = links.map(function (a) { return a.getAttribute("href").slice(1); });
+    function set(id) {
+      var k = ids.indexOf(id); if (k < 0) return;
+      links.forEach(function (a, i) { a.classList.toggle("on", i === k); a.classList.toggle("done", i < k);
+        if (i === k) a.setAttribute("aria-current", "step"); else a.removeAttribute("aria-current"); });
+      if (fill) fill.style.setProperty("--p", (k / (ids.length - 1) * 100) + "%");
+      var box = links[k].parentNode.parentNode; if (box.scrollWidth > box.clientWidth) box.scrollTo({ left: links[k].offsetLeft - 40, behavior: "smooth" });
+    }
+    var io = new IntersectionObserver(function (ents) { ents.forEach(function (en) { if (en.isIntersecting) set(en.target.id); }); },
+      { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll(".fstep").forEach(function (s) { io.observe(s); });
+  })();
+</script>
+<script>
+  /* mockup: the pitch clip has no play button. It starts by itself, muted (browsers allow only muted autoplay),
+     when the WHOLE clip is on screen, and pauses when it leaves. Controls appear once it plays, for sound. */
+  (function () {
+    var boxes = document.querySelectorAll(".oyl-clip .oyl-media"); if (!boxes.length) return;
+    boxes.forEach(function (box) {
+      var v = box.querySelector("video"); if (!v) return;
+      v.muted = true; v.playsInline = true;
+      function full(en) {
+        var r = en.boundingClientRect, top = 80, vh = window.innerHeight, avail = vh - top;   // 80 = the fixed site header
+        if (r.height > avail) return en.intersectionRect.height >= avail * 0.97;   // a short screen: "full" = it fills the screen
+        return r.top >= top - 2 && r.bottom <= vh + 2 || en.intersectionRatio >= 0.98;
+      }
+      var io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (en) {
+          if (en.isIntersecting && full(en)) {
+            if (!v.getAttribute("src")) { v.src = v.dataset.src; v.preload = "auto"; }
+            v.controls = true; box.classList.add("is-playing");
+            var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+          } else if (!v.paused && en.intersectionRatio < 0.6) { v.pause(); }
+        });
+      }, { threshold: [0, 0.6, 0.8, 0.9, 0.95, 0.98, 1], rootMargin: "-80px 0px 0px 0px" });
+      io.observe(box);
+      v.addEventListener("ended", function () { v.currentTime = 0; v.pause(); });
     });
   })();
 </script>
