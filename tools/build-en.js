@@ -269,7 +269,8 @@ function transformHtml(html, lang, page) {
         // Flipping it would add new dir="ltr" elements, and oymer.js finds the OMER DOTAN
         // wordmark by div[dir="ltr"] - it squeezed the whole page into the wordmark's box.
         if (n === "dir" && /rtl/i.test(v)) return "";
-        if (n === "lang" && /^he/i.test(v)) v = "en";
+        // the HE/EN button names the language it LEADS to (lang="he" on an English page) - left as is
+        if (n === "lang" && /^he/i.test(v) && !selfKeep) v = "en";
         // a full address of a page with a twin goes to the twin (the contact form's _next ->
         // en/ThankYou.html). The hreflang tags name both languages on purpose - left alone.
         if (!/\bhreflang=/.test(a)) v = v.replace(/^(https:\/\/omerdotan\.com\/)([\w\-]+\.html)$/, (x, site, f) => (ALL_PAGES.has(f.toLowerCase()) ? site + "en/" + f : x));
@@ -363,11 +364,26 @@ const LANG_CSS =
   // a phone has 30px free beside the wordmark: the switch moves into the burger menu instead
   "@media(max-width:479px){.oymer-lang-group>.oymer-lang{display:none}}" +
   ".oymer-lang-row{display:block;padding:11px 8px;color:#0369a1;font-size:16px;font-weight:700;text-decoration:none;border-bottom:1px solid #f1f5f9}</style>" +
-  // the menu row copies the header button (href + its name), so this script holds no text of its own
-  "<script>(function(){function add(){var m=document.querySelector('.oymer-mobile'),b=document.querySelector('.oymer-lang');" +
-  "if(!m||!b||m.querySelector('.oymer-lang-row'))return;var a=document.createElement('a');a.className='oymer-lang-row';" +
-  "a.href=b.getAttribute('href');a.lang=b.lang;a.textContent=b.getAttribute('aria-label');m.insertBefore(a,m.firstChild)}" +
-  "document.addEventListener('DOMContentLoaded',function(){setTimeout(add,0)})})();</script>";
+  // (the script that follows the style is langScript(), per page)
+  "";
+
+// The script that rides with the button (Omer, 2026-10-14). It holds no text of its own.
+//  1. REMEMBERS THE VISITOR'S CLICK: EN saves "en", the Hebrew button saves "he" (localStorage, one
+//     word, never sent anywhere). Never a guess from the browser's language - many Hebrew speakers
+//     run an English browser, Omer included.
+//  2. A HEBREW page whose visitor chose English moves to its English twin before it draws, keeping
+//     ?query and #hash. An ENGLISH page never moves - an English link someone sent opens in English.
+//  3. Copies the header button into the phone's burger menu as its first row (href + its name).
+function langScript(lang, twin) {
+  return "<script>(function(){var HERE='" + lang + "',TWIN='" + twin + "',KEY='oymer-lang';" +
+    "try{if(HERE==='he'&&localStorage.getItem(KEY)==='en'){location.replace(TWIN+location.search+location.hash);return}}catch(e){}" +
+    "document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('.oymer-lang,.oymer-lang-row');" +
+    "if(a){try{localStorage.setItem(KEY,a.lang)}catch(x){}}},true);" +
+    "function add(){var m=document.querySelector('.oymer-mobile'),b=document.querySelector('.oymer-lang');" +
+    "if(!m||!b||m.querySelector('.oymer-lang-row'))return;var a=document.createElement('a');a.className='oymer-lang-row';" +
+    "a.href=b.getAttribute('href');a.lang=b.lang;a.textContent=b.getAttribute('aria-label');m.insertBefore(a,m.firstChild)}" +
+    "document.addEventListener('DOMContentLoaded',function(){setTimeout(add,0)})})();</script>";
+}
 
 // exactly what addLangSwitch adds, taken off again
 function stripLangSwitch(html) {
@@ -395,7 +411,7 @@ function addLangSwitch(html, lang, page) {
   const heUrl = SITE + (page === "index" ? "" : file);
   const enUrl = SITE + "en/" + (page === "index" ? "" : file);
   const tags = `<link rel="alternate" hreflang="he" href="${heUrl}"><link rel="alternate" hreflang="en" href="${enUrl}"><link rel="alternate" hreflang="x-default" href="${heUrl}">`;
-  html = html.replace("</head>", tags + LANG_CSS + "</head>");
+  html = html.replace("</head>", tags + LANG_CSS + langScript(lang, lang === "he" ? (page === "index" ? "en/" : "en/" + file) : other) + "</head>");
   return html;
 }
 
