@@ -23,6 +23,10 @@
 <style>
 /* The pitch clip's styles live HERE, not in oymer-pairs.css: a cached old stylesheet hid the
    play button behind the video (2026-10-04). Page and styles now always arrive together. */
+/* The pitch clip's card is NOT cut at the corners (his call 2026-10-14): the shared .oyl-panel
+   clips 22px off two corners; on this page the clip matches the other cards - 12px round
+   corners, measured on the How-it-works shots. The DM / Viewer / Studio cards keep their cut. */
+.oylp .oyl-panel.oyl-clip{clip-path:none;border-radius:12px;overflow:hidden}
 /* ---- one wide clip panel (Family Creator pitch, 2026-10-04) - plays with controls, so no sweep over it ---- */
 .oylp .oyl-stack .oyl-panel.oyl-clip{width:min(1100px,100%)}
 .oylp .oyl-stack .oyl-clip+.oyl-clip{margin-top:56px}
