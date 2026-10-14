@@ -2,3 +2,6 @@
 agent-worker/knowledge-base.md
 Docs/
 golive-report.md
+
+# build-en.js writes these when a page has Hebrew text with no English yet
+i18n/en/_missing-*.json

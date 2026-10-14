@@ -1,0 +1,16 @@
+{
+  "טיפוס חדש, בלי להקליד פרמטרים": "A new type, without typing parameters",
+  "בוחרים משפחה קיימת בפרויקט, מזיזים סרגלים ורואים את השינוי חי - בלחיצה אחת יוצרים טיפוס חדש ישירות ברוויט": "Pick an existing family in the project, move sliders and see the change live - one click creates a new type directly in Revit",
+  "הארון ברוויט": "The cabinet in Revit",
+  "המשפחה הפרמטרית של הארון, כפי שהיא יושבת בפרויקט - הפרמטרים שלה הם אלה שהסטודיו מזיז.": "The cabinet's parametric family, as it sits in the project - its parameters are the ones the studio moves.",
+  "רוחב": "Width",
+  "גובה": "Height",
+  "מגירות": "Drawers",
+  "ידיות": "Handles",
+  "הארון בסטודיו": "The cabinet in the studio",
+  "לא צריך יותר לקרוא ולהבין פרמטרים, רק ללחוץ להזיז ולנסות": "No more reading and understanding parameters, just click, move and try",
+  "השולחן ברוויט": "The table in Revit",
+  "יצירת סוגים חדשים מתוך הפרמטרים הרצויים ישירות בתוך הרוויט - הכל רץ על הרוויט שלך, במחשב שלך. שום דבר לא עוזב את המשרד.": "Create new types from the parameters you want, directly inside Revit - everything runs on your Revit, on your computer. Nothing leaves the office.",
+  "השולחן ב-MR": "The table in MR",
+  "אותו סטודיו, בלי מסך - השולחן עומד בסלון בגודל אמיתי, ומזיזים לו את הפרמטרים במקום": "The same studio, without a screen - the table stands in your living room at real size, and you move its parameters right there"
+}

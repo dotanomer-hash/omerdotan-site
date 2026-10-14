@@ -1,0 +1,369 @@
+<!doctype html>
+<html  lang="en" dir="ltr">
+<head><meta content="Omer Dotan" property="og:title"><meta content="VR Solutions" property="og:description"><meta content="https://omerdotan.com/media/share-card-2.jpg" property="og:image"><meta content="400" property="og:image:width"><meta content="400" property="og:image:height"><meta content="https://omerdotan.com/en/suite-decisionmaker.html" property="og:url"><meta content="website" property="og:type"><meta content="oYmer VR" property="og:site_name"><meta content="summary" name="twitter:card"><meta content="Omer Dotan" name="twitter:title"><meta content="VR Solutions" name="twitter:description"><meta content="https://omerdotan.com/media/share-card-2.jpg" name="twitter:image"><meta content="https://omerdotan.com/en/suite-decisionmaker.html" name="twitter:url">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>oYmer DecisionMaker | omerdotan.com</title>
+<link href="../base44.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="bimsuite-mockup.css?v=53" rel="stylesheet">
+<link rel="preload" as="image" href="../media/hero-family.jpg">
+<link rel="preload" as="image" href="../media/hero-viewer.jpg">
+<link rel="preload" as="image" href="../media/hero-ribbon.jpg">
+<link href="suite-pipe.css?v=5" rel="stylesheet">
+<link href="oymer-pairs.css?v=32" rel="stylesheet">
+<script>if(location.search.indexOf("from=suite")>-1)document.documentElement.className+=" fromsuite";</script>
+<style id="dm-row">
+/* THE 4 PANELS IN ONE ROW, driven by the page scroll (Omer, 2026-10-13 - trial 3 of 4 won:
+   arrows / mouse / page scroll / video pace). The pairs are flattened (display:contents) into
+   one 7-column grid: panel | bolt | panel | bolt | panel | bolt | panel, at the panels' ORIGINAL
+   size - 487 = (1180 box - 2x28 padding - 150) / 2, measured on the two-row page - with 90px
+   between them (his "closer"). The diagonal bolt between the rows becomes a straight one.
+   The section pins on screen and the ordinary scroll slides the row (script at the bottom).
+   Desktop only - a phone keeps the one-column stack. */
+@media (min-width:961px){
+  html body .oylp .oyl-pairs{
+    --dm-panel:calc((min(1180px, 100vw) - 56px - 150px) / 2);
+    --dm-gap:90px;
+    display:grid;align-items:stretch;
+    grid-template-columns:var(--dm-panel) var(--dm-gap) var(--dm-panel) var(--dm-gap) var(--dm-panel) var(--dm-gap) var(--dm-panel);
+    overflow-x:hidden;overflow-y:hidden;padding:14px 0 18px;scrollbar-width:none}
+  html body .oylp .oyl-pairs::-webkit-scrollbar{display:none}
+  /* .oyl-pairs:has(.oyl-link){gap:16px} in oymer-pairs.css outranks a 2-class rule - measured
+     122px between the panels instead of 90 */
+  html body .oylp .oyl-pairs:has(.oyl-link){gap:0}
+  html body .oylp .oyl-pairs .oyl-pair{display:contents}
+  /* the in-pair bolts carry a label above them: 26px = label + gap, measured 13px off-centre without it */
+  html body .oylp .oyl-pairs .oyl-link{height:auto;display:flex;align-items:center;justify-content:center;padding-top:26px}
+  html body .oylp .oyl-pairs .oyl-link .oyl-arw.oyl-link__diag{display:none}
+  html body .oylp .oyl-pairs .oyl-link .oyl-arw.oyl-link__down{display:block;position:static;width:80px;height:34px;transform:none}
+  html body .oylp .oyl-pairs .oyl-flow .oyl-arw{width:80px}
+  .dm-sticky{position:sticky}
+  /* the section clips its drawings with overflow:hidden, and that stops sticky (measured: the
+     row scrolled away). clip draws the same edge without becoming a scroll box */
+  html body section.pipesec{overflow:clip}
+}
+</style>
+<link rel="alternate" hreflang="he" href="https://omerdotan.com/suite-decisionmaker.html"><link rel="alternate" hreflang="en" href="https://omerdotan.com/en/suite-decisionmaker.html"><link rel="alternate" hreflang="x-default" href="https://omerdotan.com/suite-decisionmaker.html"><style id="oymer-lang-css">.oymer-lang-group{display:flex;align-items:center;gap:.6rem}.oymer-lang{display:inline-flex;align-items:center;justify-content:center;min-width:2.6rem;height:2.25rem;padding:0 .7rem;border:1px solid #cbd5e1;border-radius:.65rem;font:600 .85rem/1 "Rubik","Heebo",sans-serif;letter-spacing:.04em;color:#334155;background:#fff;text-decoration:none;transition:background .2s,border-color .2s}.oymer-lang:hover{background:#f1f5f9;border-color:#94a3b8}@media(max-width:479px){.oymer-lang-group>.oymer-lang{display:none}}.oymer-lang-row{display:block;padding:11px 8px;color:#0369a1;font-size:16px;font-weight:700;text-decoration:none;border-bottom:1px solid #f1f5f9}</style><script>(function(){function add(){var m=document.querySelector('.oymer-mobile'),b=document.querySelector('.oymer-lang');if(!m||!b||m.querySelector('.oymer-lang-row'))return;var a=document.createElement('a');a.className='oymer-lang-row';a.href=b.getAttribute('href');a.lang=b.lang;a.textContent=b.getAttribute('aria-label');m.insertBefore(a,m.firstChild)}document.addEventListener('DOMContentLoaded',function(){setTimeout(add,0)})})();</script></head>
+<body>
+<div class="min-h-screen" >
+<header role="banner" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-lg shadow-sm"><div class="container mx-auto px-6"><div class="flex items-center justify-between h-20"><a class="flex items-center gap-3" aria-label="Home page" href="index.html"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69416d0ccb7ea3d7274916a0/ec944baee_logo_transparent_2.png" alt="OMER DOTAN - VR Solutions logo" class="h-16 w-auto self-center" style="filter: none; transform: scale(0.8);"><div style="display:inline-block" dir="ltr"><span class="font-bold text-2xl block leading-tight text-slate-900" style="text-align:justify;text-align-last:justify;letter-spacing:.01em">OMER DOTAN</span><span class="text-base -mt-1 block text-slate-500" style="font-size:1.35rem;letter-spacing:.18em">VR Solutions</span></div></a><nav class="hidden lg:flex items-center gap-1" role="navigation" aria-label="Main navigation menu"><div class="relative"><button aria-expanded="false" aria-haspopup="true" class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100">Our Services<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-4 h-4 transition-transform"><path d="m6 9 6 6 6-6"></path></svg></button></div><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="FAQ.html">Questions? Answers!</a><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="Blog.html">Blog</a><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="About.html">About</a><a class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 hover:bg-slate-100" href="Contact.html">Contact</a></nav><div class="oymer-lang-group"><a class="oymer-lang" href="../suite-decisionmaker.html" hreflang="he" lang="en" aria-label="עברית" data-i18n-keep>עב</a><div class="hidden lg:block"><a class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl font-medium transition-colors shadow-lg shadow-sky-600/25" href="Contact.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-4 h-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>Talk to me</a></div><button aria-label="Open menu" aria-expanded="false" class="lg:hidden p-2 rounded-lg text-slate-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div></div></header>
+<section class="bs bs-hero hue-c1"  aria-label="oYmer DecisionMaker">
+  <div class="bs-herobg" aria-hidden="true">
+    <span class="p p1"></span><span class="p p3"></span><span class="p p2"></span><span class="p p4"></span>
+  </div>
+  <div class="inner">
+    <a class="bs-suitetag rev" href="bimsuite.html">o<span class="y">Y</span>mer <b>BIM VR</b> Suite<sup class="oyc">&#169;</sup></a>
+    <h1 class="rev"><span class="oy">o<span class="yflash">Y</span>mer</span> DecisionMaker<sup class="oyc">&#169;</sup></h1>
+    <p class="sub rev">A 1:1 approval meeting.</p>
+  </div>
+</section>
+
+<main class="suite bs" >
+  <section class="pipesec products c1" id="pipeline">
+    <div class="bimbg quiet" aria-hidden="true">
+      <span class="plan"></span><span class="iso"></span>
+      <span class="dots d1"></span><span class="dots d2"></span>
+      <svg class="draw" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g class="dg" style="animation-delay:0s">
+          <path pathLength="1" d="M90 150h330v210H90Z"/>
+          <path pathLength="1" d="M250 150v210"/>
+          <path pathLength="1" d="M250 300a60 60 0 0 0 60-60"/>
+          <path pathLength="1" d="M90 400h330"/>
+          <path pathLength="1" d="M90 390v20M420 390v20M250 392v16"/>
+        </g>
+        <g class="dg" style="animation-delay:2.3s">
+          <path pathLength="1" d="M1180 210 1330 296 1330 468 1180 554 1030 468 1030 296Z"/>
+          <path pathLength="1" d="M1180 210v172M1180 382 1330 468M1180 382 1030 468"/>
+        </g>
+        <g class="dg" style="animation-delay:4.6s">
+          <path pathLength="1" d="M690 620h150v150H690Z"/>
+          <path pathLength="1" d="M690 645h150M690 670h150M690 695h150M690 720h150M690 745h150"/>
+          <path pathLength="1" d="M865 620v150"/>
+        </g>
+        <g class="dg" style="animation-delay:6.9s">
+          <circle pathLength="1" cx="1240" cy="700" r="46"/>
+          <path pathLength="1" d="M1240 654v92M1194 700h92"/>
+          <path pathLength="1" d="M1286 668 1400 596"/>
+        </g>
+        <g class="dg" style="animation-delay:9.2s">
+          <path pathLength="1" d="M520 90h560"/>
+          <path pathLength="1" d="M520 78v24M800 78v24M1080 78v24"/>
+          <path pathLength="1" d="M300 470h180v300H300Z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="inner oylp">
+      <div class="phead rev">
+        <span class="no ltr">// DECISION MAKER</span>
+        <h2>From the model, to the meeting, and back to the model</h2>
+        <p class="lead">Decisions inside the virtual space - no more &quot;I didn't understand&quot; and no more &quot;I didn't see it&quot;. Client approval at 1:1</p>
+      </div>
+      <div class="oyl-pairs">
+
+      <div class="oyl-pair">
+        <article class="oyl-panel">
+          <div class="oyl-media">
+            <span class="oyl-id oyl-mono">REVIT_01</span>
+            <video src="../media/dm-revit-before.mp4?v=8" poster="../media/dm-revit-before.jpg?v=8" autoplay muted loop playsinline></video>
+          </div>
+          <div class="oyl-body">
+            <span class="oyl-kick oyl-mono">IN REVIT</span>
+            <div class="oyl-hud oyl-mono"><b>.RVT</b><b>WHITE MODEL</b><b class="on">EXPORT</b></div>
+            <h3>The project in Revit</h3>
+            <p>The model as it is in the office - exactly the same space the client is about to see in VR.</p>
+          </div>
+        </article>
+
+        <div class="oyl-flow oyl-dmflow oyl-mono" aria-hidden="true">
+          <span>VIEWER</span>
+          <svg class="oyl-arw" viewBox="0 0 150 34" preserveAspectRatio="xMidYMid meet" focusable="false"><g transform="matrix(-1 0 0 1 150 0)"><path class="oyl-arw__boltGlow" d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/><path class="oyl-arw__bolt" d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/><path class="oyl-arw__core" d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/><path class="oyl-arw__wall" d="M4 4 L4 30"/><circle class="oyl-arw__flash" cx="7" cy="17" r="3.4"/></g></svg>
+        </div>
+
+        <article class="oyl-panel">
+          <div class="oyl-media">
+            <span class="oyl-id oyl-mono">VR_01</span>
+            <!-- a real headset walkthrough at 1:1 - no menu, just the space. ⛔ Not reel-1.mp4:
+                 that file is shared with bimsuite.html, all-mockup.html and BIMViewer.html, so it
+                 stays where it is instead of being overwritten under those pages. -->
+            <video src="../media/viewer/dm-info.mp4?v=1" poster="../media/viewer/dm-info.jpg?v=1" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="oyl-body">
+            <span class="oyl-kick oyl-mono">IN VR 1:1</span>
+            <div class="oyl-hud oyl-mono"><b>1:1</b><b>WALK</b><b class="on">SAME SPACE</b></div>
+            <h3>The same space, at 1:1 scale</h3>
+            <p>The client walks into the same space at real size. Not a presentation - they are standing inside.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- the round trip is ONE process: pair 1 ends bottom-left (standing in VR),
+           pair 2 begins top-right (deciding). Same lightning as the in-pair connector,
+           run diagonally so the eye is carried from one row into the next. -->
+      <div class="oyl-link" aria-hidden="true">
+        <svg class="oyl-arw oyl-link__diag" viewBox="0 0 252 34" preserveAspectRatio="xMidYMid meet" focusable="false"><g transform="matrix(-1 0 0 1 252 0)"><path class="oyl-arw__boltGlow" d="M246 17 L236 12.5 L226 21 L216 13.5 L206 20 L196 12.5 L186 21 L176 13.5 L166 20 L156 12.5 L146 20.5 L136 14 L126 19.5 L116 15.5 L106 12.5 L96 21 L86 13.5 L76 20 L66 12.5 L56 21 L46 13.5 L36 20 L26 12.5 L16 20.5 L6 17"/><path class="oyl-arw__bolt" d="M246 17 L236 12.5 L226 21 L216 13.5 L206 20 L196 12.5 L186 21 L176 13.5 L166 20 L156 12.5 L146 20.5 L136 14 L126 19.5 L116 15.5 L106 12.5 L96 21 L86 13.5 L76 20 L66 12.5 L56 21 L46 13.5 L36 20 L26 12.5 L16 20.5 L6 17"/><path class="oyl-arw__core" d="M246 17 L236 12.5 L226 21 L216 13.5 L206 20 L196 12.5 L186 21 L176 13.5 L166 20 L156 12.5 L146 20.5 L136 14 L126 19.5 L116 15.5 L106 12.5 L96 21 L86 13.5 L76 20 L66 12.5 L56 21 L46 13.5 L36 20 L26 12.5 L16 20.5 L6 17"/><path class="oyl-arw__wall" d="M4 4 L4 30"/><circle class="oyl-arw__flash" cx="7" cy="17" r="3.4"/></g></svg>
+        <svg class="oyl-arw oyl-link__down" viewBox="0 0 150 34" preserveAspectRatio="xMidYMid meet" focusable="false"><g transform="matrix(-1 0 0 1 150 0)"><path class="oyl-arw__boltGlow" d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/><path class="oyl-arw__bolt" d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/><path class="oyl-arw__core" d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/><path class="oyl-arw__wall" d="M4 4 L4 30"/><circle class="oyl-arw__flash" cx="7" cy="17" r="3.4"/></g></svg>
+      </div>
+
+      <div class="oyl-pair">
+
+        <article class="oyl-panel">
+          <div class="oyl-media">
+            <span class="oyl-id oyl-mono">VR_02</span>
+            <!-- a real headset recording of the DecisionMaker: the ribbon, the element info, the
+                 window being moved. ⛔ Not reel-2.mp4 any more - that file is shared with
+                 BIMViewer.html and suite-viewer.body.html, so it is left alone rather than
+                 overwritten. First 2s trimmed (they were a wall info-panel, not the decision). -->
+            <video class="dm-hold" src="../media/viewer/dm-window.mp4?v=1" poster="../media/viewer/dm-window.jpg?v=1" muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="oyl-body">
+            <span class="oyl-kick oyl-mono">DECIDING IN VR</span>
+            <div class="oyl-hud oyl-mono"><b>Finishes</b><b>Objects</b><b class="on">Move elements</b></div>
+            <h3>Deciding from within VR</h3>
+            <p>Change a finish, swap furniture, move a window - all inside the space itself.</p>
+          </div>
+        </article>
+
+        <div class="oyl-flow oyl-dmflow oyl-mono" aria-hidden="true">
+          <span>MODEL</span>
+          <svg class="oyl-arw" viewBox="0 0 150 34" preserveAspectRatio="xMidYMid meet" focusable="false"><g transform="matrix(-1 0 0 1 150 0)"><path class="oyl-arw__boltGlow" d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/><path class="oyl-arw__bolt" d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/><path class="oyl-arw__core" d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/><path class="oyl-arw__wall" d="M4 4 L4 30"/><circle class="oyl-arw__flash" cx="7" cy="17" r="3.4"/></g></svg>
+        </div>
+
+        <article class="oyl-panel">
+          <div class="oyl-media">
+            <span class="oyl-id oyl-mono">REVIT_02</span>
+            <video class="dm-capvid dm-hold" src="../media/dm-revit-after.mp4?v=8" poster="../media/dm-revit-after.jpg?v=8" muted loop playsinline preload="metadata"></video>
+            <!-- the caption follows the SELECTION inside the clip: the RED demolished element is
+                 selected first, the GREEN moved one from 8.85s on.
+                 ⛔ Do not re-derive this from the window's colour - BOTH windows carry permanent
+                 graphic overrides, so the pixels are red or green regardless of what is selected.
+                 It was read off the Properties panel instead: at t=4 it shows Mark 3144 and
+                 "Phase Demolished: Phase 2", which is the red copy (the real window is Mark 2673
+                 and is not demolished). Re-read the panel, not the colour, if the clip is re-cut. -->
+            <span class="dm-cap oyl-mono is-on" dir="ltr" data-from="0"><b>Revit comments</b>Window 80/200 - id 7808969 - WAS HERE</span>
+            <span class="dm-cap oyl-mono" dir="ltr" data-from="8.85"><b>Revit comments</b>Window 80/200 - id 7808969 - moved 15cm along the wall, 10cm up - host EXT 25-CN 2-XP 5-TRM 2-IP id 11157067 - approved 11/08/2026 by <i class="dm-client" >Eli Cohen</i></span>
+            </div>
+          <div class="oyl-body">
+            <span class="oyl-kick oyl-mono">BACK IN REVIT</span>
+            <div class="oyl-hud oyl-mono"><b>CHANGE-SET</b><b>SAVE AS</b><b class="on">WRITE-BACK</b></div>
+            <h3>The model comes back with the decisions</h3>
+            <p>A new copy of the file: the wall closes, the window moves, and the approval record is saved. The decisions go back to your Revit file - not to anyone's cloud.</p>
+          </div>
+        </article>
+        <!-- the floating approval card lived here until 2026-08-11. Removed by Omer's call:
+             the REVIT_02 clip now shows the real Revit Comments on the moved window, so the
+             card was a second, hand-typed copy of the same record sitting on top of the
+             genuine one. ⛔ Do not re-add it - the proof is that Revit itself says it.
+             Its styling is still in oymer-pairs.css (.dm-approval) if it ever comes back. -->
+      </div>
+
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <section class="backsuite c1" aria-label="Back to the suite">
+    <a class="backsuite__link" href="bimsuite.html">
+      <span class="backsuite__arw ltr" aria-hidden="true">&#8592;</span>
+      <span class="backsuite__txt">Back to <span class="ltr"><span class="oy">oYmer</span> BIM VR Suite<sup class="oyc">&#169;</sup></span></span>
+    </a>
+  </section>
+</main>
+
+</div>
+<script>
+  (function () {
+    var els = document.querySelectorAll(".rev");
+    function showAll() { Array.prototype.forEach.call(els, function (e) { e.classList.add("in"); }); }
+    if (!("IntersectionObserver" in window)) { showAll(); return; }
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var d = parseInt(en.target.dataset.i || "0", 10) * 90;
+        setTimeout(function () { en.target.classList.add("in"); }, d);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+    var wi = 0, oi = 0;
+    Array.prototype.forEach.call(els, function (e) {
+      /* cards stagger among THEMSELVES. indexing across every .rev put the hero sub-line
+         at 0 and pushed Family Creator to 270ms while Type Studio wrapped back to 0. */
+      e.dataset.i = e.classList.contains("winwrap") ? (wi++ % 4) : (oi++ % 4);
+      io.observe(e);
+    });
+    setTimeout(showAll, 3000);
+  })();
+
+  (function () {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(hover: hover)").matches) return;
+    var MAXX = 8, MAXY = 10;
+    Array.prototype.forEach.call(document.querySelectorAll(".winwrap"), function (wrap) {
+      var win = wrap.querySelector(".win"), glow = wrap.querySelector(".glow"), raf = 0;
+      if (!win) return;
+      wrap.addEventListener("mousemove", function (ev) {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = 0;
+          var r = wrap.getBoundingClientRect();
+          var px = (ev.clientX - r.left) / r.width - 0.5;
+          var py = (ev.clientY - r.top) / r.height - 0.5;
+          win.style.transform = "translateY(-8px) rotateX(" + (-py * MAXX).toFixed(2) +
+            "deg) rotateY(" + (px * MAXY).toFixed(2) + "deg) translateZ(18px)";
+          if (glow) glow.style.transform = "translate(" + (px * -28).toFixed(1) + "px," +
+            (py * -22 + 12).toFixed(1) + "px) scale(1.08)";
+        });
+      });
+      wrap.addEventListener("mouseleave", function () {
+        win.style.transform = ""; if (glow) glow.style.transform = "";
+      });
+    });
+  })();
+</script>
+<script src="oymer.js?v=29"></script><script src="agent.js?v=6"></script>
+
+<script src="menu-preview.js?v=8"></script>
+<script src="suite-morph.js?v=18"></script>
+<script>
+  /* The LOWER pair holds still until it is actually on screen, so the upper pair (walk +
+     decide) gets watched first instead of four clips looping at once. Two things had to be
+     true, not one:
+       - no `autoplay` on .dm-hold - the poster holds the frame;
+       - suite-morph.js's lazyVideo() calls v.play() ITSELF the moment a video comes within
+         300px of the viewport, so a one-shot observer here would be overruled a beat later.
+     Hence the "play" listener: whatever starts a held clip, it is paused straight back unless
+     the observer has said it is >=55% visible. */
+  (function () {
+    var held = [].slice.call(document.querySelectorAll("video.dm-hold"));
+    if (!held.length) return;
+    function play(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if (!("IntersectionObserver" in window)) { held.forEach(play); return; }
+    held.forEach(function (v) {
+      v.addEventListener("play", function () { if (!v.dataset.seen) v.pause(); });
+    });
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting) {
+          if (!v.dataset.seen) { v.dataset.seen = "1"; try { v.currentTime = 0; } catch (e) {} }
+          play(v);
+        } else if (!v.paused) { v.pause(); }
+      });
+    }, { threshold: 0.55 });
+    held.forEach(function (v) { io.observe(v); });
+  })();
+</script>
+
+<script>
+  /* The Revit-comment caption tracks which window is SELECTED inside the clip, so the text on
+     screen always belongs to the element highlighted underneath it. Cue times live on the
+     spans (data-from), measured off the video's own chroma - see the markup comment.
+     ⛔ Driven by currentTime, not a timer: the video loops and can stall on a slow connection,
+     and a setInterval would drift out of sync with the picture within one loop. */
+  (function () {
+    document.querySelectorAll(".dm-capvid").forEach(function (vid) {
+      var caps = [].slice.call(vid.parentNode.querySelectorAll(".dm-cap"))
+        .map(function (el) { return { el: el, from: parseFloat(el.dataset.from) || 0 }; })
+        .sort(function (a, b) { return a.from - b.from; });
+      if (caps.length < 2) return;
+      var shown = null;
+      function sync() {
+        var t = vid.currentTime, pick = caps[0];
+        for (var i = 0; i < caps.length; i++) if (t >= caps[i].from) pick = caps[i];
+        if (pick === shown) return;
+        shown = pick;
+        caps.forEach(function (c) { c.el.classList.toggle("is-on", c === pick); });
+      }
+      vid.addEventListener("timeupdate", sync);
+      vid.addEventListener("seeked", sync);
+      sync();
+    });
+  })();
+</script>
+
+<script>
+  /* The page scroll drives the one-row DM pipeline (the CSS is #dm-row in the head). When the
+     section reaches the screen the row stays pinned (sticky), and the ordinary scroll - wheel,
+     trackpad, keys - slides it through the 4 panels; after the last one the page goes on. The
+     track under the row is exactly as tall as the sideways distance: 1px of scroll = 1px of
+     slide. Measured by where the panels are on the screen, never by the language, so the
+     generated English page (en/) needs nothing: the start side is wherever panel 1 sits at load. */
+  document.addEventListener("DOMContentLoaded", function () {
+    var row = document.querySelector(".oylp .oyl-pairs");
+    if (!row || !window.matchMedia("(min-width:961px)").matches) return;
+    var track = document.createElement("div"), sticky = document.createElement("div");
+    track.className = "dm-track"; sticky.className = "dm-sticky";
+    row.parentNode.insertBefore(track, row);
+    track.appendChild(sticky); sticky.appendChild(row);
+    var HEADER = 80, travel = 0, top = HEADER;
+    var r0 = row.getBoundingClientRect(), p0 = row.querySelector(".oyl-panel").getBoundingClientRect();
+    var startRight = (p0.left + p0.right) / 2 > (r0.left + r0.right) / 2;
+    function hiddenLeft() {              // how much of the row is out of view on the left now
+      var r = row.getBoundingClientRect(), lo = Infinity;
+      row.querySelectorAll(".oyl-panel").forEach(function (p) { lo = Math.min(lo, p.getBoundingClientRect().left); });
+      return r.left - lo;
+    }
+    function layout() {
+      travel = Math.max(0, row.scrollWidth - row.clientWidth);
+      var h = row.offsetHeight;
+      top = Math.max(HEADER + 10, HEADER + (window.innerHeight - HEADER - h) / 2);
+      sticky.style.top = top + "px";
+      track.style.height = (h + travel) + "px";
+      update();
+    }
+    function update() {
+      var p = (top - track.getBoundingClientRect().top) / (travel || 1);
+      p = Math.min(1, Math.max(0, p));
+      var want = startRight ? (1 - p) * travel : p * travel;
+      row.scrollBy({ left: want - hiddenLeft() });
+    }
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", layout);
+    layout();
+  });
+</script>
+</body>
+</html>

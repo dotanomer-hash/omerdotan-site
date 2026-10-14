@@ -1,3 +1,3 @@
 User-agent: *
 
-Sitemap: https://omerdotan.com/
+Sitemap: https://omerdotan.com/sitemap.xml
