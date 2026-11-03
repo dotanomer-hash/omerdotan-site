@@ -39,7 +39,7 @@ const OUT_HE = path.join(ROOT, outDir);             // Hebrew page lands here
 const OUT_EN = path.join(OUT_HE, "en");             // English page lands here
 const BUILT = new Set(pages.map((p) => p.toLowerCase() + ".html"));
 // every page that will have an English twin (the full site list) - used for full omerdotan.com addresses
-const ALL_PAGES = new Set("index VRImplementation GuidedTours PreRecordedTours ExistingBuildings bimsuite suite-decisionmaker suite-viewer suite-familycreator suite-typestudio suite-vrtours suite-vrlab FAQ About Contact ClientStories ThankYou Blog BlogPost-1 BlogPost-2 BlogPost-3 BlogPost-4 BlogPost-5 BlogPost-6 BlogPost-7 BlogPost-8".split(" ").map((p) => p.toLowerCase() + ".html"));
+const ALL_PAGES = new Set("index VRImplementation GuidedTours PreRecordedTours ExistingBuildings bimsuite suite-decisionmaker suite-viewer suite-familycreator suite-typestudio suite-vrtours suite-vrlab suite-computational FAQ About Contact ClientStories ThankYou Blog BlogPost-1 BlogPost-2 BlogPost-3 BlogPost-4 BlogPost-5 BlogPost-6 BlogPost-7 BlogPost-8".split(" ").map((p) => p.toLowerCase() + ".html"));
 
 const read = (p) => fs.readFileSync(p, "utf8");
 const readJson = (p) => (fs.existsSync(p) ? JSON.parse(read(p)) : {});

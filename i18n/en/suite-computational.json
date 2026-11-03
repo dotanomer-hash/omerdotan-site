@@ -1,0 +1,22 @@
+{
+  "oYmer Computational Design | תכנון חישובי | Omer Dotan": "oYmer Computational Design | Computational Design | Omer Dotan",
+  "oYmer Computational Design - תכנון חישובי ברוויט: גרף Dynamo עם 16 סליידרים וקוד Python אחד, שנכתב יחד עם Claude, בונה גרם מדרגות מסבך. המודל חי כאן בעמוד.": "oYmer Computational Design - computational design in Revit: a Dynamo graph with 16 sliders and one Python script, written together with Claude, builds a truss stair. The model is live on this page.",
+  "תכנון חישובי ברוויט: Dynamo, Python ו-AI. הגיאומטריה נגזרת מהפרמטרים, לא מהעכבר": "Computational design in Revit: Dynamo, Python and AI. The geometry comes from the parameters, not from the mouse",
+  "Find My Stairs - גרם מדרגות מסבך פרמטרי": "Find My Stairs - a parametric truss stair",
+  "גרף ה-Dynamo האמיתי, חי בתוך העמוד: גררו סליידר והמדרגות נבנות מחדש. גררו את הרקע כדי לסובב את המבט.": "The real Dynamo graph, live inside the page: drag a slider and the stair rebuilds. Drag the background to turn the view.",
+  "אותם 16 הסליידרים, אותו קוד": "The same 16 sliders, the same code",
+  "הגרף שרץ ברוויט נבנה כאן מחדש שורה אחר שורה: מספר המדרגות, הגובה, הרוחב, אורך הפודסט, המרווח בין השדרות, צפיפות המסבך, עובי המוטות, ולכל אחת מארבע השדרות עומק ופיתול משלה. מה שמזיזים כאן הוא בדיוק מה שמזיזים שם.": "The graph that runs in Revit was rebuilt here line by line: the number of treads, the rise, the width, the landing length, the gap between the spines, the web density, the rod thickness, and for each of the four spines its own depth and twist. What you move here is exactly what you move there.",
+  "הגרף בתוך רוויט": "The graph inside Revit",
+  "חמש קבוצות של סליידרים נכנסות לצומת Python אחד, והקוד בונה את הגיאומטריה האמיתית ברוויט: המדרגות, הפודסט וכל מוט במסבך.": "Five groups of sliders feed one Python node, and the code builds the real geometry in Revit: the treads, the landing and every rod in the truss.",
+  "גרף ה-Dynamo של המדרגות בתוך רוויט": "The Dynamo graph of the stair inside Revit",
+  "איך זה נבנה": "How it was built",
+  "את הקוד כתבתי יחד עם Claude: אני מתאר את המדרגות, ה-AI כותב את ה-Python, רוויט בונה, ואני בודק בעין ומתקן. זה תכנון חישובי - הכוונה היא הפרמטרים, והמודל נגזר מהם. אותה שיטה עובדת על כל אלמנט שחוזר על עצמו עם וריאציות: מעקות, חזיתות, ריהוט, מבנה.": "I wrote the code together with Claude: I describe the stair, the AI writes the Python, Revit builds, and I check by eye and correct. This is computational design - the intent is the parameters, and the model follows from them. The same method works for any element that repeats with variations: railings, facades, furniture, structure.",
+  "תכנון חישובי ברוויט: מסבך מדרגות דינמי שנבנה באמצעות Dynamo, Python ו-AI": "Computational design in Revit: a dynamic truss stair built with Dynamo, Python and AI",
+  "תכנון חישובי ברוויט: מסבך מדרגות דינמי שנבנה ב Dynamo באמצעות AI": "Computational design in Revit: a dynamic truss stair built in Dynamo with AI",
+  "הזיזו את הסליידרים כדי לשחק עם סקריפטי ה-Dynamo הדינמיים": "Move the sliders to interact with the dynamic Dynamo scripts",
+  "תכנון חישובי ברוויט באמצעות AI": "Computational design in Revit with AI",
+  "מסבך מדרגות דינמי שנבנה ב Dynamo באמצעות Claude Code": "A dynamic truss stair built in Dynamo with Claude Code",
+  "גררו את הרקע כדי לסובב את המבט, וגררו תיבה כדי להזיז אותה": "Drag the background to orbit the view, and drag a box to move it",
+  "השתמשו בעכבר כדי להזיז את המדרגות": "Use the mouse to move the stairs",
+  "שנו זווית וזום עם העכבר, וגררו את התיבות לכל מקום": "Change the angle and zoom with the mouse, and drag the boxes anywhere"
+}
