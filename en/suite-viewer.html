@@ -117,13 +117,71 @@
         </article>
       </div>
 
-      
 
-      
+
+
 
     </div>
+
+      <div class="oyl-walk rev">
+        <div class="oyl-walk__head">
+          <span class="oyl-walk__kick">WALK THE BIM</span>
+          <h3>Walk inside the BIM model with the technique of the future - Gaussian Splatting</h3>
+          <p>A corridor from a real project, built straight from the BIM model with Gaussian Splatting, by our own dedicated engine - no graphics software or Splatting engines needed. Click to step in.</p>
+        </div>
+        <div class="oyl-walk__win" dir="ltr">
+          <span class="oyl-id oyl-mono">WALK_01</span>
+          <button class="oyl-walk__go" type="button">
+            <img src="../media/viewer/walk/poster.jpg?v=1" alt="">
+            <span class="oyl-walk__btn">Step in and walk around</span>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
+  <style>
+    .oylp .oyl-walk{margin-top:56px}
+    .oylp .oyl-walk__head{margin-bottom:18px}
+    .oylp .oyl-walk__kick{display:block;font:800 11.5px/1 "Rubik",sans-serif;letter-spacing:.2em;color:rgb(var(--cd))}
+    .oylp .oyl-walk__head h3{margin:10px 0 8px;font:800 clamp(22px,2.4vw,30px)/1.15 "Rubik","Heebo",sans-serif;letter-spacing:-.02em;color:var(--ink)}
+    .oylp .oyl-walk__head p{margin:0;font-size:15.5px;line-height:1.75;color:var(--body)}
+    .oylp .oyl-walk__win{position:relative;width:100%;aspect-ratio:16/9;max-height:82vh;overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);border-radius:18px;background:#04060f}
+    .oylp .oyl-walk__win iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+    .oylp .oyl-walk__go{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:none;cursor:pointer}
+    .oylp .oyl-walk__go img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.78);transition:filter .3s}
+    .oylp .oyl-walk__go:hover img{filter:brightness(.92)}
+    .oylp .oyl-walk__btn{position:absolute;right:50%;top:50%;transform:translate(50%,-50%);padding:16px 34px;border-radius:99px;
+      background:rgba(255,122,0,.22);border:1.5px solid #ffb066;color:#fff;font:700 1.15rem/1 "Rubik","Heebo",sans-serif;
+      -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);text-shadow:0 1px 8px rgba(0,0,0,.55);transition:background .25s}
+    .oylp .oyl-walk__go:hover .oyl-walk__btn{background:rgba(255,122,0,.34)}
+    .oylp .oyl-walk__win .oyl-id{z-index:3}
+    .oylp .oyl-walk__win:fullscreen{max-height:none;aspect-ratio:auto;width:100vw;height:100vh;border-radius:0}
+    .oylp .oyl-walk__win:-webkit-full-screen{max-height:none;width:100vw;height:100vh;border-radius:0}
+    .oylp .oyl-walk__win iframe{z-index:4}
+  </style>
+  <script>
+    (function () {
+      var go = document.querySelector(".oyl-walk__go");
+      if (!go) return;
+      // the walk opens FULL SCREEN straight from this click (a browser allows full screen only from the click itself,
+      // so it cannot be a new tab); Esc returns to the page. No full screen (iPhone) -> a new tab instead.
+      go.addEventListener("click", function () {
+        var win = go.parentNode, img = go.querySelector("img");
+        var url = new URL("index.html?v=15", img.src).href;      // next to the poster, so the English twin finds it too
+        var fs = win.requestFullscreen || win.webkitRequestFullscreen;
+        if (!fs) { window.open(url + "&fs=1", "_blank"); return; }
+        var f = document.createElement("iframe");
+        f.src = url; f.allow = "xr-spatial-tracking; fullscreen"; f.title = "Walk the BIM model";
+        win.appendChild(f);
+        try { var p = fs.call(win); if (p && p.catch) p.catch(function () {}); } catch (e) {}
+        f.addEventListener("load", function () { try { f.contentWindow.focus(); } catch (e) {} });
+        function out() { if (!(document.fullscreenElement || document.webkitFullscreenElement)) {
+          f.remove(); document.removeEventListener("fullscreenchange", out); document.removeEventListener("webkitfullscreenchange", out); } }
+        document.addEventListener("fullscreenchange", out); document.addEventListener("webkitfullscreenchange", out);
+      });
+    })();
+  </script>
 
   <section class="backsuite c2" aria-label="Back to the suite">
     <a class="backsuite__link" href="bimsuite.html">

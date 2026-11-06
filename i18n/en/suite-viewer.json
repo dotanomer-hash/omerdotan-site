@@ -4,5 +4,8 @@
   "המודל בצפייה": "The model in the viewer",
   "להסתובב בתוך המודל, לבחון חלל וחומרים בסביבה הוירטאולית": "Walk through the model, check the space and the materials in the virtual environment",
   "מודל ה BIM": "The BIM model",
-  "המודל ברוויט": "The model in Revit"
+  "המודל ברוויט": "The model in Revit",
+  "ללכת בתוך מודל ה-BIM בטכניקת העתיד - Gaussian Splatting": "Walk inside the BIM model with the technique of the future - Gaussian Splatting",
+  "מסדרון מפרויקט אמיתי, שנבנה ישירות ממודל ה-BIM בטכניקת Gaussian Splatting, במנוע הייעודי שלנו - ללא צורך בתוכנות גרפיות או במנועי Splatting. לחצו כדי להיכנס.": "A corridor from a real project, built straight from the BIM model with Gaussian Splatting, by our own dedicated engine - no graphics software or Splatting engines needed. Click to step in.",
+  "להיכנס ולהסתובב": "Step in and walk around"
 }
