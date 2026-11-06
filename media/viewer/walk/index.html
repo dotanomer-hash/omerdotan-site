@@ -95,6 +95,12 @@
     #bim .x { position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; border: 0; border-radius: 8px;
       background: rgba(255,255,255,.08); color: #fff; font-size: 18px; line-height: 30px; cursor: pointer; }
     #bim .x:hover { background: rgba(255,255,255,.16); }
+
+    /* Tab = the material options: the name shows top centre for a moment */
+    #look { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 30; pointer-events: none;
+      background: rgba(255,122,0,.22); border: 1.5px solid #ffb066; backdrop-filter: blur(6px); border-radius: 99px;
+      padding: 6px 18px; font-size: 14px; font-weight: 600; text-shadow: 0 1px 4px rgba(0,0,0,.6); opacity: 0; transition: opacity .3s ease; }
+    #look.on { opacity: 1; }
   </style>
 </head>
 <body>
@@ -118,11 +124,13 @@
     <div class="controls-card">
       <div class="desk"><b>Desktop</b> - <span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span> walk · drag to look</div>
       <div class="touch"><b>Touch</b> - drag to look</div>
-      <div><b>BIM</b> - click an object to see its BIM data</div>
+      <div><b>BIM</b> - click an object to see its BIM data<span class="desk"> · <span class="key">Tab</span> switch materials</span></div>
       <div><b>Quest 3</b> - <b>Enter VR</b> · right stick moves</div>
       <div class="desk"><b>Exit</b> - <span class="key">Esc</span> leaves full screen</div>
     </div>
   </div>
+
+  <div id="look"></div>
 
   <div id="bim" hidden>
     <button class="x" aria-label="Close">×</button>
@@ -151,7 +159,10 @@
     window.addEventListener('error', e => { window.__pageErr = (e.error && e.error.stack) || e.message; });
     window.addEventListener('unhandledrejection', e => { window.__rejErr = (e.reason && e.reason.stack) || String(e.reason); });
 
-    const SPLAT_URL      = 'corridor.spz';
+    // Original = the night run; wood floor + gold doors = the same night's light with the new material, a fast draft training each
+    const SPLATS = { old: 'corridor.spz', wood: 'corridor_wood.spz', gold: 'corridor_gold.spz' };
+    const S_KEY = 'old';
+    const SPLAT_URL = SPLATS[S_KEY];
     const SPLAT_ROTATION = [0, 1, 0, 0];   // 180 deg about Y: the corridor runs along -Z
     const MOVE_SPEED     = 2.0;            // desktop walk speed (m/sec)
     const VR_SPEED       = 2.0;            // VR stick speed (m/sec)
@@ -219,6 +230,7 @@
       const walkStep = setupDesktopWalk(viewer);
       setupVRLocomotion(viewer);
       const picker = setupPicker(viewer);
+      setupLooks(viewer);
       // ONE loop for everything: move the camera, then draw the splat, then the outline - same camera, same frame,
       // same canvas, so the outline can never be drawn from another moment than the splat
       viewer.renderer.setAnimationLoop(() => {
@@ -359,6 +371,30 @@
       }
       window.__drawOutline = drawOutline;
       return { active: () => sel >= 0, draw: drawOutline };
+    }
+
+    // ---------- Tab: the material options - the same corridor, one splat per option, swapped in place ----------
+    function setupLooks(viewer) {
+      const LOOKS = [['old', 'Original'], ['wood', 'Wood floor'], ['gold', 'Gold doors']];
+      const tag = document.getElementById('look'), blobs = {};
+      let i = Math.max(0, LOOKS.findIndex(l => l[0] === S_KEY)), busy = false, hideT = 0;
+      const show = (t, stay) => { tag.textContent = t; tag.classList.add('on'); clearTimeout(hideT); if (!stay) hideT = setTimeout(() => tag.classList.remove('on'), 1800); };
+      // the other options load quietly in the background (keyboard computers only - a phone has no Tab), so Tab only swaps
+      if (matchMedia('(hover: hover)').matches) (async () => { for (const [k] of LOOKS) if (k !== S_KEY) try { blobs[k] = URL.createObjectURL(await (await fetch(SPLATS[k])).blob()); } catch (e) {} })();
+      addEventListener('keydown', async e => {
+        if (e.code !== 'Tab') return;
+        e.preventDefault(); if (busy) return; busy = true;
+        i = (i + 1) % LOOKS.length; const [k, name] = LOOKS[i];
+        show('Loading ' + name + '...', true);
+        try {
+          await viewer.removeSplatScene(0, false);
+          await viewer.addSplatScene(blobs[k] || SPLATS[k], { format: GaussianSplats3D.SceneFormat.Spz, progressiveLoad: false,
+            splatAlphaRemovalThreshold: 25, rotation: SPLAT_ROTATION, showLoadingUI: false });
+          show(name + '  ' + (i + 1) + '/' + LOOKS.length);
+        } catch (err) { show('Could not load ' + name); window.__lookErr = String(err && err.stack || err); }
+        busy = false;
+      });
+      window.__look = () => LOOKS[i][1];
     }
 
     // ---------- VR: right stick moves along where you look ----------
