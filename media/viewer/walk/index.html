@@ -169,11 +169,14 @@
     // THE DEVICE PICKS THE SPLAT: a headset browser draws everything on its own chip - 2.2M splats froze a Quest 3
     // (2026-11-07), so a headset gets the light cut (450k splats, SH 0, the same pictures). ?quest=1 forces it on a PC.
     const HEADSET = /OculusBrowser|Quest|Wolvic|Pico/i.test(navigator.userAgent) || /[?&]quest=1/.test(location.search);
-    if (HEADSET) SPLATS.old = 'corridor_tm_quest.spz';
+    // 2026-11-07: the 383k cut ran smoothly but looked blurred -> the 687k cut (11 MB) is the headset default; ?q=383 = the old one
+    // ?q=383 / ?q=1200 / ?q=full pick another cut for the Quest ceiling test (the fps plate in VR names the one loaded)
+    { const q = (/[?&]q=(\w+)/.exec(location.search) || [])[1];
+      if (HEADSET) SPLATS.old = q === '383' ? 'corridor_tm_quest.spz' : q === '1200' ? 'corridor_tm_quest1200.spz' : q === 'full' ? 'corridor_tm.spz' : 'corridor_tm_quest800.spz'; }
     const S_KEY = 'old';
     const SPLAT_URL = SPLATS[S_KEY];
     const SPLAT_ROTATION = [0, 1, 0, 0];   // 180 deg about Y: the corridor runs along -Z
-    const MOVE_SPEED     = 2.0;            // desktop walk speed (m/sec)
+    const MOVE_SPEED     = 3.0;            // desktop walk speed (m/sec) = the BIM viewer's (move.speed 3.0) - his call 2026-11-07: "the regular is better"
     const VR_SPEED       = 1.6;            // VR stick speed (m/sec) - the viewer's number
     const DEADZONE       = 0.15;
     const VR_BOUND       = 24.0;
@@ -211,8 +214,11 @@
 
     const viewer = new GaussianSplats3D.Viewer({
       cameraUp: [0, 1, 0],
-      initialCameraPosition: [0, 0, 0.1],
-      initialCameraLookAt: [0, 0, -1],
+      // DESKTOP EYE 1.60 m above the BIM floor = the BIM viewer's desktop eye (his ask 2026-11-07: "the splatter height
+      // is too low"). The render camera's eye (y 0 here) is 1.25 m above that floor (measured), so +0.35. Trained heights
+      // run -0.1..+0.7, so 0.35 is inside them. VR keeps its own 1.76 m.
+      initialCameraPosition: [0, 0.35, 0.1],
+      initialCameraLookAt: [0, 0.35, -1],
       webXRMode: GaussianSplats3D.WebXRMode.VR,
       useBuiltInControls: false,
       sharedMemoryForWorkers: false,
@@ -296,7 +302,7 @@
       });
 
       const fwd = new THREE.Vector3(), right = new THREE.Vector3(), up = new THREE.Vector3(0, 1, 0);
-      const move = new THREE.Vector3(), euler = new THREE.Euler(0, 0, 0, 'YXZ');
+      const move = new THREE.Vector3(), vel = new THREE.Vector3(), euler = new THREE.Euler(0, 0, 0, 'YXZ');
       window.__setView = (x, y, z, yw, pt) => { cam.position.set(x, y, z); yaw = yw; pitch = pt || 0; };
       let last = performance.now();
       return function step() {   // called once per frame by the one loop
@@ -311,7 +317,22 @@
           if (keys['KeyS']) move.sub(fwd);
           if (keys['KeyD']) move.add(right);
           if (keys['KeyA']) move.sub(right);
-          if (move.lengthSq() > 0) { move.normalize().multiplyScalar(MOVE_SPEED * dt); cam.position.add(move); slideIn(cam.position); }
+          // the viewer's feel: the speed eases in and out (vel.lerp(target, dt*12) - Viewer-Behaviour-Desktop.js stepMove)
+          if (move.lengthSq() > 0) move.normalize().multiplyScalar(MOVE_SPEED);
+          vel.lerp(move, Math.min(1, dt * 12)); if (vel.lengthSq() < 1e-5) vel.set(0, 0, 0);
+          move.copy(vel).multiplyScalar(dt);
+          if (move.lengthSq() > 0) {
+            // THE BIM WALLS, as in VR (his report 2026-11-07: "i can enter walls to my left and not reach to the right"):
+            // the old limit was 0.6 m around the render cameras, and in the corridor those all stand 0-0.4 m from the
+            // start line - hugging the LEFT wall (0.45 m) and 2.2 m short of the RIGHT one (2.65 m), measured.
+            // Now the wall plan stops him at real walls on both sides, one axis at a time so he slides along them.
+            const W = window.__wallPlan, P = cam.position;
+            if (W && !W.blocked(P.x, P.z, 0.08)) {
+              if (!W.blocked(P.x + move.x, P.z, 0.22)) P.x += move.x;
+              if (!W.blocked(P.x, P.z + move.z, 0.22)) P.z += move.z;
+            } else if (W) { P.add(move); }                       // already inside a wall: let him walk out
+            else { P.add(move); slideIn(P); }                    // the plan is not built yet: the old camera limit
+          }
           cam.position.y = Math.max(YMIN, Math.min(YMAX, cam.position.y));
         }
       };
@@ -343,6 +364,8 @@
         oscene.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ colorWrite: false, side: THREE.DoubleSide,
           polygonOffset: true, polygonOffsetFactor: 2, polygonOffsetUnits: 2 })));
         window.__pick = { els: J.els.length, tris: J.nt };
+        // the wall plan for the DESKTOP walk too (the BIM floor under the start)
+        { const f = floorBelow(0, 0.2, 0.1); window.__wallPlan = buildWalls(f != null ? f : -1.25); }
       })().catch(e => { window.__pickErr = String(e); });
 
       const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
@@ -443,6 +466,7 @@
         window.__walls = { cells: nx + 'x' + nz, marked, floorY, blocked: walls.blocked };   // the test reads it
         return walls;
       }
+      window.__picker = { buildWalls: f => buildWalls(f), hitRay: (o, dir) => hitRay(o, dir), el: i => (J && i >= 0 ? J.els[i] : null), castDist: (o, dir, f) => castDist(o, dir, f) };   // for measuring
       return { buildWalls, geo: () => geo, castDist, active: () => sel >= 0, draw: drawOutline, hitRay, floorBelow, select, selected: () => sel < 0 ? null : J.els[sel], ready: () => !!mesh, sel: () => sel };
     }
 
@@ -484,7 +508,7 @@
       const r = viewer.renderer, scene = new THREE.Scene(), depthScene = new THREE.Scene();
       scene.add(new THREE.HemisphereLight(0xfff1e0, 0x5a5048, 2.0));
       const key = new THREE.DirectionalLight(0xfff1e0, 1.2); key.position.set(0.5, 2, 1); scene.add(key);
-      const HEIGHT = 1.78, SPEED_PER_M = 0.90 / 1.78;
+      const WALK_MS = 1.294;   // her measured walk speed (1.596 m per 1.233 s cycle) - feet do not slide
       let walker = null, mixer = null, path = null, dir = -1, s = 0, last = 0, depthOn = false, walkA = null, turnA = null, mode = 'walk';
       const load = url => new Promise((ok, bad) => new window.GLTFLoader().load(url, ok, undefined, bad));
       // the clip must START at its first key (Blender exports a cut cycle at 1.6-2.97 s; three.js plays from 0 -> he
@@ -494,41 +518,36 @@
         for (const t of clip.tracks) { if (seen.has(t.times)) continue; seen.add(t.times); for (let i = 0; i < t.times.length; i++) t.times[i] -= t0; }
         clip.resetDuration(); return clip;
       }
+      // HER (his pick 2026-11-07, replacing Adam): Microsoft Rocketbox Female_Adult_07 (MIT), woman07.glb (2.3 MB) with her
+      // OWN clips 'walk' + 'turn' baked onto her own skeleton by the viewer session (no retarget). Measured traps:
+      //  - her walk is NOT on the spot: Bip01_Pelvis.position travels 159.7 units per cycle - the straight-line travel
+      //    (first key -> last key) is taken out, and the page moves her at 1.294 m/s (= 1.596 m per 1.233 s cycle);
+      //  - her turn turns her -179.4 deg itself; its small travel is taken out too, so she turns on the spot;
+      //  - SWITCHING CLIPS: start the next one, then stop the old, then update - stopping first shows the T-pose for a frame.
+      function flattenTravel(clip) {
+        for (const t of clip.tracks) {
+          if (!/Pelvis\.position$/.test(t.name)) continue;
+          const v = t.values, n = v.length / 3, T = t.times[t.times.length - 1] - t.times[0] || 1;
+          const dx = v[(n - 1) * 3] - v[0], dz = v[(n - 1) * 3 + 2] - v[2];
+          for (let i = 0; i < n; i++) { const f = (t.times[i] - t.times[0]) / T; v[i * 3] -= dx * f; v[i * 3 + 2] -= dz * f; }
+        }
+        return clip;
+      }
       (async () => {
         await gltfReady;
-        const [ga, gw] = await Promise.all([load('adam_turn.glb?v=1'), load('walk_anim.glb?v=1')]);
-        const body = ga.scene; mixer = new THREE.AnimationMixer(body);
-        const hipsOf = root => { let h = null; root.traverse(o => { if (!h && /Hips$/.test(o.name)) h = o; }); return h; };
-        const aH = hipsOf(body), wH = hipsOf(gw.scene), aP = aH.name.replace(/Hips$/, ''), wP = wH.name.replace(/Hips$/, '');
-        // the walk, moved onto Adam's bones
-        // the two skeletons do not REST alike (arms 22 deg apart, measured) - a copied rotation carries that error into
-        // every step. Each bone's motion goes through the rest difference: q_adam = rest_adam * rest_remy^-1 * q_remy.
-        const restOf = root => { const m = {}; root.traverse(o => { if (/Hips$|mixamorig/.test(o.name)) m[o.name.replace(/^mixamorig\d*/, '')] = o.quaternion.clone(); }); return m; };
-        const rA = restOf(body), rW = restOf(gw.scene), qa = new THREE.Quaternion(), qd = new THREE.Quaternion();
-        const wc = fromZero(gw.animations[0]), tracks = [];
-        for (const t of wc.tracks) {
-          const dot = t.name.lastIndexOf('.'), bone = t.name.slice(0, dot), prop = t.name.slice(dot + 1);
-          const nb = aP + bone.slice(wP.length);
-          if (prop === 'quaternion') { const c = t.clone(); c.name = nb + '.quaternion';
-            const key = bone.replace(/^mixamorig\d*/, '');
-            if (rA[key] && rW[key]) { qd.copy(rW[key]).invert().premultiply(rA[key]); const v = c.values;
-              for (let i = 0; i < v.length; i += 4) { qa.fromArray(v, i).premultiply(qd).toArray(v, i); } }
-            tracks.push(c); }
-          else if (prop === 'position' && bone === wH.name) {   // the hips: Adam's own spot and height, Remy's bob scaled to him
-            const c = t.clone(); c.name = nb + '.position'; const v = c.values, k = aH.position.y / wH.position.y, x0 = v[0], z0 = v[2];
-            for (let i = 0; i < v.length; i += 3) { v[i] = aH.position.x + (v[i] - x0) * k; v[i + 1] = v[i + 1] * k; v[i + 2] = aH.position.z + (v[i + 2] - z0) * k; }
-            tracks.push(c);
-          }
-        }
-        walkA = mixer.clipAction(new THREE.AnimationClip('walk', wc.duration, tracks));
-        turnA = mixer.clipAction(fromZero(ga.animations[0])); turnA.setLoop(THREE.LoopOnce, 1); turnA.clampWhenFinished = true;
+        const gb = await load('woman07.glb?v=1');
+        const body = gb.scene; mixer = new THREE.AnimationMixer(body);
+        const clip = n => gb.animations.find(c => c.name === n);
+        const wc = flattenTravel(fromZero(clip('walk'))), tc = flattenTravel(fromZero(clip('turn')));
+        walkA = mixer.clipAction(wc); turnA = mixer.clipAction(tc); turnA.setLoop(THREE.LoopOnce, 1); turnA.clampWhenFinished = true;
         walkA.play(); mixer.update(0); body.updateMatrixWorld(true);
         const box = new THREE.Box3().setFromObject(body, true), h = box.max.y - box.min.y, mid = box.getCenter(new THREE.Vector3());
-        // TURN ON THE SPOT: he hangs in a PIVOT under his body's centre, whatever the file (Remy stood 0.67 m off his own)
-        const k = HEIGHT / h; body.scale.setScalar(k); body.position.set(-mid.x * k, -box.min.y * k, -mid.z * k);
-        body.traverse(o => { if (o.isMesh) o.frustumCulled = false; });
+        // TURN ON THE SPOT: she hangs in a PIVOT under her body's centre (scale 1 - she is 1.72 m as modelled)
+        body.position.set(-mid.x, -box.min.y, -mid.z);
+        // her FBX materials come in fully METALLIC (metalness 1, measured): metal with nothing to reflect renders black
+        body.traverse(o => { if (o.isMesh) { o.frustumCulled = false; for (const m of [].concat(o.material)) if (m.metalness !== undefined) m.metalness = 0; } });
         walker = new THREE.Group(); walker.add(body); scene.add(walker);
-        window.__walker = { who: 'Adam', h, scaled: HEIGHT, walk: +wc.duration.toFixed(3), turn: +turnA.getClip().duration.toFixed(3), tracks: tracks.length };
+        window.__walker = { who: 'Female_Adult_07', h: +h.toFixed(2), walk: +wc.duration.toFixed(3), turn: +tc.duration.toFixed(3) };
       })().catch(e => { window.__walkerErr = String(e && e.stack || e); });
       // the path: down the middle of the corridor (the BIM walls measured by rays), on the BIM floor
       function makePath() {
@@ -550,21 +569,24 @@
         const [A, B] = path, len = A.distanceTo(B);
         mixer.update(dt);
         if (mode === 'walk') {
-          s += dir * SPEED_PER_M * HEIGHT * dt / len;
-          if (s >= 1 || s <= 0) { s = Math.min(1, Math.max(0, s)); mode = 'turn'; walkA.stop(); turnA.reset().play(); }   // his own 180 turn, on the spot
+          s += dir * WALK_MS * dt / len;
+          if (s >= 1 || s <= 0) { s = Math.min(1, Math.max(0, s)); mode = 'turn'; turnA.reset().play(); walkA.stop(); mixer.update(0); }   // her own 180 turn, on the spot
         } else if (!turnA.isRunning()) {   // the turn is over: he faces back, the walk carries on from its first step
-          turnA.stop(); dir = -dir; mode = 'walk'; walkA.reset().play();
+          walkA.reset().play(); turnA.stop(); dir = -dir; mode = 'walk'; mixer.update(0);
         }
         const p = A.clone().lerp(B, s); walker.position.set(p.x, p.y, p.z);
         const fwd = B.clone().sub(A).normalize().multiplyScalar(dir); walker.rotation.y = Math.atan2(fwd.x, fwd.z);
       }
+      let shown = true;   // A / X in VR hides her - his fps test: is the cost HER, or the corridor view?
       function draw() {
-        if (!walker || !path) return;
+        if (!walker || !path || !shown) return;      // hidden = no BIM depth pass either, so the fps shows her whole cost
         const ac = r.autoClear; r.autoClear = false; r.clearDepth();
         if (depthOn) r.render(depthScene, viewer.camera);
         r.render(scene, viewer.camera); r.autoClear = ac;
       }
-      return { step, draw, active: () => !!walker };
+      const api = { step, draw, active: () => !!walker && shown, toggle: () => { shown = !shown; return shown; }, shown: () => shown };
+      window.__people = api;
+      return api;
     }
 
     // ---------- VR: THE VIEWER'S CONTROLS (his ask 2026-11-07: "the wand the button the behaviour all the same") ----------
@@ -615,6 +637,43 @@
         for (const [k, v] of rows.slice(0, 9)) { g.fillStyle = '#9aa0ab'; g.fillText(String(k).slice(0, 22), x0, y); g.fillStyle = '#e8e8e8'; g.fillText(String(v).slice(0, 30), x0 + 290, y); y += 38; if (y > h - 40) break; }
       });
       info.mesh.visible = false; scene.add(info.mesh);
+      // FRAMES PER SECOND, floating low in front of him (his ask 2026-11-07: read the speed IN the headset while we look for
+      // the Quest's splat ceiling). Green >= 60, orange >= 40, red below. The average of the last 30 VR frames, twice a second.
+      const fpsPlate = plate(0.18, 0.045, 384, (g, w, h, fps, n) => {
+        g.clearRect(0, 0, w, h); if (fps == null) return;
+        g.fillStyle = 'rgba(10,12,16,.78)'; g.beginPath(); g.roundRect(2, 2, w - 4, h - 4, h / 2 - 2); g.fill();
+        if (typeof fps === 'string') { g.fillStyle = '#ffffff'; g.font = '700 ' + Math.round(h * 0.5) + 'px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(fps, w / 2, h / 2 + 1); return; }
+        g.fillStyle = fps >= 60 ? '#5ee07a' : fps >= 40 ? '#ffb066' : '#ff5a5a'; g.font = '700 ' + Math.round(h * 0.5) + 'px sans-serif';
+        g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(fps + ' fps  ' + n + (window.__people && !window.__people.shown() ? '  no person' : ''), w / 2, h / 2 + 1);
+      });
+      scene.add(fpsPlate.mesh); let fpsNext = 0, fpsOn = false, btnWas = false, axWas = false;
+      // SHOWN / HIDDEN on a press, starts HIDDEN (his ask 2026-11-07: "appear and disappear with tab press, start it dismissed").
+      // A Quest has no keyboard, so in the headset it is the B / Y button; Tab works too (a PC in VR).
+      fpsPlate.mesh.visible = false;
+      const toggleFps = () => { fpsOn = !fpsOn; fpsPlate.mesh.visible = fpsOn; fpsNext = 0; };
+      addEventListener('keydown', e => { if (e.code === 'Tab' && xr.isPresenting) { e.preventDefault(); e.stopImmediatePropagation(); toggleFps(); } }, true);
+      const tagOf = u => { const m = /corridor_tm_quest(\d+)?\.spz/.exec(u); return m ? (m[1] ? m[1] + 'k' : '383k') : 'full'; };
+      let SPLAT_TAG = tagOf(SPLATS.old);
+      // THE CUT SWITCH (his ask 2026-11-07: "i need the switch by button not address"): the GRIP (side button) on either
+      // hand swaps 800k <-> 1.2M in place, inside VR. The other cut downloads quietly a few seconds after the start, so a
+      // press only swaps. The fps plate comes up on a press and names the cut now drawn.
+      const CUTS = ['corridor_tm_quest800.spz', 'corridor_tm_quest1200.spz'];
+      if (!CUTS.includes(SPLATS.old)) CUTS.unshift(SPLATS.old);
+      let cutI = CUTS.indexOf(SPLATS.old), cutBusy = false, gripWas = false; const cutBlobs = {};
+      if (HEADSET) setTimeout(async () => { for (const u of CUTS) if (u !== SPLATS.old && !cutBlobs[u]) try { cutBlobs[u] = URL.createObjectURL(await (await fetch(u)).blob()); } catch (e) {} }, 4000);
+      async function switchCut() {
+        if (cutBusy) return; cutBusy = true;
+        cutI = (cutI + 1) % CUTS.length; const u = CUTS[cutI];
+        fpsOn = true; fpsPlate.mesh.visible = true; fpsPlate.paint('Loading ' + tagOf(u) + '...'); fpsNext = Infinity;
+        try {
+          await viewer.removeSplatScene(0, false);
+          await viewer.addSplatScene(cutBlobs[u] || u, { format: GaussianSplats3D.SceneFormat.Spz, progressiveLoad: false,
+            splatAlphaRemovalThreshold: 25, rotation: SPLAT_ROTATION, showLoadingUI: false });
+          SPLAT_TAG = tagOf(u);
+        } catch (err) { fpsPlate.paint('Could not load ' + tagOf(u)); window.__cutErr = String(err && err.stack || err); }
+        window.__xrMs = []; fpsNext = performance.now() + 1500; cutBusy = false;
+      }
+      window.__cut = () => ({ tag: SPLAT_TAG, busy: cutBusy, ready: Object.keys(cutBlobs).map(tagOf), switchCut });
 
       // ---- the controllers ----
       for (let i = 0; i < 2; i++) {
@@ -664,7 +723,8 @@
       xr.addEventListener('sessionstart', () => { baseSpace = xr.getReferenceSpace(); floorSet = false; floorY = null; rig.yaw = 0; rig.p.set(0, -1.6, 0);
         info.mesh.visible = false; });
       // three.js keeps a custom reference space across sessions - drop it, or the next session starts from a dead one
-      xr.addEventListener('sessionend', () => { baseSpace = null; xr.setReferenceSpace(null); });
+      xr.addEventListener('sessionend', () => { baseSpace = null; xr.setReferenceSpace(null);
+        try { if (parent !== window) parent.postMessage({ oymer: 'xr-end' }, '*'); } catch (e) {} });   // the site page leaves full screen
 
       let last = 0;
       function step() {
@@ -715,6 +775,16 @@
         // the white dot + the laser stop on the floating properties (the BIM is tested on the press only - a full ray
         // through the BIM every frame is too much for a Quest)
         if (info.mesh.visible) placePanel(1 - Math.exp(-4 * dt));
+        { const by = [hand.left, hand.right].some(h => h && h.gp && h.gp.buttons && h.gp.buttons[5] && h.gp.buttons[5].pressed);   // B / Y
+          if (by && !btnWas) toggleFps(); btnWas = by;
+          const ax = [hand.left, hand.right].some(h => h && h.gp && h.gp.buttons && h.gp.buttons[4] && h.gp.buttons[4].pressed);   // A / X: the person
+          if (ax && !axWas && window.__people) { window.__people.toggle(); fpsNext = 0; } axWas = ax;
+          const grip = [hand.left, hand.right].some(h => h && h.gp && h.gp.buttons && h.gp.buttons[1] && h.gp.buttons[1].pressed);   // GRIP: the splat cut
+          if (grip && !gripWas) switchCut(); gripWas = grip; }
+        if (fpsOn) { const fx = -Math.sin(headYaw), fz = -Math.cos(headYaw);        // the fps plate: 0.9 m ahead, 0.45 m below the eye
+          fpsPlate.mesh.position.set(headW.x + fx * 0.9, headW.y - 0.45, headW.z + fz * 0.9); fpsPlate.mesh.rotation.set(-0.45, headYaw, 0, 'YXZ');
+          if (now > fpsNext) { fpsNext = now + 500; const a = (window.__xrMs || []).slice(-30);
+            if (a.length > 5) { const ms = a.reduce((s, v) => s + v, 0) / a.length; fpsPlate.paint(Math.round(1000 / Math.max(1, ms)), SPLAT_TAG); } } }
         for (const k in hand) { const c = hand[k].c; if (!c.userData.dot) continue;
           const hp = onPlate(aim(c)); c.userData.dot.visible = !!hp;
           if (hp) c.userData.dot.position.set(0, 0, -hp.distance);

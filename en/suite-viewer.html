@@ -79,8 +79,9 @@
         <div class="oyl-walk__win" dir="ltr">
           <span class="oyl-id oyl-mono">WALK_01</span>
           <button class="oyl-walk__go" type="button" data-title="oYmer BIM Viewer"
-            data-page="index.html?v=1&amp;pack=MKD_AR_ARM_M3_R24_16_-_no_Topo_PL&amp;lm=1&amp;set=final&amp;autopaint=1&amp;near=0.2&amp;far=1500&amp;rtoff=1&amp;glassexp=4&amp;rtobj=1&amp;sky=1&amp;glassrefl=1&amp;objwhite=1&amp;rtenv=1&amp;rtfill=0">
+            data-page="adam.html?r=3">
             <img src="../media/viewer/bim/poster.jpg?v=3" alt="">
+            <video src="../media/viewer/bim/adamlib/preview.mp4?v=3" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
             <span class="oyl-walk__btn oyl-walk__btn--blink">Jump in</span>
           </button>
         </div>
@@ -94,8 +95,9 @@
         </div>
         <div class="oyl-walk__win" dir="ltr">
           <span class="oyl-id oyl-mono">WALK_02</span>
-          <button class="oyl-walk__go" type="button" data-title="Walk the BIM model" data-page="index.html?v=20">
+          <button class="oyl-walk__go" type="button" data-title="Walk the BIM model" data-page="index.html?v=25">
             <img src="../media/viewer/walk/poster.jpg?v=2" alt="">
+            <video src="../media/viewer/bim/adamlib/preview_walk.mp4?v=3" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
             <span class="oyl-walk__btn oyl-walk__btn--blink">Jump in</span>
           </button>
         </div>
@@ -121,6 +123,11 @@
     .oylp .oyl-walk__win:fullscreen{max-height:none;aspect-ratio:auto;width:100vw;height:100vh;border-radius:0}
     .oylp .oyl-walk__win:-webkit-full-screen{max-height:none;width:100vw;height:100vh;border-radius:0}
     .oylp .oyl-walk__win iframe{z-index:4}
+    /* the way OUT of full screen - a headset has no Esc key (his report 2026-11-07: "i stuck in full window mode") */
+    .oylp .oyl-walk__out{position:absolute;top:14px;left:14px;z-index:6;display:none;align-items:center;gap:8px;padding:12px 20px;
+      border:0;border-radius:99px;background:rgba(20,22,28,.82);color:#fff;font:600 17px/1 -apple-system,Segoe UI,Roboto,sans-serif;cursor:pointer}
+    .oylp .oyl-walk__out:hover{background:rgba(40,44,54,.92)}
+    .oylp .oyl-walk__win:fullscreen .oyl-walk__out,.oylp .oyl-walk__win:-webkit-full-screen .oyl-walk__out{display:flex}
     /* the page heading centered, and a thin black line between WALK_01 and WALK_02 (the PreRecordedTours divider) */
     .oylp .phead{text-align:center}
     .oylp .phead .lead{margin-right:auto;margin-left:auto;font-size:clamp(19px,2vw,24px);font-weight:500}
@@ -137,15 +144,26 @@
       // every tile with a .oyl-walk__go button (WALK_01 the real viewer, WALK_02 the splat walk) works the same way:
       // the page opens FULL SCREEN straight from this click (a browser allows full screen only from the click itself,
       // so it cannot be a new tab); Esc returns to the page. No full screen (iPhone) -> a new tab instead.
+      // LEAVING VR LEAVES FULL SCREEN TOO (his ask 2026-11-07: "why not just exit automatically from full?"):
+      // each window posts {oymer:'xr-end'} when its VR session ends; the page then exits full screen -> back on the page
+      addEventListener('message', function (e) { if (e.data && e.data.oymer === 'xr-end' && (document.fullscreenElement || document.webkitFullscreenElement)) {
+        var ex = document.exitFullscreen || document.webkitExitFullscreen; try { ex.call(document); } catch (er) {} } });
       Array.prototype.forEach.call(document.querySelectorAll(".oyl-walk__go"), function (go) {
       go.addEventListener("click", function () {
         var win = go.parentNode, img = go.querySelector("img");
         var url = new URL(go.getAttribute("data-page"), img.src).href;      // next to the poster, so the English twin finds it too
+        var qm = /[?&]q=(\w+)/.exec(location.search); if (qm) url += (url.indexOf('?') < 0 ? '?' : '&') + 'q=' + qm[1];   // omerdotan.com/w?q=1200 reaches the window
         var fs = win.requestFullscreen || win.webkitRequestFullscreen;
         if (!fs) { window.open(url + "&fs=1", "_blank"); return; }
         var f = document.createElement("iframe");
         f.src = url; f.allow = "xr-spatial-tracking; fullscreen"; f.title = go.getAttribute("data-title");
         win.appendChild(f);
+        var back = win.querySelector('.oyl-walk__out');
+        if (!back) { back = document.createElement('button'); back.type = 'button'; back.className = 'oyl-walk__out'; back.dir = 'ltr';
+          back.innerHTML = '<span aria-hidden="true">&#10005;</span> Exit full screen'; win.appendChild(back);
+          back.addEventListener('click', function () { var ex = document.exitFullscreen || document.webkitExitFullscreen;
+            if (document.fullscreenElement || document.webkitFullscreenElement) { try { ex.call(document); } catch (e) {} }
+            else { var fr = win.querySelector('iframe'); if (fr) fr.remove(); } }); }
         try { var p = fs.call(win); if (p && p.catch) p.catch(function () {}); } catch (e) {}
         f.addEventListener("load", function () { try { f.contentWindow.focus(); } catch (e) {} });
         function out() { if (!(document.fullscreenElement || document.webkitFullscreenElement)) {
