@@ -160,7 +160,7 @@
     window.addEventListener('unhandledrejection', e => { window.__rejErr = (e.reason && e.reason.stack) || String(e.reason); });
 
     // Original = the night run; wood floor + gold doors = the same night's light with the new material, a fast draft training each
-    const SPLATS = { old: 'corridor.spz', wood: 'corridor_wood.spz', gold: 'corridor_gold.spz' };
+    const SPLATS = { old: 'corridor_tm.spz', wood: 'corridor_tm_wood.spz', gold: 'corridor_tm_gold.spz' };   // the dressed corridor (TM materials + people), 2026-11-07
     const S_KEY = 'old';
     const SPLAT_URL = SPLATS[S_KEY];
     const SPLAT_ROTATION = [0, 1, 0, 0];   // 180 deg about Y: the corridor runs along -Z
