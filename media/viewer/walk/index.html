@@ -459,7 +459,14 @@
         await gltfReady;
         const g = await new Promise((ok, bad) => new window.GLTFLoader().load('remy_walk.glb?v=2', ok, undefined, bad));
         walker = g.scene; mixer = new THREE.AnimationMixer(walker);
-        if (g.animations[0]) mixer.clipAction(g.animations[0]).play();
+        // ⛔ the clip must START at its first key: Blender exported the cycle at 1.6-2.97 s, and three.js plays from 0,
+        // so for 1.6 s of every loop he stood frozen while the page moved him - the slide he saw (measured 2026-11-07).
+        // Every track is shifted to begin at 0, whatever file comes in.
+        const clip = g.animations[0];
+        if (clip) { const t0 = Math.min(...clip.tracks.map(t => t.times[0]));
+          const seen = new Set();   // ⛔ tracks SHARE time arrays (one per glTF sampler input) - shift each array once
+          for (const t of clip.tracks) { if (seen.has(t.times)) continue; seen.add(t.times); for (let i = 0; i < t.times.length; i++) t.times[i] -= t0; }
+          clip.resetDuration(); mixer.clipAction(clip).play(); window.__walkClip = { start: t0, duration: clip.duration }; }
         mixer.update(0); walker.updateMatrixWorld(true);
         const box = new THREE.Box3().setFromObject(walker, true), h = box.max.y - box.min.y;
         walker.scale.setScalar(HEIGHT / h); walker.userData.foot = box.min.y * HEIGHT / h;
