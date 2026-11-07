@@ -49,11 +49,10 @@
     .key { display: inline-block; min-width: 18px; text-align: center; padding: 1px 6px; margin: 0 1px;
       background: rgba(255,255,255,.12); border-radius: 5px; font-size: 12px; font-weight: 500; }
 
-    #VRButton { font-family: 'Poppins', system-ui, sans-serif !important; font-weight: 600 !important; letter-spacing: 1px !important;
-      background: var(--accent) !important; color: #fff !important; border: none !important; border-radius: 99px !important;
-      padding: 0 26px !important; height: 46px !important; line-height: 46px !important; bottom: 20px !important;
-      left: auto !important; right: 20px !important; transform: none !important;
-      box-shadow: 0 8px 30px rgba(255,122,0,.45) !important; opacity: 1 !important; font-size: 14px !important; }
+    /* the library's own VR button never shows - THE SUITE'S Enter VR button (libs/suite-enter-vr.js, a copy of
+       Shared/Suite-EnterVR.js) is the one: always on, grey without a headset, blue with one */
+    #VRButton { display: none !important; }
+    #suiteEnterVr { z-index: 30; }
 
     #err { position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 50; display: none;
       max-width: 80vw; text-align: center; background: rgba(30,8,8,.9); border: 1px solid #a33; border-radius: 12px;
@@ -141,6 +140,7 @@
 
   <div id="err"></div>
 
+  <script src="./libs/suite-enter-vr.js?v=1"></script>
   <script type="importmap">
   {
     "imports": {
@@ -221,10 +221,14 @@
     .then(() => {
       statEl.textContent = 'Ready';
       viewer.start();
-      // the library adds its own VR button (webXRMode VR); keep it only where VR works - a PC would show "VR NOT SUPPORTED"
-      const dropVR = () => document.querySelectorAll('#VRButton').forEach(b => b.remove());
-      if (!navigator.xr) dropVR();
-      else navigator.xr.isSessionSupported('immersive-vr').then(ok => { if (!ok) dropVR(); }).catch(dropVR);
+      // THE SUITE'S Enter VR button: it probes for a headset itself (and keeps probing); a press opens the session here
+      window.SuiteEnterVR && SuiteEnterVR.mount({ modes: ['immersive-vr'], onEnter: async () => {
+        const xr = viewer.renderer.xr; if (xr.isPresenting) return;
+        try {
+          const s = await navigator.xr.requestSession('immersive-vr', { optionalFeatures: ['local-floor', 'bounded-floor', 'hand-tracking', 'layers'] });
+          await xr.setSession(s);
+        } catch (err) { window.__vrErr = String(err && err.stack || err); }
+      } });
       window.__viewer = viewer;
       window.__diag = { loaded: true, splatCount: viewer.splatMesh && viewer.splatMesh.getSplatCount ? viewer.splatMesh.getSplatCount() : 'n/a' };
       const walkStep = setupDesktopWalk(viewer);
