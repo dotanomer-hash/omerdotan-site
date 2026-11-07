@@ -124,7 +124,7 @@
       <div class="desk"><b>Desktop</b> - <span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span> walk · drag to look</div>
       <div class="touch"><b>Touch</b> - drag to look</div>
       <div><b>BIM</b> - click an object to see its BIM data<span class="desk"> · <span class="key">Tab</span> switch materials</span></div>
-      <div><b>Quest 3</b> - <b>Enter VR</b> · right stick moves</div>
+      <div><b>Quest 3</b> - <b>Enter VR</b> · left stick walks · right stick turns, up/down · trigger = BIM</div>
       <div class="desk"><b>Exit</b> - <span class="key">Esc</span> leaves full screen</div>
     </div>
   </div>
@@ -155,6 +155,9 @@
     import * as GaussianSplats3D from '@mkkellogg/gaussian-splats-3d';
     import * as THREE from 'three';
     import { VRButton } from 'three/addons/webxr/VRButton.js';
+    // the suite's wand (libs/suite-xr-wand.js = a copy of Shared/Suite-XR-Wand.js) is a classic script that reads a global THREE
+    window.THREE = THREE;
+    { const s = document.createElement('script'); s.src = './libs/suite-xr-wand.js?v=1'; document.head.appendChild(s); }
 
     window.addEventListener('error', e => { window.__pageErr = (e.error && e.error.stack) || e.message; });
     window.addEventListener('unhandledrejection', e => { window.__rejErr = (e.reason && e.reason.stack) || String(e.reason); });
@@ -169,7 +172,7 @@
     const SPLAT_URL = SPLATS[S_KEY];
     const SPLAT_ROTATION = [0, 1, 0, 0];   // 180 deg about Y: the corridor runs along -Z
     const MOVE_SPEED     = 2.0;            // desktop walk speed (m/sec)
-    const VR_SPEED       = 2.0;            // VR stick speed (m/sec)
+    const VR_SPEED       = 1.6;            // VR stick speed (m/sec) - the viewer's number
     const DEADZONE       = 0.15;
     const VR_BOUND       = 24.0;
     // walk only within r of a spot where a camera stood (walk.json) - so the walls stay closed
@@ -238,8 +241,8 @@
       window.__viewer = viewer;
       window.__diag = { loaded: true, splatCount: viewer.splatMesh && viewer.splatMesh.getSplatCount ? viewer.splatMesh.getSplatCount() : 'n/a' };
       const walkStep = setupDesktopWalk(viewer);
-      setupVRLocomotion(viewer);
       const picker = setupPicker(viewer);
+      const vr = setupVR(viewer, picker);
       setupLooks(viewer);
       // ONE loop for everything: move the camera, then draw the splat, then the outline - same camera, same frame,
       // same canvas, so the outline can never be drawn from another moment than the splat
@@ -249,11 +252,12 @@
         if (viewer.renderer.xr.isPresenting && lastT) { window.__xrMs.push(Math.round(nowT - lastT)); if (window.__xrMs.length > 60) window.__xrMs.shift(); }
         lastT = nowT;
         walkStep();
+        vr.step();
         viewer.update();
         // in VR draw EVERY frame: the head pose reaches the camera only inside render(), so skipping one frame
         // would freeze the camera and every frame after it would be skipped too - a black headset
         const draw = viewer.renderer.xr.isPresenting || viewer.shouldRender() || picker.active();
-        if (draw) { viewer.render(); if (!viewer.renderer.xr.isPresenting) picker.draw(); }
+        if (draw) { viewer.render(); picker.draw(); vr.draw(); }
         viewer.renderNextFrame = false;
       });
       setTimeout(() => splash.classList.add('hide'), 350);
@@ -386,7 +390,22 @@
         r.autoClear = false; r.clearDepth(); r.render(oscene, cam); r.autoClear = ac;
       }
       window.__drawOutline = drawOutline;
-      return { active: () => sel >= 0, draw: drawOutline };
+      // for the VR wand: which element a world ray meets, choose it, and read what is chosen
+      const vray = new THREE.Raycaster();   // its own raycaster, so the desktop click keeps its unlimited reach
+      function hitRay(origin, dir) {
+        if (!mesh) return -1;
+        vray.set(origin, dir); vray.far = 60;
+        const hit = vray.intersectObject(mesh, false)[0];
+        return hit ? triEl[hit.faceIndex] : -1;
+      }
+      // the BIM floor under a point (null until the BIM is loaded, or nothing below)
+      function floorBelow(x, y, z) {
+        if (!mesh) return null;
+        vray.set(new THREE.Vector3(x, y, z), new THREE.Vector3(0, -1, 0)); vray.far = 6;
+        const hit = vray.intersectObject(mesh, false)[0];
+        return hit ? hit.point.y : null;
+      }
+      return { active: () => sel >= 0, draw: drawOutline, hitRay, floorBelow, select, selected: () => sel < 0 ? null : J.els[sel], ready: () => !!mesh, sel: () => sel };
     }
 
     // ---------- Tab: the material options - the same corridor, one splat per option, swapped in place ----------
@@ -413,39 +432,156 @@
       window.__look = () => LOOKS[i][1];
     }
 
-    // ---------- VR: right stick moves along where you look ----------
-    function setupVRLocomotion(viewer) {
-      const renderer = viewer.renderer, offset = { x: 0, y: 0, z: 0 };
-      let baseSpace = null;
-      renderer.xr.addEventListener('sessionstart', () => {
-        baseSpace = renderer.xr.getReferenceSpace();
-        const session = renderer.xr.getSession();
-        let last = 0;
-        const loop = (t, frame) => {
-          if (!renderer.xr.isPresenting) return;
-          const dt = last ? Math.min(0.05, (t - last) / 1000) : 0; last = t;
-          let headYaw = 0;
-          const pose = frame.getViewerPose(baseSpace);
-          if (pose) { const o = pose.transform.orientation; headYaw = Math.atan2(2 * (o.w * o.y + o.x * o.z), 1 - 2 * (o.y * o.y + o.x * o.x)); }
-          let sx = 0, sy = 0;
-          for (const src of session.inputSources) {
-            if (!src.gamepad || src.handedness !== 'right') continue;
-            const ax = src.gamepad.axes;
-            sx = ax.length > 2 ? ax[2] : (ax[0] || 0);
-            sy = ax.length > 3 ? ax[3] : (ax[1] || 0);
-          }
-          if (Math.hypot(sx, sy) > DEADZONE) {
-            const s = Math.sin(headYaw), c = Math.cos(headYaw);
-            offset.x -= (c * sx + s * sy) * VR_SPEED * dt;
-            offset.z -= (-s * sx + c * sy) * VR_SPEED * dt;
-            offset.x = Math.max(-VR_BOUND, Math.min(VR_BOUND, offset.x));
-            offset.z = Math.max(-VR_BOUND, Math.min(VR_BOUND, offset.z));
-          }
-          renderer.xr.setReferenceSpace(baseSpace.getOffsetReferenceSpace(new XRRigidTransform({ x: offset.x, y: offset.y, z: offset.z })));
-          session.requestAnimationFrame(loop);
-        };
-        session.requestAnimationFrame(loop);
+    // ---------- VR: THE VIEWER'S CONTROLS (his ask 2026-11-07: "the wand the button the behaviour all the same") ----------
+    // Same as oYmer BIM Viewer (Engine/Viewer-Behaviour-VR.js): LEFT stick walks where you look, RIGHT stick
+    // left/right = 45 deg snap turn (one notch per flick), RIGHT stick up/down = rise / sink. The wand in the RIGHT
+    // hand only (libs/suite-xr-wand.js = a copy of Shared/Suite-XR-Wand.js), orange laser from its tip, white dot.
+    // The LEFT wrist carries the BIM readout + the viewer's Exit VR plate (no menu - his call).
+    // EYE LEVEL: the splat's 0 is the render camera's eye, so the real floor would sit an eye-height too low.
+    // The BIM floor under the start is MEASURED (a ray down the pick mesh) and put on his real floor.
+    function setupVR(viewer, picker) {
+      const r = viewer.renderer, xr = r.xr;
+      const scene = new THREE.Scene();
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 2.2));
+      const sun = new THREE.DirectionalLight(0xffffff, 1.4); sun.position.set(1, 2, 1); scene.add(sun);
+      const WAND_TIP = 0.19, SNAP = Math.PI / 4, RISE = 1.0;
+      const rig = { p: new THREE.Vector3(0, -1.6, 0), yaw: 0 };   // where his real floor's origin sits in the splat
+      // NOT a rig group carrying the camera (the viewer's way): the splat library sorts from camera.position and
+      // camera.quaternion - LOCAL values - so a parented camera sorts from the wrong place. The WebXR offset reference
+      // space moves the head and both controllers in world space instead. (IWER ignores offset spaces - measured
+      // 2026-11-07 - so the simulator cannot show the movement; the rig numbers below were tested there.)
+      let baseSpace = null, snapReady = true, floorSet = false, right = null, left = null, wrist = null, exitPlate = null, info = null;
+      const hand = {};                                             // 'left' / 'right' -> { c: aim space, g: grip space, gp }
+      const tmpO = new THREE.Vector3(), tmpD = new THREE.Vector3(), tmpQ = new THREE.Quaternion();
+
+      // ---- canvas plates (a headset has no DOM) ----
+      function plate(wm, hm, px, painter) {
+        const cv = document.createElement('canvas'); cv.width = px; cv.height = Math.round(px * hm / wm);
+        const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace;
+        const mesh = new THREE.Mesh(new THREE.PlaneGeometry(wm, hm), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthTest: false, depthWrite: false, toneMapped: false }));
+        mesh.renderOrder = 20;
+        const o = { mesh, paint: (...a) => { painter(cv.getContext('2d'), cv.width, cv.height, ...a); tex.needsUpdate = true; } };
+        o.paint(); return o;
+      }
+      // the viewer's Exit VR plate, drawn the same way (Viewer-Menu-Presenter-VR.js attachExitPlate)
+      exitPlate = plate(0.16, 0.052, 512, (g, w, h) => {
+        g.clearRect(0, 0, w, h); g.fillStyle = '#3a3d46';
+        g.beginPath(); g.roundRect(2, 2, w - 4, h - 4, h / 2 - 2); g.fill(); g.strokeStyle = '#565b68'; g.lineWidth = 2; g.stroke();
+        const mx = w * 0.17, my = h / 2, k = h / 52 * 1.0;
+        g.strokeStyle = '#ffffff'; g.lineWidth = 2.5 * k * 2; g.lineJoin = 'round';
+        g.strokeRect(mx - 24 * k, my - 20 * k, 48 * k, 30 * k);
+        g.beginPath(); g.moveTo(mx, my + 10 * k); g.lineTo(mx, my + 18 * k); g.stroke();
+        g.beginPath(); g.moveTo(mx - 14 * k, my + 20 * k); g.lineTo(mx + 14 * k, my + 20 * k); g.stroke();
+        g.fillStyle = '#ffffff'; g.font = '600 ' + Math.round(h * 0.40) + 'px -apple-system, Segoe UI, Roboto, sans-serif';
+        g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText('Exit VR', w * 0.31, my + 1);
       });
+      // the BIM readout: what the wand last chose
+      info = plate(0.24, 0.15, 768, (g, w, h, e) => {
+        g.clearRect(0, 0, w, h); g.fillStyle = 'rgba(14,16,22,.9)';
+        g.beginPath(); g.roundRect(3, 3, w - 6, h - 6, 28); g.fill(); g.strokeStyle = 'rgba(255,176,102,.55)'; g.lineWidth = 3; g.stroke();
+        g.textAlign = 'left'; g.textBaseline = 'top'; const x0 = 34;
+        if (!e) { g.fillStyle = '#ffb066'; g.font = '700 30px sans-serif'; g.fillText('BIM', x0, 30);
+          g.fillStyle = '#e8e8e8'; g.font = '500 30px sans-serif'; g.fillText('Point the wand at an element', x0, 84); g.fillText('and pull the trigger', x0, 124); return; }
+        g.fillStyle = '#ffb066'; g.font = '700 26px sans-serif'; g.fillText((e.cat || 'Element').toUpperCase(), x0, 26);
+        g.fillStyle = '#ffffff'; g.font = '700 34px sans-serif'; g.fillText(String(e.name || '').slice(0, 38), x0, 62);
+        const rows = []; if (e.type && e.type !== e.name) rows.push(['Type', e.type]);
+        for (const k in (e.params || {})) rows.push([k, e.params[k]]); rows.push(['Revit ID', e.id]);
+        g.font = '500 24px sans-serif'; let y = 116;
+        for (const [k, v] of rows.slice(0, 9)) { g.fillStyle = '#9aa0ab'; g.fillText(String(k).slice(0, 22), x0, y); g.fillStyle = '#e8e8e8'; g.fillText(String(v).slice(0, 30), x0 + 290, y); y += 38; if (y > h - 40) break; }
+      });
+      // the viewer's wrist mount numbers (Viewer-Menu-Presenter-VR.js W.wrist): offset, tilt -52 deg, yaw 12 deg
+      wrist = new THREE.Group(); wrist.position.set(0.02, 0.055, -0.085); wrist.rotation.set(-52 * Math.PI / 180, 12 * Math.PI / 180, 0);
+      info.mesh.position.set(0, 0.04, 0); exitPlate.mesh.position.set(0, -0.075, 0.002);
+      wrist.add(info.mesh, exitPlate.mesh);
+
+      // ---- the controllers ----
+      for (let i = 0; i < 2; i++) {
+        const c = xr.getController(i), g = xr.getControllerGrip(i);
+        scene.add(c, g);
+        c.addEventListener('connected', ev => {
+          const told = ev.data && ev.data.handedness;
+          if (told !== 'left' && told !== 'right') return;              // an unknown hand gets nothing (the viewer's rule)
+          hand[told] = { c, g, gp: ev.data.gamepad };
+          if (told === 'right') {
+            right = c;
+            if (!c.userData.wand && window.SuiteWand) { const w = SuiteWand.make(); if (w) { c.add(w); c.userData.wand = w; } }
+            if (!c.userData.laser) {
+              const lg = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -8)]);
+              c.userData.laser = new THREE.Line(lg, new THREE.LineBasicMaterial({ color: 0xff7a00, transparent: true, opacity: 0.7, depthTest: false }));
+              c.userData.laser.position.z = -WAND_TIP; c.userData.laser.renderOrder = 19; c.add(c.userData.laser);
+              c.userData.dot = new THREE.Mesh(new THREE.SphereGeometry(0.009, 10, 8), new THREE.MeshBasicMaterial({ color: 0xffffff, toneMapped: false, depthTest: false }));
+              c.userData.dot.renderOrder = 21; c.userData.dot.visible = false; c.add(c.userData.dot);
+            }
+          } else { left = c; g.add(wrist); }
+        });
+        c.addEventListener('disconnected', () => { for (const k in hand) if (hand[k].c === c) delete hand[k]; });
+        c.addEventListener('selectstart', () => { if (hand.right && hand.right.c === c) press(); });
+      }
+      const aimRay = new THREE.Raycaster();
+      function aim(c) { c.updateMatrixWorld(true); tmpO.setFromMatrixPosition(c.matrixWorld); tmpD.set(0, 0, -1).applyQuaternion(c.getWorldQuaternion(tmpQ)).normalize(); aimRay.set(tmpO, tmpD); return aimRay; }
+      function onPlate(rc) { wrist.updateMatrixWorld(true); return rc.intersectObjects([exitPlate.mesh, info.mesh], false)[0] || null; }
+      function press() {
+        const rc = aim(right), hp = onPlate(rc);
+        if (hp && hp.object === exitPlate.mesh) { const s = xr.getSession(); if (s) s.end(); return; }
+        if (hp) return;                                                   // the readout itself is not a target
+        const i = picker.hitRay(rc.ray.origin, rc.ray.direction);
+        picker.select(i === picker.sel() ? -1 : i);                       // the same click rule as the desktop
+        info.paint(picker.selected());
+      }
+
+      xr.addEventListener('sessionstart', () => { baseSpace = xr.getReferenceSpace(); floorSet = false; rig.yaw = 0; rig.p.set(0, -1.6, 0);
+        info.paint(picker.selected()); });
+      // three.js keeps a custom reference space across sessions - drop it, or the next session starts from a dead one
+      xr.addEventListener('sessionend', () => { baseSpace = null; xr.setReferenceSpace(null); });
+
+      let last = 0;
+      function step() {
+        if (!xr.isPresenting || !baseSpace) { last = 0; return; }
+        const now = performance.now(), dt = last ? Math.min(0.05, (now - last) / 1000) : 0; last = now;
+        // the floor: measured once the BIM pick mesh is in (a ray straight down from the start point)
+        if (!floorSet && picker.ready()) { const f = picker.floorBelow(0, 0.2, 0.1); if (f != null) rig.p.y = f; floorSet = true; }
+        const frame = xr.getFrame && xr.getFrame(), pose = frame && frame.getViewerPose(baseSpace);
+        let hb = null, hyB = 0;
+        if (pose) { const t = pose.transform, o = t.orientation; hb = new THREE.Vector3(t.position.x, t.position.y, t.position.z);
+          hyB = Math.atan2(2 * (o.w * o.y + o.x * o.z), 1 - 2 * (o.y * o.y + o.x * o.x)); }
+        const L = hand.left && hand.left.gp, R = hand.right && hand.right.gp;
+        const axes = gp => gp && gp.axes ? [gp.axes.length > 2 ? gp.axes[2] : (gp.axes[0] || 0), gp.axes.length > 3 ? gp.axes[3] : (gp.axes[1] || 0)] : [0, 0];
+        const [lx, ly] = axes(L), [rx, ry] = axes(R);
+        // LEFT stick: walk where you look
+        if (Math.hypot(lx, ly) > DEADZONE) {
+          const hy = rig.yaw + hyB, fx = -Math.sin(hy), fz = -Math.cos(hy), sx = Math.cos(hy), sz = -Math.sin(hy);
+          rig.p.x += (fx * -ly + sx * lx) * VR_SPEED * dt; rig.p.z += (fz * -ly + sz * lx) * VR_SPEED * dt;
+        }
+        // RIGHT stick: left/right = one 45 deg notch per flick, about the head; up/down = rise / sink
+        if (snapReady && Math.abs(rx) > 0.7 && Math.abs(rx) > Math.abs(ry)) {
+          snapReady = false;
+          if (hb) { const c0 = Math.cos(rig.yaw), s0 = Math.sin(rig.yaw);
+            const hx = rig.p.x + c0 * hb.x + s0 * hb.z, hz = rig.p.z - s0 * hb.x + c0 * hb.z;   // head in the splat
+            rig.yaw += rx > 0 ? -SNAP : SNAP;
+            const c1 = Math.cos(rig.yaw), s1 = Math.sin(rig.yaw);
+            rig.p.x = hx - (c1 * hb.x + s1 * hb.z); rig.p.z = hz - (-s1 * hb.x + c1 * hb.z); }
+          else rig.yaw += rx > 0 ? -SNAP : SNAP;
+        } else if (Math.abs(rx) < 0.3) snapReady = true;
+        if (Math.abs(ry) > DEADZONE && Math.abs(ry) > Math.abs(rx)) rig.p.y -= ry * RISE * dt;
+        rig.p.x = Math.max(-VR_BOUND, Math.min(VR_BOUND, rig.p.x)); rig.p.z = Math.max(-VR_BOUND, Math.min(VR_BOUND, rig.p.z));
+        // world = T(p) R(yaw) * his space  ->  the offset space is its inverse
+        const q = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), -rig.yaw);
+        const pos = rig.p.clone().negate().applyQuaternion(q);
+        xr.setReferenceSpace(baseSpace.getOffsetReferenceSpace(new XRRigidTransform({ x: pos.x, y: pos.y, z: pos.z }, { x: q.x, y: q.y, z: q.z, w: q.w })));
+        // the white dot + the laser stop on the wrist plates (the BIM is tested on the press only - a full ray
+        // through the BIM every frame is too much for a Quest)
+        if (right && right.userData.dot) {
+          const hp = onPlate(aim(right)); right.userData.dot.visible = !!hp;
+          if (hp) right.userData.dot.position.set(0, 0, -hp.distance);
+          right.userData.laser.scale.z = hp ? Math.max(0.01, (hp.distance - WAND_TIP) / 8) : 1;
+        }
+      }
+      function draw() {
+        if (!xr.isPresenting) return;
+        const ac = r.autoClear; r.autoClear = false; r.clearDepth(); r.render(scene, viewer.camera); r.autoClear = ac;
+      }
+      window.__vrRig = rig;
+      return { step, draw };
     }
 
     // opened from the site (?fs=1): go full screen on the first click or key - a browser allows it only after one
