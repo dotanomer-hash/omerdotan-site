@@ -27,7 +27,8 @@
   // Each leg runs on ITS corridor's middle line (median of rays across it); a corner is where two lines meet. At either
   // end he plays his own 180 turn and walks the whole route back. He starts 2 m in front of the camera on leg 0,
   // walking away toward the partition.
-  var LEGS = [
+  // a page may give its own route (WALK_03 = the splat walk's route in corridor 139)
+  var LEGS = window.ADAM_LEGS || [
     { along: 'x', from: -12.2, to: -9.25, at: 2.0 },
     { along: 'z', from: 1.8, to: -10.75, at: -9.25 },
     { along: 'x', from: -9.25, to: -3.05, at: -10.75 },
