@@ -10,5 +10,7 @@
   "להיכנס ולהסתובב": "Step in and walk around",
   "קפצו פנימה": "Jump in",
   "אפשר גם בדפדפן.": "Also in the browser.",
-  "מסדרון מפרויקט אמיתי, שנבנה ישירות ממודל ה-BIM בטכניקת Baking ייעודית": "A corridor from a real project, built straight from the BIM model with a dedicated Baking technique"
+  "מסדרון מפרויקט אמיתי, שנבנה ישירות ממודל ה-BIM בטכניקת Baking ייעודית": "A corridor from a real project, built straight from the BIM model with a dedicated Baking technique",
+  "אותו מסדרון, אותו אור - על מודל ה-BIM עצמו": "The same corridor, the same light - on the BIM model itself",
+  "האור שחושב ל-Gaussian Splatting נאפה ישירות על הקירות, הרצפות, התקרות והדלתות של מודל ה-BIM. חד יותר, וכל אלמנט נשאר אלמנט BIM עם הנתונים שלו. לחצו כדי להיכנס.": "The light computed for the Gaussian Splatting is baked straight onto the walls, floors, ceilings and doors of the BIM model. Sharper, and every element stays a BIM element with its data. Click to step in."
 }
