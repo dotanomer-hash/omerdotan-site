@@ -161,6 +161,10 @@
 
     // Original = the night run; wood floor + gold doors = the same night's light with the new material, a fast draft training each
     const SPLATS = { old: 'corridor_tm.spz', wood: 'corridor_tm_wood.spz', gold: 'corridor_tm_gold.spz' };   // the dressed corridor (TM materials + people), 2026-11-07
+    // THE DEVICE PICKS THE SPLAT: a headset browser draws everything on its own chip - 2.2M splats froze a Quest 3
+    // (2026-11-07), so a headset gets the light cut (450k splats, SH 0, the same pictures). ?quest=1 forces it on a PC.
+    const HEADSET = /OculusBrowser|Quest|Wolvic|Pico/i.test(navigator.userAgent) || /[?&]quest=1/.test(location.search);
+    if (HEADSET) SPLATS.old = 'corridor_tm_quest.spz';
     const S_KEY = 'old';
     const SPLAT_URL = SPLATS[S_KEY];
     const SPLAT_ROTATION = [0, 1, 0, 0];   // 180 deg about Y: the corridor runs along -Z
