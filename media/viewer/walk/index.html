@@ -224,6 +224,8 @@
       // THE SUITE'S Enter VR button: it probes for a headset itself (and keeps probing); a press opens the session here
       window.SuiteEnterVR && SuiteEnterVR.mount({ modes: ['immersive-vr'], onEnter: async () => {
         const xr = viewer.renderer.xr; if (xr.isPresenting) return;
+        // ?xrscale=0.5 = draw VR at half the headset's resolution (a test switch: is the freeze the pixel count?)
+        const sc = +(new URLSearchParams(location.search).get('xrscale') || 0); if (sc > 0 && sc <= 1) xr.setFramebufferScaleFactor(sc);
         try {
           const s = await navigator.xr.requestSession('immersive-vr', { optionalFeatures: ['local-floor', 'bounded-floor', 'hand-tracking', 'layers'] });
           await xr.setSession(s);
@@ -237,7 +239,11 @@
       setupLooks(viewer);
       // ONE loop for everything: move the camera, then draw the splat, then the outline - same camera, same frame,
       // same canvas, so the outline can never be drawn from another moment than the splat
+      let lastT = 0; window.__xrMs = [];
       viewer.renderer.setAnimationLoop(() => {
+        const nowT = performance.now();
+        if (viewer.renderer.xr.isPresenting && lastT) { window.__xrMs.push(Math.round(nowT - lastT)); if (window.__xrMs.length > 60) window.__xrMs.shift(); }
+        lastT = nowT;
         walkStep();
         viewer.update();
         // in VR draw EVERY frame: the head pose reaches the camera only inside render(), so skipping one frame
