@@ -158,6 +158,8 @@
     // the suite's wand (libs/suite-xr-wand.js = a copy of Shared/Suite-XR-Wand.js) is a classic script that reads a global THREE
     window.THREE = THREE;
     { const s = document.createElement('script'); s.src = './libs/suite-xr-wand.js?v=1'; document.head.appendChild(s); }
+    // the GLTF loader (libs/gltfloader.classic.js = a copy of Shared/Vendor/_gltfloader.classic.js, three r160) - for the people
+    const gltfReady = new Promise(ok => { const s = document.createElement('script'); s.src = './libs/gltfloader.classic.js?v=1'; s.onload = ok; document.head.appendChild(s); });
 
     window.addEventListener('error', e => { window.__pageErr = (e.error && e.error.stack) || e.message; });
     window.addEventListener('unhandledrejection', e => { window.__rejErr = (e.reason && e.reason.stack) || String(e.reason); });
@@ -243,6 +245,7 @@
       const walkStep = setupDesktopWalk(viewer);
       const picker = setupPicker(viewer);
       const vr = setupVR(viewer, picker);
+      const people = setupPeople(viewer, picker);
       setupLooks(viewer);
       // ONE loop for everything: move the camera, then draw the splat, then the outline - same camera, same frame,
       // same canvas, so the outline can never be drawn from another moment than the splat
@@ -253,11 +256,12 @@
         lastT = nowT;
         walkStep();
         vr.step();
+        people.step();
         viewer.update();
         // in VR draw EVERY frame: the head pose reaches the camera only inside render(), so skipping one frame
         // would freeze the camera and every frame after it would be skipped too - a black headset
-        const draw = viewer.renderer.xr.isPresenting || viewer.shouldRender() || picker.active();
-        if (draw) { viewer.render(); picker.draw(); vr.draw(); }
+        const draw = viewer.renderer.xr.isPresenting || viewer.shouldRender() || picker.active() || people.active();
+        if (draw) { viewer.render(); people.draw(); picker.draw(); vr.draw(); }
         viewer.renderNextFrame = false;
       });
       setTimeout(() => splash.classList.add('hide'), 350);
@@ -405,7 +409,13 @@
         const hit = vray.intersectObject(mesh, false)[0];
         return hit ? hit.point.y : null;
       }
-      return { active: () => sel >= 0, draw: drawOutline, hitRay, floorBelow, select, selected: () => sel < 0 ? null : J.els[sel], ready: () => !!mesh, sel: () => sel };
+      function castDist(origin, dir, far) {
+        if (!mesh) return null;
+        vray.set(origin, dir); vray.far = far || 30;
+        const hit = vray.intersectObject(mesh, false)[0];
+        return hit ? hit.distance : null;
+      }
+      return { geo: () => geo, castDist, active: () => sel >= 0, draw: drawOutline, hitRay, floorBelow, select, selected: () => sel < 0 ? null : J.els[sel], ready: () => !!mesh, sel: () => sel };
     }
 
     // ---------- Tab: the material options - the same corridor, one splat per option, swapped in place ----------
@@ -430,6 +440,65 @@
         busy = false;
       });
       window.__look = () => LOOKS[i][1];
+    }
+
+    // ---------- PEOPLE: a live, animated person walking the corridor (his ask 2026-11-07) ----------
+    // Remy (Mixamo, casual clothes): Media Assets/Mixamo/Remy_start_walking.fbx -> remy_walk.glb by
+    // pipeline/walker2glb.py: ONE clean step cycle cut from the clip's steady end, the walk made ON THE SPOT,
+    // 26k triangles, 1024 px textures, 5 MB. Measured in Blender: the cycle travels 0.90 m/s at 1.78 m tall,
+    // so he moves at exactly that and his feet do not slide.
+    // THE WALLS HIDE HIM: the BIM is drawn first as DEPTH ONLY (no colour), then he is drawn depth-tested
+    // against it - so a wall or a door between you and him covers him, as in reality.
+    function setupPeople(viewer, picker) {
+      const r = viewer.renderer, scene = new THREE.Scene(), depthScene = new THREE.Scene();
+      scene.add(new THREE.HemisphereLight(0xfff1e0, 0x5a5048, 2.0));
+      const key = new THREE.DirectionalLight(0xfff1e0, 1.2); key.position.set(0.5, 2, 1); scene.add(key);
+      const HEIGHT = 1.78, SPEED_PER_M = 0.90 / 1.78, TURN_S = 1.2;
+      let walker = null, mixer = null, path = null, dir = -1, s = 0, turning = 0, last = 0, depthOn = false;
+      (async () => {
+        await gltfReady;
+        const g = await new Promise((ok, bad) => new window.GLTFLoader().load('remy_walk.glb?v=1', ok, undefined, bad));
+        walker = g.scene; mixer = new THREE.AnimationMixer(walker);
+        if (g.animations[0]) mixer.clipAction(g.animations[0]).play();
+        mixer.update(0); walker.updateMatrixWorld(true);
+        const box = new THREE.Box3().setFromObject(walker, true), h = box.max.y - box.min.y;
+        walker.scale.setScalar(HEIGHT / h); walker.userData.foot = box.min.y * HEIGHT / h;
+        walker.traverse(o => { if (o.isMesh) { o.frustumCulled = false; } });
+        scene.add(walker);
+        window.__walker = { h, scaled: HEIGHT };
+      })().catch(e => { window.__walkerErr = String(e); });
+      // the path: down the middle of the corridor (the BIM walls measured by rays), on the BIM floor
+      function makePath() {
+        if (!picker.ready()) return null;
+        const zA = -3, zB = -15, pts = [];
+        for (const z of [zA, zB]) {
+          const o = new THREE.Vector3(0, 0, z);
+          const L = picker.castDist(o, new THREE.Vector3(-1, 0, 0), 6), R = picker.castDist(o, new THREE.Vector3(1, 0, 0), 6);
+          const x = (L != null && R != null) ? (R - L) / 2 : 0, f = picker.floorBelow(x, 0.2, z);
+          pts.push(new THREE.Vector3(x, f != null ? f : -1.25, z));
+        }
+        return pts;
+      }
+      function step() {
+        if (!walker) return;
+        const now = performance.now(), dt = last ? Math.min(0.05, (now - last) / 1000) : 0; last = now;
+        if (!path) { path = makePath(); if (!path) return;
+          const bg = picker.geo(); if (bg) { depthScene.add(new THREE.Mesh(bg, new THREE.MeshBasicMaterial({ colorWrite: false, side: THREE.DoubleSide }))); depthOn = true; } }
+        const [A, B] = path, len = A.distanceTo(B);
+        mixer.update(dt);
+        if (turning > 0) { turning -= dt; if (turning <= 0) dir = -dir; }
+        else { s += dir * SPEED_PER_M * HEIGHT * dt / len; if (s >= 1 || s <= 0) { s = Math.min(1, Math.max(0, s)); turning = TURN_S; } }
+        const p = A.clone().lerp(B, s); walker.position.set(p.x, p.y - walker.userData.foot, p.z);
+        const fwd = B.clone().sub(A).normalize().multiplyScalar(dir), yaw = Math.atan2(fwd.x, fwd.z);
+        walker.rotation.y = turning > 0 ? yaw + Math.PI * (1 - turning / TURN_S) : yaw;   // turns round at each end
+      }
+      function draw() {
+        if (!walker || !path) return;
+        const ac = r.autoClear; r.autoClear = false; r.clearDepth();
+        if (depthOn) r.render(depthScene, viewer.camera);
+        r.render(scene, viewer.camera); r.autoClear = ac;
+      }
+      return { step, draw, active: () => !!walker };
     }
 
     // ---------- VR: THE VIEWER'S CONTROLS (his ask 2026-11-07: "the wand the button the behaviour all the same") ----------
