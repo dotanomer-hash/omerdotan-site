@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex">
 <title>Walk the BIM model</title>
-<meta http-equiv="refresh" content="0; url=/media/viewer/walk/index.html">
-<script>location.replace('/media/viewer/walk/index.html' + location.search);</script>
+<script>/* a fresh address every time, so a headset never shows a cached old page (GitHub Pages caches 10 min) */
+location.replace('/media/viewer/walk/index.html' + (location.search ? location.search + '&' : '?') + 't=' + Date.now());</script>
+<noscript><meta http-equiv="refresh" content="0; url=/media/viewer/walk/index.html"></noscript>
 </head><body style="background:#000"></body></html>
