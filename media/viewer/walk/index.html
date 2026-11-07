@@ -415,7 +415,35 @@
         const hit = vray.intersectObject(mesh, false)[0];
         return hit ? hit.distance : null;
       }
-      return { geo: () => geo, castDist, active: () => sel >= 0, draw: drawOutline, hitRay, floorBelow, select, selected: () => sel < 0 ? null : J.els[sel], ready: () => !!mesh, sel: () => sel };
+      // THE WALLS AS A FLOOR PLAN, for walking in VR (his ask 2026-11-07: "now i can pass walls"): every BIM triangle
+      // that stands between 0.25 m and 1.7 m above this floor is drawn into a 10 cm grid - its three edges, seen from
+      // above. DOORS ARE LEFT OUT, so a doorway can be walked through. A step asks the grid, never the triangles: a ray
+      // through all 273k triangles every frame is too much for a Quest.
+      let walls = null;
+      function buildWalls(floorY) {
+        if (!mesh || walls) return walls;
+        const P = geo.attributes.position.array, I = geo.index.array, C = 0.1, lo = floorY + 0.25, hi = floorY + 1.7;
+        const x0 = J.min[0], z0 = J.min[2], nx = Math.ceil((J.max[0] - x0) / C) + 1, nz = Math.ceil((J.max[2] - z0) / C) + 1;
+        const g = new Uint8Array(nx * nz); let marked = 0;
+        const doors = new Uint8Array(J.els.length); J.els.forEach((e, i) => { if (/^Doors/i.test(e.cat || '')) doors[i] = 1; });
+        const line = (ax, az, bx, bz) => { const n = Math.max(1, Math.ceil(Math.hypot(bx - ax, bz - az) / (C * 0.5)));
+          for (let s = 0; s <= n; s++) { const x = Math.floor((ax + (bx - ax) * s / n - x0) / C), z = Math.floor((az + (bz - az) * s / n - z0) / C);
+            if (x >= 0 && z >= 0 && x < nx && z < nz && !g[z * nx + x]) { g[z * nx + x] = 1; marked++; } } };
+        for (let t = 0; t < J.nt; t++) {
+          if (doors[triEl[t]]) continue;
+          const a = I[t * 3] * 3, b = I[t * 3 + 1] * 3, c = I[t * 3 + 2] * 3;
+          const ymin = Math.min(P[a + 1], P[b + 1], P[c + 1]), ymax = Math.max(P[a + 1], P[b + 1], P[c + 1]);
+          if (ymax < lo || ymin > hi) continue;
+          line(P[a], P[a + 2], P[b], P[b + 2]); line(P[b], P[b + 2], P[c], P[c + 2]); line(P[c], P[c + 2], P[a], P[a + 2]);
+        }
+        walls = { blocked(x, z, r) { const R = Math.ceil(r / C), cx = Math.floor((x - x0) / C), cz = Math.floor((z - z0) / C);
+          for (let dz = -R; dz <= R; dz++) for (let dx = -R; dx <= R; dx++) { const X = cx + dx, Z = cz + dz;
+            if (X < 0 || Z < 0 || X >= nx || Z >= nz) return true; if (g[Z * nx + X] && (dx * dx + dz * dz) * C * C <= r * r) return true; }
+          return false; } };
+        window.__walls = { cells: nx + 'x' + nz, marked, floorY, blocked: walls.blocked };   // the test reads it
+        return walls;
+      }
+      return { buildWalls, geo: () => geo, castDist, active: () => sel >= 0, draw: drawOutline, hitRay, floorBelow, select, selected: () => sel < 0 ? null : J.els[sel], ready: () => !!mesh, sel: () => sel };
     }
 
     // ---------- Tab: the material options - the same corridor, one splat per option, swapped in place ----------
@@ -443,37 +471,65 @@
     }
 
     // ---------- PEOPLE: a live, animated person walking the corridor (his ask 2026-11-07) ----------
-    // Remy (Mixamo, casual clothes): Media Assets/Mixamo/Remy_start_walking.fbx -> remy_walk.glb by
-    // pipeline/walker2glb.py: ONE clean step cycle cut from the clip's steady end, the walk made ON THE SPOT,
-    // 26k triangles, 1024 px textures, 5 MB. Measured in Blender: the cycle travels 0.90 m/s at 1.78 m tall,
-    // so he moves at exactly that and his feet do not slide.
-    // THE WALLS HIDE HIM: the BIM is drawn first as DEPTH ONLY (no colour), then he is drawn depth-tested
-    // against it - so a wall or a door between you and him covers him, as in reality.
+    // ADAM (Mixamo Ch08: hoodie, beard, sneakers - his pick) walks the corridor, TURNS ON THE SPOT at each end, walks back.
+    //  - adam_turn.glb  = Adam + his own "Catwalk Walk Start Turn 180 Left" clip, the floor travel flattened
+    //                     (pipeline/turn2glb.py), 30k triangles, 1024 px textures, 3 MB
+    //  - walk_anim.glb  = the WALK only, no body (pipeline/walker2glb.py, NOMESH=1): Remy's step cycle cut from his
+    //                     "Start Walking", seamless, on the spot, 94 KB. Both are Mixamo skeletons with the same bones,
+    //                     so the walk is moved onto Adam by bone name (rotations only - bone LENGTHS differ, so the
+    //                     other bones' positions are not copied; the hips keep Adam's own height, Remy's bob scaled).
+    //  Measured: the cycle travels 0.90 m/s at 1.78 m tall, so he moves at exactly that and his feet do not slide.
+    // THE WALLS HIDE HIM: the BIM is drawn first as DEPTH ONLY (no colour), then he is drawn depth-tested against it.
     function setupPeople(viewer, picker) {
       const r = viewer.renderer, scene = new THREE.Scene(), depthScene = new THREE.Scene();
       scene.add(new THREE.HemisphereLight(0xfff1e0, 0x5a5048, 2.0));
       const key = new THREE.DirectionalLight(0xfff1e0, 1.2); key.position.set(0.5, 2, 1); scene.add(key);
-      const HEIGHT = 1.78, SPEED_PER_M = 0.90 / 1.78, TURN_S = 1.2;
-      let walker = null, mixer = null, path = null, dir = -1, s = 0, turning = 0, last = 0, depthOn = false;
+      const HEIGHT = 1.78, SPEED_PER_M = 0.90 / 1.78;
+      let walker = null, mixer = null, path = null, dir = -1, s = 0, last = 0, depthOn = false, walkA = null, turnA = null, mode = 'walk';
+      const load = url => new Promise((ok, bad) => new window.GLTFLoader().load(url, ok, undefined, bad));
+      // the clip must START at its first key (Blender exports a cut cycle at 1.6-2.97 s; three.js plays from 0 -> he
+      // stood frozen 1.6 s of every loop, measured). Tracks SHARE time arrays - each array is shifted once.
+      function fromZero(clip) {
+        const t0 = Math.min(...clip.tracks.map(t => t.times[0])), seen = new Set();
+        for (const t of clip.tracks) { if (seen.has(t.times)) continue; seen.add(t.times); for (let i = 0; i < t.times.length; i++) t.times[i] -= t0; }
+        clip.resetDuration(); return clip;
+      }
       (async () => {
         await gltfReady;
-        const g = await new Promise((ok, bad) => new window.GLTFLoader().load('remy_walk.glb?v=2', ok, undefined, bad));
-        walker = g.scene; mixer = new THREE.AnimationMixer(walker);
-        // ⛔ the clip must START at its first key: Blender exported the cycle at 1.6-2.97 s, and three.js plays from 0,
-        // so for 1.6 s of every loop he stood frozen while the page moved him - the slide he saw (measured 2026-11-07).
-        // Every track is shifted to begin at 0, whatever file comes in.
-        const clip = g.animations[0];
-        if (clip) { const t0 = Math.min(...clip.tracks.map(t => t.times[0]));
-          const seen = new Set();   // ⛔ tracks SHARE time arrays (one per glTF sampler input) - shift each array once
-          for (const t of clip.tracks) { if (seen.has(t.times)) continue; seen.add(t.times); for (let i = 0; i < t.times.length; i++) t.times[i] -= t0; }
-          clip.resetDuration(); mixer.clipAction(clip).play(); window.__walkClip = { start: t0, duration: clip.duration }; }
-        mixer.update(0); walker.updateMatrixWorld(true);
-        const box = new THREE.Box3().setFromObject(walker, true), h = box.max.y - box.min.y;
-        walker.scale.setScalar(HEIGHT / h); walker.userData.foot = box.min.y * HEIGHT / h;
-        walker.traverse(o => { if (o.isMesh) { o.frustumCulled = false; } });
-        scene.add(walker);
-        window.__walker = { h, scaled: HEIGHT };
-      })().catch(e => { window.__walkerErr = String(e); });
+        const [ga, gw] = await Promise.all([load('adam_turn.glb?v=1'), load('walk_anim.glb?v=1')]);
+        const body = ga.scene; mixer = new THREE.AnimationMixer(body);
+        const hipsOf = root => { let h = null; root.traverse(o => { if (!h && /Hips$/.test(o.name)) h = o; }); return h; };
+        const aH = hipsOf(body), wH = hipsOf(gw.scene), aP = aH.name.replace(/Hips$/, ''), wP = wH.name.replace(/Hips$/, '');
+        // the walk, moved onto Adam's bones
+        // the two skeletons do not REST alike (arms 22 deg apart, measured) - a copied rotation carries that error into
+        // every step. Each bone's motion goes through the rest difference: q_adam = rest_adam * rest_remy^-1 * q_remy.
+        const restOf = root => { const m = {}; root.traverse(o => { if (/Hips$|mixamorig/.test(o.name)) m[o.name.replace(/^mixamorig\d*/, '')] = o.quaternion.clone(); }); return m; };
+        const rA = restOf(body), rW = restOf(gw.scene), qa = new THREE.Quaternion(), qd = new THREE.Quaternion();
+        const wc = fromZero(gw.animations[0]), tracks = [];
+        for (const t of wc.tracks) {
+          const dot = t.name.lastIndexOf('.'), bone = t.name.slice(0, dot), prop = t.name.slice(dot + 1);
+          const nb = aP + bone.slice(wP.length);
+          if (prop === 'quaternion') { const c = t.clone(); c.name = nb + '.quaternion';
+            const key = bone.replace(/^mixamorig\d*/, '');
+            if (rA[key] && rW[key]) { qd.copy(rW[key]).invert().premultiply(rA[key]); const v = c.values;
+              for (let i = 0; i < v.length; i += 4) { qa.fromArray(v, i).premultiply(qd).toArray(v, i); } }
+            tracks.push(c); }
+          else if (prop === 'position' && bone === wH.name) {   // the hips: Adam's own spot and height, Remy's bob scaled to him
+            const c = t.clone(); c.name = nb + '.position'; const v = c.values, k = aH.position.y / wH.position.y, x0 = v[0], z0 = v[2];
+            for (let i = 0; i < v.length; i += 3) { v[i] = aH.position.x + (v[i] - x0) * k; v[i + 1] = v[i + 1] * k; v[i + 2] = aH.position.z + (v[i + 2] - z0) * k; }
+            tracks.push(c);
+          }
+        }
+        walkA = mixer.clipAction(new THREE.AnimationClip('walk', wc.duration, tracks));
+        turnA = mixer.clipAction(fromZero(ga.animations[0])); turnA.setLoop(THREE.LoopOnce, 1); turnA.clampWhenFinished = true;
+        walkA.play(); mixer.update(0); body.updateMatrixWorld(true);
+        const box = new THREE.Box3().setFromObject(body, true), h = box.max.y - box.min.y, mid = box.getCenter(new THREE.Vector3());
+        // TURN ON THE SPOT: he hangs in a PIVOT under his body's centre, whatever the file (Remy stood 0.67 m off his own)
+        const k = HEIGHT / h; body.scale.setScalar(k); body.position.set(-mid.x * k, -box.min.y * k, -mid.z * k);
+        body.traverse(o => { if (o.isMesh) o.frustumCulled = false; });
+        walker = new THREE.Group(); walker.add(body); scene.add(walker);
+        window.__walker = { who: 'Adam', h, scaled: HEIGHT, walk: +wc.duration.toFixed(3), turn: +turnA.getClip().duration.toFixed(3), tracks: tracks.length };
+      })().catch(e => { window.__walkerErr = String(e && e.stack || e); });
       // the path: down the middle of the corridor (the BIM walls measured by rays), on the BIM floor
       function makePath() {
         if (!picker.ready()) return null;
@@ -493,11 +549,14 @@
           const bg = picker.geo(); if (bg) { depthScene.add(new THREE.Mesh(bg, new THREE.MeshBasicMaterial({ colorWrite: false, side: THREE.DoubleSide }))); depthOn = true; } }
         const [A, B] = path, len = A.distanceTo(B);
         mixer.update(dt);
-        if (turning > 0) { turning -= dt; if (turning <= 0) dir = -dir; }
-        else { s += dir * SPEED_PER_M * HEIGHT * dt / len; if (s >= 1 || s <= 0) { s = Math.min(1, Math.max(0, s)); turning = TURN_S; } }
-        const p = A.clone().lerp(B, s); walker.position.set(p.x, p.y - walker.userData.foot, p.z);
-        const fwd = B.clone().sub(A).normalize().multiplyScalar(dir), yaw = Math.atan2(fwd.x, fwd.z);
-        walker.rotation.y = turning > 0 ? yaw + Math.PI * (1 - turning / TURN_S) : yaw;   // turns round at each end
+        if (mode === 'walk') {
+          s += dir * SPEED_PER_M * HEIGHT * dt / len;
+          if (s >= 1 || s <= 0) { s = Math.min(1, Math.max(0, s)); mode = 'turn'; walkA.stop(); turnA.reset().play(); }   // his own 180 turn, on the spot
+        } else if (!turnA.isRunning()) {   // the turn is over: he faces back, the walk carries on from its first step
+          turnA.stop(); dir = -dir; mode = 'walk'; walkA.reset().play();
+        }
+        const p = A.clone().lerp(B, s); walker.position.set(p.x, p.y, p.z);
+        const fwd = B.clone().sub(A).normalize().multiplyScalar(dir); walker.rotation.y = Math.atan2(fwd.x, fwd.z);
       }
       function draw() {
         if (!walker || !path) return;
@@ -521,7 +580,7 @@
       const scene = new THREE.Scene();
       scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 2.2));
       const sun = new THREE.DirectionalLight(0xffffff, 1.4); sun.position.set(1, 2, 1); scene.add(sun);
-      const WAND_TIP = 0.19, SNAP = Math.PI / 4, RISE = 1.0, EYE = 1.76, PANEL_AT = 1.1;
+      const WAND_TIP = 0.19, SNAP = Math.PI / 4, RISE = 1.0, EYE = 1.76, PANEL_AT = 1.1, BODY_R = 0.22;   // BODY_R = the viewer's body radius
       const rig = { p: new THREE.Vector3(0, -1.6, 0), yaw: 0 };   // where his real floor's origin sits in the splat
       // NOT a rig group carrying the camera (the viewer's way): the splat library sorts from camera.position and
       // camera.quaternion - LOCAL values - so a parented camera sorts from the wrong place. The WebXR offset reference
@@ -618,14 +677,22 @@
         if (pose) { const t = pose.transform, o = t.orientation; hb = new THREE.Vector3(t.position.x, t.position.y, t.position.z);
           hyB = Math.atan2(2 * (o.w * o.y + o.x * o.z), 1 - 2 * (o.y * o.y + o.x * o.x)); }
         // once: his eye goes to 1.76 m above the BIM floor (the right stick up/down still adjusts it after)
-        if (!floorSet && floorY != null && hb) { rig.p.y = floorY + EYE - hb.y; floorSet = true; }
+        if (!floorSet && floorY != null && hb) { rig.p.y = floorY + EYE - hb.y; floorSet = true; picker.buildWalls(floorY); }
         const L = hand.left && hand.left.gp, R = hand.right && hand.right.gp;
         const axes = gp => gp && gp.axes ? [gp.axes.length > 2 ? gp.axes[2] : (gp.axes[0] || 0), gp.axes.length > 3 ? gp.axes[3] : (gp.axes[1] || 0)] : [0, 0];
         const [lx, ly] = axes(L), [rx, ry] = axes(R);
         // LEFT stick: walk where you look
         if (Math.hypot(lx, ly) > DEADZONE) {
           const hy = rig.yaw + hyB, fx = -Math.sin(hy), fz = -Math.cos(hy), sx = Math.cos(hy), sz = -Math.sin(hy);
-          rig.p.x += (fx * -ly + sx * lx) * VR_SPEED * dt; rig.p.z += (fz * -ly + sz * lx) * VR_SPEED * dt;
+          const mx = (fx * -ly + sx * lx) * VR_SPEED * dt, mz = (fz * -ly + sz * lx) * VR_SPEED * dt;
+          const W = floorY != null ? picker.buildWalls(floorY) : null;
+          // free when there is no plan yet, or when he already stands inside one (so a start next to a wall can never trap him)
+          if (!W || !hb || W.blocked(rig.p.x + Math.cos(rig.yaw) * hb.x + Math.sin(rig.yaw) * hb.z, rig.p.z - Math.sin(rig.yaw) * hb.x + Math.cos(rig.yaw) * hb.z, 0.08)) { rig.p.x += mx; rig.p.z += mz; }   // 0.08: DEEP inside only - at BODY_R it fired at the wall's edge and let him through (measured)
+          else {   // WALK COLLIDES, one axis at a time so a wall stops you without locking you (Viewer-Behaviour-VR.js pollMove)
+            const c0 = Math.cos(rig.yaw), s0 = Math.sin(rig.yaw), hx = rig.p.x + c0 * hb.x + s0 * hb.z, hz = rig.p.z - s0 * hb.x + c0 * hb.z;
+            if (!W.blocked(hx + mx, hz, BODY_R)) rig.p.x += mx;
+            if (!W.blocked(hx + (W.blocked(hx + mx, hz, BODY_R) ? 0 : mx), hz + mz, BODY_R)) rig.p.z += mz;
+          }
         }
         // RIGHT stick: left/right = one 45 deg notch per flick, about the head; up/down = rise / sink
         if (snapReady && Math.abs(rx) > 0.7 && Math.abs(rx) > Math.abs(ry)) {
