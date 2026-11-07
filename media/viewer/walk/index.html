@@ -457,7 +457,7 @@
       let walker = null, mixer = null, path = null, dir = -1, s = 0, turning = 0, last = 0, depthOn = false;
       (async () => {
         await gltfReady;
-        const g = await new Promise((ok, bad) => new window.GLTFLoader().load('remy_walk.glb?v=1', ok, undefined, bad));
+        const g = await new Promise((ok, bad) => new window.GLTFLoader().load('remy_walk.glb?v=2', ok, undefined, bad));
         walker = g.scene; mixer = new THREE.AnimationMixer(walker);
         if (g.animations[0]) mixer.clipAction(g.animations[0]).play();
         mixer.update(0); walker.updateMatrixWorld(true);
