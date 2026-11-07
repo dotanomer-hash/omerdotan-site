@@ -436,8 +436,8 @@
     // Same as oYmer BIM Viewer (Engine/Viewer-Behaviour-VR.js): LEFT stick walks where you look, RIGHT stick
     // left/right = 45 deg snap turn (one notch per flick), RIGHT stick up/down = rise / sink. The wand in the RIGHT
     // hand only (libs/suite-xr-wand.js = a copy of Shared/Suite-XR-Wand.js), orange laser from its tip, white dot.
-    // NOTHING on the left hand, no Exit VR plate (his call 2026-11-07): the BIM properties FLOAT in front of him
-    // when the trigger picks an element, and stay there until the next pick.
+    // A WAND IN EACH HAND, either trigger picks; no Exit VR plate (his calls 2026-11-07). The BIM properties FLOAT
+    // 1.1 m in front of him and come with him as he walks and turns, until the next pick clears them.
     // EYE LEVEL = 1.76 m above the BIM floor (his number, 2026-11-07), whatever his real height or chair: the BIM
     // floor under the start is MEASURED (a ray down the pick mesh) and his eye is set 1.76 m above it.
     function setupVR(viewer, picker) {
@@ -445,7 +445,7 @@
       const scene = new THREE.Scene();
       scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 2.2));
       const sun = new THREE.DirectionalLight(0xffffff, 1.4); sun.position.set(1, 2, 1); scene.add(sun);
-      const WAND_TIP = 0.19, SNAP = Math.PI / 4, RISE = 1.0, EYE = 1.76, PANEL_AT = 0.8;
+      const WAND_TIP = 0.19, SNAP = Math.PI / 4, RISE = 1.0, EYE = 1.76, PANEL_AT = 1.1;
       const rig = { p: new THREE.Vector3(0, -1.6, 0), yaw: 0 };   // where his real floor's origin sits in the splat
       // NOT a rig group carrying the camera (the viewer's way): the splat library sorts from camera.position and
       // camera.quaternion - LOCAL values - so a parented camera sorts from the wrong place. The WebXR offset reference
@@ -489,8 +489,7 @@
           const told = ev.data && ev.data.handedness;
           if (told !== 'left' && told !== 'right') return;              // an unknown hand gets nothing (the viewer's rule)
           hand[told] = { c, g, gp: ev.data.gamepad };
-          if (told === 'right') {
-            right = c;
+          {   // a wand in EACH hand (his call 2026-11-07: "add left wand with pointer. each of them works on objects")
             if (!c.userData.wand && window.SuiteWand) { const w = SuiteWand.make(); if (w) { c.add(w); c.userData.wand = w; } }
             if (!c.userData.laser) {
               const lg = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -8)]);
@@ -502,22 +501,29 @@
           }
         });
         c.addEventListener('disconnected', () => { for (const k in hand) if (hand[k].c === c) delete hand[k]; });
-        c.addEventListener('selectstart', () => { if (hand.right && hand.right.c === c) press(); });
+        c.addEventListener('selectstart', () => { if (c.userData.laser) press(c); });
       }
       const aimRay = new THREE.Raycaster();
       function aim(c) { c.updateMatrixWorld(true); tmpO.setFromMatrixPosition(c.matrixWorld); tmpD.set(0, 0, -1).applyQuaternion(c.getWorldQuaternion(tmpQ)).normalize(); aimRay.set(tmpO, tmpD); return aimRay; }
       function onPlate(rc) { if (!info.mesh.visible) return null; info.mesh.updateMatrixWorld(true); return rc.intersectObject(info.mesh, false)[0] || null; }
-      function press() {
-        const rc = aim(right), hp = onPlate(rc);
+      function press(c) {
+        const rc = aim(c), hp = onPlate(rc);
         if (hp) return;                                                   // the readout itself is not a target
         const i = picker.hitRay(rc.ray.origin, rc.ray.direction);
         picker.select(i === picker.sel() ? -1 : i);                       // the same click rule as the desktop
         const e = picker.selected(); info.paint(e); info.mesh.visible = !!e;
-        if (e) {   // in front of his eyes, a little low, facing him
-          const fx = -Math.sin(headYaw), fz = -Math.cos(headYaw);
-          info.mesh.position.set(headW.x + fx * PANEL_AT, headW.y - 0.12, headW.z + fz * PANEL_AT);
-          info.mesh.rotation.set(-0.12, headYaw, 0, 'YXZ');
-        }
+        if (e) placePanel(1);   // straight to its place in front of him
+      }
+
+      // the properties stay in front of his eyes, a little low, facing him - and COME WITH HIM as he walks and turns
+      // (his call: "advance with you until cleared"); k = how much of the way to go this frame, so it glides, not jitters
+      let pYaw = 0;
+      function placePanel(k) {
+        let dy = headYaw - pYaw; dy = Math.atan2(Math.sin(dy), Math.cos(dy)); pYaw += dy * k;
+        const fx = -Math.sin(pYaw), fz = -Math.cos(pYaw);
+        tmpO.set(headW.x + fx * PANEL_AT, headW.y - 0.15, headW.z + fz * PANEL_AT);
+        info.mesh.position.lerp(tmpO, k);
+        info.mesh.rotation.set(-0.12, pYaw, 0, 'YXZ');
       }
 
       xr.addEventListener('sessionstart', () => { baseSpace = xr.getReferenceSpace(); floorSet = false; floorY = null; rig.yaw = 0; rig.p.set(0, -1.6, 0);
@@ -565,10 +571,11 @@
         xr.setReferenceSpace(baseSpace.getOffsetReferenceSpace(new XRRigidTransform({ x: pos.x, y: pos.y, z: pos.z }, { x: q.x, y: q.y, z: q.z, w: q.w })));
         // the white dot + the laser stop on the floating properties (the BIM is tested on the press only - a full ray
         // through the BIM every frame is too much for a Quest)
-        if (right && right.userData.dot) {
-          const hp = onPlate(aim(right)); right.userData.dot.visible = !!hp;
-          if (hp) right.userData.dot.position.set(0, 0, -hp.distance);
-          right.userData.laser.scale.z = hp ? Math.max(0.01, (hp.distance - WAND_TIP) / 8) : 1;
+        if (info.mesh.visible) placePanel(1 - Math.exp(-4 * dt));
+        for (const k in hand) { const c = hand[k].c; if (!c.userData.dot) continue;
+          const hp = onPlate(aim(c)); c.userData.dot.visible = !!hp;
+          if (hp) c.userData.dot.position.set(0, 0, -hp.distance);
+          c.userData.laser.scale.z = hp ? Math.max(0.01, (hp.distance - WAND_TIP) / 8) : 1;
         }
       }
       function draw() {
