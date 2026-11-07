@@ -240,7 +240,9 @@
       viewer.renderer.setAnimationLoop(() => {
         walkStep();
         viewer.update();
-        const draw = viewer.shouldRender() || picker.active();
+        // in VR draw EVERY frame: the head pose reaches the camera only inside render(), so skipping one frame
+        // would freeze the camera and every frame after it would be skipped too - a black headset
+        const draw = viewer.renderer.xr.isPresenting || viewer.shouldRender() || picker.active();
         if (draw) { viewer.render(); if (!viewer.renderer.xr.isPresenting) picker.draw(); }
         viewer.renderNextFrame = false;
       });

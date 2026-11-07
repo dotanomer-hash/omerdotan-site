@@ -167,7 +167,7 @@
       // so it cannot be a new tab); Esc returns to the page. No full screen (iPhone) -> a new tab instead.
       go.addEventListener("click", function () {
         var win = go.parentNode, img = go.querySelector("img");
-        var url = new URL("index.html?v=18", img.src).href;      // next to the poster, so the English twin finds it too
+        var url = new URL("index.html?v=19", img.src).href;      // next to the poster, so the English twin finds it too
         var fs = win.requestFullscreen || win.webkitRequestFullscreen;
         if (!fs) { window.open(url + "&fs=1", "_blank"); return; }
         var f = document.createElement("iframe");
