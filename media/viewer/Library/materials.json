@@ -1,0 +1,904 @@
+{
+  "version": 1,
+  "materials": [
+    {
+      "id": "paint-white",
+      "name": "צבע לבן",
+      "nameEn": "White Paint",
+      "color": "#f4f2ec",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.9,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Paint - White Matte"
+      },
+      "tags": [
+        "wall"
+      ]
+    },
+    {
+      "id": "plaster-cream",
+      "name": "טיח קרם",
+      "nameEn": "Cream Plaster",
+      "color": "#e8dcc8",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.95,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Plaster - Cream"
+      },
+      "tags": [
+        "wall"
+      ]
+    },
+    {
+      "id": "oak-60",
+      "name": "פרקט אלון",
+      "nameEn": "Oak Parquet",
+      "color": "#a97c50",
+      "maps": {
+        "albedo": "textures/oak_albedo.jpg",
+        "rough": "textures/oak_rough.jpg",
+        "normal": "textures/oak_normal.jpg"
+      },
+      "scaleM": 0.6,
+      "rough": 0.45,
+      "reflect": 1.2,
+      "normalScale": 0.8,
+      "metal": 0,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Wood - Oak Flooring"
+      },
+      "tags": [
+        "floor",
+        "wood"
+      ]
+    },
+    {
+      "id": "oak-light",
+      "name": "פרקט אלון בהיר",
+      "nameEn": "Oak Parquet Light",
+      "color": "#c99a5e",
+      "maps": {
+        "albedo": "textures/oak_light_albedo.jpg",
+        "rough": "textures/oak_rough.jpg",
+        "normal": "textures/oak_normal.jpg"
+      },
+      "scaleM": 0.6,
+      "rough": 0.45,
+      "reflect": 1.2,
+      "normalScale": 0.8,
+      "metal": 0,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Wood - Oak Flooring Light"
+      },
+      "tags": [
+        "floor",
+        "wood"
+      ]
+    },
+    {
+      "id": "lamella-wood",
+      "name": "חיפוי למלות",
+      "nameEn": "Wood Lamella",
+      "color": "#9c6b3e",
+      "maps": {},
+      "pattern": "lamella",
+      "bump": 3.4,
+      "scaleM": 0.24,
+      "rough": 0.55,
+      "reflect": 1.1,
+      "metal": 0,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Wood - Lamella Cladding"
+      },
+      "tags": [
+        "wood",
+        "wall"
+      ]
+    },
+    {
+      "id": "tile-grey-60",
+      "name": "אריח מבריק",
+      "nameEn": "Polished Tile",
+      "color": "#c2c2bf",
+      "maps": {
+        "albedo": "textures/tile_albedo.jpg",
+        "rough": "textures/tile_rough.jpg",
+        "normal": "textures/tile_normal.jpg"
+      },
+      "scaleM": 0.6,
+      "rough": 0.12,
+      "reflect": 1.8,
+      "normalScale": 0.5,
+      "metal": 0,
+      "finish": "polished",
+      "revit": {
+        "materialName": "Tile - Porcelain Grey"
+      },
+      "tags": [
+        "floor",
+        "bath"
+      ]
+    },
+    {
+      "id": "concrete",
+      "name": "בטון חשוף",
+      "nameEn": "Raw Concrete",
+      "color": "#9c9488",
+      "maps": {
+        "albedo": "textures/concrete_albedo.jpg",
+        "normal": "textures/concrete_normal.jpg"
+      },
+      "scaleM": 1.2,
+      "rough": 0.85,
+      "normalScale": 1,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Concrete - Cast-in-Place"
+      },
+      "tags": [
+        "wall",
+        "ceiling"
+      ]
+    },
+    {
+      "id": "walnut",
+      "name": "אגוז מלוטש",
+      "nameEn": "Glossy Walnut",
+      "color": "#5c3a1e",
+      "maps": {},
+      "scaleM": 0.4,
+      "rough": 0.3,
+      "reflect": 1.3,
+      "metal": 0,
+      "finish": "gloss",
+      "revit": {
+        "materialName": "Wood - Walnut Gloss"
+      },
+      "tags": [
+        "door",
+        "wood"
+      ]
+    },
+    {
+      "id": "metal-black",
+      "name": "מתכת מבריקה",
+      "nameEn": "Polished Metal",
+      "color": "#2e2e33",
+      "maps": {},
+      "scaleM": 0.5,
+      "rough": 0.28,
+      "reflect": 1.8,
+      "metal": 0.95,
+      "finish": "polished",
+      "revit": {
+        "materialName": "Metal - Black Polished"
+      },
+      "tags": [
+        "railing"
+      ]
+    },
+    {
+      "id": "brick-warm",
+      "name": "לבנים",
+      "nameEn": "Warm Brick",
+      "color": "#a5623f",
+      "maps": {
+        "albedo": "textures/brick_albedo.jpg",
+        "rough": "textures/brick_rough.jpg",
+        "normal": "textures/brick_normal.jpg"
+      },
+      "scaleM": 0.9,
+      "rough": 0.9,
+      "normalScale": 1.3,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Brick - Warm Red"
+      },
+      "tags": [
+        "wall",
+        "exterior"
+      ]
+    },
+    {
+      "id": "marble-white",
+      "name": "שיש לבן",
+      "nameEn": "White Marble",
+      "color": "#eceae4",
+      "maps": {
+        "albedo": "textures/tile_albedo.jpg",
+        "normal": "textures/tile_normal.jpg"
+      },
+      "scaleM": 1.2,
+      "rough": 0.08,
+      "reflect": 2,
+      "normalScale": 0.25,
+      "metal": 0,
+      "finish": "polished",
+      "revit": {
+        "materialName": "Marble - White Polished"
+      },
+      "tags": [
+        "floor",
+        "wall"
+      ]
+    },
+    {
+      "id": "glass-clear",
+      "name": "זכוכית שקופה",
+      "nameEn": "Clear Glass",
+      "color": "#eaf3f5",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.02,
+      "metal": 0,
+      "reflect": 2,
+      "transmission": 1,
+      "ior": 1.52,
+      "thickness": 0.03,
+      "finish": "polished",
+      "revit": {
+        "materialName": "Glass"
+      },
+      "tags": [
+        "window",
+        "glass"
+      ]
+    },
+    {
+      "id": "glass-tint",
+      "name": "זכוכית כהה",
+      "nameEn": "Tinted Glass",
+      "color": "#6d7f86",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.06,
+      "metal": 0,
+      "reflect": 2,
+      "transmission": 0.85,
+      "ior": 1.52,
+      "thickness": 0.08,
+      "finish": "polished",
+      "revit": {
+        "materialName": "Glass - Tinted Grey"
+      },
+      "tags": [
+        "window",
+        "glass"
+      ]
+    },
+    {
+      "id": "metal-white",
+      "name": "מתכת לבנה",
+      "nameEn": "White Metal",
+      "color": "#eaeaee",
+      "maps": {},
+      "scaleM": 0.5,
+      "rough": 0.35,
+      "reflect": 1.4,
+      "metal": 0.2,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Metal - White Satin"
+      },
+      "tags": [
+        "metal"
+      ]
+    },
+    {
+      "id": "grey-paint",
+      "name": "צבע אפור",
+      "nameEn": "Grey Paint",
+      "color": "#b9bcbe",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.9,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Paint - Grey Matte"
+      },
+      "tags": [
+        "wall"
+      ]
+    },
+    {
+      "id": "sand-render",
+      "name": "טיח חול",
+      "nameEn": "Sand Render",
+      "color": "#d8c9a8",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.95,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Render - Sand"
+      },
+      "tags": [
+        "wall",
+        "exterior"
+      ]
+    },
+    {
+      "id": "lime-stucco",
+      "name": "שטוקו סיד",
+      "nameEn": "Lime Stucco",
+      "color": "#efe9dd",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.92,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Stucco - Lime"
+      },
+      "tags": [
+        "wall"
+      ]
+    },
+    {
+      "id": "clay-paint",
+      "name": "צבע חומר",
+      "nameEn": "Clay Paint",
+      "color": "#c8a68a",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.93,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Paint - Clay"
+      },
+      "tags": [
+        "wall"
+      ]
+    },
+    {
+      "id": "ash-wood",
+      "name": "אשור בהיר",
+      "nameEn": "Pale Ash",
+      "color": "#d6bd98",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.5,
+      "metal": 0,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Wood - Ash"
+      },
+      "tags": [
+        "floor",
+        "wood"
+      ]
+    },
+    {
+      "id": "teak-wood",
+      "name": "טיק",
+      "nameEn": "Teak Deck",
+      "color": "#8a5a2b",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.55,
+      "metal": 0,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Wood - Teak"
+      },
+      "tags": [
+        "floor",
+        "wood",
+        "exterior"
+      ]
+    },
+    {
+      "id": "birch-wood",
+      "name": "לבנה",
+      "nameEn": "Birch Ply",
+      "color": "#e0c9a2",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.55,
+      "metal": 0,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Wood - Birch Plywood"
+      },
+      "tags": [
+        "wood"
+      ]
+    },
+    {
+      "id": "ebony-wood",
+      "name": "אבונוס",
+      "nameEn": "Ebony",
+      "color": "#3a2c22",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.35,
+      "metal": 0,
+      "finish": "gloss",
+      "revit": {
+        "materialName": "Wood - Ebony"
+      },
+      "tags": [
+        "door",
+        "wood"
+      ]
+    },
+    {
+      "id": "granite",
+      "name": "גרניט אפו",
+      "nameEn": "Grey Granite",
+      "color": "#7d7f82",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.25,
+      "metal": 0,
+      "finish": "polished",
+      "revit": {
+        "materialName": "Stone - Granite Grey"
+      },
+      "tags": [
+        "floor",
+        "wall"
+      ]
+    },
+    {
+      "id": "terrazzo",
+      "name": "טרצו",
+      "nameEn": "Terrazzo",
+      "color": "#ded8cd",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.2,
+      "metal": 0,
+      "finish": "polished",
+      "revit": {
+        "materialName": "Stone - Terrazzo"
+      },
+      "tags": [
+        "floor"
+      ]
+    },
+    {
+      "id": "slate",
+      "name": "צפחה שחור",
+      "nameEn": "Black Slate",
+      "color": "#3c4044",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.6,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Stone - Slate Black"
+      },
+      "tags": [
+        "floor",
+        "wall"
+      ]
+    },
+    {
+      "id": "stone-cream",
+      "name": "אבן שמנת",
+      "nameEn": "Cream Stone",
+      "color": "#ddd2bb",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.55,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Stone - Cream Limestone"
+      },
+      "tags": [
+        "wall",
+        "exterior"
+      ]
+    },
+    {
+      "id": "glass-frost",
+      "name": "זכוכית חלב",
+      "nameEn": "Frosted Glass",
+      "color": "#dbe6e8",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.35,
+      "metal": 0,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Glass - Frosted"
+      },
+      "tags": [
+        "window",
+        "glass"
+      ]
+    },
+    {
+      "id": "glass-bronze",
+      "name": "זכוכית ברונז",
+      "nameEn": "Bronze Glass",
+      "color": "#8a7256",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.06,
+      "metal": 0,
+      "finish": "polished",
+      "revit": {
+        "materialName": "Glass - Bronze"
+      },
+      "tags": [
+        "window",
+        "glass"
+      ]
+    },
+    {
+      "id": "steel-brush",
+      "name": "פלדה מברשת",
+      "nameEn": "Brushed Steel",
+      "color": "#a8adb2",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.4,
+      "metal": 0.9,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Metal - Stainless Brushed"
+      },
+      "tags": [
+        "railing",
+        "metal"
+      ]
+    },
+    {
+      "id": "brass",
+      "name": "פליז",
+      "nameEn": "Brass",
+      "color": "#b5893f",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.3,
+      "metal": 0.95,
+      "finish": "polished",
+      "revit": {
+        "materialName": "Metal - Brass"
+      },
+      "tags": [
+        "metal"
+      ]
+    },
+    {
+      "id": "copper",
+      "name": "נחושת",
+      "nameEn": "Copper",
+      "color": "#a86a45",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.32,
+      "metal": 0.95,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Metal - Copper"
+      },
+      "tags": [
+        "metal"
+      ]
+    },
+    {
+      "id": "alu-anod",
+      "name": "אלומיניום מאולגן",
+      "nameEn": "Anodised Alu",
+      "color": "#8e949a",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.42,
+      "metal": 0.85,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Metal - Aluminium Anodised"
+      },
+      "tags": [
+        "metal"
+      ]
+    },
+    {
+      "id": "grass-lawn",
+      "name": "דשא",
+      "nameEn": "Lawn Grass",
+      "color": "#6f8f4a",
+      "maps": {},
+      "pattern": "grass",
+      "bump": 1.4,
+      "scaleM": 1.4,
+      "rough": 0.95,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Site - Grass"
+      },
+      "tags": [
+        "floor",
+        "exterior",
+        "garden"
+      ]
+    },
+    {
+      "id": "stone-cobble",
+      "name": "אבן משתלבת",
+      "nameEn": "Garden Cobble",
+      "color": "#9a9186",
+      "maps": {},
+      "pattern": "cobble",
+      "bump": 3,
+      "scaleM": 1.1,
+      "rough": 0.85,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Site - Cobblestone"
+      },
+      "tags": [
+        "floor",
+        "exterior",
+        "garden",
+        "stone"
+      ]
+    },
+    {
+      "id": "stone-flag",
+      "name": "אבן ריצוף גן",
+      "nameEn": "Flagstone Paving",
+      "color": "#b3a894",
+      "maps": {},
+      "pattern": "flagstone",
+      "bump": 2.4,
+      "scaleM": 2.2,
+      "rough": 0.8,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Site - Flagstone"
+      },
+      "tags": [
+        "floor",
+        "exterior",
+        "garden",
+        "stone"
+      ]
+    },
+    {
+      "id": "gravel-garden",
+      "name": "חצץ",
+      "nameEn": "Garden Gravel",
+      "color": "#a49a8b",
+      "maps": {},
+      "pattern": "gravel",
+      "bump": 2.6,
+      "scaleM": 0.8,
+      "rough": 0.98,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Site - Gravel"
+      },
+      "tags": [
+        "floor",
+        "exterior",
+        "garden",
+        "stone"
+      ]
+    },
+    {
+      "id": "limestone",
+      "name": "אבן גיר",
+      "nameEn": "Honed Limestone",
+      "color": "#cfc4ad",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.55,
+      "metal": 0,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Stone - Limestone"
+      },
+      "tags": [
+        "floor",
+        "wall",
+        "stone"
+      ]
+    },
+    {
+      "id": "basalt",
+      "name": "בזלת",
+      "nameEn": "Dark Basalt",
+      "color": "#4a4d52",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.8,
+      "metal": 0,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Stone - Basalt"
+      },
+      "tags": [
+        "floor",
+        "wall",
+        "exterior",
+        "stone"
+      ]
+    },
+    {
+      "id": "travertine",
+      "name": "טרוורטין",
+      "nameEn": "Travertine",
+      "color": "#ded0b6",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.6,
+      "metal": 0,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Stone - Travertine"
+      },
+      "tags": [
+        "floor",
+        "wall",
+        "stone"
+      ]
+    },
+    {
+      "id": "marble-black",
+      "name": "שיש שחור",
+      "nameEn": "Black Marble",
+      "color": "#26282c",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.12,
+      "reflect": 1.4,
+      "metal": 0,
+      "finish": "polished",
+      "revit": {
+        "materialName": "Stone - Marble Black"
+      },
+      "tags": [
+        "floor",
+        "wall",
+        "stone"
+      ]
+    },
+    {
+      "id": "metal-tread",
+      "name": "פח דריכה",
+      "nameEn": "Tread Plate",
+      "color": "#8f959b",
+      "maps": {},
+      "pattern": "checker",
+      "bump": 3.4,
+      "scaleM": 0.9,
+      "rough": 0.45,
+      "reflect": 1.2,
+      "metal": 0.9,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Metal - Tread Plate"
+      },
+      "tags": [
+        "metal",
+        "floor"
+      ]
+    },
+    {
+      "id": "metal-perf",
+      "name": "פח מחורר",
+      "nameEn": "Perforated Metal",
+      "color": "#9aa0a6",
+      "maps": {},
+      "pattern": "perf",
+      "bump": 3,
+      "scaleM": 0.6,
+      "rough": 0.5,
+      "reflect": 1.1,
+      "metal": 0.85,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Metal - Perforated"
+      },
+      "tags": [
+        "metal",
+        "exterior"
+      ]
+    },
+    {
+      "id": "metal-corrug",
+      "name": "פח גלי",
+      "nameEn": "Corrugated Metal",
+      "color": "#a7adb4",
+      "maps": {},
+      "pattern": "corrugated",
+      "bump": 2,
+      "scaleM": 1,
+      "rough": 0.42,
+      "reflect": 1.2,
+      "metal": 0.9,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Metal - Corrugated"
+      },
+      "tags": [
+        "metal",
+        "exterior",
+        "wall"
+      ]
+    },
+    {
+      "id": "steel-corten",
+      "name": "פלדת קורטן",
+      "nameEn": "Corten Steel",
+      "color": "#8a4f32",
+      "maps": {},
+      "pattern": "rust",
+      "bump": 1.6,
+      "scaleM": 1.6,
+      "rough": 0.78,
+      "metal": 0.55,
+      "finish": "matte",
+      "revit": {
+        "materialName": "Metal - Corten"
+      },
+      "tags": [
+        "metal",
+        "exterior",
+        "wall"
+      ]
+    },
+    {
+      "id": "metal-bronze",
+      "name": "ברונזה",
+      "nameEn": "Dark Bronze",
+      "color": "#6b563a",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.35,
+      "reflect": 1.3,
+      "metal": 0.95,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Metal - Bronze"
+      },
+      "tags": [
+        "metal"
+      ]
+    },
+    {
+      "id": "metal-zinc",
+      "name": "אבץ",
+      "nameEn": "Zinc Cladding",
+      "color": "#8d9296",
+      "maps": {},
+      "scaleM": 1,
+      "rough": 0.55,
+      "reflect": 1,
+      "metal": 0.8,
+      "finish": "satin",
+      "revit": {
+        "materialName": "Metal - Zinc"
+      },
+      "tags": [
+        "metal",
+        "exterior",
+        "wall"
+      ]
+    }
+  ]
+}

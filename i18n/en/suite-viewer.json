@@ -7,5 +7,8 @@
   "המודל ברוויט": "The model in Revit",
   "ללכת בתוך מודל ה-BIM בטכניקת העתיד - Gaussian Splatting": "Walk inside the BIM model with the technique of the future - Gaussian Splatting",
   "מסדרון מפרויקט אמיתי, שנבנה ישירות ממודל ה-BIM בטכניקת Gaussian Splatting, במנוע הייעודי שלנו - ללא צורך בתוכנות גרפיות או במנועי Splatting. לחצו כדי להיכנס.": "A corridor from a real project, built straight from the BIM model with Gaussian Splatting, by our own dedicated engine - no graphics software or Splatting engines needed. Click to step in.",
-  "להיכנס ולהסתובב": "Step in and walk around"
+  "להיכנס ולהסתובב": "Step in and walk around",
+  "קפצו פנימה": "Jump in",
+  "אפשר גם בדפדפן.": "Also in the browser.",
+  "מסדרון מפרויקט אמיתי, שנבנה ישירות ממודל ה-BIM בטכניקת Baking ייעודית": "A corridor from a real project, built straight from the BIM model with a dedicated Baking technique"
 }

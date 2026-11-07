@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "file": "lightmap.png",
+  "scale": 1,
+  "channel": 1,
+  "bakeDirect": true,
+  "exposure": 4,
+  "encode": "vlm01",
+  "gamma": 2,
+  "set": "",
+  "sunlitFraction": 0.16371034067430454,
+  "cats": [
+    "Walls",
+    "Floors",
+    "Casework",
+    "Ceilings",
+    "Stairs",
+    "Structural Columns",
+    "Structural Framing"
+  ],
+  "atlas": 4096,
+  "samples": 512,
+  "lights": 73,
+  "utilisation": 0.684190082423911,
+  "mmPerTexel": 51.954117721810505,
+  "irradianceMax": 40.6941032409668,
+  "bakedCoverage": 0.5378242135047913
+}

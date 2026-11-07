@@ -68,60 +68,23 @@
       <div class="phead rev">
         <span class="no ltr">// VIEWER</span>
         <h2>Be there - see, feel, decide</h2>
-        <p class="lead">Walk through the model, check the space and the materials in the virtual environment (also in the browser).</p>
+        <p class="lead">Also in the browser.</p>
       </div>
-      <div class="oyl-pairs oyl-pairs--rev">
-
-      <div class="oyl-pair">
-        <article class="oyl-panel">
-          <div class="oyl-media">
-            <span class="oyl-id oyl-mono">VIEW_01</span>
-            <video src="../media/viewer/viewer-main.mp4?v=1" poster="../media/viewer/viewer-main.jpg?v=1" autoplay muted loop playsinline preload="metadata"></video>
-          </div>
-          <div class="oyl-body">
-            <span class="oyl-kick oyl-mono">IN THE VIEWER</span>
-            <div class="oyl-hud oyl-mono"><b>WEBXR</b><b>1:1</b><b class="on">STAND-IN</b></div>
-            <h3>The model in the viewer</h3>
-            <p>Walk through the model, check the space and the materials in the virtual environment</p>
-          </div>
-        </article>
-
-        <div class="oyl-flow oyl-mono" aria-hidden="true">
-          <span>VIEW MODEL</span>
-          <svg class="oyl-arw" viewBox="0 0 150 34" preserveAspectRatio="xMidYMid meet" focusable="false"><g transform="matrix(-1 0 0 1 150 0)">
-            <path class="oyl-arw__boltGlow" d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/>
-            <path class="oyl-arw__bolt"     d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/>
-            <path class="oyl-arw__bolt2"    d="M146 17 L137 20 L127 13 L117 20.5 L107 14.5 L97 21 L87 14 L77 20.5 L67 13.5 L57 21 L47 14 L37 20 L27 14.5 L17 19 L6 17"/>
-            <path class="oyl-arw__core"     d="M146 17 L136 12.5 L126 21 L116 13.5 L106 20 L96 12.5 L86 21 L76 13.5 L66 20 L56 12.5 L46 20.5 L36 14 L26 19.5 L16 15.5 L6 17"/>
-            <path class="oyl-arw__fork" d="M116 13.5 L112 6 L115 9.5"/>
-            <path class="oyl-arw__fork" d="M76 13.5 L71 5.5 L74 9"/>
-            <path class="oyl-arw__fork" d="M46 20.5 L42 28 L45 24"/>
-            <path class="oyl-arw__wall" d="M4 4 L4 30"/>
-            <path class="oyl-arw__spark" d="M7 17 L-2 9 M7 17 L-1 24 M7 17 L4 4 M7 17 L5 30 M7 17 L16 7 M7 17 L15 27 M7 17 L20 12 M7 17 L19 22"/>
-            <circle class="oyl-arw__flash" cx="7" cy="17" r="3.4"/>
-            <circle class="oyl-arw__flare" cx="7" cy="17" r="2.4"/>
-          </g></svg>
+      <div class="oyl-walk rev">
+        <div class="oyl-walk__head">
+          <span class="oyl-walk__kick">WALK THE BIM</span>
+          <h3>Walk through the model, check the space and the materials in the virtual environment</h3>
+          <p>A corridor from a real project, built straight from the BIM model with a dedicated Baking technique</p>
         </div>
-
-        <article class="oyl-panel">
-          <div class="oyl-media">
-            <span class="oyl-id oyl-mono">SRC_01</span>
-            <img src="../media/viewer-revit.jpg?v=1" alt="">
-          </div>
-          <div class="oyl-body">
-            <span class="oyl-kick oyl-mono">IN REVIT</span>
-            <div class="oyl-hud oyl-mono"><b>.RVT</b><b>WHITE MODEL</b><b class="on">EXPORT</b></div>
-            <h3>The BIM model</h3>
-            <p>The model in Revit</p>
-          </div>
-        </article>
+        <div class="oyl-walk__win" dir="ltr">
+          <span class="oyl-id oyl-mono">WALK_01</span>
+          <button class="oyl-walk__go" type="button" data-title="oYmer BIM Viewer"
+            data-page="index.html?v=1&amp;pack=MKD_AR_ARM_M3_R24_16_-_no_Topo_PL&amp;lm=1&amp;set=final&amp;autopaint=1&amp;near=0.2&amp;far=1500&amp;rtoff=1&amp;glassexp=4&amp;rtobj=1&amp;sky=1&amp;glassrefl=1&amp;objwhite=1&amp;rtenv=1&amp;rtfill=0">
+            <img src="../media/viewer/bim/poster.jpg?v=3" alt="">
+            <span class="oyl-walk__btn oyl-walk__btn--blink">Jump in</span>
+          </button>
+        </div>
       </div>
-
-
-
-
-
-    </div>
 
       <div class="oyl-walk rev">
         <div class="oyl-walk__head">
@@ -130,10 +93,10 @@
           <p>A corridor from a real project, built straight from the BIM model with Gaussian Splatting, by our own dedicated engine - no graphics software or Splatting engines needed. Click to step in.</p>
         </div>
         <div class="oyl-walk__win" dir="ltr">
-          <span class="oyl-id oyl-mono">WALK_01</span>
-          <button class="oyl-walk__go" type="button">
+          <span class="oyl-id oyl-mono">WALK_02</span>
+          <button class="oyl-walk__go" type="button" data-title="Walk the BIM model" data-page="index.html?v=20">
             <img src="../media/viewer/walk/poster.jpg?v=2" alt="">
-            <span class="oyl-walk__btn">Step in and walk around</span>
+            <span class="oyl-walk__btn oyl-walk__btn--blink">Jump in</span>
           </button>
         </div>
       </div>
@@ -158,26 +121,37 @@
     .oylp .oyl-walk__win:fullscreen{max-height:none;aspect-ratio:auto;width:100vw;height:100vh;border-radius:0}
     .oylp .oyl-walk__win:-webkit-full-screen{max-height:none;width:100vw;height:100vh;border-radius:0}
     .oylp .oyl-walk__win iframe{z-index:4}
+    /* the page heading centered, and a thin black line between WALK_01 and WALK_02 (the PreRecordedTours divider) */
+    .oylp .phead{text-align:center}
+    .oylp .phead .lead{margin-right:auto;margin-left:auto;font-size:clamp(19px,2vw,24px);font-weight:500}
+    .oylp .oyl-walk + .oyl-walk{margin-top:64px;padding-top:40px;border-top:1.6px solid #000}
+    /* the blinking pill (his ask 2026-11-07: the "jump in" pill, blinking) - the orange glows up and down; still for reduced motion */
+    .oylp .oyl-walk__btn--blink{animation:oyl-blink 1.4s ease-in-out infinite}
+    @keyframes oyl-blink{
+      0%,100%{background:rgba(255,122,0,.22);box-shadow:0 0 0 0 rgba(255,122,0,0)}
+      50%{background:rgba(255,122,0,.62);box-shadow:0 0 26px 4px rgba(255,122,0,.55)}}
+    @media (prefers-reduced-motion:reduce){.oylp .oyl-walk__btn--blink{animation:none}}
   </style>
   <script>
     (function () {
-      var go = document.querySelector(".oyl-walk__go");
-      if (!go) return;
-      // the walk opens FULL SCREEN straight from this click (a browser allows full screen only from the click itself,
+      // every tile with a .oyl-walk__go button (WALK_01 the real viewer, WALK_02 the splat walk) works the same way:
+      // the page opens FULL SCREEN straight from this click (a browser allows full screen only from the click itself,
       // so it cannot be a new tab); Esc returns to the page. No full screen (iPhone) -> a new tab instead.
+      Array.prototype.forEach.call(document.querySelectorAll(".oyl-walk__go"), function (go) {
       go.addEventListener("click", function () {
         var win = go.parentNode, img = go.querySelector("img");
-        var url = new URL("index.html?v=20", img.src).href;      // next to the poster, so the English twin finds it too
+        var url = new URL(go.getAttribute("data-page"), img.src).href;      // next to the poster, so the English twin finds it too
         var fs = win.requestFullscreen || win.webkitRequestFullscreen;
         if (!fs) { window.open(url + "&fs=1", "_blank"); return; }
         var f = document.createElement("iframe");
-        f.src = url; f.allow = "xr-spatial-tracking; fullscreen"; f.title = "Walk the BIM model";
+        f.src = url; f.allow = "xr-spatial-tracking; fullscreen"; f.title = go.getAttribute("data-title");
         win.appendChild(f);
         try { var p = fs.call(win); if (p && p.catch) p.catch(function () {}); } catch (e) {}
         f.addEventListener("load", function () { try { f.contentWindow.focus(); } catch (e) {} });
         function out() { if (!(document.fullscreenElement || document.webkitFullscreenElement)) {
           f.remove(); document.removeEventListener("fullscreenchange", out); document.removeEventListener("webkitfullscreenchange", out); } }
         document.addEventListener("fullscreenchange", out); document.addEventListener("webkitfullscreenchange", out);
+      });
       });
     })();
   </script>
