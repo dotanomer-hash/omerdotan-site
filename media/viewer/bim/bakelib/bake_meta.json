@@ -1,10 +1,10 @@
 {
- "made": "2026-11-08T02:43:45.633Z",
+ "made": "2026-11-08T22:43:18.112Z",
  "pictures": "TN",
  "views": 732,
  "atlas": 4096,
- "texel_mm": 11.33,
- "vertices": 7062,
+ "texel_mm": 12.18,
+ "vertices": 26232,
  "clip": {
   "min": [
    -4.8520000100135805,
@@ -17,7 +17,7 @@
    13.83
   ]
  },
- "seen_pct": 24,
+ "seen_pct": 21.7,
  "frame": "glb world of MKD_AR_ARM_M3_R24_16_-_no_Topo_PL (= R26, measured)",
  "layout": "Float32: positions (3 x vertices), then uvs (2 x vertices), then normals (3 x vertices)"
 }
