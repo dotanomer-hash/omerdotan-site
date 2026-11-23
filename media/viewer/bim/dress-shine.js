@@ -61,7 +61,8 @@
               '#endif', '#include <opaque_fragment>'].join('\n')); };
           m.customProgramCacheKey = function () { return (prevKey ? prevKey.call(this) : '') + 'room' + K + 'gm'; }; m.needsUpdate = true; out.glassPanes++; }); });
       console.log('[dress] shine: ' + JSON.stringify(out)); }
-    setTimeout(run, P.delay || 7500); setTimeout(run, (P.delay || 7500) + 6000);       // once more: some paint materials are made a little later
+    if (window.__dressWhenQuiet) { window.__dressWhenQuiet(run, 0); window.__dressWhenQuiet(run, 1500); }   // a page behind a loading screen: when nothing loads any more (dress-plan.js)
+    else { setTimeout(run, P.delay || 7500); setTimeout(run, (P.delay || 7500) + 6000); }       // once more: some paint materials are made a little later
     return out;
   };
 })();

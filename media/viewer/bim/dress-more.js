@@ -34,7 +34,9 @@
       if (of.zones && of.zones.indexOf(S.zoneOf(el).id) < 0) return false;
       if (of.rooms) { var b = el.bbox, x = (b.min[0] + b.max[0]) / 2, z = (b.min[2] + b.max[2]) / 2; if (!of.rooms.some(function (n) { var r = S.rooms[n]; return r && Math.hypot(r.pos[0] - x, r.pos[2] - z) < (of.within || 6) && map.lineFree(r.pos[0], r.pos[2], x, z); })) return false; }
       return true; }
-    function each(o, fn) { var seen = 0, n = 0; E.forEach(function (el, ei) { if (!el.bbox || !matches(el, o.of, o.level)) return; var i = seen++; if (i < (o.start || 0) || (i - (o.start || 0)) % (o.every || 1) !== 0 || (o.max && n >= o.max)) return; if (fn(el, ei) !== false) n++; }); return n; }
+    function each(o, fn) { var seen = 0, n = 0; E.forEach(function (el, ei) { if (!el.bbox || !matches(el, o.of, o.level)) return; var i = seen++; if (i < (o.start || 0) || (i - (o.start || 0)) % (o.every || 1) !== 0 || (o.max && n >= o.max)) return;
+      // of.skipIds (2026-11-24): these elements get nothing - asked AFTER the counting, so every other element keeps what it had
+      if (o.of.skipIds && o.of.skipIds.indexOf(el.id) >= 0) return; if (fn(el, ei) !== false) n++; }); return n; }
     function tally(res) { var t = {}; res.answers.forEach(function (a) { if (!a.pass) t[a.id] = a.value; }); return t; }
     PLAN.more.forEach(function (o) {
       var hs = size(o), name = o.item + (o.node ? ':' + o.node.replace(o.item + '_', '') : '');

@@ -48,7 +48,7 @@
     }
     // A METAL NEEDS SOMETHING TO REFLECT: the sky alone gave a flat grey. One 360-degree picture of the building's inside,
     // taken once (P.probe = where), is the reflection of every leaf, frame and handle. Taken after the dressing is in.
-    setTimeout(function () {
+    (window.__dressWhenQuiet || function (f) { setTimeout(f, P.probeDelay || 6000); })(function () {   // a page behind a loading screen: when nothing loads any more
       try {
         var R = WM.renderer, rt = new THREE.WebGLCubeRenderTarget(P.probeSize || 512, { type: THREE.HalfFloatType }), cam = new THREE.CubeCamera(0.1, 200, rt);
         cam.position.fromArray(P.probe || [-10, 575.9, -2]); WM.scene.add(cam); var xr = R.xr.enabled, gl = window.__dressLampGlints ? window.__dressLampGlints(PLAN) : null; R.xr.enabled = false; cam.update(R, WM.scene); R.xr.enabled = xr; WM.scene.remove(cam); if (gl) gl.remove(); out.glints = gl ? gl.n : 0;   /* the lamps are in the picture: a metal needs bright things to reflect */
@@ -58,7 +58,7 @@
         ms.forEach(function (m) { m.envMap = env; m.needsUpdate = true; });
         out.probe = ms.length; console.log('[dress] doors reflect the room: ' + ms.length + ' materials');
       } catch (e) { console.error('[dress] door reflection failed', e); }
-    }, P.probeDelay || 6000);
+    });
     console.log('[dress] doors: ' + JSON.stringify(out));
     return out;
   };

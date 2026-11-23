@@ -247,6 +247,10 @@
   (function wait() {
     var ok = window.WM && window.WM.pack && window.WMPaint && window.WMPaint.entries && window.WMPaint.entries().length;
     if (ok && TMALL) { var D = window.WM.pack.meshes.get('Doors'); if (!(D && D.geometry.getAttribute('color')) && tries++ < 300) return setTimeout(wait, 200); }   // the vlm loads after the lightmap
+    // a page behind a loading screen (2026-11-24): the viewer's own autopaint is SEEN to be over (the walls carry its assignment),
+    // then 300 ms - instead of 3 s on trust
+    var FASTP = !!(window.__siteStart && window.__siteStart.waitDress);
+    if (ok && FASTP) { var Wl = window.WM.pack.meshes.get('Walls'); if (!(Wl && Wl.userData.assign && Wl.userData.assign.size) && tries++ < 300) return setTimeout(wait, 200); return setTimeout(go, 300); }
     if (ok) return setTimeout(go, 3000);
     if (++tries < 300) setTimeout(wait, 200);
   })();

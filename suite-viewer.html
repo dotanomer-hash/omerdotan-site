@@ -85,26 +85,15 @@
         </div>
       </div>
 
-      <div class="oyl-walk rev">
-        <div class="oyl-walk__head">
-          <span class="oyl-walk__kick">WALK THE BIM</span>
-          <h3>להסתובב בתוך המודל, לבחון חלל וחומרים בסביבה הוירטאולית</h3>
-          <p>מסדרון מפרויקט אמיתי, שנבנה ישירות ממודל ה-BIM בטכניקת Baking ייעודית</p>
-        </div>
-        <div class="oyl-walk__win" dir="ltr">
-          <span class="oyl-id oyl-mono">WALK_01</span>
-          <button class="oyl-walk__go" type="button" data-title="oYmer BIM Viewer"
-            data-page="adam.html?r=3">
-            <img src="media/viewer/bim/poster.jpg?v=3" alt="">
-            <video src="media/viewer/bim/adamlib/preview.mp4?v=3" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
-            <span class="oyl-walk__btn oyl-walk__btn--blink">קפצו פנימה</span>
-          </button>
-        </div>
-      </div>
+      <!-- his list 2026-11-24: what WALK_04 shows, before the splat walk -->
+      <ul class="oyl-feats rev" dir="ltr">
+        <li><b>Automated BIM model dressing by AI</b> - lights, people, decoration, geometry fixes!!</li>
+        <li><b>Real BIM properties</b> - select properties, move objects and write the changes back to Revit!</li>
+      </ul>
 
       <div class="oyl-walk rev">
         <div class="oyl-walk__head">
-          <span class="oyl-walk__kick">WALK THE BIM</span>
+          <span class="oyl-walk__kick">CASE STUDY</span>
           <h3>ללכת בתוך מודל ה-BIM - Gaussian Splatting</h3>
           <p>מסדרון מפרויקט אמיתי, שנבנה ישירות ממודל ה-BIM בטכניקת Gaussian Splatting, במנוע הייעודי שלנו - ללא צורך בתוכנות גרפיות או במנועי Splatting. לחצו כדי להיכנס.</p>
         </div>
@@ -113,22 +102,6 @@
           <button class="oyl-walk__go" type="button" data-title="Walk the BIM model" data-page="index.html?v=25">
             <img src="media/viewer/walk/poster.jpg?v=3" alt="">
             <video src="media/viewer/bim/adamlib/preview_walk.mp4?v=4" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
-            <span class="oyl-walk__btn oyl-walk__btn--blink">קפצו פנימה</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="oyl-walk rev">
-        <div class="oyl-walk__head">
-          <span class="oyl-walk__kick">WALK THE BIM</span>
-          <h3>אותו מסדרון, אותו אור - על מודל ה-BIM עצמו</h3>
-          <p>האור שחושב ל-Gaussian Splatting נאפה ישירות על הקירות, הרצפות, התקרות והדלתות של מודל ה-BIM. חד יותר, וכל אלמנט נשאר אלמנט BIM עם הנתונים שלו. לחצו כדי להיכנס.</p>
-        </div>
-        <div class="oyl-walk__win" dir="ltr">
-          <span class="oyl-id oyl-mono">WALK_03</span>
-          <button class="oyl-walk__go" type="button" data-title="oYmer BIM Viewer - baked from the splat light" data-page="baked.html?r=2">
-            <img src="media/viewer/bim/poster_baked.jpg?v=4" alt="">
-            <video src="media/viewer/bim/adamlib/preview_baked.mp4?v=2" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
             <span class="oyl-walk__btn oyl-walk__btn--blink">קפצו פנימה</span>
           </button>
         </div>
@@ -163,6 +136,12 @@
     .oylp .phead{text-align:center}
     .oylp .phead .lead{margin-left:auto;margin-right:auto;font-size:clamp(19px,2vw,24px);font-weight:500}
     .oylp .oyl-walk + .oyl-walk{margin-top:64px;padding-top:40px;border-top:1.6px solid #000}
+    /* the feature list under WALK_04 (2026-11-24), and the same black line before the splat walk */
+    .oylp .oyl-feats{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:12px}
+    .oylp .oyl-feats li{position:relative;padding:15px 20px 15px 46px;border-radius:14px;background:rgba(var(--c),.09);font:500 17px/1.55 "Rubik","Heebo",sans-serif;color:var(--ink)}
+    .oylp .oyl-feats li b{font-weight:800}
+    .oylp .oyl-feats li::before{content:"";position:absolute;left:20px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:rgb(var(--c))}
+    .oylp .oyl-feats + .oyl-walk{margin-top:64px;padding-top:40px;border-top:1.6px solid #000}
     /* the blinking pill (his ask 2026-11-07: the "jump in" pill, blinking) - the orange glows up and down; still for reduced motion */
     .oylp .oyl-walk__btn--blink{animation:oyl-blink 1.4s ease-in-out infinite}
     @keyframes oyl-blink{

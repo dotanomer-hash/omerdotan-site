@@ -108,8 +108,28 @@
     var o = new THREE.Mesh(g, material); o.matrixAutoUpdate = false; o.matrix.copy(mesh.matrixWorld); o.name = key; o.userData.dressPlan = true; o.userData.notPack = true; o.frustumCulled = false;
     window.WM.scene.add(o); OV[key] = o;
   }
+  // A PAGE BEHIND A LOADING SCREEN (2026-11-24, his words: "why it takes now so long?"): the late passes (the doors' room
+  // picture, the shine and its second run) waited on fixed timers - 6, 7.5 and 13.5 s - which a busy page stretched to 14-20 s.
+  // On such a page (window.__siteStart.waitDress) they run as soon as nothing is loading any more: every model and picture
+  // goes through three.js' loading manager, so its open loads are counted here. __dressDoneAt = the last pass is over.
+  // read when used, not when this file loads: the page's own __siteStart may be set after this file is read
+  function isFast() { return !!(window.__siteStart && window.__siteStart.waitDress); }
+  var FAST = false;
+  function quietHelper(WM) {
+    var LM = WM.THREE.DefaultLoadingManager, s0 = LM.itemStart, e0 = LM.itemEnd, open = 0, queue = [], quietSince = 0, t0 = performance.now();
+    LM.itemStart = function (u) { open++; return s0.apply(this, arguments); };
+    LM.itemEnd = function (u) { open = Math.max(0, open - 1); return e0.apply(this, arguments); };   // an error is followed by itemEnd too
+    window.__dressWhenQuiet = function (fn, after) { queue.push({ fn: fn, after: after || 0 }); };
+    (function poll() { var now = performance.now();
+      if (open > 0) quietSince = 0; else if (!quietSince) quietSince = now;
+      // quiet for 400 ms (two frames of nothing new), or 15 s whatever happens
+      if ((quietSince && now - quietSince > 400) || now - t0 > 15000) { var q = queue; queue = []; window.__dressWhenQuiet = function (fn, after) { setTimeout(fn, after || 0); };
+        q.forEach(function (it) { setTimeout(it.fn, it.after); }); return; }
+      setTimeout(poll, 100); })();
+  }
   function run() {
     var unlit = [];
+    FAST = isFast(); if (FAST) quietHelper(window.WM);
     var WM = window.WM, MATS = (WM.pack.manifest && WM.pack.manifest.materials) || [], groups = {}, parts = {}, rep = { elements: 0, partTris: 0, byZone: {}, byRule: {}, noRule: 0 };
     // LIGHT THAT IS MISSING ON OBJECTS (his words 2026-11-13: "check again for places missing lighting").
     // MEASURED (night_tests/nlight.eval.js): the floor has no dark place (4 shadows under chairs, 0.3 - 0.5 m2), but 63 objects
@@ -237,6 +257,10 @@
     // 4 s and the shine at its delay and 6 s after it; until the last of them the colours and reflections still change
     window.__dressSettleMs = Math.max(4000, PLAN.shine ? (PLAN.shine.delay || 7500) + 6000 : 0) + 800;
     window.__dressRanAt = performance.now();
+    // FAST: done = the shine's second run (quiet + 1.5 s) is over, and the base paint's and the light fill's second passes
+    // (4 s and 6 s after they were set) are over too
+    if (FAST) { var ranAt = window.__dressRanAt; window.__dressWhenQuiet(function () { var wait = Math.max(0, ranAt + 6300 - performance.now());
+      setTimeout(function () { window.__dressDoneAt = performance.now(); console.log('[dress] settled ' + Math.round(window.__dressDoneAt - ranAt) + ' ms after the run'); }, wait); }, 1800); }
   }
   var tries = 0, TM = /[?&]tmall=1/.test(location.search), readyAt = 0;
   (function wait() {
@@ -245,7 +269,7 @@
     // night bake writes. A pack without it (the Soldiers Club: UE5 light on the shell only) never became 'ready'. The wait
     // is now 10 s at most; objects without baked light take the path made for the unlit casework.
     if (ok) { var F = WM.pack.meshes.get('Furniture'), lit = !!(F && F.geometry.getAttribute('color')); if (!lit) { readyAt = readyAt || Date.now(); lit = !F || Date.now() - readyAt > 10000; } ok = lit && (!TM || !!window.__tmLook); }
-    if (ok) return setTimeout(run, 2500);
+    if (ok) return setTimeout(run, isFast() ? 300 : 2500);
     if (++tries < 600) setTimeout(wait, 250); else console.error('[dress] the viewer never got ready');
   })();
 })();

@@ -70,8 +70,9 @@
     else if (!placed) progress(88, 'Placing you in the building...');
     // the dressing: dress-plan.js sets __dressRanAt when its run is over and __dressSettleMs = how long its late passes take
     // (the second paint, the shine); until then the colours and the reflections still change on screen
-    else if (SS && SS.waitDress && (!window.__dressRanAt || now - window.__dressRanAt < (window.__dressSettleMs || 0))) {
-      var ds = window.__dressRanAt ? Math.min(1, (now - window.__dressRanAt) / (window.__dressSettleMs || 1)) : 0;
+    // (2026-11-24) dress-plan.js now says itself when the last pass is over: __dressDoneAt
+    else if (SS && SS.waitDress && !window.__dressDoneAt) {
+      var ds = window.__dressRanAt ? Math.min(1, (now - window.__dressRanAt) / 8000) : 0;
       progress(88 + ds * 4, window.__dressRanAt ? 'Finishing the materials...' : 'Dressing the building...');
     }
     else {
