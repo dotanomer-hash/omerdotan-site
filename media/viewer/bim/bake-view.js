@@ -54,6 +54,7 @@
       // 10 s and then moves the eye to ITS spot, 576 m up. For 25 s: an eye that is suddenly far from this start is put back.
       var t0 = Date.now(), iv = setInterval(function () { if (Date.now() - t0 > 25000) return clearInterval(iv); var c1 = WM.camera.position; if (Math.hypot(c1.x - S0.pos[0], c1.y - S0.pos[1], c1.z - S0.pos[2]) > 150) put0(); }, 250);
       return; }
+    if (window.__siteStart) return;   // the page names its own start (dressed.html, 2026-11-23): start.js puts the eye there
     var f = WM.floorYat ? WM.floorYat(START.x, START.z, 575.55) : null;
     if (f == null && tries < 50) { setTimeout(function () { place(tries + 1); }, 200); return; }
     if (f == null) f = 574.55;

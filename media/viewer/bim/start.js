@@ -21,6 +21,11 @@
   var START = { x: -7.6, z: 2.0 };
   var LOOK  = { x: -24.0, z: 1.2 };                      // along the corridor, west
   var FLOOR_FALLBACK = 574.55;                           // the ground floor, measured by the viewer's floor grid
+  // A PAGE MAY NAME ITS OWN START (2026-11-23, WALK_04 = dressed.html): window.__siteStart = { x, z, look: [x, z], mode: 'fly',
+  // waitDress: true } set in the page's head. waitDress = the loading screen stays until the dressing plan has run and settled
+  // (his words: "there are several seconds that things are not right yet ... make these seconds in the loading screen").
+  var SS = window.__siteStart || null;
+  if (SS) { START = { x: SS.x, z: SS.z }; if (SS.look) LOOK = { x: SS.look[0], z: SS.look[1] }; }
 
   // ---------- the loading screen ----------
   var splash = document.getElementById('siteSplash');
@@ -39,7 +44,7 @@
     setTimeout(function () { splash.classList.add('hide'); }, 250);
     setTimeout(function () { splash.remove(); }, 1300);
   }
-  setTimeout(lift, 30000);                               // never trap a visitor: 30 s and it lifts whatever the state
+  setTimeout(lift, SS && SS.waitDress ? 60000 : 30000);  // never trap a visitor: 30 s (a dressed page 60 s) and it lifts whatever the state
 
   var WM = window.WM;
   if (!WM || !WM.on) { console.error('[site-start] viewer core missing'); lift(); return; }
@@ -63,6 +68,12 @@
     else if (!shellLit()) progress(65, 'Baking the light...');
     else if (!painted()) progress(78, 'Painting the finishes...');
     else if (!placed) progress(88, 'Placing you in the building...');
+    // the dressing: dress-plan.js sets __dressRanAt when its run is over and __dressSettleMs = how long its late passes take
+    // (the second paint, the shine); until then the colours and the reflections still change on screen
+    else if (SS && SS.waitDress && (!window.__dressRanAt || now - window.__dressRanAt < (window.__dressSettleMs || 0))) {
+      var ds = window.__dressRanAt ? Math.min(1, (now - window.__dressRanAt) / (window.__dressSettleMs || 1)) : 0;
+      progress(88 + ds * 4, window.__dressRanAt ? 'Finishing the materials...' : 'Dressing the building...');
+    }
     else {
       var n = loads();
       if (n !== lastLoads) { lastLoads = n; quietSince = now; }
@@ -100,7 +111,7 @@
     if (!/^MKD_/.test(decodeURIComponent((location.search.match(/[?&]pack=([^&]+)/) || [])[1] || 'MKD_'))) { placed = true; return; }
     var f = WM.floorYat ? WM.floorYat(START.x, START.z, FLOOR_FALLBACK + 1) : null;
     // the floor grid may still be building: walk mode needs a floor under the spot, or it falls back to the pivot
-    if (f == null && tries < 50) { setTimeout(function () { place(tries + 1); }, 200); return; }
+    if (f == null && tries < 50 && !(SS && SS.mode === 'fly')) { setTimeout(function () { place(tries + 1); }, 200); return; }   // fly needs no floor
     if (f == null) f = FLOOR_FALLBACK;
     placed = true;
     // VR: the viewer's own spawn reads manifest.rooms[0].pos (the floor under you). The room list is read by
@@ -110,6 +121,15 @@
     // desktop
     var eye = (WM._move && WM._move.eye) || 1.6;
     var cam = WM.camera;
+    if (SS && SS.mode === 'fly') {
+      // FLY: the mode is set FIRST - entering fly from a spot outside the model's box spawns at the orbit pivot - then the eye is
+      // put on the spot and the fly's own yaw (0 = looking +Z, measured) turned toward LOOK
+      WM.setMoveMode('fly');
+      cam.position.set(START.x, f + eye, START.z); cam.lookAt(LOOK.x, f + eye, LOOK.z); cam.updateMatrixWorld(true);
+      if (WM._move) { WM._move.yaw = Math.atan2(LOOK.x - START.x, LOOK.z - START.z); WM._move.pitch = 0; }
+      console.log('[site-start] the page start, fly, floor ' + f.toFixed(2));
+      return;
+    }
     cam.position.set(START.x, f + eye, START.z);
     cam.lookAt(LOOK.x, f + eye, LOOK.z);
     cam.updateMatrixWorld(true);

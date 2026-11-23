@@ -233,6 +233,10 @@
     try { if (window.__dressShine && PLAN.shine) rep.shine = window.__dressShine(PLAN); } catch (e) { console.error('[dress] shine failed', e); }
     console.log('[dress] plan applied: ' + JSON.stringify(rep));
     WM.setStatus('dressing plan: ' + rep.elements + ' objects');
+    // THE RUN IS OVER, BUT NOT SETTLED (2026-11-23, for the site's loading screen - start.js): the base paint runs once more at
+    // 4 s and the shine at its delay and 6 s after it; until the last of them the colours and reflections still change
+    window.__dressSettleMs = Math.max(4000, PLAN.shine ? (PLAN.shine.delay || 7500) + 6000 : 0) + 800;
+    window.__dressRanAt = performance.now();
   }
   var tries = 0, TM = /[?&]tmall=1/.test(location.search), readyAt = 0;
   (function wait() {

@@ -5,9 +5,12 @@
 <html>
 <head>
 <script id="adam-defaults">/* WALK_04 on the site (dressed.html, a copy of bake-cmp.html, 2026-11-23): the plain address (+ ?r=N) gets the site tile's viewer query by itself - the R24 _PL pack and its look */(function(){var q=new URLSearchParams(location.search);if(q.get("pack"))return;var Q=new URLSearchParams("pack=MKD_AR_ARM_M3_R24_16_-_no_Topo_BL&lm=1&set=bl13s&autopaint=1&near=0.2&far=1500&rtoff=1&glassexp=4&sky=1&glassrefl=1&bake=0&tm=1&tmall=1&floorrefl=1&dressplan=1");q.forEach(function(v,k){Q.set(k,v);});location.replace(location.pathname+"?"+Q.toString()+location.hash);})();</script>
-<script src="tm-look.js?v=9"></script><script src="dress-questions.js?v=3"></script><script src="dress-objects.js?v=13"></script><script src="dress-floors.js?v=13"></script>
+<script src="tm-look.js?v=9"></script><script src="dress-questions.js?v=3"></script><script src="dress-objects.js?v=14"></script><script src="dress-floors.js?v=13"></script>
 <script src="dress-patch.js?v=5"></script>
-<script src="dress-more.js?v=5"></script><script src="dress-tv.js?v=3"></script><script src="dress-doors.js?v=5"></script><script src="dress-glass.js?v=4"></script><script src="dress-shine.js?v=11"></script><script src="dress-ground.js?v=4"></script><script src="dress-plan.js?v=20"></script>
+<script src="dress-more.js?v=5"></script><script src="dress-tv.js?v=3"></script><script src="dress-doors.js?v=5"></script><script src="dress-glass.js?v=4"></script><script src="dress-shine.js?v=11"></script><script src="dress-ground.js?v=4"></script><script src="dress-plan.js?v=21"></script>
+<script id="site-start">/* WALK_04 (his asks 2026-11-23): start OUTSIDE the main entrance doors (the storefront doors of the entrance lobby, x 5.37, z 9.43..11.22), looking in toward the reception counter; in FLY mode; the loading screen stays until the dressing has settled (start.js reads waitDress). Read by start.js and bake-view.js. */
+window.__siteStart = { x: 9.0, z: 10.33, look: [-3.0, 10.33], mode: "fly", waitDress: true };</script>
+<style id="site-nomenu">/* WALK_04: no menu in the window (his ask 2026-11-23) - the Enter VR button stays */ #wmTools { display: none !important; }</style>
 <script>window.BUILD_STAMP="b1518";</script>
 <meta charset="utf-8">
 <title>oYmer BIM AiLive - oYmer DecisionMaker ©</title>
@@ -19481,6 +19484,6 @@ console.log('[wm-rtnonshell] active - ?rtoff=1 disables, ?rtenv= / ?rtflat= tune
 <script></script>
 <script></script>
 <!-- plugin markers appended above by later units (one line each; each stays its own script tag) -->
-<script src="start.js?v=7"></script><script>/* WALK_03: the woman walks the splat walk's route - corridor 139, BIM z -8.17 .. 3.83 (the splat's z -3 .. -15 turned 180 about D000) */window.ADAM_LEGS=[{along:"z",from:3.83,to:-8.17,at:-1.95}];</script><script>/* 2026-11-19: the woman belongs to the first building - on another pack she is not loaded (she stood 576 m above the Soldiers Club) */if (/^MKD_/.test(decodeURIComponent((location.search.match(/[?&]pack=([^&]+)/) || [])[1] || "MKD_"))) document.write('<script src="adam.js?v=17"><\/script>');</script><script src="bake-view.js?v=8"></script><!-- LOCAL ONLY: Adam --><!-- omerdotan.com only: the old viewer start spot, DM keys lit, no Revit. See start.js -->
+<script src="start.js?v=8"></script><script>/* WALK_03: the woman walks the splat walk's route - corridor 139, BIM z -8.17 .. 3.83 (the splat's z -3 .. -15 turned 180 about D000) */window.ADAM_LEGS=[{along:"z",from:3.83,to:-8.17,at:-1.95}];</script><script>/* 2026-11-19: the woman belongs to the first building - on another pack she is not loaded (she stood 576 m above the Soldiers Club) */if (/^MKD_/.test(decodeURIComponent((location.search.match(/[?&]pack=([^&]+)/) || [])[1] || "MKD_"))) document.write('<script src="adam.js?v=17"><\/script>');</script><script src="bake-view.js?v=9"></script><!-- LOCAL ONLY: Adam --><!-- omerdotan.com only: the old viewer start spot, DM keys lit, no Revit. See start.js -->
 </body>
 </html>

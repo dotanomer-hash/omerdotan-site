@@ -1987,6 +1987,21 @@
    "role": "gardener",
    "room": "126",
    "why": "the gardener on the balcony, by the planters (2026-11-13: the balcony has a real floor, 6 cm lower than the rooms - measured)"
+  },
+  {
+   "who": "Female_Adult_06__talk",
+   "how": "standAt",
+   "role": "staff",
+   "room": "100",
+   "at": [
+    -3.98,
+    9.85
+   ],
+   "face": [
+    5.4,
+    9.85
+   ],
+   "why": "the receptionist behind the reception counter, facing whoever comes in"
   }
  ],
  "finishes": [

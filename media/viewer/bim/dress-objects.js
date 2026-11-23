@@ -313,14 +313,18 @@
         // (the room fits the person, a floor under both feet, flat, 0.45 m of elbow room, clear of doors, reachable from a
         // door, apart from others, the way stays open, faces a person or open space, the body's space is empty).
         var r = rooms[p.room]; if (!r) { Q.refuse(p.who, 'standing_person', 'room ' + p.room, 0, { no_room: 1 }); return no(p.who, 'no room ' + p.room); }
-        var OFF = [[0, 0]], done = false, tally = {}, tried = 0, last = null;   // rings 0.5 m apart out to 4 m, 12 directions each
-        for (var rr = 0.5; rr <= 4.01; rr += 0.5) for (var aa = 0; aa < 12; aa++) OFF.push([rr * Math.cos(aa * Math.PI / 6), rr * Math.sin(aa * Math.PI / 6)]);
-        for (var i = 0; i < OFF.length && !done; i++) { var x = r.pos[0] + OFF[i][0], z = r.pos[2] + OFF[i][1], lo = [x - 0.3, y0 + 0.1, z - 0.3], hi = [x + 0.3, y0 + 1.8, z + 0.3];
-          if (i && (function () { var d = Math.hypot(OFF[i][0], OFF[i][1]), w = rayWall(r.pos[0], r.pos[1] + 1.0, r.pos[2], OFF[i][0] / d, OFF[i][1] / d, 9); return w && w.d < d + 0.4; })()) continue;   // never through a wall
+        // A SPOT THE PLAN NAMES (2026-11-23, his words "add a receptionist on the reception desk"): p.at = [x, z] is the first
+        // proposal and small rings (15 cm) around it the next ones; p.face = [x, z] is where the person looks. The spot is asked
+        // the same 'standing_person' list - naming a spot never skips a question.
+        var C = p.at ? [p.at[0], p.at[1]] : [r.pos[0], r.pos[2]], STEP = p.at ? 0.15 : 0.5, FAR = p.at ? 0.61 : 4.01;
+        var OFF = [[0, 0]], done = false, tally = {}, tried = 0, last = null;   // rings 0.5 m apart out to 4 m (a named spot: 15 cm, out to 0.6 m), 12 directions each
+        for (var rr = STEP; rr <= FAR; rr += STEP) for (var aa = 0; aa < 12; aa++) OFF.push([rr * Math.cos(aa * Math.PI / 6), rr * Math.sin(aa * Math.PI / 6)]);
+        for (var i = 0; i < OFF.length && !done; i++) { var x = C[0] + OFF[i][0], z = C[1] + OFF[i][1], lo = [x - 0.3, y0 + 0.1, z - 0.3], hi = [x + 0.3, y0 + 1.8, z + 0.3];
+          if (i && (function () { var d = Math.hypot(OFF[i][0], OFF[i][1]), w = rayWall(C[0], r.pos[1] + 1.0, C[1], OFF[i][0] / d, OFF[i][1] / d, 9); return w && w.d < d + 0.4; })()) continue;   // never through a wall
           // the person faces the nearest person in sight (5 m), else the most open direction
           var best = null; spots.forEach(function (q) { if (!q.person) return; var d = Math.hypot(q.x - x, q.z - z); if (d < 5 && (!best || d < best.d) && map.lineFree(x, z, q.x, q.z)) best = { d: d, x: q.x, z: q.z }; });
-          var yaw = best ? Math.atan2(best.x - x, best.z - z) : map.mostOpen(x, z);
-          var rp = Q.ask('standing_person', { map: map, x: x, z: z, hx: 0.25, hz: 0.25, r: 0.25, yaw: yaw, facesPerson: !!best, role: p.role, roomName: r.name, box: [lo, hi] }, ctx);
+          var yaw = p.face ? Math.atan2(p.face[0] - x, p.face[1] - z) : best ? Math.atan2(best.x - x, best.z - z) : map.mostOpen(x, z);
+          var rp = Q.ask('standing_person', { map: map, x: x, z: z, hx: 0.25, hz: 0.25, r: 0.25, yaw: yaw, facesPerson: !!best || !!p.face, role: p.role, roomName: r.name, box: [lo, hi] }, ctx);
           tried++; last = rp; if (!rp.ok) { tally[rp.failed] = (tally[rp.failed] || 0) + 1; continue; }
           spots.push({ x: x, z: z, r: 0.25, person: true }); placedBoxes.push([lo, hi]);
           // ⛔ SEEN IN THE NUMBERS 2026-11-13: the balcony floor lies 6 cm under the rooms' level; the gardener was put at the level
