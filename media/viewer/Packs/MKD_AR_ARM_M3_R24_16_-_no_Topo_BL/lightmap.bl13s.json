@@ -1,0 +1,117 @@
+{
+ "version": 1,
+ "file": "lightmap.bl13s_0_0.png",
+ "scale": 3.6392996434312574,
+ "channel": 1,
+ "bakeDirect": true,
+ "exposure": 2.3,
+ "encode": "srgbK",
+ "gamma": 1,
+ "set": "bl13s",
+ "sunlitFraction": 0.16371034067430454,
+ "cats": [
+  "Walls",
+  "Floors",
+  "Casework",
+  "Ceilings",
+  "Stairs",
+  "Structural Columns",
+  "Structural Framing"
+ ],
+ "atlas": 16384,
+ "utilisation": 0.684190082423911,
+ "mmPerTexel": 12.988529430452626,
+ "bakedCoverage": 0.5378242135047913,
+ "source": "Blender 5.1 Cycles (OptiX) - the whole building at 13 mm: E's own uv1 on a 16384 atlas, 16 tiles, the job-1 scene",
+ "flippedV": false,
+ "uv1": "plane-charts",
+ "tiles": [
+  {
+   "file": "lightmap.bl13s_0_0.png",
+   "x": 0,
+   "y": 0
+  },
+  {
+   "file": "lightmap.bl13s_1_0.png",
+   "x": 4096,
+   "y": 0
+  },
+  {
+   "file": "lightmap.bl13s_2_0.png",
+   "x": 8192,
+   "y": 0
+  },
+  {
+   "file": "lightmap.bl13s_3_0.png",
+   "x": 12288,
+   "y": 0
+  },
+  {
+   "file": "lightmap.bl13s_0_1.png",
+   "x": 0,
+   "y": 4096
+  },
+  {
+   "file": "lightmap.bl13s_1_1.png",
+   "x": 4096,
+   "y": 4096
+  },
+  {
+   "file": "lightmap.bl13s_2_1.png",
+   "x": 8192,
+   "y": 4096
+  },
+  {
+   "file": "lightmap.bl13s_3_1.png",
+   "x": 12288,
+   "y": 4096
+  },
+  {
+   "file": "lightmap.bl13s_0_2.png",
+   "x": 0,
+   "y": 8192
+  },
+  {
+   "file": "lightmap.bl13s_1_2.png",
+   "x": 4096,
+   "y": 8192
+  },
+  {
+   "file": "lightmap.bl13s_2_2.png",
+   "x": 8192,
+   "y": 8192
+  },
+  {
+   "file": "lightmap.bl13s_3_2.png",
+   "x": 12288,
+   "y": 8192
+  },
+  {
+   "file": "lightmap.bl13s_0_3.png",
+   "x": 0,
+   "y": 12288
+  },
+  {
+   "file": "lightmap.bl13s_1_3.png",
+   "x": 4096,
+   "y": 12288
+  },
+  {
+   "file": "lightmap.bl13s_2_3.png",
+   "x": 8192,
+   "y": 12288
+  },
+  {
+   "file": "lightmap.bl13s_3_3.png",
+   "x": 12288,
+   "y": 12288
+  }
+ ],
+ "tile": 4096,
+ "toneMappingExposureAssumed": 1.15,
+ "made": "2026-11-12T03:33",
+ "texels": 124540270,
+ "clippedPct": 0.71,
+ "denoised": true,
+ "saturation": 0.5
+}

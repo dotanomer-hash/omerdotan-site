@@ -1,0 +1,2054 @@
+{
+ "version": 1,
+ "made": "2026-11-11",
+ "by": "AI planner (text only)",
+ "building": "Day centre for the elderly, with a dementia garden (read from the room names in the pack)",
+ "level": "קומת קרקע",
+ "levelY": 574.55,
+ "sources": [
+  "https://health.vic.gov.au/dementia-friendly-environments/interior-design",
+  "https://www.designingbuildings.co.uk/wiki/Designing_for_dementia",
+  "https://www.duluxtradepaintexpert.co.uk/content/dam/akzonobel-painters/duluxtrade/gb/en/occd-age-block-1/5f6b7cbe74c6a991557351.pdf",
+  "https://fhg.com.au/interior-design-elderly/",
+  "https://mdpi.com/2075-5309/15/5/757"
+ ],
+ "principles": [
+  "Walls stay calm and light. Colour comes in small amounts and is used for finding the way.",
+  "One accent colour per wing: the seat colour tells a visitor which wing this is.",
+  "Seats and tables must stand out from the floor (older eyes need about 3 times the contrast).",
+  "No shine: chrome becomes matte metal, glass table tops become wood, black leather becomes tan.",
+  "Wood and natural colours (the day-centre study), plants on the walls of the corridors.",
+  "Grab rails in a strong colour against the wall. Safety red stays red."
+ ],
+ "zones": [
+  {
+   "id": "women",
+   "name": "Women wing",
+   "test": {
+    "xMax": -26
+   },
+   "accent": "dr-fab-clay",
+   "family": [
+    "dr-fab-clay",
+    "dr-fab-clay-l",
+    "dr-fab-rose"
+   ]
+  },
+  {
+   "id": "women",
+   "name": "Women wing - activity rooms",
+   "test": {
+    "xMax": -20.87,
+    "zMin": 6.0
+   },
+   "accent": "dr-fab-clay",
+   "family": [
+    "dr-fab-clay",
+    "dr-fab-clay-l",
+    "dr-fab-rose"
+   ]
+  },
+  {
+   "id": "staff",
+   "name": "Entrance, staff, clinic",
+   "test": {
+    "xMin": -3.5
+   },
+   "accent": "dr-fab-sage",
+   "family": [
+    "dr-fab-sage",
+    "dr-fab-sage-l",
+    "dr-fab-olive"
+   ]
+  },
+  {
+   "id": "men",
+   "name": "Men wing",
+   "test": {
+    "zMin": 3.2
+   },
+   "accent": "dr-fab-teal",
+   "family": [
+    "dr-fab-teal",
+    "dr-fab-teal-l",
+    "dr-fab-bluegreen"
+   ]
+  },
+  {
+   "id": "public",
+   "name": "Dining, patio, corridors",
+   "test": {},
+   "accent": "dr-fab-ochre",
+   "family": [
+    "dr-fab-ochre",
+    "dr-fab-ochre-l",
+    "dr-fab-terracotta"
+   ]
+  }
+ ],
+ "woods": [
+  "dr-wood-oak",
+  "dr-wood-ash"
+ ],
+ "materials": [
+  {
+   "id": "dr-fab-clay",
+   "name": "Fabric - clay rose",
+   "color": "#dd9c84",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-teal",
+   "name": "Fabric - soft teal",
+   "color": "#7cc0ba",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-ochre",
+   "name": "Fabric - ochre",
+   "color": "#d9a548",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-sage",
+   "name": "Fabric - sage",
+   "color": "#9db584",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-linen",
+   "name": "Bed linen - warm white",
+   "color": "#ebe4d6",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_linen.jpg",
+   "detailM": 0.5,
+   "detailMean": 0.7591
+  },
+  {
+   "id": "dr-fab-clay-l",
+   "name": "Fabric - light clay",
+   "color": "#e8b8a4",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-rose",
+   "name": "Fabric - dusty rose",
+   "color": "#d99aa5",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-teal-l",
+   "name": "Fabric - light teal",
+   "color": "#a3d4cf",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-bluegreen",
+   "name": "Fabric - blue green",
+   "color": "#86b8cf",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-ochre-l",
+   "name": "Fabric - light ochre",
+   "color": "#e6c27a",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-terracotta",
+   "name": "Fabric - light terracotta",
+   "color": "#e8a57c",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-sage-l",
+   "name": "Fabric - light sage",
+   "color": "#bccca6",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-olive",
+   "name": "Fabric - soft olive",
+   "color": "#b9b47a",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-fab-greige",
+   "name": "Fabric - greige",
+   "color": "#c9bdaa",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_velvet.jpg",
+   "detailM": 0.6,
+   "detailMean": 0.7774
+  },
+  {
+   "id": "dr-wood-ash",
+   "name": "Wood - pale ash",
+   "color": "#d6bd98",
+   "rough": 0.6,
+   "detail": "../bim/bakelib/tex/_made/d_ash.jpg",
+   "detailM": 0.9,
+   "detailMean": 0.783
+  },
+  {
+   "id": "dr-handle-brass",
+   "name": "Handle - brushed brass",
+   "color": "#c9a24e",
+   "rough": 0.35
+  },
+  {
+   "id": "dr-floor-oak",
+   "name": "Floor - oak parquet (matte)",
+   "color": "#a97c50",
+   "rough": 0.6,
+   "from": "oak-60",
+   "mirror": 0.45
+  },
+  {
+   "id": "dr-floor-stone",
+   "name": "Floor - warm stone (matte)",
+   "color": "#9c9488",
+   "rough": 0.75,
+   "from": "concrete",
+   "tint": "#c9b9a0"
+  },
+  {
+   "id": "dr-floor-tile",
+   "name": "Floor - porcelain tile 60 x 60 (matte)",
+   "color": "#7d7767",
+   "rough": 0.75,
+   "tex": "bakelib/tex/_made/dr_tile_60.jpg",
+   "texM": 2.4,
+   "tileM": 0.6,
+   "mirror": true
+  },
+  {
+   "id": "dr-floor-slate",
+   "name": "Floor - grey slate 60 x 60 (balcony)",
+   "color": "#6f757a",
+   "rough": 0.85,
+   "tex": "bakelib/tex/large_floor_tiles_02/large_floor_tiles_02_diff_1k.jpg",
+   "texM": 1.8,
+   "tileM": 0.6,
+   "mirror": 0.5
+  },
+  {
+   "id": "dr-floor-paver",
+   "name": "Floor - outdoor stone paving (patio)",
+   "color": "#8a8880",
+   "rough": 0.9,
+   "tex": "bakelib/tex/large_grey_tiles/large_grey_tiles_diff_1k.jpg",
+   "texM": 2.4
+  },
+  {
+   "id": "dr-floor-gravel",
+   "name": "Ground - pale raked gravel (patio beds)",
+   "color": "#b9b6ad",
+   "rough": 1.0,
+   "tex": "bakelib/tex/gravel_floor_02/gravel_floor_02_diff_1k.jpg",
+   "texM": 1.5
+  },
+  {
+   "id": "dr-leather-tan",
+   "name": "Leather - tan",
+   "color": "#d6a36f",
+   "rough": 0.6,
+   "detail": "../bim/bakelib/tex/_made/d_leather.jpg",
+   "detailM": 0.6,
+   "detailMean": 0.7551
+  },
+  {
+   "id": "dr-wood-oak",
+   "name": "Wood - light oak",
+   "color": "#d4a86f",
+   "rough": 0.55,
+   "detail": "../bim/bakelib/tex/_made/d_oak.jpg",
+   "detailM": 0.9,
+   "detailMean": 0.7802
+  },
+  {
+   "id": "dr-wood-mid",
+   "name": "Wood - oak",
+   "color": "#a97c50",
+   "rough": 0.55,
+   "from": "oak-60",
+   "detail": "../bim/bakelib/tex/_made/d_walnut.jpg",
+   "detailM": 1.0,
+   "detailMean": 0.7836
+  },
+  {
+   "id": "dr-wood-birch",
+   "name": "Wood - birch",
+   "color": "#e0c9a2",
+   "rough": 0.6,
+   "detail": "../bim/bakelib/tex/_made/d_ash.jpg",
+   "detailM": 0.9,
+   "detailMean": 0.783
+  },
+  {
+   "id": "dr-frame",
+   "name": "Metal frame - champagne (matte)",
+   "color": "#b8a98d",
+   "rough": 0.6
+  },
+  {
+   "id": "dr-leg-bronze",
+   "name": "Metal leg - dark bronze (matte)",
+   "color": "#5a4a3a",
+   "rough": 0.6
+  },
+  {
+   "id": "dr-steel",
+   "name": "Brushed steel (matte)",
+   "color": "#a8adb2",
+   "rough": 0.5
+  },
+  {
+   "id": "dr-ceramic",
+   "name": "Ceramic - white",
+   "color": "#f3f1ec",
+   "rough": 0.25
+  },
+  {
+   "id": "dr-shell-white",
+   "name": "Chair shell - warm white",
+   "color": "#ece7dc",
+   "rough": 0.5
+  },
+  {
+   "id": "dr-plastic-dark",
+   "name": "Plastic - charcoal",
+   "color": "#2e3033",
+   "rough": 0.6
+  },
+  {
+   "id": "dr-screen",
+   "name": "Screen - off",
+   "color": "#15181c",
+   "rough": 0.25
+  },
+  {
+   "id": "dr-rail-blue",
+   "name": "Grab rail - deep blue",
+   "color": "#1f4e79",
+   "rough": 0.5
+  },
+  {
+   "id": "dr-fire-red",
+   "name": "Fire red",
+   "color": "#c8201c",
+   "rough": 0.5
+  },
+  {
+   "id": "dr-copper",
+   "name": "Copper (matte)",
+   "color": "#b87352",
+   "rough": 0.5
+  },
+  {
+   "id": "dr-mirror",
+   "name": "Mirror",
+   "color": "#c9d6dc",
+   "rough": 0.15
+  },
+  {
+   "id": "dr-laminate",
+   "name": "Laminate - warm grey",
+   "color": "#b9b2a4",
+   "rough": 0.6
+  },
+  {
+   "id": "dr-equip",
+   "name": "Equipment - light grey",
+   "color": "#d5d6d3",
+   "rough": 0.6
+  }
+ ],
+ "rules": [
+  {
+   "cat": "Furniture",
+   "name": "430x480x457mm",
+   "what": "chair",
+   "base": "dr-frame",
+   "parts": {
+    "Metal - Chrome": "dr-frame",
+    "Textile - Bamboo Weave": "$accentv"
+   },
+   "why": "chrome glares; the seat carries the wing colour"
+  },
+  {
+   "cat": "Furniture",
+   "name": "4 Seater",
+   "what": "table + 4 chairs",
+   "base": "$accent",
+   "parts": {
+    "Metal - Chrome": "dr-leg-bronze",
+    "(none)": "$chairs",
+    "Glass table top": "$wood"
+   },
+   "back": "dr-wood-oak",
+   "why": "a glass top is hard to see; oak instead"
+  },
+  {
+   "cat": "Furniture",
+   "name": "2 Seater",
+   "what": "table + 2 chairs",
+   "base": "$accent",
+   "parts": {
+    "Metal - Chrome": "dr-leg-bronze",
+    "(none)": "$chairs",
+    "Glass table top": "$wood"
+   },
+   "back": "dr-wood-oak",
+   "why": "same as the 4 seater"
+  },
+  {
+   "cat": "Furniture",
+   "name": "6 Seater",
+   "what": "table + 6 chairs",
+   "base": "$accent",
+   "parts": {
+    "Metal - Chrome": "dr-leg-bronze",
+    "(none)": "$chairs",
+    "Glass table top": "$wood"
+   },
+   "back": "dr-wood-oak",
+   "why": "same as the 4 seater"
+  },
+  {
+   "cat": "Furniture",
+   "name": "160L/90W cm 6 seats",
+   "what": "dining set",
+   "base": "dr-wood-oak",
+   "parts": {
+    "Linen, Beige": "$accent",
+    "Wood (Oak)": "dr-wood-oak",
+    "Glass": "dr-wood-oak"
+   },
+   "why": "beige on a beige floor disappears"
+  },
+  {
+   "cat": "Furniture",
+   "name": "Chair - Lobby",
+   "what": "armchair",
+   "base": "$accentv",
+   "legs": "dr-wood-mid",
+   "back": "dr-fab-greige",
+   "seatFrac": 0.55,
+   "why": "the armchair is the colour mark of the wing"
+  },
+  {
+   "cat": "Furniture",
+   "name": "Lugn Vertical",
+   "what": "louvre screen",
+   "base": "dr-wood-oak",
+   "why": "a louvred room divider (seen in the render, not a chair): light oak"
+  },
+  {
+   "cat": "Furniture",
+   "name": "M_Chair-Task (Arms) 4",
+   "what": "task chair",
+   "base": "$accentv",
+   "legs": "dr-plastic-dark",
+   "why": "staff chair"
+  },
+  {
+   "cat": "Furniture",
+   "name": "Chair",
+   "what": "shell chair",
+   "base": "dr-shell-white",
+   "parts": {
+    "White Chair": "dr-shell-white",
+    "CHAIR leather white": "$accentv",
+    "Chrome": "dr-steel",
+    "Framing": "dr-steel"
+   },
+   "why": "white shell, wing-colour pad"
+  },
+  {
+   "cat": "Furniture",
+   "name": "100L/50W cm 2",
+   "what": "bench sofa",
+   "base": "dr-leather-tan",
+   "parts": {
+    "Leather - Black": "dr-leather-tan",
+    "Metal - Chrome": "dr-leg-bronze"
+   },
+   "why": "black reads as a hole in the floor; tan is warm and visible"
+  },
+  {
+   "cat": "Furniture",
+   "match": "50\"",
+   "what": "TV",
+   "base": "dr-plastic-dark",
+   "parts": {
+    "Plastic - Black": "dr-plastic-dark",
+    "Plastic - Gray": "dr-plastic-dark",
+    "תמונת טלויזיה": "dr-screen",
+    "(none)": "dr-plastic-dark"
+   },
+   "why": "a TV stays a TV"
+  },
+  {
+   "cat": "Furniture",
+   "match": "יחיד",
+   "what": "bed",
+   "base": "dr-wood-birch",
+   "parts": {
+    "Birch": "dr-wood-birch",
+    "Linen, White": "dr-linen"
+   },
+   "why": "birch frame, warm white linen"
+  },
+  {
+   "cat": "Furniture",
+   "name": "ARM_Library_123H",
+   "what": "shelving",
+   "base": "dr-wood-ash",
+   "why": "light oak, a home feeling"
+  },
+  {
+   "cat": "Furniture",
+   "name": "Default",
+   "what": "counter",
+   "base": "dr-wood-oak",
+   "why": "oak front"
+  },
+  {
+   "cat": "Furniture",
+   "match": "L/",
+   "what": "table",
+   "base": "$wood",
+   "why": "a table top that stands out from the floor and from a white plate"
+  },
+  {
+   "cat": "Casework",
+   "name": "Desk",
+   "what": "desk",
+   "base": "dr-wood-oak",
+   "why": "light oak desk"
+  },
+  {
+   "cat": "Casework",
+   "match": "",
+   "what": "counter",
+   "base": "dr-laminate",
+   "why": "warm grey laminate"
+  },
+  {
+   "cat": "Generic Models",
+   "match": "מראה",
+   "what": "mirror",
+   "base": "dr-mirror",
+   "why": "mirror"
+  },
+  {
+   "cat": "Generic Models",
+   "match": "",
+   "what": "grab rail",
+   "base": "dr-rail-blue",
+   "why": "a rail must stand out from a light wall"
+  },
+  {
+   "cat": "Plumbing Fixtures",
+   "match": "כיבוי",
+   "what": "fire hose reel",
+   "base": "dr-fire-red",
+   "parts": {
+    "FIRE SERVICES": "dr-fire-red",
+    "FIRE SERVICES 2": "dr-ceramic",
+    "Plastic - Black": "dr-plastic-dark",
+    "Steel,Galvanized": "dr-steel",
+    "Metal - Copper": "dr-copper",
+    "(none)": "dr-fire-red"
+   },
+   "why": "safety colours are never changed"
+  },
+  {
+   "cat": "Plumbing Fixtures",
+   "match": "Soap",
+   "what": "soap dispenser",
+   "base": "dr-steel",
+   "why": "steel"
+  },
+  {
+   "cat": "Plumbing Fixtures",
+   "name": "Basin - Guest",
+   "what": "basin",
+   "base": "dr-ceramic",
+   "parts": {
+    "Robineterie": "dr-steel",
+    "Porcelain": "dr-ceramic",
+    "(none)": "dr-ceramic"
+   },
+   "why": "white basin, steel tap"
+  },
+  {
+   "cat": "Plumbing Fixtures",
+   "match": "",
+   "what": "toilet / sink",
+   "base": "dr-ceramic",
+   "why": "white ceramic"
+  },
+  {
+   "cat": "Specialty Equipment",
+   "match": "",
+   "what": "equipment",
+   "base": "dr-equip",
+   "why": "light grey"
+  },
+  {
+   "cat": "Furniture",
+   "match": "",
+   "what": "other furniture",
+   "base": "dr-wood-oak",
+   "why": "default"
+  }
+ ],
+ "objects": [
+  {
+   "item": "tea_set_01",
+   "how": "laySettings",
+   "of": {
+    "names": [
+     "4 Seater"
+    ],
+    "part": "Glass table top"
+   },
+   "zones": [
+    "public"
+   ],
+   "pieces": {
+    "plate": "tea_set_01_plate_large_circular_03",
+    "saucer": "tea_set_01_saucer_circular_03",
+    "cup": "tea_set_01_cup_small_01",
+    "teapot": "tea_set_01_teapot_01",
+    "teapotLid": "tea_set_01_teapot_01_lid",
+    "sugar": "tea_set_01_sugar_cup_01",
+    "sugarLid": "tea_set_01_sugar_cup_01_lid"
+   },
+   "why": "every dining table laid like a restaurant (his words): a plate in front of each chair, a cup on its saucer to the right, the pot in the middle"
+  },
+  {
+   "item": "potted_plant_04",
+   "how": "onTop",
+   "of": {
+    "name": "4 Seater",
+    "part": "Glass table top"
+   },
+   "zones": [
+    "women",
+    "men"
+   ],
+   "every": 2,
+   "why": "a small plant on the activity tables"
+  },
+  {
+   "item": "chess_set",
+   "how": "onTop",
+   "of": {
+    "name": "6 Seater",
+    "part": "Glass table top"
+   },
+   "zones": [
+    "men"
+   ],
+   "max": 1,
+   "why": "a game on the table invites people to sit"
+  },
+  {
+   "item": "ceramic_vase_01",
+   "how": "onTop",
+   "of": {
+    "name": "ARM_Library_123H"
+   },
+   "every": 3,
+   "why": "a home feeling on the shelving"
+  },
+  {
+   "item": "book_encyclopedia_set_01",
+   "how": "onTop",
+   "of": {
+    "name": "ARM_Library_123H"
+   },
+   "every": 3,
+   "start": 1,
+   "why": "books"
+  },
+  {
+   "item": "ceramic_vase_03",
+   "how": "onTop",
+   "of": {
+    "name": "ARM_Library_123H"
+   },
+   "every": 3,
+   "start": 2,
+   "why": "a second vase shape"
+  },
+  {
+   "item": "wall_clock",
+   "how": "onWall",
+   "height": 1.75,
+   "rooms": [
+    "117",
+    "100",
+    "129",
+    "134",
+    "128",
+    "127",
+    "136"
+   ],
+   "why": "a large clock in every room people spend the day in: it tells them what time of day it is"
+  },
+  {
+   "item": "painting",
+   "how": "painting",
+   "height": 1.5,
+   "maxW": 0.9,
+   "maxH": 0.75,
+   "border": 0.05,
+   "frameColor": "#6b4a2e",
+   "rooms": [
+    "117",
+    "129",
+    "134",
+    "128",
+    "127",
+    "136",
+    "125",
+    "135",
+    "120",
+    "124",
+    "130",
+    "100",
+    "102",
+    "118",
+    "101",
+    "108",
+    "112",
+    "123",
+    "133",
+    "111",
+    "107"
+   ],
+   "why": "his words: paintings with frames on the walls. 12 public-domain paintings (Art Institute of Chicago, CC0, his OK); a painting is a landmark that makes a room easy to remember"
+  },
+  {
+   "item": "potted_plant_01",
+   "how": "byWall",
+   "off": 0.45,
+   "rooms": [
+    "117",
+    "129",
+    "134",
+    "100",
+    "125",
+    "135"
+   ],
+   "why": "plants"
+  },
+  {
+   "item": "potted_plant_02",
+   "how": "byWall",
+   "off": 0.45,
+   "rooms": [
+    "128",
+    "127",
+    "136",
+    "120",
+    "130",
+    "118"
+   ],
+   "why": "plants"
+  },
+  {
+   "item": "wheelchair_01",
+   "how": "byWall",
+   "off": 0.7,
+   "rooms": [
+    "112",
+    "108"
+   ],
+   "why": "physiotherapy and the nurse room"
+  },
+  {
+   "item": "wicker_basket_01",
+   "how": "byWall",
+   "off": 0.35,
+   "rooms": [
+    "129",
+    "134"
+   ],
+   "why": "activity materials at hand"
+  },
+  {
+   "item": "standing_chalkboard_01",
+   "how": "byWall",
+   "off": 0.55,
+   "rooms": [
+    "117"
+   ],
+   "why": "today's menu, written large"
+  },
+  {
+   "item": "vintage_grandfather_clock_01",
+   "how": "byWall",
+   "off": 0.3,
+   "rooms": [
+    "100",
+    "125"
+   ],
+   "why": "a tall clock: a landmark at the entrance of a wing"
+  },
+  {
+   "item": "potted_plant_01",
+   "how": "byWall",
+   "off": 0.45,
+   "rooms": [
+    "139",
+    "123",
+    "133",
+    "102"
+   ],
+   "why": "more plants in the corridors and lobbies"
+  },
+  {
+   "item": "potted_plant_02",
+   "how": "byWall",
+   "off": 0.45,
+   "rooms": [
+    "101",
+    "107",
+    "111",
+    "124"
+   ],
+   "why": "plants in the staff rooms and rest rooms"
+  }
+ ],
+ "more": [
+  {
+   "item": "side_table_01",
+   "how": "beside",
+   "of": {
+    "names": [
+     "Chair - Lobby"
+    ]
+   },
+   "every": 4,
+   "start": 0,
+   "gap": 0.06,
+   "with": [
+    {
+     "item": "ceramic_vase_02",
+     "onTop": true
+    }
+   ],
+   "why": "a place to put a cup down next to a seat, and a vase: a home, not a waiting room"
+  },
+  {
+   "item": "side_table_01",
+   "how": "beside",
+   "of": {
+    "names": [
+     "Chair - Lobby"
+    ]
+   },
+   "every": 4,
+   "start": 2,
+   "gap": 0.06,
+   "with": [
+    {
+     "item": "potted_plant_04",
+     "onTop": true
+    },
+    {
+     "item": "standing_picture_frame_02",
+     "onTop": true,
+     "dx": 0.16,
+     "dz": 0.08,
+     "yaw": -25
+    }
+   ],
+   "why": "the same, with a small plant and a photo"
+  },
+  {
+   "item": "throw_pillows_01",
+   "node": "throw_pillows_01_pillow02",
+   "scale": 0.62,
+   "how": "onSeat",
+   "of": {
+    "names": [
+     "Chair - Lobby"
+    ]
+   },
+   "every": 3,
+   "start": 1,
+   "back": 0.1,
+   "why": "a pillow softens an armchair and supports the back"
+  },
+  {
+   "item": "desk_lamp_arm_01",
+   "how": "onTopOf",
+   "of": {
+    "cat": "Casework",
+    "names": [
+     "Desk"
+    ]
+   },
+   "every": 2,
+   "why": "a desk lamp on every second desk"
+  },
+  {
+   "item": "office_notepads",
+   "node": "office_notepads_a4_stack",
+   "how": "onTopOf",
+   "of": {
+    "cat": "Casework",
+    "names": [
+     "Desk"
+    ]
+   },
+   "why": "papers on a desk in use"
+  },
+  {
+   "item": "stationery_supplies",
+   "node": "stationery_supplies_pencilcup",
+   "how": "onTopOf",
+   "of": {
+    "cat": "Casework",
+    "names": [
+     "Desk"
+    ]
+   },
+   "skipCentre": true,
+   "why": "a pencil cup"
+  },
+  {
+   "item": "binder_notebook",
+   "node": "binder_notebook_closed",
+   "how": "onTopOf",
+   "of": {
+    "cat": "Casework",
+    "names": [
+     "Desk"
+    ]
+   },
+   "every": 2,
+   "start": 1,
+   "skipCentre": true,
+   "why": "a binder"
+  },
+  {
+   "item": "clipboard",
+   "how": "onTopOf",
+   "of": {
+    "cat": "Casework",
+    "names": [
+     "Desk"
+    ]
+   },
+   "every": 3,
+   "skipCentre": true,
+   "why": "a clipboard: staff carry lists"
+  },
+  {
+   "item": "medical_box",
+   "how": "onTopOf",
+   "of": {
+    "cat": "Casework",
+    "rooms": [
+     "108"
+    ],
+    "within": 5
+   },
+   "max": 1,
+   "why": "a first-aid box in the nurse room"
+  },
+  {
+   "item": "standing_picture_frame_01",
+   "how": "onTopOf",
+   "of": {
+    "names": [
+     "ARM_Library_123H"
+    ]
+   },
+   "every": 2,
+   "skipCentre": true,
+   "why": "family photos: familiar faces help memory"
+  },
+  {
+   "item": "mantel_clock_01",
+   "how": "onTopOf",
+   "of": {
+    "names": [
+     "ARM_Library_123H"
+    ]
+   },
+   "every": 5,
+   "start": 1,
+   "skipCentre": true,
+   "why": "a clock in sight"
+  },
+  {
+   "item": "ceramic_vase_04",
+   "how": "onTopOf",
+   "of": {
+    "names": [
+     "ARM_Library_123H"
+    ]
+   },
+   "every": 4,
+   "start": 3,
+   "skipCentre": true,
+   "why": "a second vase shape"
+  },
+  {
+   "item": "antique_ceramic_vase_01",
+   "how": "onTopOf",
+   "of": {
+    "names": [
+     "ARM_Library_123H"
+    ]
+   },
+   "every": 6,
+   "start": 2,
+   "skipCentre": true,
+   "why": "a larger vase as an accent"
+  },
+  {
+   "item": "wooden_bowl_01",
+   "how": "onTopOf",
+   "of": {
+    "cat": "Casework",
+    "match": "עומק",
+    "rooms": [
+     "116",
+     "115"
+    ],
+    "within": 8
+   },
+   "max": 1,
+   "with": [
+    {
+     "item": "food_apple_01",
+     "dx": -0.06,
+     "dz": 0.02,
+     "dy": 0.03
+    },
+    {
+     "item": "food_apple_01",
+     "dx": 0.05,
+     "dz": -0.05,
+     "dy": 0.03,
+     "yaw": 80
+    },
+    {
+     "item": "lemon",
+     "dx": 0.05,
+     "dz": 0.07,
+     "dy": 0.03
+    },
+    {
+     "item": "food_pears_asian_01",
+     "node": "food_pears_asian_01_a",
+     "dx": -0.02,
+     "dz": -0.08,
+     "dy": 0.03
+    }
+   ],
+   "why": "a bowl of fruit on the kitchen counter"
+  },
+  {
+   "item": "jug_01",
+   "how": "onTopOf",
+   "of": {
+    "cat": "Casework",
+    "match": "עומק",
+    "rooms": [
+     "116",
+     "115"
+    ],
+    "within": 8
+   },
+   "skipCentre": true,
+   "why": "a water jug"
+  },
+  {
+   "item": "plastic_thermos",
+   "how": "onTopOf",
+   "of": {
+    "cat": "Casework",
+    "match": "עומק",
+    "rooms": [
+     "116",
+     "115"
+    ],
+    "within": 8
+   },
+   "skipCentre": true,
+   "every": 2,
+   "why": "a thermos of tea"
+  },
+  {
+   "item": "carrot_cake",
+   "how": "onTopOf",
+   "of": {
+    "cat": "Casework",
+    "match": "עומק",
+    "rooms": [
+     "116",
+     "115"
+    ],
+    "within": 8
+   },
+   "skipCentre": true,
+   "max": 1,
+   "why": "a cake waiting to be served"
+  },
+  {
+   "item": "wooden_bowl_01",
+   "how": "onTopOf",
+   "of": {
+    "names": [
+     "6 Seater"
+    ],
+    "part": "Glass table top",
+    "zones": [
+     "women"
+    ]
+   },
+   "max": 1,
+   "with": [
+    {
+     "item": "food_apple_01",
+     "dx": -0.06,
+     "dz": 0.02,
+     "dy": 0.03
+    },
+    {
+     "item": "lemon",
+     "dx": 0.05,
+     "dz": 0.06,
+     "dy": 0.03
+    },
+    {
+     "item": "food_apple_01",
+     "dx": 0.04,
+     "dz": -0.06,
+     "dy": 0.03,
+     "yaw": 120
+    }
+   ],
+   "why": "a bowl of fruit on the women activity table"
+  },
+  {
+   "item": "sungka_board",
+   "how": "onTopOf",
+   "of": {
+    "names": [
+     "2 Seater"
+    ],
+    "part": "Glass table top",
+    "zones": [
+     "men",
+     "public"
+    ]
+   },
+   "max": 2,
+   "why": "a board game for two"
+  },
+  {
+   "item": "jug_01",
+   "how": "onTopOf",
+   "of": {
+    "names": [
+     "2 Seater"
+    ],
+    "part": "Glass table top",
+    "zones": [
+     "women"
+    ]
+   },
+   "max": 2,
+   "why": "water at hand"
+  },
+  {
+   "item": "croissant",
+   "how": "onTopOf",
+   "of": {
+    "names": [
+     "100L/45W cm 2",
+     "119L/70W cm 2",
+     "135L/60W cm"
+    ]
+   },
+   "max": 2,
+   "why": "a snack on a side table"
+  },
+  {
+   "item": "ceramic_vase_02",
+   "how": "onTopOf",
+   "of": {
+    "names": [
+     "100L/45W cm 2",
+     "119L/70W cm 2",
+     "135L/60W cm",
+     "160L/90W cm 6 seats"
+    ]
+   },
+   "skipCentre": true,
+   "why": "a vase on the low tables"
+  },
+  {
+   "how": "walk",
+   "item": "person",
+   "who": "Female_Adult_14__walk__anim",
+   "route": [
+    [
+     -18.2,
+     2.0
+    ],
+    [
+     -13.7,
+     2.0
+    ]
+   ],
+   "speed": 0.887,
+   "why": "a visitor walking slowly along the patio corridor, looking at the garden (the east half: the west half holds the armchairs, their side tables and the plants - the engine refused a route through them)"
+  },
+  {
+   "how": "walk",
+   "item": "person",
+   "who": "Medical_Female_02__walk__anim",
+   "route": [
+    [
+     -3.0,
+     -8.6
+    ],
+    [
+     -3.0,
+     8.4
+    ]
+   ],
+   "speed": 1.214,
+   "why": "a nurse on her way along the main corridor"
+  },
+  {
+   "item": "planter_box_02",
+   "how": "at",
+   "at": [
+    -43.85,
+    5.6
+   ],
+   "yaw": 90,
+   "with": [
+    {
+     "item": "anthurium_botany_01",
+     "node": "anthurium_botany_01_b",
+     "scale": 0.6,
+     "onTop": true,
+     "dy": -0.07,
+     "dx": -0.33
+    },
+    {
+     "item": "periwinkle_plant",
+     "node": "periwinkle_plant_01_LOD0",
+     "onTop": true,
+     "dy": -0.07,
+     "dx": 0.05
+    },
+    {
+     "item": "anthurium_botany_01",
+     "node": "anthurium_botany_01_c",
+     "scale": 0.6,
+     "onTop": true,
+     "dy": -0.07,
+     "dx": 0.38,
+     "yaw": 70
+    }
+   ],
+   "why": "green at the railing: the view is framed by plants"
+  },
+  {
+   "item": "planter_box_02",
+   "how": "at",
+   "at": [
+    -43.2,
+    8.5
+   ],
+   "yaw": -63,
+   "with": [
+    {
+     "item": "periwinkle_plant",
+     "node": "periwinkle_plant_02_LOD0",
+     "onTop": true,
+     "dy": -0.07,
+     "dx": -0.35
+    },
+    {
+     "item": "anthurium_botany_01",
+     "node": "anthurium_botany_01_b",
+     "scale": 0.6,
+     "onTop": true,
+     "dy": -0.07,
+     "dx": 0.0,
+     "yaw": 40
+    },
+    {
+     "item": "periwinkle_plant",
+     "node": "periwinkle_plant_01_LOD0",
+     "onTop": true,
+     "dy": -0.07,
+     "dx": 0.38
+    }
+   ],
+   "why": "the second planter"
+  },
+  {
+   "item": "planter_box_02",
+   "how": "at",
+   "at": [
+    -43.3,
+    2.6
+   ],
+   "yaw": 63,
+   "with": [
+    {
+     "item": "anthurium_botany_01",
+     "node": "anthurium_botany_01_c",
+     "scale": 0.6,
+     "onTop": true,
+     "dy": -0.07,
+     "dx": -0.35
+    },
+    {
+     "item": "periwinkle_plant",
+     "node": "periwinkle_plant_02_LOD0",
+     "onTop": true,
+     "dy": -0.07,
+     "dx": 0.02
+    },
+    {
+     "item": "anthurium_botany_01",
+     "node": "anthurium_botany_01_b",
+     "scale": 0.6,
+     "onTop": true,
+     "dy": -0.07,
+     "dx": 0.38,
+     "yaw": 200
+    }
+   ],
+   "why": "the third planter"
+  },
+  {
+   "item": "potted_plant_01",
+   "how": "at",
+   "at": [
+    -37.75,
+    7.27
+   ],
+   "why": "a tall plant beside the balcony door (1 m clear of it)"
+  },
+  {
+   "item": "potted_plant_02",
+   "how": "at",
+   "at": [
+    -42.3,
+    10.3
+   ],
+   "why": "a plant at the railing, north (the north tip was refused: it closed the way to the last table)"
+  },
+  {
+   "item": "watering_can_metal_01",
+   "how": "at",
+   "at": [
+    -43.45,
+    6.75
+   ],
+   "yaw": 35,
+   "why": "the gardener's can by the planters"
+  },
+  {
+   "item": "rock_moss_set_01",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 0,
+   "nodes": [
+    "rock_moss_set_01_rock04",
+    "rock_moss_set_01_rock02",
+    "rock_moss_set_01_rock06"
+   ],
+   "count": 3,
+   "zone": "centre",
+   "scaleMin": 0.3,
+   "scaleMax": 0.44,
+   "sink": 0.15,
+   "foot": 0.5,
+   "why": "three rocks of different heights in the middle, set into the gravel: the heart of a dry garden"
+  },
+  {
+   "item": "shrub_02",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 0,
+   "nodes": [
+    "shrub_02_a",
+    "shrub_02_d"
+   ],
+   "count": 2,
+   "zone": "edge",
+   "scaleMin": 0.36,
+   "scaleMax": 0.46,
+   "foot": 0.45,
+   "why": "two rounded shrubs behind the rocks"
+  },
+  {
+   "item": "fern_02",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 0,
+   "nodes": [
+    "fern_02_b",
+    "fern_02_c",
+    "fern_02_a"
+   ],
+   "count": 4,
+   "zone": "any",
+   "scaleMin": 0.7,
+   "scaleMax": 1.0,
+   "foot": 0.5,
+   "why": "ferns at the foot of the rocks"
+  },
+  {
+   "item": "grass_medium_01",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 0,
+   "nodes": [
+    "grass_medium_01_tall_a_LOD0",
+    "grass_medium_01_large_a_LOD0",
+    "grass_medium_01_mid_a_LOD0",
+    "grass_medium_01_tall_b_LOD0"
+   ],
+   "count": 7,
+   "zone": "any",
+   "scaleMin": 1.3,
+   "scaleMax": 1.9,
+   "foot": 0.5,
+   "why": "tufts of grass in the gravel"
+  },
+  {
+   "item": "wooden_lantern_01",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 0,
+   "count": 1,
+   "zone": "edge",
+   "scale": 1.0,
+   "foot": 0.8,
+   "seed": 5,
+   "why": "a lantern at the edge of the bed (0.5 m: at 0.8 m it looked like a box in my picture)"
+  },
+  {
+   "item": "rock_moss_set_01",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 1,
+   "nodes": [
+    "rock_moss_set_01_rock03",
+    "rock_moss_set_01_rock05"
+   ],
+   "count": 2,
+   "zone": "any",
+   "scaleMin": 0.2,
+   "scaleMax": 0.28,
+   "sink": 0.15,
+   "foot": 0.5,
+   "why": "two rocks"
+  },
+  {
+   "item": "shrub_02",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 1,
+   "nodes": [
+    "shrub_02_c"
+   ],
+   "count": 1,
+   "zone": "centre",
+   "scale": 0.42,
+   "foot": 0.4,
+   "why": "one taller shrub between the two tables: it screens them from each other"
+  },
+  {
+   "item": "fern_02",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 1,
+   "nodes": [
+    "fern_02_c",
+    "fern_02_a"
+   ],
+   "count": 2,
+   "zone": "any",
+   "scaleMin": 0.7,
+   "scaleMax": 0.9,
+   "foot": 0.5,
+   "seed": 3,
+   "why": "ferns"
+  },
+  {
+   "item": "celandine_01",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 1,
+   "nodes": [
+    "celandine_01_a_LOD0",
+    "celandine_01_c_LOD0",
+    "celandine_01_b_LOD0"
+   ],
+   "count": 3,
+   "zone": "any",
+   "scaleMin": 1.2,
+   "scaleMax": 1.6,
+   "foot": 0.5,
+   "why": "small yellow flowers"
+  },
+  {
+   "item": "rock_moss_set_01",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 2,
+   "nodes": [
+    "rock_moss_set_01_rock01",
+    "rock_moss_set_01_rock03"
+   ],
+   "count": 2,
+   "zone": "any",
+   "scaleMin": 0.14,
+   "scaleMax": 0.2,
+   "sink": 0.12,
+   "foot": 0.55,
+   "seed": 2,
+   "why": "two low rocks in the narrow west bed"
+  },
+  {
+   "item": "shrub_03",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 2,
+   "nodes": [
+    "shrub_03_a",
+    "shrub_03_b",
+    "shrub_03_c"
+   ],
+   "count": 3,
+   "zone": "any",
+   "scaleMin": 1.3,
+   "scaleMax": 1.8,
+   "foot": 0.6,
+   "why": "low plants"
+  },
+  {
+   "item": "grass_medium_01",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 2,
+   "nodes": [
+    "grass_medium_01_tall_a_LOD0",
+    "grass_medium_01_mid_a_LOD0",
+    "grass_medium_01_large_a_LOD0"
+   ],
+   "count": 4,
+   "zone": "any",
+   "scaleMin": 1.3,
+   "scaleMax": 1.8,
+   "foot": 0.5,
+   "seed": 4,
+   "why": "grasses"
+  },
+  {
+   "item": "Lantern_01",
+   "how": "bed",
+   "floor": "patio-140",
+   "bed": 2,
+   "count": 1,
+   "zone": "edge",
+   "scale": 1.6,
+   "foot": 0.8,
+   "seed": 9,
+   "why": "a small lantern"
+  }
+ ],
+ "doors": {
+  "leafMetal": 0.85,
+  "leafRough": 0.1,
+  "frameMetal": 1.0,
+  "frameRough": 0.05,
+  "env": 1.2,
+  "probe": [
+   -12.0,
+   575.9,
+   -1.0
+  ],
+  "probeDelay": 6000,
+  "handle": "dr-handle-brass",
+  "handleMetal": 0.35,
+  "handleRough": 0.35
+ },
+ "screens": {
+  "wallTV": "50\" TV",
+  "monitor": "50\"",
+  "screenPart": "תמונת טלויזיה",
+  "glow": 0.9,
+  "reels": [
+   "bakelib/tv/site_hero.mp4",
+   "bakelib/tv/soldiers_club.mp4"
+  ],
+  "reelRooms": [
+   "מבואת",
+   "אגף",
+   "קבלה"
+  ],
+  "greeting": "Good day, welcome to the day centre",
+  "activities": [
+   [
+    900,
+    "Morning coffee"
+   ],
+   [
+    1000,
+    "Exercise"
+   ],
+   [
+    1130,
+    "Music"
+   ],
+   [
+    1230,
+    "Lunch"
+   ],
+   [
+    1400,
+    "Garden walk"
+   ],
+   [
+    1530,
+    "Tea and games"
+   ]
+  ]
+ },
+ "floors": [
+  {
+   "id": "dining-117",
+   "seed": [
+    -16.3,
+    -10.2
+   ],
+   "maxArea": 200,
+   "finish": "dr-floor-oak",
+   "why": "his words: wood in the dining hall, from the doors"
+  },
+  {
+   "id": "balcony-126",
+   "seed": [
+    -40.914,
+    5.943
+   ],
+   "maxArea": 200,
+   "finish": "dr-floor-slate",
+   "ownGrid": true,
+   "why": "his words: the balcony should be another stone, slate"
+  },
+  {
+   "id": "patio-140",
+   "level": 570.59,
+   "seed": [
+    -17.227,
+    -1.603
+   ],
+   "maxArea": 500,
+   "finish": "dr-floor-paver",
+   "noDoor": true,
+   "bedFinish": "dr-floor-gravel",
+   "beds": [
+    {
+     "x": -14.8,
+     "z": -2.4,
+     "rx": 2.2,
+     "rz": 1.15,
+     "rot": -0.4777
+    },
+    {
+     "x": -11.35,
+     "z": -2.7,
+     "rx": 0.65,
+     "rz": 1.3,
+     "rot": 0
+    },
+    {
+     "x": -20.2,
+     "z": -1.0,
+     "rx": 1.5,
+     "rz": 0.5,
+     "rot": -0.4777
+    }
+   ],
+   "why": "his words: the patio floor should be external stone with plants, like a Japanese garden"
+  }
+ ],
+ "alsoPaint": [
+  {
+   "level": "קומת מרתף",
+   "box": [
+    -24.7,
+    -10.4,
+    -6.9,
+    0.6
+   ],
+   "why": "the three table sets that stand in the patio"
+  }
+ ],
+ "patches": [
+  {
+   "kind": "ceiling",
+   "near": [
+    -25.9,
+    0.5
+   ],
+   "why": "the gypsum ceiling is cut out 0.8 x 0.52 m larger than the lamella panel, by the column at the west tip of the patio"
+  }
+ ],
+ "floorBreaks": [
+  {
+   "at": [
+    -24.66,
+    0.3,
+    -24.66,
+    3.1
+   ],
+   "why": "the patio corridor meets the turned lobby 125: each side is tiled along its own walls"
+  }
+ ],
+ "floorDefault": {
+  "finish": "dr-floor-tile",
+  "levels": [
+   574.55
+  ],
+  "minArea": 1.5,
+  "why": "his words: the same tiles on all the floors, aligned to one of the walls, the first tile calculated"
+ },
+ "darkFill": 0.55,
+ "shine": {
+  "maxRough": 0.5,
+  "env": 1.0,
+  "metalEnv": 1.2,
+  "metalRough": 0.08,
+  "probe": [
+   -12.0,
+   575.9,
+   -1.0
+  ],
+  "delay": 7500,
+  "glassRoom": 0.35,
+  "glassMirror": {
+   "f0": 0.08,
+   "k": 0.6,
+   "scale": 0.5,
+   "maxDist": 25
+  }
+ },
+ "lightFill": {
+  "wallShare": 0.9,
+  "floorShare": 0.75,
+  "lamps": "bakelib/tm/bl_lights.json"
+ },
+ "peopleMove": true,
+ "roles": {
+  "nurse": [
+   "אחות",
+   "אוכל",
+   "פעילות",
+   "תעסוקה",
+   "מנוחה",
+   "טיפוח",
+   "פיזותרפיה",
+   "אגף",
+   "מבואת"
+  ],
+  "doctor": [
+   "אחות",
+   "צוות",
+   "פיזותרפיה",
+   "טיפוח"
+  ],
+  "cook": [
+   "מטבח",
+   "אוכל",
+   "מזווה"
+  ],
+  "gardener": [
+   "מרפסת",
+   "פטיו",
+   "גינה",
+   "חצר",
+   "גג"
+  ],
+  "visitor": [
+   "אוכל",
+   "פעילות",
+   "תעסוקה",
+   "מנוחה",
+   "אגף",
+   "מבואת",
+   "קבלה",
+   "מסדרון"
+  ],
+  "staff": [
+   "קבלה",
+   "מבואת",
+   "מנהל",
+   "מזכירה",
+   "צוות",
+   "אגף",
+   "מסדרון"
+  ]
+ },
+ "people": [
+  {
+   "who": "Male_Adult_03__sit_table",
+   "how": "sitAt",
+   "of": {
+    "name": "4 Seater"
+   },
+   "zones": [
+    "public"
+   ],
+   "set": 0,
+   "chair": 0,
+   "why": "visitors at a laid table in the dining hall"
+  },
+  {
+   "who": "Female_Adult_02__sit_table",
+   "how": "sitAt",
+   "of": {
+    "name": "4 Seater"
+   },
+   "zones": [
+    "public"
+   ],
+   "set": 0,
+   "chair": 2,
+   "why": "same table, the chair opposite"
+  },
+  {
+   "who": "Male_Adult_13__sit_table",
+   "how": "sitAt",
+   "of": {
+    "name": "4 Seater"
+   },
+   "zones": [
+    "public"
+   ],
+   "set": 2,
+   "chair": 0,
+   "why": "a second table"
+  },
+  {
+   "who": "Female_Adult_06__sit_table",
+   "how": "sitAt",
+   "of": {
+    "name": "4 Seater"
+   },
+   "zones": [
+    "public"
+   ],
+   "set": 2,
+   "chair": 2,
+   "why": "same table, the chair opposite"
+  },
+  {
+   "who": "Male_Adult_14__sit_chair",
+   "how": "sitAt",
+   "of": {
+    "name": "430x480x457mm"
+   },
+   "zones": [
+    "men"
+   ],
+   "set": 0,
+   "why": "a man resting in the men wing"
+  },
+  {
+   "who": "Female_Adult_09__sit_chair",
+   "how": "sitAt",
+   "of": {
+    "name": "430x480x457mm"
+   },
+   "zones": [
+    "women"
+   ],
+   "set": 0,
+   "why": "a woman resting in the women wing"
+  },
+  {
+   "who": "Medical_Female_01__talk",
+   "how": "standAt",
+   "role": "nurse",
+   "room": "117",
+   "why": "the nurse with the visitors in the dining hall"
+  },
+  {
+   "who": "Medical_Male_03__talk",
+   "how": "standAt",
+   "role": "doctor",
+   "room": "108",
+   "why": "the doctor in the nurse room"
+  },
+  {
+   "who": "Chef_Female_01__talk",
+   "how": "standAt",
+   "role": "cook",
+   "room": "116",
+   "why": "the cook in the warming kitchen"
+  },
+  {
+   "who": "Male_Adult_02__sit_table",
+   "how": "sitAt",
+   "of": {
+    "name": "4 Seater"
+   },
+   "zones": [
+    "public"
+   ],
+   "set": 5,
+   "chair": 0,
+   "why": "a visitor at a third table of the dining hall"
+  },
+  {
+   "who": "Male_Adult_07__sit_chair",
+   "how": "sitAt",
+   "of": {
+    "name": "430x480x457mm"
+   },
+   "zones": [
+    "public",
+    "staff"
+   ],
+   "set": 1,
+   "why": "a man waiting on a chair"
+  },
+  {
+   "who": "Female_Adult_07__talk",
+   "how": "standAt",
+   "role": "staff",
+   "room": "100",
+   "why": "the social worker at the entrance, welcoming"
+  },
+  {
+   "who": "Gardener_Male_01__talk",
+   "how": "standAt",
+   "role": "gardener",
+   "room": "126",
+   "why": "the gardener on the balcony, by the planters (2026-11-13: the balcony has a real floor, 6 cm lower than the rooms - measured)"
+  }
+ ],
+ "finishes": [
+  {
+   "where": "Floors - every room people walk freely (corridors, dining, activity, lobbies, rest rooms)",
+   "finish": "oak-60",
+   "lrv": 21.9,
+   "note": "MATTE (no floor mirror). One floor with no change at the doors: a change reads as a step."
+  },
+  {
+   "where": "Floors - wet rooms (toilets, showers, kitchen, laundry)",
+   "finish": "concrete",
+   "lrv": 30.0,
+   "note": "stands for a matte non-slip tile in a tone close to the oak. NOT the polished tile (LRV 54, shiny)."
+  },
+  {
+   "where": "Walls - everywhere",
+   "finish": "lime-stucco",
+   "lrv": 81.8,
+   "note": "calm warm white, matte"
+  },
+  {
+   "where": "Walls - the end wall of the women wing lobby",
+   "finish": "clay-paint",
+   "lrv": 41.4,
+   "note": "the wing colour, as a landmark"
+  },
+  {
+   "where": "Walls - the end wall of the men wing lobby",
+   "finish": "NEW paint - soft teal #7cc0ba",
+   "lrv": 45.5,
+   "note": "the wing colour"
+  },
+  {
+   "where": "Walls - one wall of the dining hall",
+   "finish": "sand-render",
+   "lrv": 59.2,
+   "note": "warm, textured"
+  },
+  {
+   "where": "Walls - behind every toilet and basin",
+   "finish": "clay-paint",
+   "lrv": 41.4,
+   "note": "white ceramic disappears on a white wall"
+  },
+  {
+   "where": "Walls - corridor 139",
+   "finish": "keep the stone",
+   "lrv": 35,
+   "note": "he is satisfied with it"
+  },
+  {
+   "where": "Doors - toilets",
+   "finish": "NEW paint - deep blue #1f4e79 (the grab-rail colour)",
+   "lrv": 7.1,
+   "note": "the same strong colour on every toilet door in the building"
+  },
+  {
+   "where": "Doors - staff and storage",
+   "finish": "lime-stucco",
+   "lrv": 81.8,
+   "note": "the wall colour: they do not call for attention"
+  }
+ ]
+}

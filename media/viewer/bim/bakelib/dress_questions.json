@@ -1,0 +1,144 @@
+{
+ "law": "D1 - nothing is placed before its questions are answered by measurement (signed by Omer, 2026-11-12)",
+ "how": "Per KIND of item: the questions a person walking in would ask. 'measure' names the measurement in dress-questions.js; min / max / is = the answer that passes. A question with no answer fails and the item is refused. stage 'after' = a question for the eye, answered from a picture after placing (the automatic eye is not built yet). Every fault found later adds a question here.",
+ "kinds": {
+  "standing_person": [
+   {"id": "room_fits", "text": "Does the room fit the person (a cook in a kitchen, a gardener outdoors)?", "measure": "room_fit", "is": true},
+   {"id": "floor_under", "text": "Is there a floor under both feet, at this room's level?", "measure": "floor_cover", "min": 1},
+   {"id": "floor_flat", "text": "Is the floor flat there (no step, ramp or stair)?", "measure": "floor_spread", "max": 0.02},
+   {"id": "elbow_room", "text": "Is the nearest wall, glass or furniture at least 0.45 m away?", "measure": "clear", "min": 0.45},
+   {"id": "door_clear", "text": "Is the person clear of every door and its swing (0.9 m)?", "measure": "door_dist", "min": 0.9},
+   {"id": "reach", "text": "Can a person walk to this spot from a door?", "measure": "reach", "is": true},
+   {"id": "apart", "text": "Is every other person and floor item at least 0.5 m away?", "measure": "apart", "min": 0.5},
+   {"id": "way_open", "text": "Does the person leave the way open (not cut the walking area in two)?", "measure": "way_split", "max": 0},
+   {"id": "faces", "text": "Does the person face another person, or at least 1 m of open space (not a wall)?", "measure": "open_ahead", "min": 1.0},
+   {"id": "space_free", "text": "Is the space empty from the feet to the head, against the real surfaces?", "measure": "hits", "max": 0},
+   {"id": "lit", "stage": "after", "text": "Is the spot lit, not a black corner?"},
+   {"id": "natural", "stage": "after", "text": "Does the person look natural there in a picture?"}
+  ],
+  "seated_person": [
+   {"id": "chair_found", "text": "Is there a real chair there (found by its shape, not by its name)?", "measure": "given", "is": true},
+   {"id": "chair_free", "text": "Is the chair free (nobody sits on it already)?", "measure": "given", "is": true},
+   {"id": "chair_on_floor", "text": "Does the chair stand on the floor (within 3 cm)?", "measure": "given", "max": 0.03},
+   {"id": "seat_height", "text": "Is there a seat under the body, 0.30 - 0.62 m above the floor?", "measure": "given", "min": 0.30, "max": 0.62},
+   {"id": "floor_under", "text": "Is there a floor under the chair?", "measure": "floor_cover", "min": 1},
+   {"id": "apart", "text": "Is every other person at least 0.4 m away?", "measure": "apart", "min": 0.4},
+   {"id": "torso_free", "text": "Is the space of the upper body empty (no wall, column or shelf through it)?", "measure": "hits", "max": 0},
+   {"id": "natural", "stage": "after", "text": "Does the person look seated on the chair in a picture (not sunk, not hovering)?"}
+  ],
+  "floor_item": [
+   {"id": "size_sane", "text": "Is the item one thing of a normal size (not a kit of many, under 1.5 m wide)?", "measure": "size_max", "max": 1.5},
+   {"id": "wall_found", "text": "Is there a flat piece of wall to stand by?", "measure": "given", "is": true},
+   {"id": "floor_under", "text": "Is there a floor under the whole item?", "measure": "floor_cover", "min": 1},
+   {"id": "floor_flat", "text": "Is the floor flat under it?", "measure": "floor_spread", "max": 0.02},
+   {"id": "door_clear", "text": "Is it clear of every door and its swing (0.9 m)?", "measure": "door_dist", "min": 0.9},
+   {"id": "apart", "text": "Is every person and other floor item at least 0.3 m away?", "measure": "apart", "min": 0.3},
+   {"id": "reach", "text": "Can a person walk up to it from a door?", "measure": "reach", "is": true},
+   {"id": "chair_room", "text": "Is the nearest chair or table at least 0.4 m from it (room to pull a chair back)? Added 2026-11-12: a plant stood between the chairs of two tables.", "measure": "furniture_gap", "min": 0.4},
+   {"id": "way_open", "text": "Does it leave the way open (not cut the walking area in two)?", "measure": "way_split", "max": 0},
+   {"id": "space_free", "text": "Is the space the item fills empty, against the real surfaces?", "measure": "hits", "max": 0},
+   {"id": "natural", "stage": "after", "text": "Does it look right there in a picture?"}
+  ],
+  "wall_item": [
+   {"id": "height", "text": "Is its centre at eye level (1.2 - 1.9 m)?", "measure": "given", "min": 1.2, "max": 1.9},
+   {"id": "wall_found", "text": "Is there a wall in front of the room point, within 4.5 m?", "measure": "given", "is": true},
+   {"id": "wall_square", "text": "Is the wall seen straight on (not at an angle)?", "measure": "given", "min": 0.97},
+   {"id": "wall_flat", "text": "Is it one flat wall under the whole item (5 rays within 4 cm - the second building's walls carry a 3.4 cm step of their finish layer on every wall)?", "measure": "given", "max": 0.04},
+   {"id": "not_on_opening", "text": "Is it clear of every door, window and glass panel?", "measure": "given", "is": true},
+   {"id": "apart", "text": "Is it clear of the other things already hung there?", "measure": "given", "is": true},
+   {"id": "nothing_in_front", "text": "Is the 25 cm in front of the wall empty there (no cabinet, TV or shelf)?", "measure": "hits", "max": 0},
+   {"id": "natural", "stage": "after", "text": "Does it hang straight and at a sensible place in a picture?"}
+  ],
+  "table_top_item": [
+   {"id": "top_found", "text": "Does the furniture have the top the plan names?", "measure": "given", "is": true},
+   {"id": "top_flat", "text": "Is the top flat under the item's base (within 2 cm)?", "measure": "given", "max": 0.02},
+   {"id": "apart", "text": "Is it clear of the other things already on this top?", "measure": "given", "is": true},
+   {"id": "head_room", "text": "Is the space above the top empty up to the item's height (no shelf above)?", "measure": "hits", "max": 0},
+   {"id": "natural", "stage": "after", "text": "Does it look right on this top in a picture?"}
+  ],
+  "table_setting": [
+   {"id": "chairs_found", "text": "Does the table have chairs (found by their shape)?", "measure": "given", "min": 1},
+   {"id": "every_chair_reaches", "text": "Does every chair reach the table top (how many do not)?", "measure": "given", "max": 0},
+   {"id": "setting_per_chair", "text": "Is there one setting in front of EVERY chair?", "measure": "given", "is": true},
+   {"id": "pieces_on_top", "text": "Is every piece fully on the table top (how many hang over the edge)?", "measure": "given", "max": 0},
+   {"id": "pieces_overlap", "text": "Does any piece sit inside another piece (how many pairs)?", "measure": "given", "max": 0},
+   {"id": "top_empty", "text": "Is the table top empty in the model (nothing already on it)?", "measure": "hits", "max": 0},
+   {"id": "natural", "stage": "after", "text": "Does the table look laid like in a restaurant in a picture?"}
+  ],
+  "floor_finish": [
+   {"id": "seed_on_floor", "text": "Is there a real floor under the point the plan names, and is the point free of walls?", "measure": "given", "is": true},
+   {"id": "ends_at_walls_and_doors", "text": "Does the finish end ONLY at walls and doors (how many metres of its edge lie in open floor)? Added 2026-11-12: the dining oak was cut by a box, 9.2 m of its edge lay in open floor.", "measure": "given", "max": 0},
+   {"id": "door_found", "text": "Does the finish reach a door (at least 0.6 m of its edge is a door)? A floor with no door is a closed pocket.", "measure": "given", "min": 0.6},
+   {"id": "no_leak", "text": "Is the area under the largest area the plan allows (the fill did not leak through an open door into the building)?", "measure": "given", "is": true},
+   {"id": "light_under", "text": "Does at least 98% of the finish lie on a floor surface that has baked light?", "measure": "given", "min": 0.98},
+   {"id": "natural", "stage": "after", "text": "Does the change of floor look right at every door in a picture?"}
+  ],
+  "floor_grid": [
+   {"id": "main_wall_length", "text": "Is there one straight wall face at least 1.5 m long to lay the tiles from?", "measure": "given", "min": 1.5},
+   {"id": "walls_agree", "text": "Do at least half of the walls of the room (by length) run along the tile grid or square to it?", "measure": "given", "min": 0.5},
+   {"id": "joint_on_wall", "text": "Does a tile joint lie on the face of that wall, so a whole tile starts there (distance in metres)?", "measure": "given", "max": 0.005},
+   {"id": "natural", "stage": "after", "text": "Do the joints run parallel to the walls in a picture, with no thin sliver of tile at the main wall?"}
+  ],
+  "ceiling_patch": [
+   {"id": "outline_found", "text": "Does the outline of one ceiling element surround the point (its own free edges, as a closed loop)?", "measure": "given", "is": true},
+   {"id": "truly_open", "text": "Is part of that outline truly open - no other ceiling covers it (square metres, at least 0.05)?", "measure": "given", "min": 0.05},
+   {"id": "small", "text": "Is the open part small (under 2 m2)? A large opening is a design (a void, a skylight), not a slip.", "measure": "given", "max": 2.0},
+   {"id": "material_found", "text": "Is the material of the ceiling around it known, with its baked light?", "measure": "given", "is": true},
+   {"id": "light_agrees", "text": "Is the baked light at the corners of the outline alike (the spread, under 0.12)? A patch between very different lights would show.", "measure": "given", "max": 0.12},
+   {"id": "natural", "stage": "after", "text": "Is the closed place unseen as a patch in a picture from below?"}
+  ],
+  "free_floor_item": [
+   {"id": "floor_under", "text": "Is there a floor under the whole item?", "measure": "floor_cover", "min": 1},
+   {"id": "floor_flat", "text": "Is the floor flat under it?", "measure": "floor_spread", "max": 0.02},
+   {"id": "door_clear", "text": "Is it clear of every door and its swing (0.9 m)?", "measure": "door_dist", "min": 0.9},
+   {"id": "apart", "text": "Is every person and other floor item at least 0.15 m away?", "measure": "apart", "min": 0.15},
+   {"id": "reach", "text": "Can a person walk up to it from a door?", "measure": "reach", "is": true},
+   {"id": "way_open", "text": "With everything already placed, does it leave a way 0.9 m wide open (not cut the walking area in two)? Sharpened 2026-11-13: a side table and a plant across a corridor left 0.5 m.", "measure": "way_split", "max": 0},
+   {"id": "space_free", "text": "Is the space the item fills empty, against the real surfaces (its own box, turned as it is turned)?", "measure": "hits", "max": 0},
+   {"id": "natural", "stage": "after", "text": "Does it look right there in a picture?"}
+  ],
+  "seat_item": [
+   {"id": "seat_found", "text": "Is there a seat surface under the spot?", "measure": "given", "is": true},
+   {"id": "seat_height", "text": "Is the seat 0.30 - 0.62 m above the floor (a seat, not an armrest or a table)?", "measure": "given", "min": 0.30, "max": 0.62},
+   {"id": "chair_free", "text": "Is the chair empty (nobody sits there, nothing lies there already)?", "measure": "given", "is": true},
+   {"id": "natural", "stage": "after", "text": "Does it lie on the seat in a picture (not sunk into it, not hovering)?"}
+  ],
+  "garden_item": [
+   {"id": "in_bed", "text": "Does the piece lie inside its planting bed (not over the paving)?", "measure": "given", "is": true},
+   {"id": "floor_under", "text": "Is there ground under it?", "measure": "floor_cover", "min": 1},
+   {"id": "door_clear", "text": "Is it clear of every door (0.9 m)?", "measure": "door_dist", "min": 0.9},
+   {"id": "apart", "text": "Does it stand clear of the other pieces of the garden (the gap between their footprints, in metres)?", "measure": "given", "min": 0},
+   {"id": "space_free", "text": "Is its space empty in the model (no table, chair or column through it)?", "measure": "hits", "max": 0},
+   {"id": "natural", "stage": "after", "text": "Does the bed read as a composed garden in a picture from above and from the side?"}
+  ],
+  "walking_person": [
+   {"id": "route_long", "text": "Is the route at least 4 m long (shorter reads as pacing on the spot)?", "measure": "given", "min": 4},
+   {"id": "route_on_floor", "text": "Is every 25 cm of the route on floor a person can walk on (share of the samples)?", "measure": "given", "min": 1},
+   {"id": "route_free", "text": "Is every leg of the route a free straight line (no wall, glass, closed door or furniture across it)?", "measure": "given", "is": true},
+   {"id": "apart", "text": "Does the route pass every placed person and floor item by at least 0.3 m?", "measure": "given", "min": 0.3},
+   {"id": "natural", "stage": "after", "text": "Do the feet stay on the floor and the turns look natural in a picture?"}
+  ],
+  "light_fill": [
+   {"id": "no_lamp", "text": "Did the bake have NO ceiling lamp in this room (how many lamps)?", "measure": "given", "max": 0},
+   {"id": "dark", "text": "Is the room truly dark - its WALLS under 0.6 of the middle light of the walls of the building?", "measure": "given", "max": 0.6},
+   {"id": "indoors", "text": "Is the room under a roof (the share of it that has a ceiling)? A terrace is lit by the sky.", "measure": "given", "min": 0.7},
+   {"id": "a_room", "text": "Is it a room, not a shaft or a cupboard (at least 2.5 m2)?", "measure": "given", "min": 2.5},
+   {"id": "natural", "stage": "after", "text": "Does the room read as lit, with no bright edge at its door, in a picture?"}
+  ],
+  "ground_finish": [
+   {"id": "has_ground", "text": "Does the model have a terrain (how many triangles)?", "measure": "given", "min": 1},
+   {"id": "has_light", "text": "Is there a baked light picture of the ground - sun, sky and shadows - for this light set?", "measure": "given", "is": true},
+   {"id": "natural", "stage": "after", "text": "Does the ground read as lawn, road and paving with real shadows in a picture from above and at eye height?"}
+  ],
+  "ground_item": [
+   {"id": "on_ground", "text": "Is there ground under it?", "measure": "given", "is": true},
+   {"id": "its_ground", "text": "Is it the ground this thing grows or stands on (a shrub on the lawn, not on a road)?", "measure": "given", "is": true},
+   {"id": "not_steep", "text": "Is the ground flat enough there (its slope in degrees)?", "measure": "given", "max": 25},
+   {"id": "clear", "text": "Does it stand clear of the building and of everything in the model - walls, roofs above, benches - by the distance the plan asks?", "measure": "given", "is": true},
+   {"id": "near_enough", "text": "Is it as near to the building as the plan asks (a fern in the shade of a wall, a shrub by the building, not lost in a field)?", "measure": "given", "is": true},
+   {"id": "apart", "text": "Does it stand clear of the other planted things (the gap left after the plan's own spacing, in metres)?", "measure": "given", "min": 0},
+   {"id": "in_light", "text": "Does the baked light picture of the ground reach this spot (so it stands on lit ground, with its shadow)?", "measure": "given", "is": true},
+   {"id": "natural", "stage": "after", "text": "Does the planting read as grown there - no row, no plant on a path - in a picture from above and at eye height?"}
+  ]
+ }
+}

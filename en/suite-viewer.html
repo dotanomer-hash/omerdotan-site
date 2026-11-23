@@ -73,6 +73,21 @@
       <div class="oyl-walk rev">
         <div class="oyl-walk__head">
           <span class="oyl-walk__kick">WALK THE BIM</span>
+          <h3 dir="ltr">BIM AiLive - Automating project dressing</h3>
+        </div>
+        <div class="oyl-walk__win" dir="ltr" style="aspect-ratio:800/367">
+          <span class="oyl-id oyl-mono">WALK_04</span>
+          <button class="oyl-walk__go" type="button" data-title="BIM AiLive - Automating project dressing" data-page="dressed.html?r=1">
+            <img src="../media/viewer/bim/poster_dressing.jpg?v=2" alt="">
+            <video src="../media/viewer/bim/adamlib/preview_dressing.mp4?v=2" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
+            <span class="oyl-walk__btn oyl-walk__btn--blink">Jump in</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="oyl-walk rev">
+        <div class="oyl-walk__head">
+          <span class="oyl-walk__kick">WALK THE BIM</span>
           <h3>Walk through the model, check the space and the materials in the virtual environment</h3>
           <p>A corridor from a real project, built straight from the BIM model with a dedicated Baking technique</p>
         </div>
@@ -117,22 +132,6 @@
             <span class="oyl-walk__btn oyl-walk__btn--blink">Jump in</span>
           </button>
         </div>
-      </div>
-
-      <div class="oyl-walk rev">
-        <div class="oyl-walk__head">
-          <span class="oyl-walk__kick">WALK THE BIM</span>
-          <h3 dir="ltr">BIM AiLive - Automating project dressing</h3>
-        </div>
-        <div class="oyl-walk__win" dir="ltr" style="aspect-ratio:800/367">
-          <span class="oyl-id oyl-mono">WALK_04</span>
-          <video class="oyl-walk__film" src="../media/viewer/bim/adamlib/preview_dressing.mp4?v=2" poster="../media/viewer/bim/poster_dressing.jpg?v=2" controls muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
-        </div>
-        <script>
-          // WALK_04 is a film, not a live window: it plays (muted) while it is on screen and stops when it is not
-          (function () { var v = document.querySelector(".oyl-walk__film"); if (!v || !("IntersectionObserver" in window)) return;
-            new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }); }, { threshold: 0.5 }).observe(v); })();
-        </script>
       </div>
     </div>
   </section>

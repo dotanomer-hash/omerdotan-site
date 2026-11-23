@@ -94,6 +94,10 @@
   var placed = false;
   function place(tries) {
     if (placed || WM.renderer.xr.isPresenting) return;
+    // ANOTHER BUILDING (2026-11-19, his words: "it starts with soldiers and then instantly going back to dir el asad"): the spot
+    // below is THIS building's. With another pack in the address the start is that building's own (bake-view.js reads it from
+    // its plan); here only the mark is set, so the loading screen still lifts. No pack in the address = this building, as before.
+    if (!/^MKD_/.test(decodeURIComponent((location.search.match(/[?&]pack=([^&]+)/) || [])[1] || 'MKD_'))) { placed = true; return; }
     var f = WM.floorYat ? WM.floorYat(START.x, START.z, FLOOR_FALLBACK + 1) : null;
     // the floor grid may still be building: walk mode needs a floor under the spot, or it falls back to the pivot
     if (f == null && tries < 50) { setTimeout(function () { place(tries + 1); }, 200); return; }

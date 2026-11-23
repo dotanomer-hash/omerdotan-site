@@ -1,0 +1,63 @@
+{
+ "Curtain Panels": {
+  "verts": 10662,
+  "file": "vlm_Curtain_Panels_E.bin",
+  "maxIrradiance": 45.004,
+  "source": "Candidate E (copied)"
+ },
+ "Curtain Wall Mullions": {
+  "verts": 5446,
+  "file": "vlm_Curtain_Wall_Mullions.bin",
+  "maxIrradiance": 26.039,
+  "exp": 2.3,
+  "clippedPct": 0.48
+ },
+ "Doors": {
+  "verts": 29713,
+  "file": "vlm_Doors.bin",
+  "maxIrradiance": 14.991,
+  "exp": 2.3,
+  "clippedPct": 3.42
+ },
+ "Furniture": {
+  "verts": 368544,
+  "file": "vlm_Furniture.bin",
+  "maxIrradiance": 15.596,
+  "exp": 2.3,
+  "clippedPct": 1.56
+ },
+ "Generic Models": {
+  "verts": 55566,
+  "file": "vlm_Generic_Models.bin",
+  "maxIrradiance": 12.532,
+  "exp": 2.3,
+  "clippedPct": 20.47
+ },
+ "Plumbing Fixtures": {
+  "verts": 57365,
+  "file": "vlm_Plumbing_Fixtures.bin",
+  "maxIrradiance": 9.103,
+  "exp": 2.3,
+  "clippedPct": 2.52
+ },
+ "Railings": {
+  "verts": 20684,
+  "file": "vlm_Railings.bin",
+  "maxIrradiance": 1.577,
+  "exp": 2.3,
+  "clippedPct": 0.0
+ },
+ "Specialty Equipment": {
+  "verts": 41896,
+  "file": "vlm_Specialty_Equipment.bin",
+  "maxIrradiance": 12.956,
+  "exp": 2.3,
+  "clippedPct": 6.97
+ },
+ "Windows": {
+  "verts": 18092,
+  "file": "vlm_Windows_E.bin",
+  "maxIrradiance": 0.0,
+  "source": "Candidate E (copied)"
+ }
+}
