@@ -47,7 +47,7 @@
         if (rs[0] && /^Start/.test(rs[0].name)) rs[0].pos = sp; else rs.unshift({ name: 'Start', number: '', level: '', pos: sp });
         // WALK mode holds the view level. Without it the page stays in its orbit view, which keeps looking at the middle of the
         // model's box - here 54 m up (the tall neighbours), so the eye looked at the sky: his "upside down".
-        if (WM.setMoveMode) WM.setMoveMode('walk'); c0.position.fromArray(S0.pos);
+        if (WM.setMoveMode) WM.setMoveMode(S0.mode === 'fly' ? 'fly' : 'walk'); c0.position.fromArray(S0.pos);   // plan.start.mode 'fly' (2026-11-24, the apartment building: his ask); none = walk as before
         // plan.start.look = [x, z] (2026-11-24, the WS house: the start looks AT the house, not +Z); none = +Z as before
         var LK = S0.look ? [S0.look[0], S0.look[1]] : [S0.pos[0], S0.pos[2] + 10]; c0.lookAt(LK[0], S0.pos[1], LK[1]); c0.updateMatrixWorld(true);
         if (WM._move) { WM._move.yaw = Math.atan2(LK[0] - S0.pos[0], LK[1] - S0.pos[2]); WM._move.pitch = 0; } };

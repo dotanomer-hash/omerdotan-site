@@ -267,15 +267,16 @@
  ],
  "start": {
   "pos": [
-   -7.5,
+   -4.0,
    21.8,
-   3.5
+   -12.29
   ],
   "floor": 20.2,
   "look": [
-   12.0,
-   -11.0
-  ]
+   15.0,
+   -12.29
+  ],
+  "mode": "fly"
  },
  "paintNoLevel": true,
  "slabCeilings": {
