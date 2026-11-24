@@ -91,22 +91,6 @@
         <li><b>Real BIM properties</b> - select properties, move objects and write the changes back to Revit!</li>
       </ul>
 
-      <div class="oyl-walk rev">
-        <div class="oyl-walk__head">
-          <span class="oyl-walk__kick">CASE STUDY</span>
-          <h3>ללכת בתוך מודל ה-BIM - Gaussian Splatting</h3>
-          <p>מסדרון מפרויקט אמיתי, שנבנה ישירות ממודל ה-BIM בטכניקת Gaussian Splatting, במנוע הייעודי שלנו - ללא צורך בתוכנות גרפיות או במנועי Splatting. לחצו כדי להיכנס.</p>
-        </div>
-        <div class="oyl-walk__win" dir="ltr">
-          <span class="oyl-id oyl-mono">WALK_02</span>
-          <button class="oyl-walk__go" type="button" data-title="Walk the BIM model" data-page="index.html?v=25">
-            <img src="media/viewer/walk/poster.jpg?v=3" alt="">
-            <video src="media/viewer/bim/adamlib/preview_walk.mp4?v=4" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
-            <span class="oyl-walk__btn oyl-walk__btn--blink">קפצו פנימה</span>
-          </button>
-        </div>
-      </div>
-
       <!-- his call 2026-11-24: the WS house (an Autodesk sample) is walk number 3 -->
       <div class="oyl-walk rev">
         <div class="oyl-walk__head">
@@ -134,6 +118,24 @@
           <span class="oyl-id oyl-mono">WALK_04</span>
           <button class="oyl-walk__go" type="button" data-title="BIM AiLive - Residential building" data-page="residential.html?r=1">
             <img src="media/viewer/bim/poster_residential.jpg?v=2" alt="">
+            <span class="oyl-walk__btn oyl-walk__btn--blink">קפצו פנימה</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- his call 2026-11-24: the splat walk moves to the end, under a separation line -->
+      <hr class="oyl-sep" aria-hidden="true">
+      <div class="oyl-walk rev">
+        <div class="oyl-walk__head">
+          <span class="oyl-walk__kick">CASE STUDY</span>
+          <h3>ללכת בתוך מודל ה-BIM - Gaussian Splatting</h3>
+          <p>מסדרון מפרויקט אמיתי, שנבנה ישירות ממודל ה-BIM בטכניקת Gaussian Splatting, במנוע הייעודי שלנו - ללא צורך בתוכנות גרפיות או במנועי Splatting. לחצו כדי להיכנס.</p>
+        </div>
+        <div class="oyl-walk__win" dir="ltr">
+          <span class="oyl-id oyl-mono">WALK_02</span>
+          <button class="oyl-walk__go" type="button" data-title="Walk the BIM model" data-page="index.html?v=25">
+            <img src="media/viewer/walk/poster.jpg?v=3" alt="">
+            <video src="media/viewer/bim/adamlib/preview_walk.mp4?v=4" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
             <span class="oyl-walk__btn oyl-walk__btn--blink">קפצו פנימה</span>
           </button>
         </div>
@@ -212,6 +214,9 @@
       text-transform:uppercase;color:var(--wk-label)}
     .oylp .oyl-walk__kick::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--wk-dot);
       box-shadow:0 0 0 4px color-mix(in srgb,var(--wk-dot) 18%,transparent)}
+    /* the separation line before the splat walk (the last card) */
+    .oylp .oyl-sep{height:0;margin:64px 0 0;border:0;border-top:1.5px solid rgba(17,17,19,.55)}
+    .oylp .oyl-sep + .oyl-walk{margin-top:56px}
     .oylp .oyl-walk__head h3{margin:14px 0 10px;font:700 clamp(24px,2.6vw,34px)/1.14 "Rubik","Heebo",sans-serif;letter-spacing:-.03em;color:var(--wk-title);text-wrap:balance}
     .oylp .oyl-new{display:inline-block;margin-inline-start:12px;padding:7px 12px 6px;border-radius:99px;vertical-align:.32em;
       font:600 13px/1 "Space Grotesk",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#ff3b30;
