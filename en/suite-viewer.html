@@ -7,7 +7,7 @@
 <link href="../base44.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&family=Heebo:wght@400;500;600;700;800&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link href="bimsuite-mockup.css?v=53" rel="stylesheet">
 <link rel="preload" as="image" href="../media/hero-family.jpg">
 <link rel="preload" as="image" href="../media/hero-viewer.jpg">
@@ -179,6 +179,73 @@
       0%,100%{background:rgba(255,122,0,.22);box-shadow:0 0 0 0 rgba(255,122,0,0)}
       50%{background:rgba(255,122,0,.62);box-shadow:0 0 26px 4px rgba(255,122,0,.55)}}
     @media (prefers-reduced-motion:reduce){.oylp .oyl-walk__btn--blink{animation:none}}
+  </style>
+  <style>
+    /* ===== THE WALKS AS GAME LEVELS (his ask 2026-11-24: "more professional looking - the font, the borders. make it game
+       like wow"). Built on this section's own HUD world (oymer-pairs.css: cyan --cy, orange --or): each walk is a dark level
+       panel with HUD corner brackets, a squared display face (Rajdhani) for the labels, and an angled orange start button.
+       Copy, order, click behaviour and the WALK ids are unchanged - only the look. ===== */
+    .oylp .oyl-walk,.oylp .oyl-feats + .oyl-walk,.oylp .oyl-walk + .oyl-walk{position:relative;isolation:isolate;margin-top:44px;
+      padding:30px 32px 32px;border:1px solid rgba(2,242,255,.16);border-radius:4px;
+      background:radial-gradient(120% 70% at 50% 0%,rgba(139,108,240,.16),transparent 60%),linear-gradient(180deg,#0e1222 0%,#06080f 100%);
+      box-shadow:0 30px 60px -28px rgba(10,12,34,.75),0 2px 0 rgba(255,255,255,.04) inset}
+    /* the four HUD corner brackets of the panel */
+    .oylp .oyl-walk::after{content:"";position:absolute;inset:-1px;pointer-events:none;z-index:2;--k:var(--cy);
+      background:
+        linear-gradient(var(--k),var(--k)) left top/22px 2px no-repeat,linear-gradient(var(--k),var(--k)) left top/2px 22px no-repeat,
+        linear-gradient(var(--k),var(--k)) right top/22px 2px no-repeat,linear-gradient(var(--k),var(--k)) right top/2px 22px no-repeat,
+        linear-gradient(var(--k),var(--k)) left bottom/22px 2px no-repeat,linear-gradient(var(--k),var(--k)) left bottom/2px 22px no-repeat,
+        linear-gradient(var(--k),var(--k)) right bottom/22px 2px no-repeat,linear-gradient(var(--k),var(--k)) right bottom/2px 22px no-repeat}
+    /* the label row: a lit diamond, the label, a rule running to the edge */
+    .oylp .oyl-walk__head{margin-bottom:22px}
+    .oylp .oyl-walk__kick{display:flex;align-items:center;gap:12px;font:700 14px/1 "Rajdhani","Rubik",sans-serif;letter-spacing:.24em;
+      text-transform:uppercase;color:var(--cy)}
+    .oylp .oyl-walk__kick::before{content:"";flex:none;width:8px;height:8px;transform:rotate(-45deg);background:var(--or);box-shadow:0 0 10px rgba(255,122,0,.8)}
+    .oylp .oyl-walk__kick::after{content:"";flex:1;height:1px;background:linear-gradient(to left,rgba(2,242,255,.45),rgba(2,242,255,0))}
+    .oylp .oyl-walk__kick:dir(rtl)::after{background:linear-gradient(to right,rgba(2,242,255,.45),rgba(2,242,255,0))}
+    .oylp .oyl-walk__head h3{margin:16px 0 10px;font:800 clamp(24px,2.7vw,36px)/1.12 "Rubik","Heebo",sans-serif;letter-spacing:-.025em;color:#f4f6fc;text-wrap:balance}
+    .oylp .oyl-walk__head p{max-width:72ch;margin-inline-end:auto;font-size:16px;line-height:1.7;color:#a9b2c9}
+    /* the window: a hairline frame, orange HUD brackets inside it, a soft vignette, the picture eases forward on hover */
+    .oylp .oyl-walk__win{border:1px solid rgba(255,255,255,.09);border-radius:3px;background:#03050b;box-shadow:0 0 0 4px rgba(2,242,255,.04)}
+    .oylp .oyl-walk__go img,.oylp .oyl-walk__go video{transition:transform .9s cubic-bezier(.16,1,.3,1),filter .9s cubic-bezier(.16,1,.3,1)}
+    .oylp .oyl-walk__go:hover img,.oylp .oyl-walk__go:hover video{transform:scale(1.035);filter:saturate(1.08) brightness(1.04)}
+    .oylp .oyl-walk__go::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+      background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(3,5,11,.55) 100%),
+                 repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px)}
+    .oylp .oyl-walk__go::after{content:"";position:absolute;inset:14px;z-index:2;pointer-events:none;--k:var(--or);
+      transition:inset .6s cubic-bezier(.16,1,.3,1);
+      background:
+        linear-gradient(var(--k),var(--k)) left top/30px 2px no-repeat,linear-gradient(var(--k),var(--k)) left top/2px 30px no-repeat,
+        linear-gradient(var(--k),var(--k)) right top/30px 2px no-repeat,linear-gradient(var(--k),var(--k)) right top/2px 30px no-repeat,
+        linear-gradient(var(--k),var(--k)) left bottom/30px 2px no-repeat,linear-gradient(var(--k),var(--k)) left bottom/2px 30px no-repeat,
+        linear-gradient(var(--k),var(--k)) right bottom/30px 2px no-repeat,linear-gradient(var(--k),var(--k)) right bottom/2px 30px no-repeat}
+    .oylp .oyl-walk__go:hover::after{inset:9px}
+    .oylp .oyl-walk__go:focus-visible{outline:2px solid var(--cy);outline-offset:-6px}
+    .oylp .oyl-walk__win .oyl-id{top:16px;right:18px;left:auto;z-index:3;padding:5px 10px 4px;font:700 13px/1 "Rajdhani","Share Tech Mono",sans-serif;letter-spacing:.2em;
+      color:var(--cy);background:rgba(3,5,11,.82);border:1px solid rgba(2,242,255,.35)}
+    /* the start button: angled, solid orange, dark lettering, a glow behind it that breathes */
+    .oylp .oyl-walk__btn{z-index:3;padding:17px 42px 16px;border:0;border-radius:0;color:#1d0e00;text-shadow:none;
+      font:800 1.2rem/1 "Rubik","Heebo",sans-serif;letter-spacing:.01em;
+      background:linear-gradient(180deg,#ffa04a 0%,#ff7a00 100%);-webkit-backdrop-filter:none;backdrop-filter:none;
+      clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);
+      transition:transform .3s cubic-bezier(.16,1,.3,1)}
+    .oylp .oyl-walk__go:hover .oyl-walk__btn{background:linear-gradient(180deg,#ffb36b 0%,#ff8a1a 100%);transform:translate(50%,-50%) scale(1.05)}
+    .oylp .oyl-walk__btn--blink{animation:none}
+    .oylp .oyl-walk__win::before{content:"";position:absolute;right:50%;top:50%;z-index:2;width:300px;height:110px;transform:translate(50%,-50%);pointer-events:none;
+      background:radial-gradient(closest-side,rgba(255,122,0,.6),rgba(255,122,0,0));animation:oyl-halo 1.8s ease-in-out infinite}
+    @keyframes oyl-halo{0%,100%{opacity:.2}50%{opacity:.9}}
+    @media (prefers-reduced-motion:reduce){.oylp .oyl-walk__win::before{animation:none;opacity:.5}}
+    /* the feature line under the first walk: a HUD strip */
+    .oylp .oyl-feats li{border-radius:3px;background:#0b0f1c;border:1px solid rgba(2,242,255,.16);color:#e3e8f4}
+    .oylp .oyl-feats li::before{width:9px;height:9px;margin-top:-4.5px;border-radius:0;transform:rotate(-45deg);background:var(--or);box-shadow:0 0 10px rgba(255,122,0,.7)}
+    .oylp .oyl-feats li b{color:#fff}
+    @media (max-width:640px){
+      .oylp .oyl-walk,.oylp .oyl-feats + .oyl-walk,.oylp .oyl-walk + .oyl-walk{padding:20px 16px 18px;margin-top:28px}
+      .oylp .oyl-walk__head h3{font-size:23px}
+      .oylp .oyl-walk__btn{padding:14px 28px 13px;font-size:1.02rem}
+      .oylp .oyl-walk__go::after{inset:10px}
+      .oylp .oyl-walk__win .oyl-id{top:10px;right:10px;left:auto;font-size:11px}
+    }
   </style>
   <script>
     (function () {
