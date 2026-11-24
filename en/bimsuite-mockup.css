@@ -341,7 +341,7 @@
 .screen::after{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(120% 90% at 50% 50%, rgba(var(--cd),.06) 0%, rgba(10,6,22,.62) 62%, rgba(10,6,22,.88) 100%),
+    radial-gradient(70% 46% at 50% 50%, rgba(10,6,22,.40) 0%, rgba(10,6,22,.16) 72%, rgba(10,6,22,.08) 100%),  /* his "the clips are too dark" (2026-11-24): was .62 / .88 - now only a soft shade behind the title */
     linear-gradient(200deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 34%);  /* glass sheen */
 }
 
@@ -375,7 +375,7 @@
 .oneline{
   font-family:"Rubik","Heebo",sans-serif;color:#fff;font-weight:800;
   font-size:clamp(21px,2.5vw,31px);line-height:1.25;letter-spacing:-.025em;
-  text-shadow:0 3px 26px rgba(6,3,16,.75);
+  text-shadow:0 1px 3px rgba(6,3,16,.6),0 3px 26px rgba(6,3,16,.8);
   display:block;
 }
 .oneline b{display:inline-block;font-weight:800;opacity:0;transform:translateY(16px) rotateX(-40deg);transform-origin:50% 100%}
