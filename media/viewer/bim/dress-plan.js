@@ -130,6 +130,13 @@
   function run() {
     var unlit = [];
     FAST = isFast(); if (FAST) quietHelper(window.WM);
+    window.__dressStairsEnter = !!PLAN.stairsEnter;                 // dress-questions.js: a stair arriving at a floor is an entrance
+    window.__dressRoofCovers = !!PLAN.roofCovers;                   // dress-floors.js: a roof over a floor makes it indoors
+    // MEASURED SPACES (2026-11-24, the WS house: ONE Revit room for a whole home): plan.spaces = a point inside each space the
+    // model does not name, read from plan cuts of the model (its walls at 1.2 m over each floor). They join the room list as rooms
+    // of their level, marked measured; a Revit room is never replaced. Every placement in them still asks its questions (law D1).
+    if (PLAN.spaces && window.WM.pack) { var RMS = window.WM.pack.manifest.rooms || (window.WM.pack.manifest.rooms = []);
+      PLAN.spaces.forEach(function (s) { if (!RMS.some(function (r) { return r.number === s.number && r.level === s.level; })) RMS.push({ name: s.name, number: s.number, level: s.level, pos: s.pos.slice(), measured: true }); }); }
     var WM = window.WM, MATS = (WM.pack.manifest && WM.pack.manifest.materials) || [], groups = {}, parts = {}, rep = { elements: 0, partTris: 0, byZone: {}, byRule: {}, noRule: 0 };
     // LIGHT THAT IS MISSING ON OBJECTS (his words 2026-11-13: "check again for places missing lighting").
     // MEASURED (night_tests/nlight.eval.js): the floor has no dark place (4 shadows under chairs, 0.3 - 0.5 m2), but 63 objects
@@ -245,6 +252,24 @@
     catch (e) { console.error('[dress] objects failed', e); }
     try { if (window.__dressOutdoor && PLAN.outdoor) rep.outdoor = window.__dressOutdoor(PLAN); } catch (e) { console.error('[dress] outdoor failed', e); }
     try { if (window.__dressFloors && PLAN.floors) rep.floors = window.__dressFloors(PLAN); } catch (e) { console.error('[dress] floors failed', e); }
+    // A SLAB'S UNDERSIDE IS A CEILING (2026-11-24, the WS house - measured in pictures: the model has NO ceilings, and the viewer's
+    // own paint gives a floor element ONE finish on all its faces, so the basement and the bedrooms looked up at an OAK ceiling).
+    // plan.slabCeilings = { finish, drop }: every downward face of a floor slab gets a copy 4 mm below it in the plan's finish, lit by
+    // the slab's own baked light (the same atlas texels). The slab itself is not touched.
+    try { if (PLAN.slabCeilings) (function () { var T = WM.THREE, F = WM.pack.meshes.get('Floors'), SC = PLAN.slabCeilings; if (!F) return;
+      var g0 = F.geometry, p = g0.getAttribute('position'), u1 = g0.getAttribute('uv1') || g0.getAttribute('uv2'), ix = g0.getIndex(), own = (Array.isArray(F.material) ? F.material : [F.material]).filter(function (m) { return m && m.lightMap; })[0];
+      if (!u1 || !own || !ix) { rep.slabCeilings = 'no light layout'; return; }
+      var P = [], U = [], D = SC.drop || 0.004, n = ix.count / 3;
+      for (var t = 0; t < n; t++) { var a = ix.getX(t * 3), b = ix.getX(t * 3 + 1), c = ix.getX(t * 3 + 2);
+        var e1x = p.getX(b) - p.getX(a), e1y = p.getY(b) - p.getY(a), e1z = p.getZ(b) - p.getZ(a), e2x = p.getX(c) - p.getX(a), e2y = p.getY(c) - p.getY(a), e2z = p.getZ(c) - p.getZ(a);
+        var nx = e1y * e2z - e1z * e2y, ny = e1z * e2x - e1x * e2z, nz = e1x * e2y - e1y * e2x, ln = Math.hypot(nx, ny, nz) || 1; if (ny / ln > -0.7) continue;
+        [a, b, c].forEach(function (v) { P.push(p.getX(v), p.getY(v) - D, p.getZ(v)); U.push(u1.getX(v), u1.getY(v)); }); }
+      if (!P.length) { rep.slabCeilings = 0; return; }
+      var g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(new Float32Array(P), 3)); g.setAttribute('uv1', new T.BufferAttribute(new Float32Array(U), 2)); g.setAttribute('uv', new T.BufferAttribute(new Float32Array(U.length), 2)); g.computeVertexNormals();
+      var pm = (PLAN.materials || []).filter(function (m) { return m.id === SC.finish; })[0] || {}, m = new T.MeshStandardMaterial({ color: new T.Color(pm.color || '#f2efe8'), roughness: 0.9, metalness: 0, side: T.DoubleSide });
+      m.lightMap = own.lightMap; m.lightMapIntensity = own.lightMapIntensity; m.envMapIntensity = 0;
+      var o = new T.Mesh(g, m); o.matrixAutoUpdate = false; o.matrix.copy(F.matrixWorld); o.name = 'dress-slab-ceilings'; o.userData.notPack = true; o.userData.dressPlan = true; o.frustumCulled = false; WM.scene.add(o); OV['slab-ceilings'] = o;
+      rep.slabCeilings = P.length / 9; })(); } catch (e) { console.error('[dress] slab ceilings failed', e); }
     try { if (window.__dressMore && PLAN.more) rep.more = window.__dressMore(PLAN); } catch (e) { console.error('[dress] more failed', e); }
     try { if (window.__dressPatches && PLAN.patches) rep.patches = window.__dressPatches(PLAN); } catch (e) { console.error('[dress] patches failed', e); }
     try { if (window.__dressTVs && PLAN.screens && !PLAN.levelPlans) rep.screens = window.__dressTVs(PLAN, MATS); } catch (e) { console.error('[dress] screens failed', e); }

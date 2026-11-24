@@ -123,6 +123,13 @@
       M.doors.push([b.min[0], b.min[2], b.max[0], b.max[2]]);
       var i0 = Math.max(0, Math.floor((b.min[0] - 0.6 - x0) / C)), i1 = Math.min(nx - 1, Math.floor((b.max[0] + 0.6 - x0) / C)), k0 = Math.max(0, Math.floor((b.min[2] - 0.6 - z0) / C)), k1 = Math.min(nz - 1, Math.floor((b.max[2] + 0.6 - z0) / C));
       for (var k = k0; k <= k1; k++) for (var i = i0; i <= i1; i++) { var c = comp[k * nx + i]; if (c >= 0) M.doorComp[c] = 1; } });
+    // A STAIR IS AN ENTRANCE TOO (2026-11-24, the WS house: its basement and its upper room have no door - you arrive by the
+    // stair, and every item there was refused 'reach'). With plan.stairsEnter, a stair whose box arrives at this floor (its top or
+    // its foot within 0.25 m of it) marks the walk regions around its box (0.6 m) as reached from an entrance, like a door.
+    if (window.__dressStairsEnter) window.WM.pack.elements.forEach(function (e) { if (e.cat !== 'Stairs' || !e.bbox) return; var b = e.bbox;
+      if (Math.abs(b.max[1] - y0) > 0.25 && Math.abs(b.min[1] - y0) > 0.25) return; M.doors.push([b.min[0], b.min[2], b.max[0], b.max[2]]);
+      var i0 = Math.max(0, Math.floor((b.min[0] - 0.6 - x0) / C)), i1 = Math.min(nx - 1, Math.floor((b.max[0] + 0.6 - x0) / C)), k0 = Math.max(0, Math.floor((b.min[2] - 0.6 - z0) / C)), k1 = Math.min(nz - 1, Math.floor((b.max[2] + 0.6 - z0) / C));
+      for (var k = k0; k <= k1; k++) for (var i = i0; i <= i1; i++) { var c = comp[k * nx + i]; if (c >= 0) M.doorComp[c] = 1; } });
 
     // ---- what the questions ask of the map ----
     function cell(x, z) { var i = Math.floor((x - x0) / C), k = Math.floor((z - z0) / C); return (i < 0 || k < 0 || i >= nx || k >= nz) ? -1 : k * nx + i; }

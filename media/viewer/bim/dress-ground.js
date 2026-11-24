@@ -21,7 +21,10 @@
     try { var x = new XMLHttpRequest(); x.open('GET', base + 'ground.' + set + '.json?v=' + Date.now(), false); x.send(); if (x.status === 200) lm = JSON.parse(x.responseText); } catch (e) {}
     var nTri = 0; (G.cats || ['Topography']).forEach(function (cat) { var mesh = WM.pack.meshes.get(cat); if (mesh) WM.pack.elements.forEach(function (el) { if (el.mesh === cat) nTri += el.triCount; }); });
     // LAW D1, the list 'ground_finish': no baked light picture = no answer = the terrain is left as the model draws it
-    if (Q) { var res = Q.ask('ground_finish', { given: { has_ground: nTri, has_light: !!lm }, all: true }, {}); if (!res.ok) { Q.refuse('the ground', 'ground_finish', 'the site', 1, {}, res); out.refused = res.failed; return out; } Q.record('the ground', 'the site', res, [0, 0, 0]); }
+    // A SITE WITH NO TERRAIN (2026-11-24, the WS house: the lawns, the paving and the pool are Revit FLOORS): the plan says
+    // ground.cats = [] - there is no terrain to copy, so its question is not asked; the site's floors below are still dressed
+    var noTerrain = Array.isArray(G.cats) && !G.cats.length;
+    if (Q && !noTerrain) { var res = Q.ask('ground_finish', { given: { has_ground: nTri, has_light: !!lm }, all: true }, {}); if (!res.ok) { Q.refuse('the ground', 'ground_finish', 'the site', 1, {}, res); out.refused = res.failed; return out; } Q.record('the ground', 'the site', res, [0, 0, 0]); }
     if (lm) { ltex = new T.TextureLoader().load(base + lm.file + '?v=' + Date.now()); ltex.flipY = false; ltex.colorSpace = T.SRGBColorSpace; ltex.channel = 1; ltex.wrapS = ltex.wrapT = T.ClampToEdgeWrapping; ltex.generateMipmaps = true; out.light = true; }
     var H = [], HF = [];                                       // every ground triangle + its finish, for the height under a point
     (G.cats || ['Topography']).forEach(function (cat) {
@@ -58,7 +61,10 @@
           var n0 = (v[1][1] - v[0][1]) * (v[2][2] - v[0][2]) - (v[1][2] - v[0][2]) * (v[2][1] - v[0][1]), n1 = (v[1][2] - v[0][2]) * (v[2][0] - v[0][0]) - (v[1][0] - v[0][0]) * (v[2][2] - v[0][2]), n2 = (v[1][0] - v[0][0]) * (v[2][1] - v[0][1]) - (v[1][1] - v[0][1]) * (v[2][0] - v[0][0]);
           if (n1 / (Math.hypot(n0, n1, n2) || 1) < 0.7) continue;                               // its top faces only
           H.push(v[0][0], v[0][1], v[0][2], v[1][0], v[1][1], v[1][2], v[2][0], v[2][1], v[2][2]); HF.push(rule.finish); } });
-      Object.keys(groups).forEach(function (id) { try { WM.applyOp({ type: 'material.set', elementIds: groups[id], materialId: id + '~f' }); } catch (e) { console.error('[dress] site finish failed', id, e); } }); }
+      // a finish with a 'tint' (2026-11-24, the WS house's lawn): the paint system draws a detail picture on WHITE - the lawn read
+      // grey (measured: colour ffffff under the grass picture); the tint is the colour under the picture
+      Object.keys(groups).forEach(function (id) { var pmt = (PLAN.materials || []).filter(function (m) { return m.id === id; })[0]; if (pmt && pmt.tint) { var mt = window.WMPaint.materialFor(id + '~f'); if (mt) mt.color.set(pmt.tint); }
+        try { WM.applyOp({ type: 'material.set', elementIds: groups[id], materialId: id + '~f' }); } catch (e) { console.error('[dress] site finish failed', id, e); } }); }
     // the ground under a point: the highest ground triangle there
     var HB = new Float32Array(H), nT = HB.length / 9, cells = {}, big = [], CS = 4;
     for (var t = 0; t < nT; t++) { var o9 = t * 9, x0 = Math.min(HB[o9], HB[o9 + 3], HB[o9 + 6]), x1 = Math.max(HB[o9], HB[o9 + 3], HB[o9 + 6]), z0 = Math.min(HB[o9 + 2], HB[o9 + 5], HB[o9 + 8]), z1 = Math.max(HB[o9 + 2], HB[o9 + 5], HB[o9 + 8]);

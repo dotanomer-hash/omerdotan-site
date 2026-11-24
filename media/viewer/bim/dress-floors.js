@@ -66,7 +66,9 @@
           if (l1 < -1e-4 || l2 < -1e-4 || l3 < -1e-4) continue; var cc = k * nx + i;
           if (kind === 2) cover[cc] = 1; else { var y = l1 * ya + l2 * yb + l3 * yc; if (y > triY[cc]) { triY[cc] = y; triAt[cc] = t; } } } } }
     raster('Floors', function (a, b, c) { if (Math.abs(a - y0) <= 0.15 && Math.abs(b - y0) <= 0.15 && Math.abs(c - y0) <= 0.15) return 1; return 0; });
-    ['Floors', 'Ceilings'].forEach(function (nm) { raster(nm, function (a, b, c) { var m = Math.min(a, b, c) - y0; return m > 2.0 && m < 8.0 ? 2 : 0; }); });
+    // (2026-11-24, the WS house: no ceilings at all - the sloped roof is the ceiling, so its living room counted as outdoors)
+    // plan.roofCovers: a roof over the cell covers it too
+    ['Floors', 'Ceilings'].concat(window.__dressRoofCovers ? ['Roofs'] : []).forEach(function (nm) { raster(nm, function (a, b, c) { var m = Math.min(a, b, c) - y0; return m > 2.0 && m < 8.0 ? 2 : 0; }); });
     return (LEVEL[key] = { triAt: triAt, triY: triY, cover: cover, taken: new Int16Array(nx * nz) });
   }
   // the finish as a material. A plan material with 'tex' gets its picture laid by the layer's own uv (so it can be turned

@@ -47,8 +47,10 @@
         if (rs[0] && /^Start/.test(rs[0].name)) rs[0].pos = sp; else rs.unshift({ name: 'Start', number: '', level: '', pos: sp });
         // WALK mode holds the view level. Without it the page stays in its orbit view, which keeps looking at the middle of the
         // model's box - here 54 m up (the tall neighbours), so the eye looked at the sky: his "upside down".
-        if (WM.setMoveMode) WM.setMoveMode('walk'); c0.position.fromArray(S0.pos); c0.lookAt(S0.pos[0], S0.pos[1], S0.pos[2] + 10); c0.updateMatrixWorld(true);
-        if (WM._move) { WM._move.yaw = 0; WM._move.pitch = 0; } };
+        if (WM.setMoveMode) WM.setMoveMode('walk'); c0.position.fromArray(S0.pos);
+        // plan.start.look = [x, z] (2026-11-24, the WS house: the start looks AT the house, not +Z); none = +Z as before
+        var LK = S0.look ? [S0.look[0], S0.look[1]] : [S0.pos[0], S0.pos[2] + 10]; c0.lookAt(LK[0], S0.pos[1], LK[1]); c0.updateMatrixWorld(true);
+        if (WM._move) { WM._move.yaw = Math.atan2(LK[0] - S0.pos[0], LK[1] - S0.pos[2]); WM._move.pitch = 0; } };
       put0(); setTimeout(put0, 1500); setTimeout(put0, 4000);
       // start.js (the first building's start, a file of the live site - not edited here) gives up looking for its floor after
       // 10 s and then moves the eye to ITS spot, 576 m up. For 25 s: an eye that is suddenly far from this start is put back.
