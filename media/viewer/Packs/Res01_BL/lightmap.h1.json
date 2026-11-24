@@ -1,0 +1,80 @@
+{
+ "version": 1,
+ "channel": 1,
+ "bakeDirect": true,
+ "exposure": 2.3,
+ "encode": "srgbK",
+ "gamma": 1,
+ "set": "h1",
+ "cats": [
+  "Walls",
+  "Floors",
+  "Casework",
+  "Ceilings",
+  "Stairs",
+  "Structural Columns",
+  "Structural Framing",
+  "Roofs"
+ ],
+ "flippedV": false,
+ "uv1": "plane-charts",
+ "toneMappingExposureAssumed": 1.5,
+ "saturation": 1.0,
+ "made": "2026-11-24T15:20",
+ "source": "Blender 5.1 Cycles (OptiX) - bake_any.py, an apartment building",
+ "file": "lightmap.h1_0_0.png",
+ "tiles": [
+  {
+   "file": "lightmap.h1_0_0.png",
+   "x": 0,
+   "y": 0
+  },
+  {
+   "file": "lightmap.h1_1_0.png",
+   "x": 4096,
+   "y": 0
+  },
+  {
+   "file": "lightmap.h1_2_0.png",
+   "x": 8192,
+   "y": 0
+  },
+  {
+   "file": "lightmap.h1_0_1.png",
+   "x": 0,
+   "y": 4096
+  },
+  {
+   "file": "lightmap.h1_1_1.png",
+   "x": 4096,
+   "y": 4096
+  },
+  {
+   "file": "lightmap.h1_2_1.png",
+   "x": 8192,
+   "y": 4096
+  },
+  {
+   "file": "lightmap.h1_0_2.png",
+   "x": 0,
+   "y": 8192
+  },
+  {
+   "file": "lightmap.h1_1_2.png",
+   "x": 4096,
+   "y": 8192
+  },
+  {
+   "file": "lightmap.h1_2_2.png",
+   "x": 8192,
+   "y": 8192
+  }
+ ],
+ "tile": 4096,
+ "atlas": 12288,
+ "mmPerTexel": 20.033333333333335,
+ "scale": 1.2631343089683567,
+ "texels": 91341275,
+ "clippedPct": 0.79,
+ "denoised": true
+}

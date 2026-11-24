@@ -1,0 +1,18 @@
+{
+ "file": "ground.h1.png",
+ "scale": 0.6483756812305117,
+ "exposure": 2.3,
+ "encode": "srgbK",
+ "box": [
+  -30.0,
+  -45.0,
+  60.0,
+  30.0
+ ],
+ "px": 4096,
+ "cats": [
+  "GroundPlane"
+ ],
+ "texels": 14930756,
+ "made": "2026-11-24T15:25"
+}

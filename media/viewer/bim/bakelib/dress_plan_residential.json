@@ -1,0 +1,8286 @@
+{
+ "version": 1,
+ "made": "2026-11-24",
+ "by": "AI planner (text only)",
+ "building": "A residential building: an 8-storey apartment building on a city street - three flats and the entrance lobby on the ground floor, two basements of parking under the whole plot, balconies on the west (street) and east facades",
+ "level": "0",
+ "levelY": 20.6,
+ "levelNames": [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6"
+ ],
+ "levelYs": [
+  20.6,
+  23.9,
+  27.2,
+  30.5,
+  33.8,
+  37.1,
+  40.4
+ ],
+ "principles": [
+  "Stage it as it will be lived in: the facades carry plants and a few people; the ground floor is furnished where the architect drew it.",
+  "Every piece of ground-floor furniture stands on the architect's own 2D symbol: its place and size are his, never invented.",
+  "Light porcelain floors, white kitchens with a warm quartz top, oak tables, linen sofas; one colour per flat on the beds (teal, rust, sage).",
+  "Outside: the trees the architect keeps and plants, at his points; a grey sidewalk and the asphalt of the street; lawns and decks as modelled."
+ ],
+ "spaces": [
+  {
+   "number": "G-entry",
+   "name": "the entrance path",
+   "level": "0",
+   "pos": [
+    4.0,
+    20.6,
+    -12.2
+   ]
+  },
+  {
+   "number": "G-yard",
+   "name": "the east lawn",
+   "level": "0",
+   "pos": [
+    31.8,
+    20.6,
+    -16.5
+   ]
+  }
+ ],
+ "zones": [
+  {
+   "id": "all",
+   "name": "the building",
+   "test": {},
+   "accent": "hk-fab-rust",
+   "family": [
+    "hk-fab-rust",
+    "hk-fab-oat",
+    "hk-fab-teal"
+   ]
+  }
+ ],
+ "woods": [
+  "hk-oak",
+  "hk-walnut"
+ ],
+ "materials": [
+  {
+   "id": "hk-fab-oat",
+   "name": "Fabric - oatmeal linen",
+   "color": "#d8cdb8",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "hk-fab-teal",
+   "name": "Fabric - deep teal",
+   "color": "#3f6f73",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "hk-fab-rust",
+   "name": "Fabric - rust",
+   "color": "#b5613d",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "hk-fab-sage",
+   "name": "Fabric - sage",
+   "color": "#a3ae6c",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "hk-fab-stone",
+   "name": "Fabric - stone grey",
+   "color": "#c4c0b6",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "hk-white",
+   "name": "White lacquer (matte)",
+   "color": "#f2efe8",
+   "rough": 0.45
+  },
+  {
+   "id": "hk-quartz",
+   "name": "Quartz worktop - warm white",
+   "color": "#e9e6df",
+   "rough": 0.3
+  },
+  {
+   "id": "hk-steel-black",
+   "name": "Steel - black (matte)",
+   "color": "#2b2c2e",
+   "rough": 0.5
+  },
+  {
+   "id": "hk-oak",
+   "name": "Wood - light oak",
+   "color": "#c9a06a",
+   "rough": 0.55,
+   "detail": "../bim/bakelib/tex/_made/d_oak.jpg",
+   "detailM": 0.9,
+   "detailMean": 0.7802
+  },
+  {
+   "id": "hk-walnut",
+   "name": "Wood - walnut",
+   "color": "#6f4a2e",
+   "rough": 0.5,
+   "detail": "../bim/bakelib/tex/_made/d_walnut.jpg",
+   "detailM": 1.0,
+   "detailMean": 0.7836
+  },
+  {
+   "id": "hk-seam",
+   "name": "Door seam",
+   "color": "#8a8780",
+   "rough": 0.6
+  },
+  {
+   "id": "hk-bin-orange",
+   "name": "Bin - municipal orange",
+   "color": "#e0782a",
+   "rough": 0.6
+  },
+  {
+   "id": "hk-bin-blue",
+   "name": "Bin - recycling blue",
+   "color": "#2f62a8",
+   "rough": 0.6
+  },
+  {
+   "id": "hk-alu",
+   "name": "Aluminium - brushed",
+   "color": "#b9bdc0",
+   "rough": 0.35
+  },
+  {
+   "id": "hk-rug",
+   "name": "Rug - wool, warm sand",
+   "color": "#b59a76",
+   "rough": 1.0,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "dr-floor-tile",
+   "name": "Floor - porcelain tile 60 x 60 (matte)",
+   "color": "#7d7767",
+   "rough": 0.75,
+   "tex": "bakelib/tex/_made/dr_tile_60.jpg",
+   "texM": 2.4,
+   "tileM": 0.6,
+   "mirror": true
+  },
+  {
+   "id": "hk-grass",
+   "name": "Ground - lawn",
+   "color": "#7d9c4c",
+   "rough": 1.0,
+   "tint": "#8db35a",
+   "detail": "../bim/bakelib/tex/_made/g_grass.jpg",
+   "detailM": 3.0,
+   "detailMean": 0.617
+  },
+  {
+   "id": "hk-deck",
+   "name": "Deck - teak",
+   "color": "#9c7650",
+   "rough": 0.7,
+   "detail": "../bim/bakelib/tex/_made/d_ash.jpg",
+   "detailM": 0.9,
+   "detailMean": 0.783
+  },
+  {
+   "id": "hk-paving",
+   "name": "Ground - concrete pavers",
+   "color": "#c8bfae",
+   "rough": 0.9,
+   "detail": "../bim/bakelib/tex/_made/g_paving.jpg",
+   "detailM": 2.4,
+   "detailMean": 0.6593
+  },
+  {
+   "id": "hk-stone",
+   "name": "Ground - light stone path",
+   "color": "#ddd5c4",
+   "rough": 0.85,
+   "detail": "../bim/bakelib/tex/_made/g_paving.jpg",
+   "detailM": 3.0,
+   "detailMean": 0.6593
+  },
+  {
+   "id": "hk-sidewalk",
+   "name": "Ground - sidewalk pavers (grey)",
+   "color": "#b9b6ae",
+   "rough": 0.9,
+   "detail": "../bim/bakelib/tex/_made/g_paving.jpg",
+   "detailM": 1.8,
+   "detailMean": 0.6593
+  },
+  {
+   "id": "hk-asphalt",
+   "name": "Ground - asphalt",
+   "color": "#46474a",
+   "rough": 0.95
+  },
+  {
+   "id": "hk-synth",
+   "name": "Ground - synthetic grass",
+   "color": "#6f9440",
+   "rough": 1.0,
+   "tint": "#7fae4a",
+   "detail": "../bim/bakelib/tex/_made/g_grass.jpg",
+   "detailM": 2.0,
+   "detailMean": 0.617
+  }
+ ],
+ "rules": [
+  {
+   "cat": "Furniture",
+   "match": "",
+   "what": "furniture",
+   "base": "$wood",
+   "why": "default: wood"
+  }
+ ],
+ "start": {
+  "pos": [
+   -7.5,
+   21.8,
+   3.5
+  ],
+  "floor": 20.2,
+  "look": [
+   12.0,
+   -11.0
+  ]
+ },
+ "paintNoLevel": true,
+ "slabCeilings": {
+  "finish": "hk-white"
+ },
+ "floorWindowsEnter": true,
+ "wallCats": [
+  "Walls",
+  "Railings"
+ ],
+ "darkFill": 0.55,
+ "ground": {
+  "cats": [],
+  "finishes": [
+   {
+    "match": "",
+    "finish": "hk-grass"
+   }
+  ],
+  "site": [
+   {
+    "match": "^GRASS",
+    "finish": "hk-grass"
+   },
+   {
+    "match": "^Deck",
+    "finish": "hk-deck"
+   },
+   {
+    "match": "blc",
+    "finish": "hk-stone"
+   },
+   {
+    "match": "^CON",
+    "finish": "hk-paving"
+   }
+  ],
+  "plane": {
+   "y": 20.2,
+   "box": [
+    -30.0,
+    -45.0,
+    60.0,
+    30.0
+   ],
+   "finish": "hk-synth",
+   "rects": [
+    {
+     "rect": [
+      0.0,
+      -22.3,
+      33.7,
+      0.0
+     ],
+     "finish": null
+    },
+    {
+     "rect": [
+      -4.5,
+      -45.0,
+      0.0,
+      30.0
+     ],
+     "finish": "hk-sidewalk"
+    },
+    {
+     "rect": [
+      -13.0,
+      -45.0,
+      -4.5,
+      30.0
+     ],
+     "finish": "hk-asphalt"
+    },
+    {
+     "rect": [
+      -4.5,
+      0.0,
+      60.0,
+      3.5
+     ],
+     "finish": "hk-sidewalk"
+    },
+    {
+     "rect": [
+      -4.5,
+      3.5,
+      60.0,
+      11.0
+     ],
+     "finish": "hk-asphalt"
+    },
+    {
+     "rect": [
+      0.0,
+      -27.0,
+      60.0,
+      -22.3
+     ],
+     "finish": "hk-paving"
+    },
+    {
+     "rect": [
+      33.7,
+      -45.0,
+      60.0,
+      0.0
+     ],
+     "finish": "hk-grass"
+    }
+   ]
+  },
+  "why": "his words: stage the outside"
+ },
+ "outdoorSite": {
+  "box": [
+   -12.0,
+   -32.0,
+   44.0,
+   9.0
+  ]
+ },
+ "floors": [],
+ "floorDefault": {
+  "finish": "dr-floor-tile",
+  "levels": [
+   20.6
+  ],
+  "minArea": 1.5,
+  "why": "light porcelain tile through the ground-floor flats and the lobby"
+ },
+ "levelPlans": [
+  {
+   "level": "0",
+   "levelY": 20.6,
+   "name": "ground floor - three flats, the lobby, the gardens and decks",
+   "kit": [
+    {
+     "rect": [
+      21.512,
+      -3.273,
+      22.162,
+      -7.153
+     ],
+     "y": 20.6,
+     "id": 3474615,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": 0.5,
+     "sink": 0.2,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      16.812,
+      -6.353,
+      18.412,
+      -6.953
+     ],
+     "y": 20.6,
+     "id": 3475470,
+     "name": "aron2-dyn wardrobe X",
+     "kind": "wardrobe",
+     "h": 2.4,
+     "finishes": {
+      "body": "hk-white",
+      "seam": "hk-seam",
+      "handle": "hk-steel-black"
+     }
+    },
+    {
+     "rect": [
+      17.412,
+      -3.353,
+      18.412,
+      -5.253
+     ],
+     "y": 20.6,
+     "id": 3475471,
+     "name": "bed100-190 100/190",
+     "kind": "bed",
+     "h": 1.05,
+     "finishes": {
+      "frame": "hk-walnut",
+      "mattress": "hk-white",
+      "duvet": "hk-fab-sage",
+      "pillow": "hk-white",
+      "head": "hk-fab-stone"
+     }
+    },
+    {
+     "rect": [
+      19.812,
+      -6.453,
+      21.412,
+      -7.053
+     ],
+     "y": 20.6,
+     "id": 3475579,
+     "name": "aron2-dyn wardrobe X",
+     "kind": "wardrobe",
+     "h": 2.4,
+     "finishes": {
+      "body": "hk-white",
+      "seam": "hk-seam",
+      "handle": "hk-steel-black"
+     }
+    },
+    {
+     "rect": [
+      22.292,
+      -13.553,
+      24.872,
+      -14.203
+     ],
+     "y": 20.6,
+     "id": 3476947,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": 0.5,
+     "sink": 0.2,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      22.022,
+      -15.503,
+      23.622,
+      -16.103
+     ],
+     "y": 20.6,
+     "id": 3478302,
+     "name": "aron2-dyn wardrobe X",
+     "kind": "wardrobe",
+     "h": 2.4,
+     "finishes": {
+      "body": "hk-white",
+      "seam": "hk-seam",
+      "handle": "hk-steel-black"
+     }
+    },
+    {
+     "rect": [
+      22.022,
+      -17.053,
+      23.022,
+      -18.953
+     ],
+     "y": 20.6,
+     "id": 3478303,
+     "name": "bed100-190 100/190",
+     "kind": "bed",
+     "h": 1.05,
+     "finishes": {
+      "frame": "hk-walnut",
+      "mattress": "hk-white",
+      "duvet": "hk-fab-rust",
+      "pillow": "hk-white",
+      "head": "hk-fab-stone"
+     }
+    },
+    {
+     "rect": [
+      13.812,
+      -7.153,
+      14.512,
+      -8.353
+     ],
+     "y": 20.6,
+     "id": 3479342,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": null,
+     "sink": null,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      13.812,
+      -5.953,
+      14.312,
+      -7.053
+     ],
+     "y": 20.6,
+     "id": 3479829,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": null,
+     "sink": null,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      19.412,
+      -3.684,
+      21.412,
+      -6.084
+     ],
+     "y": 20.6,
+     "id": 3480834,
+     "name": "bed150-200 150/200",
+     "kind": "bed",
+     "h": 1.05,
+     "finishes": {
+      "frame": "hk-walnut",
+      "mattress": "hk-white",
+      "duvet": "hk-fab-sage",
+      "pillow": "hk-white",
+      "head": "hk-fab-stone"
+     }
+    },
+    {
+     "rect": [
+      18.612,
+      -16.223,
+      20.612,
+      -18.623
+     ],
+     "y": 20.6,
+     "id": 3480913,
+     "name": "bed150-200 150/200",
+     "kind": "bed",
+     "h": 1.05,
+     "finishes": {
+      "frame": "hk-walnut",
+      "mattress": "hk-white",
+      "duvet": "hk-fab-rust",
+      "pillow": "hk-white",
+      "head": "hk-fab-stone"
+     }
+    },
+    {
+     "rect": [
+      24.972,
+      -17.433,
+      25.572,
+      -19.033
+     ],
+     "y": 20.6,
+     "id": 3481204,
+     "name": "aron2-dyn wardrobe X",
+     "kind": "wardrobe",
+     "h": 2.4,
+     "finishes": {
+      "body": "hk-white",
+      "seam": "hk-seam",
+      "handle": "hk-steel-black"
+     }
+    },
+    {
+     "rect": [
+      26.412,
+      -18.065,
+      28.312,
+      -19.065
+     ],
+     "y": 20.6,
+     "id": 3481205,
+     "name": "bed100-190 100/190",
+     "kind": "bed",
+     "h": 1.05,
+     "finishes": {
+      "frame": "hk-walnut",
+      "mattress": "hk-white",
+      "duvet": "hk-fab-rust",
+      "pillow": "hk-white",
+      "head": "hk-fab-stone"
+     }
+    },
+    {
+     "rect": [
+      18.612,
+      -15.393,
+      20.822,
+      -15.993
+     ],
+     "y": 20.6,
+     "id": 3481603,
+     "name": "aron2-dyn wardrobe X",
+     "kind": "wardrobe",
+     "h": 2.4,
+     "finishes": {
+      "body": "hk-white",
+      "seam": "hk-seam",
+      "handle": "hk-steel-black"
+     }
+    },
+    {
+     "rect": [
+      20.822,
+      -13.493,
+      22.192,
+      -14.093
+     ],
+     "y": 20.6,
+     "id": 3483806,
+     "name": "aron2-dyn wardrobe X",
+     "kind": "wardrobe",
+     "h": 2.4,
+     "finishes": {
+      "body": "hk-white",
+      "seam": "hk-seam",
+      "handle": "hk-steel-black"
+     }
+    },
+    {
+     "rect": [
+      26.072,
+      -15.733,
+      27.272,
+      -16.233
+     ],
+     "y": 20.6,
+     "id": 3485011,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": null,
+     "sink": null,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      26.072,
+      -13.653,
+      28.312,
+      -14.353
+     ],
+     "y": 20.6,
+     "id": 3485524,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": 0.5,
+     "sink": 0.2,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      15.612,
+      -13.493,
+      16.612,
+      -13.993
+     ],
+     "y": 20.6,
+     "id": 3487762,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": null,
+     "sink": null,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      9.412,
+      -13.493,
+      11.981,
+      -14.143
+     ],
+     "y": 20.6,
+     "id": 3488110,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": 0.5,
+     "sink": 0.2,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      16.442,
+      -16.223,
+      18.442,
+      -18.623
+     ],
+     "y": 20.6,
+     "id": 3488400,
+     "name": "bed150-200 150/200",
+     "kind": "bed",
+     "h": 1.05,
+     "finishes": {
+      "frame": "hk-walnut",
+      "mattress": "hk-white",
+      "duvet": "hk-fab-rust",
+      "pillow": "hk-white",
+      "head": "hk-fab-stone"
+     }
+    },
+    {
+     "rect": [
+      16.612,
+      -15.353,
+      18.412,
+      -15.953
+     ],
+     "y": 20.6,
+     "id": 3488490,
+     "name": "aron2-dyn wardrobe X",
+     "kind": "wardrobe",
+     "h": 2.4,
+     "finishes": {
+      "body": "hk-white",
+      "seam": "hk-seam",
+      "handle": "hk-steel-black"
+     }
+    },
+    {
+     "rect": [
+      22.292,
+      -10.703,
+      22.942,
+      -13.553
+     ],
+     "y": 20.6,
+     "id": 3519169,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": 0.5,
+     "sink": 0.2,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      9.412,
+      -14.143,
+      10.062,
+      -16.043
+     ],
+     "y": 20.6,
+     "id": 3600565,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": null,
+     "sink": 0.2,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      11.26,
+      -4.39,
+      11.88,
+      -5.246
+     ],
+     "y": 20.6,
+     "id": 3745073,
+     "name": "Ashpa 360L 360L כחול",
+     "kind": "bin",
+     "h": 1.08,
+     "finishes": {
+      "body": "hk-bin-blue",
+      "lid": "hk-steel-black"
+     }
+    },
+    {
+     "rect": [
+      14.512,
+      -13.493,
+      15.512,
+      -14.153
+     ],
+     "y": 20.6,
+     "id": 4053421,
+     "name": "K_marble 90",
+     "kind": "counter",
+     "h": 0.9,
+     "cooktop": null,
+     "sink": null,
+     "finishes": {
+      "body": "hk-white",
+      "top": "hk-quartz",
+      "plinth": "hk-steel-black",
+      "seam": "hk-seam"
+     }
+    },
+    {
+     "rect": [
+      11.955,
+      -4.385,
+      13.335,
+      -5.465
+     ],
+     "y": 20.6,
+     "id": 4596808,
+     "name": "Ashpa 1100L 1100L כתום",
+     "kind": "bin",
+     "h": 1.32,
+     "finishes": {
+      "body": "hk-bin-orange",
+      "lid": "hk-steel-black"
+     }
+    },
+    {
+     "rect": [
+      11.955,
+      -6.703,
+      13.335,
+      -7.783
+     ],
+     "y": 20.6,
+     "id": 4900077,
+     "name": "Ashpa 1100L 1100L כתום",
+     "kind": "bin",
+     "h": 1.32,
+     "finishes": {
+      "body": "hk-bin-orange",
+      "lid": "hk-steel-black"
+     }
+    },
+    {
+     "rect": [
+      10.495,
+      -6.703,
+      11.875,
+      -7.783
+     ],
+     "y": 20.6,
+     "id": 4900183,
+     "name": "Ashpa 1100L 1100L כתום",
+     "kind": "bin",
+     "h": 1.32,
+     "finishes": {
+      "body": "hk-bin-orange",
+      "lid": "hk-steel-black"
+     }
+    },
+    {
+     "kind": "table",
+     "rect": [
+      23.375,
+      -4.573,
+      24.274,
+      -3.273
+     ],
+     "y": 20.6,
+     "id": 3475315,
+     "group": "table:3475315",
+     "name": "dining table 130/90",
+     "h": 0.75,
+     "finishes": {
+      "top": "hk-oak",
+      "legs": "hk-steel-black"
+     }
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      22.974,
+      -4.446,
+      23.434,
+      -3.986
+     ],
+     "y": 20.6,
+     "back": "-x",
+     "id": 3475315,
+     "group": "table:3475315",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (130/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      24.215,
+      -4.446,
+      24.675,
+      -3.986
+     ],
+     "y": 20.6,
+     "back": "+x",
+     "id": 3475315,
+     "group": "table:3475315",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (130/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      22.974,
+      -3.861,
+      23.434,
+      -3.401
+     ],
+     "y": 20.6,
+     "back": "-x",
+     "id": 3475315,
+     "group": "table:3475315",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (130/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      24.215,
+      -3.861,
+      24.675,
+      -3.401
+     ],
+     "y": 20.6,
+     "back": "+x",
+     "id": 3475315,
+     "group": "table:3475315",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (130/90)"
+    },
+    {
+     "kind": "table",
+     "rect": [
+      14.212,
+      -18.272,
+      15.512,
+      -17.372
+     ],
+     "y": 20.6,
+     "id": 3491031,
+     "group": "table:3491031",
+     "name": "dining table 130/90",
+     "h": 0.75,
+     "finishes": {
+      "top": "hk-oak",
+      "legs": "hk-steel-black"
+     }
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      14.339,
+      -18.672,
+      14.8,
+      -18.212
+     ],
+     "y": 20.6,
+     "back": "-z",
+     "id": 3491031,
+     "group": "table:3491031",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (130/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      14.339,
+      -17.432,
+      14.8,
+      -16.972
+     ],
+     "y": 20.6,
+     "back": "+z",
+     "id": 3491031,
+     "group": "table:3491031",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (130/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      14.925,
+      -18.672,
+      15.385,
+      -18.212
+     ],
+     "y": 20.6,
+     "back": "-z",
+     "id": 3491031,
+     "group": "table:3491031",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (130/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      14.925,
+      -17.432,
+      15.385,
+      -16.972
+     ],
+     "y": 20.6,
+     "back": "+z",
+     "id": 3491031,
+     "group": "table:3491031",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (130/90)"
+    },
+    {
+     "kind": "table",
+     "rect": [
+      25.83,
+      -12.967,
+      27.78,
+      -12.068
+     ],
+     "y": 20.6,
+     "id": 3518393,
+     "group": "table:3518393",
+     "name": "dining table 195/90",
+     "h": 0.75,
+     "finishes": {
+      "top": "hk-oak",
+      "legs": "hk-steel-black"
+     }
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      25.99,
+      -13.367,
+      26.45,
+      -12.907
+     ],
+     "y": 20.6,
+     "back": "-z",
+     "id": 3518393,
+     "group": "table:3518393",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (195/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      25.99,
+      -12.128,
+      26.45,
+      -11.668
+     ],
+     "y": 20.6,
+     "back": "+z",
+     "id": 3518393,
+     "group": "table:3518393",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (195/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      26.575,
+      -13.367,
+      27.035,
+      -12.907
+     ],
+     "y": 20.6,
+     "back": "-z",
+     "id": 3518393,
+     "group": "table:3518393",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (195/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      26.575,
+      -12.128,
+      27.035,
+      -11.668
+     ],
+     "y": 20.6,
+     "back": "+z",
+     "id": 3518393,
+     "group": "table:3518393",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (195/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      27.16,
+      -13.367,
+      27.62,
+      -12.907
+     ],
+     "y": 20.6,
+     "back": "-z",
+     "id": 3518393,
+     "group": "table:3518393",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (195/90)"
+    },
+    {
+     "kind": "chair",
+     "rect": [
+      27.16,
+      -12.128,
+      27.62,
+      -11.668
+     ],
+     "y": 20.6,
+     "back": "+z",
+     "id": 3518393,
+     "group": "table:3518393",
+     "h": 0.86,
+     "name": "chair",
+     "finishes": {
+      "seat": "hk-oak",
+      "legs": "hk-steel-black"
+     },
+     "why": "a chair at the dining table the architect drew (195/90)"
+    },
+    {
+     "kind": "rug",
+     "rect": [
+      25.441,
+      -6.833,
+      27.823,
+      -4.333
+     ],
+     "y": 20.6,
+     "id": 3474875,
+     "name": "rug 1",
+     "h": 0.02,
+     "finishes": {
+      "body": "hk-rug"
+     }
+    },
+    {
+     "kind": "sofa",
+     "rect": [
+      25.191,
+      -6.683,
+      26.141,
+      -4.483
+     ],
+     "y": 20.6,
+     "back": "-x",
+     "id": 3474875,
+     "group": "living:3474875",
+     "h": 0.86,
+     "name": "sofa 1",
+     "finishes": {
+      "body": "hk-fab-oat",
+      "legs": "hk-steel-black",
+      "pillow": "hk-fab-sage"
+     }
+    },
+    {
+     "kind": "rug",
+     "rect": [
+      9.898,
+      -18.196,
+      12.389,
+      -16.723
+     ],
+     "y": 20.6,
+     "id": 3490884,
+     "name": "rug 1",
+     "h": 0.02,
+     "finishes": {
+      "body": "hk-rug"
+     }
+    },
+    {
+     "kind": "sofa",
+     "rect": [
+      10.043,
+      -17.423,
+      12.243,
+      -16.473
+     ],
+     "y": 20.6,
+     "back": "+z",
+     "id": 3490884,
+     "group": "living:3490884",
+     "h": 0.86,
+     "name": "sofa 1",
+     "finishes": {
+      "body": "hk-fab-oat",
+      "legs": "hk-steel-black",
+      "pillow": "hk-fab-teal"
+     }
+    },
+    {
+     "kind": "rug",
+     "rect": [
+      25.318,
+      -11.254,
+      27.7,
+      -8.754
+     ],
+     "y": 20.6,
+     "id": 3518779,
+     "name": "rug 1",
+     "h": 0.02,
+     "finishes": {
+      "body": "hk-rug"
+     }
+    },
+    {
+     "kind": "sofa",
+     "rect": [
+      25.068,
+      -11.104,
+      26.018,
+      -8.904
+     ],
+     "y": 20.6,
+     "back": "-x",
+     "id": 3518779,
+     "group": "living:3518779",
+     "h": 0.86,
+     "name": "sofa 1",
+     "finishes": {
+      "body": "hk-fab-oat",
+      "legs": "hk-steel-black",
+      "pillow": "hk-fab-rust"
+     }
+    },
+    {
+     "kind": "mailbox",
+     "rect": [
+      11.05,
+      -8.62,
+      12.55,
+      -8.22
+     ],
+     "y": 20.6,
+     "id": "room 463",
+     "name": "mailboxes",
+     "h": 1.9,
+     "finishes": {
+      "body": "hk-alu"
+     }
+    }
+   ],
+   "objects": [
+    {
+     "item": "painting",
+     "how": "painting",
+     "height": 1.55,
+     "maxW": 1.1,
+     "maxH": 0.8,
+     "border": 0.05,
+     "frameColor": "#2b2c2e",
+     "rooms": [
+      "דירה מס 1",
+      "דירה מס 545",
+      "דירה מס 3",
+      "דירה מס 260"
+     ],
+     "why": "a picture in each living room and the lobby"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "byWall",
+     "off": 0.45,
+     "rooms": [
+      "דירה מס 1",
+      "דירה מס 545",
+      "דירה מס 3",
+      "דירה מס 260"
+     ],
+     "why": "a tall plant in each living room and the lobby"
+    },
+    {
+     "item": "potted_plant_02",
+     "how": "byWall",
+     "off": 0.45,
+     "rooms": [
+      "דירה מס 249",
+      "דירה מס 251",
+      "דירה מס 253"
+     ],
+     "why": "a plant in some bedrooms"
+    },
+    {
+     "item": "wicker_basket_01",
+     "how": "byWall",
+     "off": 0.35,
+     "rooms": [
+      "דירה מס 254",
+      "דירה מס 256",
+      "דירה מס 257"
+     ],
+     "why": "a laundry basket"
+    },
+    {
+     "item": "painted_wooden_bench",
+     "how": "byWall",
+     "off": 0.3,
+     "rooms": [
+      "דירה מס 260"
+     ],
+     "why": "a bench in the lobby (run 1: my point 13.4 / -11.6 stood in a wall - the wall finds the spot now)"
+    }
+   ],
+   "more": [
+    {
+     "item": "mid_century_lounge_chair",
+     "how": "at",
+     "drawn": true,
+     "group": "living:3474875",
+     "level": 20.6,
+     "at": [
+      27.473,
+      -6.283
+     ],
+     "yaw": -90,
+     "why": "the armchair opposite the sofa"
+    },
+    {
+     "item": "modern_coffee_table_01",
+     "how": "at",
+     "drawn": true,
+     "group": "living:3474875",
+     "level": 20.6,
+     "at": [
+      26.582,
+      -5.583
+     ],
+     "yaw": 0,
+     "why": "the coffee table between them"
+    },
+    {
+     "item": "mid_century_lounge_chair",
+     "how": "at",
+     "drawn": true,
+     "group": "living:3490884",
+     "level": 20.6,
+     "at": [
+      10.198,
+      -17.846
+     ],
+     "yaw": 35,
+     "why": "the armchair opposite the sofa"
+    },
+    {
+     "item": "modern_coffee_table_01",
+     "how": "at",
+     "drawn": true,
+     "group": "living:3490884",
+     "level": 20.6,
+     "at": [
+      11.343,
+      -17.609
+     ],
+     "yaw": 90,
+     "why": "the coffee table between them"
+    },
+    {
+     "item": "mid_century_lounge_chair",
+     "how": "at",
+     "drawn": true,
+     "group": "living:3518779",
+     "level": 20.6,
+     "at": [
+      27.35,
+      -10.704
+     ],
+     "yaw": -90,
+     "why": "the armchair opposite the sofa"
+    },
+    {
+     "item": "modern_coffee_table_01",
+     "how": "at",
+     "drawn": true,
+     "group": "living:3518779",
+     "level": 20.6,
+     "at": [
+      26.459,
+      -10.004
+     ],
+     "yaw": 0,
+     "why": "the coffee table between them"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 20.6,
+     "at": [
+      29.9,
+      -10.8
+     ],
+     "yaw": 0,
+     "why": "a table on the private deck of flat 2"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 20.6,
+     "at": [
+      29.9,
+      -5.2
+     ],
+     "yaw": 0,
+     "why": "a table on the private deck of flat 3"
+    },
+    {
+     "how": "walk",
+     "item": "person",
+     "who": "Female_Adult_14__walk__anim",
+     "route": [
+      [
+       32.3,
+       -19.6
+      ],
+      [
+       32.3,
+       -14.2
+      ]
+     ],
+     "speed": 0.7,
+     "why": "someone walking on the east lawn (run 2: the entrance path is a 4.9% ramp - most of it is not at this floor height)"
+    }
+   ],
+   "people": [
+    {
+     "who": "Gardener_Male_01__talk",
+     "how": "standAt",
+     "role": "anyone",
+     "room": "G-yard",
+     "why": "a gardener on the east lawn"
+    },
+    {
+     "who": "Female_Adult_06__talk",
+     "how": "standAt",
+     "role": "anyone",
+     "room": "דירה מס 260",
+     "why": "a neighbour waiting by the lift"
+    },
+    {
+     "who": "Female_Adult_07__talk",
+     "how": "standAt",
+     "role": "anyone",
+     "room": "דירה מס 546",
+     "why": "someone at home in flat 3, in the kitchen (run 2: in flat 2 she stood where the sofa goes; run 3: in its kitchen, 0.29 m too near it)"
+    }
+   ]
+  },
+  {
+   "level": "1",
+   "levelY": 23.9,
+   "name": "floor 1 - 3 balconies",
+   "objects": [],
+   "more": [
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 23.9,
+     "at": [
+      4.927,
+      -18.488
+     ],
+     "atAny": [
+      [
+       4.927,
+       -18.488
+      ],
+      [
+       5.077,
+       -18.488
+      ],
+      [
+       4.927,
+       -18.088
+      ],
+      [
+       5.077,
+       -18.088
+      ],
+      [
+       4.927,
+       -17.688
+      ],
+      [
+       5.077,
+       -17.688
+      ],
+      [
+       4.927,
+       -17.288
+      ],
+      [
+       5.077,
+       -17.288
+      ],
+      [
+       4.927,
+       -16.888
+      ],
+      [
+       5.077,
+       -16.888
+      ],
+      [
+       4.927,
+       -16.488
+      ],
+      [
+       5.077,
+       -16.488
+      ],
+      [
+       4.927,
+       -16.088
+      ],
+      [
+       5.077,
+       -16.088
+      ],
+      [
+       4.927,
+       -15.688
+      ],
+      [
+       5.077,
+       -15.688
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 560, floor 1"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 23.9,
+     "at": [
+      4.927,
+      -11.968
+     ],
+     "atAny": [
+      [
+       4.927,
+       -11.968
+      ],
+      [
+       5.077,
+       -11.968
+      ],
+      [
+       4.927,
+       -12.368
+      ],
+      [
+       5.077,
+       -12.368
+      ],
+      [
+       4.927,
+       -12.768
+      ],
+      [
+       5.077,
+       -12.768
+      ],
+      [
+       4.927,
+       -13.168
+      ],
+      [
+       5.077,
+       -13.168
+      ],
+      [
+       4.927,
+       -13.568
+      ],
+      [
+       5.077,
+       -13.568
+      ],
+      [
+       4.927,
+       -13.968
+      ],
+      [
+       5.077,
+       -13.968
+      ],
+      [
+       4.927,
+       -14.368
+      ],
+      [
+       5.077,
+       -14.368
+      ],
+      [
+       4.927,
+       -14.768
+      ],
+      [
+       5.077,
+       -14.768
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 23.9,
+     "at": [
+      4.977,
+      -18.977
+     ],
+     "atAny": [
+      [
+       4.977,
+       -19.059
+      ],
+      [
+       5.177,
+       -19.059
+      ],
+      [
+       4.977,
+       -18.659
+      ],
+      [
+       5.177,
+       -18.659
+      ],
+      [
+       4.977,
+       -18.259
+      ],
+      [
+       5.177,
+       -18.259
+      ],
+      [
+       4.977,
+       -17.858
+      ],
+      [
+       5.177,
+       -17.858
+      ],
+      [
+       4.977,
+       -17.459
+      ],
+      [
+       5.177,
+       -17.459
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 23.9,
+     "at": [
+      4.927,
+      -10.338
+     ],
+     "atAny": [
+      [
+       4.927,
+       -10.338
+      ],
+      [
+       5.077,
+       -10.338
+      ],
+      [
+       4.927,
+       -9.938
+      ],
+      [
+       5.077,
+       -9.938
+      ],
+      [
+       4.927,
+       -9.538
+      ],
+      [
+       5.077,
+       -9.538
+      ],
+      [
+       4.927,
+       -9.138
+      ],
+      [
+       5.077,
+       -9.138
+      ],
+      [
+       4.927,
+       -8.738
+      ],
+      [
+       5.077,
+       -8.738
+      ],
+      [
+       4.927,
+       -8.338
+      ],
+      [
+       5.077,
+       -8.338
+      ],
+      [
+       4.927,
+       -7.938
+      ],
+      [
+       5.077,
+       -7.938
+      ],
+      [
+       4.927,
+       -7.538
+      ],
+      [
+       5.077,
+       -7.538
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 559, floor 1"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 23.9,
+     "at": [
+      4.927,
+      -3.818
+     ],
+     "atAny": [
+      [
+       4.927,
+       -3.818
+      ],
+      [
+       5.077,
+       -3.818
+      ],
+      [
+       4.927,
+       -4.218
+      ],
+      [
+       5.077,
+       -4.218
+      ],
+      [
+       4.927,
+       -4.618
+      ],
+      [
+       5.077,
+       -4.618
+      ],
+      [
+       4.927,
+       -5.018
+      ],
+      [
+       5.077,
+       -5.018
+      ],
+      [
+       4.927,
+       -5.418
+      ],
+      [
+       5.077,
+       -5.418
+      ],
+      [
+       4.927,
+       -5.818
+      ],
+      [
+       5.077,
+       -5.818
+      ],
+      [
+       4.927,
+       -6.218
+      ],
+      [
+       5.077,
+       -6.218
+      ],
+      [
+       4.927,
+       -6.618
+      ],
+      [
+       5.077,
+       -6.618
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 23.9,
+     "at": [
+      4.977,
+      -10.827
+     ],
+     "atAny": [
+      [
+       4.977,
+       -3.248
+      ],
+      [
+       5.177,
+       -3.248
+      ],
+      [
+       4.977,
+       -3.648
+      ],
+      [
+       5.177,
+       -3.648
+      ],
+      [
+       4.977,
+       -4.048
+      ],
+      [
+       5.177,
+       -4.048
+      ],
+      [
+       4.977,
+       -4.448
+      ],
+      [
+       5.177,
+       -4.448
+      ],
+      [
+       4.977,
+       -4.848
+      ],
+      [
+       5.177,
+       -4.848
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 23.9,
+     "at": [
+      5.077,
+      -7.078
+     ],
+     "atAny": [
+      [
+       5.077,
+       -7.078
+      ],
+      [
+       5.277,
+       -7.078
+      ],
+      [
+       5.077,
+       -7.478
+      ],
+      [
+       5.277,
+       -7.478
+      ],
+      [
+       5.077,
+       -7.878
+      ],
+      [
+       5.277,
+       -7.878
+      ],
+      [
+       5.077,
+       -8.278
+      ],
+      [
+       5.277,
+       -8.278
+      ],
+      [
+       5.077,
+       -8.678
+      ],
+      [
+       5.277,
+       -8.678
+      ],
+      [
+       5.077,
+       -7.078
+      ],
+      [
+       5.277,
+       -7.078
+      ],
+      [
+       5.077,
+       -6.678
+      ],
+      [
+       5.277,
+       -6.678
+      ],
+      [
+       5.077,
+       -6.278
+      ],
+      [
+       5.277,
+       -6.278
+      ],
+      [
+       5.077,
+       -5.878
+      ],
+      [
+       5.277,
+       -5.878
+      ],
+      [
+       5.077,
+       -5.478
+      ],
+      [
+       5.277,
+       -5.478
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 23.9,
+     "at": [
+      29.832,
+      -14.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -14.653
+      ],
+      [
+       29.682,
+       -14.653
+      ],
+      [
+       29.832,
+       -14.253
+      ],
+      [
+       29.682,
+       -14.253
+      ],
+      [
+       29.832,
+       -13.853
+      ],
+      [
+       29.682,
+       -13.853
+      ],
+      [
+       29.832,
+       -13.453
+      ],
+      [
+       29.682,
+       -13.453
+      ],
+      [
+       29.832,
+       -13.053
+      ],
+      [
+       29.682,
+       -13.053
+      ],
+      [
+       29.832,
+       -12.653
+      ],
+      [
+       29.682,
+       -12.653
+      ],
+      [
+       29.832,
+       -12.253
+      ],
+      [
+       29.682,
+       -12.253
+      ],
+      [
+       29.832,
+       -11.853
+      ],
+      [
+       29.682,
+       -11.853
+      ],
+      [
+       29.832,
+       -11.453
+      ],
+      [
+       29.682,
+       -11.453
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 561, floor 1"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 23.9,
+     "at": [
+      29.832,
+      -7.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -7.653
+      ],
+      [
+       29.682,
+       -7.653
+      ],
+      [
+       29.832,
+       -8.053
+      ],
+      [
+       29.682,
+       -8.053
+      ],
+      [
+       29.832,
+       -8.453
+      ],
+      [
+       29.682,
+       -8.453
+      ],
+      [
+       29.832,
+       -8.853
+      ],
+      [
+       29.682,
+       -8.853
+      ],
+      [
+       29.832,
+       -9.253
+      ],
+      [
+       29.682,
+       -9.253
+      ],
+      [
+       29.832,
+       -9.653
+      ],
+      [
+       29.682,
+       -9.653
+      ],
+      [
+       29.832,
+       -10.053
+      ],
+      [
+       29.682,
+       -10.053
+      ],
+      [
+       29.832,
+       -10.453
+      ],
+      [
+       29.682,
+       -10.453
+      ],
+      [
+       29.832,
+       -10.853
+      ],
+      [
+       29.682,
+       -10.853
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 23.9,
+     "at": [
+      29.782,
+      -15.178
+     ],
+     "atAny": [
+      [
+       29.782,
+       -15.266
+      ],
+      [
+       29.582,
+       -15.266
+      ],
+      [
+       29.782,
+       -14.866
+      ],
+      [
+       29.582,
+       -14.866
+      ],
+      [
+       29.782,
+       -14.466
+      ],
+      [
+       29.582,
+       -14.466
+      ],
+      [
+       29.782,
+       -14.066
+      ],
+      [
+       29.582,
+       -14.066
+      ],
+      [
+       29.782,
+       -13.665
+      ],
+      [
+       29.582,
+       -13.665
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    }
+   ],
+   "people": [
+    {
+     "who": "Female_Adult_07__talk",
+     "how": "standAt",
+     "role": "anyone",
+     "room": "דירה מס 560",
+     "why": "someone on a first-floor balcony, seen from the street"
+    }
+   ],
+   "spaces_used": [
+    "דירה מס 560",
+    "דירה מס 559",
+    "דירה מס 561"
+   ]
+  },
+  {
+   "level": "2",
+   "levelY": 27.2,
+   "name": "floor 2 - 3 balconies",
+   "objects": [],
+   "more": [
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      4.927,
+      -18.488
+     ],
+     "atAny": [
+      [
+       4.927,
+       -18.488
+      ],
+      [
+       5.077,
+       -18.488
+      ],
+      [
+       4.927,
+       -18.088
+      ],
+      [
+       5.077,
+       -18.088
+      ],
+      [
+       4.927,
+       -17.688
+      ],
+      [
+       5.077,
+       -17.688
+      ],
+      [
+       4.927,
+       -17.288
+      ],
+      [
+       5.077,
+       -17.288
+      ],
+      [
+       4.927,
+       -16.888
+      ],
+      [
+       5.077,
+       -16.888
+      ],
+      [
+       4.927,
+       -16.488
+      ],
+      [
+       5.077,
+       -16.488
+      ],
+      [
+       4.927,
+       -16.088
+      ],
+      [
+       5.077,
+       -16.088
+      ],
+      [
+       4.927,
+       -15.688
+      ],
+      [
+       5.077,
+       -15.688
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 566, floor 2"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      4.927,
+      -11.968
+     ],
+     "atAny": [
+      [
+       4.927,
+       -11.968
+      ],
+      [
+       5.077,
+       -11.968
+      ],
+      [
+       4.927,
+       -12.368
+      ],
+      [
+       5.077,
+       -12.368
+      ],
+      [
+       4.927,
+       -12.768
+      ],
+      [
+       5.077,
+       -12.768
+      ],
+      [
+       4.927,
+       -13.168
+      ],
+      [
+       5.077,
+       -13.168
+      ],
+      [
+       4.927,
+       -13.568
+      ],
+      [
+       5.077,
+       -13.568
+      ],
+      [
+       4.927,
+       -13.968
+      ],
+      [
+       5.077,
+       -13.968
+      ],
+      [
+       4.927,
+       -14.368
+      ],
+      [
+       5.077,
+       -14.368
+      ],
+      [
+       4.927,
+       -14.768
+      ],
+      [
+       5.077,
+       -14.768
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      4.977,
+      -18.977
+     ],
+     "atAny": [
+      [
+       4.977,
+       -19.059
+      ],
+      [
+       5.177,
+       -19.059
+      ],
+      [
+       4.977,
+       -18.659
+      ],
+      [
+       5.177,
+       -18.659
+      ],
+      [
+       4.977,
+       -18.259
+      ],
+      [
+       5.177,
+       -18.259
+      ],
+      [
+       4.977,
+       -17.858
+      ],
+      [
+       5.177,
+       -17.858
+      ],
+      [
+       4.977,
+       -17.459
+      ],
+      [
+       5.177,
+       -17.459
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      5.077,
+      -15.228
+     ],
+     "atAny": [
+      [
+       5.077,
+       -15.228
+      ],
+      [
+       5.277,
+       -15.228
+      ],
+      [
+       5.077,
+       -15.628
+      ],
+      [
+       5.277,
+       -15.628
+      ],
+      [
+       5.077,
+       -16.028
+      ],
+      [
+       5.277,
+       -16.028
+      ],
+      [
+       5.077,
+       -16.428
+      ],
+      [
+       5.277,
+       -16.428
+      ],
+      [
+       5.077,
+       -16.828
+      ],
+      [
+       5.277,
+       -16.828
+      ],
+      [
+       5.077,
+       -15.228
+      ],
+      [
+       5.277,
+       -15.228
+      ],
+      [
+       5.077,
+       -14.828
+      ],
+      [
+       5.277,
+       -14.828
+      ],
+      [
+       5.077,
+       -14.428
+      ],
+      [
+       5.277,
+       -14.428
+      ],
+      [
+       5.077,
+       -14.028
+      ],
+      [
+       5.277,
+       -14.028
+      ],
+      [
+       5.077,
+       -13.628
+      ],
+      [
+       5.277,
+       -13.628
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      4.927,
+      -10.338
+     ],
+     "atAny": [
+      [
+       4.927,
+       -10.338
+      ],
+      [
+       5.077,
+       -10.338
+      ],
+      [
+       4.927,
+       -9.938
+      ],
+      [
+       5.077,
+       -9.938
+      ],
+      [
+       4.927,
+       -9.538
+      ],
+      [
+       5.077,
+       -9.538
+      ],
+      [
+       4.927,
+       -9.138
+      ],
+      [
+       5.077,
+       -9.138
+      ],
+      [
+       4.927,
+       -8.738
+      ],
+      [
+       5.077,
+       -8.738
+      ],
+      [
+       4.927,
+       -8.338
+      ],
+      [
+       5.077,
+       -8.338
+      ],
+      [
+       4.927,
+       -7.938
+      ],
+      [
+       5.077,
+       -7.938
+      ],
+      [
+       4.927,
+       -7.538
+      ],
+      [
+       5.077,
+       -7.538
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 553, floor 2"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      4.927,
+      -3.818
+     ],
+     "atAny": [
+      [
+       4.927,
+       -3.818
+      ],
+      [
+       5.077,
+       -3.818
+      ],
+      [
+       4.927,
+       -4.218
+      ],
+      [
+       5.077,
+       -4.218
+      ],
+      [
+       4.927,
+       -4.618
+      ],
+      [
+       5.077,
+       -4.618
+      ],
+      [
+       4.927,
+       -5.018
+      ],
+      [
+       5.077,
+       -5.018
+      ],
+      [
+       4.927,
+       -5.418
+      ],
+      [
+       5.077,
+       -5.418
+      ],
+      [
+       4.927,
+       -5.818
+      ],
+      [
+       5.077,
+       -5.818
+      ],
+      [
+       4.927,
+       -6.218
+      ],
+      [
+       5.077,
+       -6.218
+      ],
+      [
+       4.927,
+       -6.618
+      ],
+      [
+       5.077,
+       -6.618
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      4.977,
+      -10.827
+     ],
+     "atAny": [
+      [
+       4.977,
+       -3.248
+      ],
+      [
+       5.177,
+       -3.248
+      ],
+      [
+       4.977,
+       -3.648
+      ],
+      [
+       5.177,
+       -3.648
+      ],
+      [
+       4.977,
+       -4.048
+      ],
+      [
+       5.177,
+       -4.048
+      ],
+      [
+       4.977,
+       -4.448
+      ],
+      [
+       5.177,
+       -4.448
+      ],
+      [
+       4.977,
+       -4.848
+      ],
+      [
+       5.177,
+       -4.848
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      29.832,
+      -14.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -14.653
+      ],
+      [
+       29.682,
+       -14.653
+      ],
+      [
+       29.832,
+       -14.253
+      ],
+      [
+       29.682,
+       -14.253
+      ],
+      [
+       29.832,
+       -13.853
+      ],
+      [
+       29.682,
+       -13.853
+      ],
+      [
+       29.832,
+       -13.453
+      ],
+      [
+       29.682,
+       -13.453
+      ],
+      [
+       29.832,
+       -13.053
+      ],
+      [
+       29.682,
+       -13.053
+      ],
+      [
+       29.832,
+       -12.653
+      ],
+      [
+       29.682,
+       -12.653
+      ],
+      [
+       29.832,
+       -12.253
+      ],
+      [
+       29.682,
+       -12.253
+      ],
+      [
+       29.832,
+       -11.853
+      ],
+      [
+       29.682,
+       -11.853
+      ],
+      [
+       29.832,
+       -11.453
+      ],
+      [
+       29.682,
+       -11.453
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 562, floor 2"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      29.832,
+      -7.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -7.653
+      ],
+      [
+       29.682,
+       -7.653
+      ],
+      [
+       29.832,
+       -8.053
+      ],
+      [
+       29.682,
+       -8.053
+      ],
+      [
+       29.832,
+       -8.453
+      ],
+      [
+       29.682,
+       -8.453
+      ],
+      [
+       29.832,
+       -8.853
+      ],
+      [
+       29.682,
+       -8.853
+      ],
+      [
+       29.832,
+       -9.253
+      ],
+      [
+       29.682,
+       -9.253
+      ],
+      [
+       29.832,
+       -9.653
+      ],
+      [
+       29.682,
+       -9.653
+      ],
+      [
+       29.832,
+       -10.053
+      ],
+      [
+       29.682,
+       -10.053
+      ],
+      [
+       29.832,
+       -10.453
+      ],
+      [
+       29.682,
+       -10.453
+      ],
+      [
+       29.832,
+       -10.853
+      ],
+      [
+       29.682,
+       -10.853
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      29.782,
+      -15.178
+     ],
+     "atAny": [
+      [
+       29.782,
+       -15.266
+      ],
+      [
+       29.582,
+       -15.266
+      ],
+      [
+       29.782,
+       -14.866
+      ],
+      [
+       29.582,
+       -14.866
+      ],
+      [
+       29.782,
+       -14.466
+      ],
+      [
+       29.582,
+       -14.466
+      ],
+      [
+       29.782,
+       -14.066
+      ],
+      [
+       29.582,
+       -14.066
+      ],
+      [
+       29.782,
+       -13.665
+      ],
+      [
+       29.582,
+       -13.665
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 27.2,
+     "at": [
+      29.682,
+      -11.153
+     ],
+     "atAny": [
+      [
+       29.682,
+       -11.153
+      ],
+      [
+       29.482,
+       -11.153
+      ],
+      [
+       29.682,
+       -11.553
+      ],
+      [
+       29.482,
+       -11.553
+      ],
+      [
+       29.682,
+       -11.953
+      ],
+      [
+       29.482,
+       -11.953
+      ],
+      [
+       29.682,
+       -12.353
+      ],
+      [
+       29.482,
+       -12.353
+      ],
+      [
+       29.682,
+       -12.753
+      ],
+      [
+       29.482,
+       -12.753
+      ],
+      [
+       29.682,
+       -11.153
+      ],
+      [
+       29.482,
+       -11.153
+      ],
+      [
+       29.682,
+       -10.753
+      ],
+      [
+       29.482,
+       -10.753
+      ],
+      [
+       29.682,
+       -10.353
+      ],
+      [
+       29.482,
+       -10.353
+      ],
+      [
+       29.682,
+       -9.953
+      ],
+      [
+       29.482,
+       -9.953
+      ],
+      [
+       29.682,
+       -9.553
+      ],
+      [
+       29.482,
+       -9.553
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    }
+   ],
+   "people": [],
+   "spaces_used": [
+    "דירה מס 566",
+    "דירה מס 553",
+    "דירה מס 562"
+   ]
+  },
+  {
+   "level": "3",
+   "levelY": 30.5,
+   "name": "floor 3 - 4 balconies",
+   "objects": [],
+   "more": [
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      4.927,
+      -18.488
+     ],
+     "atAny": [
+      [
+       4.927,
+       -18.488
+      ],
+      [
+       5.077,
+       -18.488
+      ],
+      [
+       4.927,
+       -18.088
+      ],
+      [
+       5.077,
+       -18.088
+      ],
+      [
+       4.927,
+       -17.688
+      ],
+      [
+       5.077,
+       -17.688
+      ],
+      [
+       4.927,
+       -17.288
+      ],
+      [
+       5.077,
+       -17.288
+      ],
+      [
+       4.927,
+       -16.888
+      ],
+      [
+       5.077,
+       -16.888
+      ],
+      [
+       4.927,
+       -16.488
+      ],
+      [
+       5.077,
+       -16.488
+      ],
+      [
+       4.927,
+       -16.088
+      ],
+      [
+       5.077,
+       -16.088
+      ],
+      [
+       4.927,
+       -15.688
+      ],
+      [
+       5.077,
+       -15.688
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 567, floor 3"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      4.927,
+      -11.968
+     ],
+     "atAny": [
+      [
+       4.927,
+       -11.968
+      ],
+      [
+       5.077,
+       -11.968
+      ],
+      [
+       4.927,
+       -12.368
+      ],
+      [
+       5.077,
+       -12.368
+      ],
+      [
+       4.927,
+       -12.768
+      ],
+      [
+       5.077,
+       -12.768
+      ],
+      [
+       4.927,
+       -13.168
+      ],
+      [
+       5.077,
+       -13.168
+      ],
+      [
+       4.927,
+       -13.568
+      ],
+      [
+       5.077,
+       -13.568
+      ],
+      [
+       4.927,
+       -13.968
+      ],
+      [
+       5.077,
+       -13.968
+      ],
+      [
+       4.927,
+       -14.368
+      ],
+      [
+       5.077,
+       -14.368
+      ],
+      [
+       4.927,
+       -14.768
+      ],
+      [
+       5.077,
+       -14.768
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      4.977,
+      -18.977
+     ],
+     "atAny": [
+      [
+       4.977,
+       -19.059
+      ],
+      [
+       5.177,
+       -19.059
+      ],
+      [
+       4.977,
+       -18.659
+      ],
+      [
+       5.177,
+       -18.659
+      ],
+      [
+       4.977,
+       -18.259
+      ],
+      [
+       5.177,
+       -18.259
+      ],
+      [
+       4.977,
+       -17.858
+      ],
+      [
+       5.177,
+       -17.858
+      ],
+      [
+       4.977,
+       -17.459
+      ],
+      [
+       5.177,
+       -17.459
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      4.927,
+      -10.338
+     ],
+     "atAny": [
+      [
+       4.927,
+       -10.338
+      ],
+      [
+       5.077,
+       -10.338
+      ],
+      [
+       4.927,
+       -9.938
+      ],
+      [
+       5.077,
+       -9.938
+      ],
+      [
+       4.927,
+       -9.538
+      ],
+      [
+       5.077,
+       -9.538
+      ],
+      [
+       4.927,
+       -9.138
+      ],
+      [
+       5.077,
+       -9.138
+      ],
+      [
+       4.927,
+       -8.738
+      ],
+      [
+       5.077,
+       -8.738
+      ],
+      [
+       4.927,
+       -8.338
+      ],
+      [
+       5.077,
+       -8.338
+      ],
+      [
+       4.927,
+       -7.938
+      ],
+      [
+       5.077,
+       -7.938
+      ],
+      [
+       4.927,
+       -7.538
+      ],
+      [
+       5.077,
+       -7.538
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 551, floor 3"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      4.927,
+      -3.818
+     ],
+     "atAny": [
+      [
+       4.927,
+       -3.818
+      ],
+      [
+       5.077,
+       -3.818
+      ],
+      [
+       4.927,
+       -4.218
+      ],
+      [
+       5.077,
+       -4.218
+      ],
+      [
+       4.927,
+       -4.618
+      ],
+      [
+       5.077,
+       -4.618
+      ],
+      [
+       4.927,
+       -5.018
+      ],
+      [
+       5.077,
+       -5.018
+      ],
+      [
+       4.927,
+       -5.418
+      ],
+      [
+       5.077,
+       -5.418
+      ],
+      [
+       4.927,
+       -5.818
+      ],
+      [
+       5.077,
+       -5.818
+      ],
+      [
+       4.927,
+       -6.218
+      ],
+      [
+       5.077,
+       -6.218
+      ],
+      [
+       4.927,
+       -6.618
+      ],
+      [
+       5.077,
+       -6.618
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      4.977,
+      -10.827
+     ],
+     "atAny": [
+      [
+       4.977,
+       -3.248
+      ],
+      [
+       5.177,
+       -3.248
+      ],
+      [
+       4.977,
+       -3.648
+      ],
+      [
+       5.177,
+       -3.648
+      ],
+      [
+       4.977,
+       -4.048
+      ],
+      [
+       5.177,
+       -4.048
+      ],
+      [
+       4.977,
+       -4.448
+      ],
+      [
+       5.177,
+       -4.448
+      ],
+      [
+       4.977,
+       -4.848
+      ],
+      [
+       5.177,
+       -4.848
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      5.077,
+      -7.078
+     ],
+     "atAny": [
+      [
+       5.077,
+       -7.078
+      ],
+      [
+       5.277,
+       -7.078
+      ],
+      [
+       5.077,
+       -7.478
+      ],
+      [
+       5.277,
+       -7.478
+      ],
+      [
+       5.077,
+       -7.878
+      ],
+      [
+       5.277,
+       -7.878
+      ],
+      [
+       5.077,
+       -8.278
+      ],
+      [
+       5.277,
+       -8.278
+      ],
+      [
+       5.077,
+       -8.678
+      ],
+      [
+       5.277,
+       -8.678
+      ],
+      [
+       5.077,
+       -7.078
+      ],
+      [
+       5.277,
+       -7.078
+      ],
+      [
+       5.077,
+       -6.678
+      ],
+      [
+       5.277,
+       -6.678
+      ],
+      [
+       5.077,
+       -6.278
+      ],
+      [
+       5.277,
+       -6.278
+      ],
+      [
+       5.077,
+       -5.878
+      ],
+      [
+       5.277,
+       -5.878
+      ],
+      [
+       5.077,
+       -5.478
+      ],
+      [
+       5.277,
+       -5.478
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      29.832,
+      -14.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -14.653
+      ],
+      [
+       29.682,
+       -14.653
+      ],
+      [
+       29.832,
+       -14.253
+      ],
+      [
+       29.682,
+       -14.253
+      ],
+      [
+       29.832,
+       -13.853
+      ],
+      [
+       29.682,
+       -13.853
+      ],
+      [
+       29.832,
+       -13.453
+      ],
+      [
+       29.682,
+       -13.453
+      ],
+      [
+       29.832,
+       -13.053
+      ],
+      [
+       29.682,
+       -13.053
+      ],
+      [
+       29.832,
+       -12.653
+      ],
+      [
+       29.682,
+       -12.653
+      ],
+      [
+       29.832,
+       -12.253
+      ],
+      [
+       29.682,
+       -12.253
+      ],
+      [
+       29.832,
+       -11.853
+      ],
+      [
+       29.682,
+       -11.853
+      ],
+      [
+       29.832,
+       -11.453
+      ],
+      [
+       29.682,
+       -11.453
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 572, floor 3"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      29.832,
+      -7.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -7.653
+      ],
+      [
+       29.682,
+       -7.653
+      ],
+      [
+       29.832,
+       -8.053
+      ],
+      [
+       29.682,
+       -8.053
+      ],
+      [
+       29.832,
+       -8.453
+      ],
+      [
+       29.682,
+       -8.453
+      ],
+      [
+       29.832,
+       -8.853
+      ],
+      [
+       29.682,
+       -8.853
+      ],
+      [
+       29.832,
+       -9.253
+      ],
+      [
+       29.682,
+       -9.253
+      ],
+      [
+       29.832,
+       -9.653
+      ],
+      [
+       29.682,
+       -9.653
+      ],
+      [
+       29.832,
+       -10.053
+      ],
+      [
+       29.682,
+       -10.053
+      ],
+      [
+       29.832,
+       -10.453
+      ],
+      [
+       29.682,
+       -10.453
+      ],
+      [
+       29.832,
+       -10.853
+      ],
+      [
+       29.682,
+       -10.853
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      29.782,
+      -15.178
+     ],
+     "atAny": [
+      [
+       29.782,
+       -15.266
+      ],
+      [
+       29.582,
+       -15.266
+      ],
+      [
+       29.782,
+       -14.866
+      ],
+      [
+       29.582,
+       -14.866
+      ],
+      [
+       29.782,
+       -14.466
+      ],
+      [
+       29.582,
+       -14.466
+      ],
+      [
+       29.782,
+       -14.066
+      ],
+      [
+       29.582,
+       -14.066
+      ],
+      [
+       29.782,
+       -13.665
+      ],
+      [
+       29.582,
+       -13.665
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      29.832,
+      -14.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -14.653
+      ],
+      [
+       29.682,
+       -14.653
+      ],
+      [
+       29.832,
+       -14.253
+      ],
+      [
+       29.682,
+       -14.253
+      ],
+      [
+       29.832,
+       -13.853
+      ],
+      [
+       29.682,
+       -13.853
+      ],
+      [
+       29.832,
+       -13.453
+      ],
+      [
+       29.682,
+       -13.453
+      ],
+      [
+       29.832,
+       -13.053
+      ],
+      [
+       29.682,
+       -13.053
+      ],
+      [
+       29.832,
+       -12.653
+      ],
+      [
+       29.682,
+       -12.653
+      ],
+      [
+       29.832,
+       -12.253
+      ],
+      [
+       29.682,
+       -12.253
+      ],
+      [
+       29.832,
+       -11.853
+      ],
+      [
+       29.682,
+       -11.853
+      ],
+      [
+       29.832,
+       -11.453
+      ],
+      [
+       29.682,
+       -11.453
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 571, floor 3"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      29.832,
+      -7.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -7.653
+      ],
+      [
+       29.682,
+       -7.653
+      ],
+      [
+       29.832,
+       -8.053
+      ],
+      [
+       29.682,
+       -8.053
+      ],
+      [
+       29.832,
+       -8.453
+      ],
+      [
+       29.682,
+       -8.453
+      ],
+      [
+       29.832,
+       -8.853
+      ],
+      [
+       29.682,
+       -8.853
+      ],
+      [
+       29.832,
+       -9.253
+      ],
+      [
+       29.682,
+       -9.253
+      ],
+      [
+       29.832,
+       -9.653
+      ],
+      [
+       29.682,
+       -9.653
+      ],
+      [
+       29.832,
+       -10.053
+      ],
+      [
+       29.682,
+       -10.053
+      ],
+      [
+       29.832,
+       -10.453
+      ],
+      [
+       29.682,
+       -10.453
+      ],
+      [
+       29.832,
+       -10.853
+      ],
+      [
+       29.682,
+       -10.853
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      29.782,
+      -15.178
+     ],
+     "atAny": [
+      [
+       29.782,
+       -7.041
+      ],
+      [
+       29.582,
+       -7.041
+      ],
+      [
+       29.782,
+       -7.441
+      ],
+      [
+       29.582,
+       -7.441
+      ],
+      [
+       29.782,
+       -7.841
+      ],
+      [
+       29.582,
+       -7.841
+      ],
+      [
+       29.782,
+       -8.241
+      ],
+      [
+       29.582,
+       -8.241
+      ],
+      [
+       29.782,
+       -8.64
+      ],
+      [
+       29.582,
+       -8.64
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 30.5,
+     "at": [
+      29.682,
+      -11.153
+     ],
+     "atAny": [
+      [
+       29.682,
+       -11.153
+      ],
+      [
+       29.482,
+       -11.153
+      ],
+      [
+       29.682,
+       -11.553
+      ],
+      [
+       29.482,
+       -11.553
+      ],
+      [
+       29.682,
+       -11.953
+      ],
+      [
+       29.482,
+       -11.953
+      ],
+      [
+       29.682,
+       -12.353
+      ],
+      [
+       29.482,
+       -12.353
+      ],
+      [
+       29.682,
+       -12.753
+      ],
+      [
+       29.482,
+       -12.753
+      ],
+      [
+       29.682,
+       -11.153
+      ],
+      [
+       29.482,
+       -11.153
+      ],
+      [
+       29.682,
+       -10.753
+      ],
+      [
+       29.482,
+       -10.753
+      ],
+      [
+       29.682,
+       -10.353
+      ],
+      [
+       29.482,
+       -10.353
+      ],
+      [
+       29.682,
+       -9.953
+      ],
+      [
+       29.482,
+       -9.953
+      ],
+      [
+       29.682,
+       -9.553
+      ],
+      [
+       29.482,
+       -9.553
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    }
+   ],
+   "people": [],
+   "spaces_used": [
+    "דירה מס 567",
+    "דירה מס 551",
+    "דירה מס 572",
+    "דירה מס 571"
+   ]
+  },
+  {
+   "level": "4",
+   "levelY": 33.8,
+   "name": "floor 4 - 4 balconies",
+   "objects": [],
+   "more": [
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      4.927,
+      -18.488
+     ],
+     "atAny": [
+      [
+       4.927,
+       -18.488
+      ],
+      [
+       5.077,
+       -18.488
+      ],
+      [
+       4.927,
+       -18.088
+      ],
+      [
+       5.077,
+       -18.088
+      ],
+      [
+       4.927,
+       -17.688
+      ],
+      [
+       5.077,
+       -17.688
+      ],
+      [
+       4.927,
+       -17.288
+      ],
+      [
+       5.077,
+       -17.288
+      ],
+      [
+       4.927,
+       -16.888
+      ],
+      [
+       5.077,
+       -16.888
+      ],
+      [
+       4.927,
+       -16.488
+      ],
+      [
+       5.077,
+       -16.488
+      ],
+      [
+       4.927,
+       -16.088
+      ],
+      [
+       5.077,
+       -16.088
+      ],
+      [
+       4.927,
+       -15.688
+      ],
+      [
+       5.077,
+       -15.688
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 568, floor 4"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      4.927,
+      -11.968
+     ],
+     "atAny": [
+      [
+       4.927,
+       -11.968
+      ],
+      [
+       5.077,
+       -11.968
+      ],
+      [
+       4.927,
+       -12.368
+      ],
+      [
+       5.077,
+       -12.368
+      ],
+      [
+       4.927,
+       -12.768
+      ],
+      [
+       5.077,
+       -12.768
+      ],
+      [
+       4.927,
+       -13.168
+      ],
+      [
+       5.077,
+       -13.168
+      ],
+      [
+       4.927,
+       -13.568
+      ],
+      [
+       5.077,
+       -13.568
+      ],
+      [
+       4.927,
+       -13.968
+      ],
+      [
+       5.077,
+       -13.968
+      ],
+      [
+       4.927,
+       -14.368
+      ],
+      [
+       5.077,
+       -14.368
+      ],
+      [
+       4.927,
+       -14.768
+      ],
+      [
+       5.077,
+       -14.768
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      4.977,
+      -18.977
+     ],
+     "atAny": [
+      [
+       4.977,
+       -19.059
+      ],
+      [
+       5.177,
+       -19.059
+      ],
+      [
+       4.977,
+       -18.659
+      ],
+      [
+       5.177,
+       -18.659
+      ],
+      [
+       4.977,
+       -18.259
+      ],
+      [
+       5.177,
+       -18.259
+      ],
+      [
+       4.977,
+       -17.858
+      ],
+      [
+       5.177,
+       -17.858
+      ],
+      [
+       4.977,
+       -17.459
+      ],
+      [
+       5.177,
+       -17.459
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      5.077,
+      -15.228
+     ],
+     "atAny": [
+      [
+       5.077,
+       -15.228
+      ],
+      [
+       5.277,
+       -15.228
+      ],
+      [
+       5.077,
+       -15.628
+      ],
+      [
+       5.277,
+       -15.628
+      ],
+      [
+       5.077,
+       -16.028
+      ],
+      [
+       5.277,
+       -16.028
+      ],
+      [
+       5.077,
+       -16.428
+      ],
+      [
+       5.277,
+       -16.428
+      ],
+      [
+       5.077,
+       -16.828
+      ],
+      [
+       5.277,
+       -16.828
+      ],
+      [
+       5.077,
+       -15.228
+      ],
+      [
+       5.277,
+       -15.228
+      ],
+      [
+       5.077,
+       -14.828
+      ],
+      [
+       5.277,
+       -14.828
+      ],
+      [
+       5.077,
+       -14.428
+      ],
+      [
+       5.277,
+       -14.428
+      ],
+      [
+       5.077,
+       -14.028
+      ],
+      [
+       5.277,
+       -14.028
+      ],
+      [
+       5.077,
+       -13.628
+      ],
+      [
+       5.277,
+       -13.628
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      4.927,
+      -10.338
+     ],
+     "atAny": [
+      [
+       4.927,
+       -10.338
+      ],
+      [
+       5.077,
+       -10.338
+      ],
+      [
+       4.927,
+       -9.938
+      ],
+      [
+       5.077,
+       -9.938
+      ],
+      [
+       4.927,
+       -9.538
+      ],
+      [
+       5.077,
+       -9.538
+      ],
+      [
+       4.927,
+       -9.138
+      ],
+      [
+       5.077,
+       -9.138
+      ],
+      [
+       4.927,
+       -8.738
+      ],
+      [
+       5.077,
+       -8.738
+      ],
+      [
+       4.927,
+       -8.338
+      ],
+      [
+       5.077,
+       -8.338
+      ],
+      [
+       4.927,
+       -7.938
+      ],
+      [
+       5.077,
+       -7.938
+      ],
+      [
+       4.927,
+       -7.538
+      ],
+      [
+       5.077,
+       -7.538
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 555, floor 4"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      4.927,
+      -3.818
+     ],
+     "atAny": [
+      [
+       4.927,
+       -3.818
+      ],
+      [
+       5.077,
+       -3.818
+      ],
+      [
+       4.927,
+       -4.218
+      ],
+      [
+       5.077,
+       -4.218
+      ],
+      [
+       4.927,
+       -4.618
+      ],
+      [
+       5.077,
+       -4.618
+      ],
+      [
+       4.927,
+       -5.018
+      ],
+      [
+       5.077,
+       -5.018
+      ],
+      [
+       4.927,
+       -5.418
+      ],
+      [
+       5.077,
+       -5.418
+      ],
+      [
+       4.927,
+       -5.818
+      ],
+      [
+       5.077,
+       -5.818
+      ],
+      [
+       4.927,
+       -6.218
+      ],
+      [
+       5.077,
+       -6.218
+      ],
+      [
+       4.927,
+       -6.618
+      ],
+      [
+       5.077,
+       -6.618
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      4.977,
+      -10.827
+     ],
+     "atAny": [
+      [
+       4.977,
+       -3.248
+      ],
+      [
+       5.177,
+       -3.248
+      ],
+      [
+       4.977,
+       -3.648
+      ],
+      [
+       5.177,
+       -3.648
+      ],
+      [
+       4.977,
+       -4.048
+      ],
+      [
+       5.177,
+       -4.048
+      ],
+      [
+       4.977,
+       -4.448
+      ],
+      [
+       5.177,
+       -4.448
+      ],
+      [
+       4.977,
+       -4.848
+      ],
+      [
+       5.177,
+       -4.848
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      29.832,
+      -14.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -14.653
+      ],
+      [
+       29.682,
+       -14.653
+      ],
+      [
+       29.832,
+       -14.253
+      ],
+      [
+       29.682,
+       -14.253
+      ],
+      [
+       29.832,
+       -13.853
+      ],
+      [
+       29.682,
+       -13.853
+      ],
+      [
+       29.832,
+       -13.453
+      ],
+      [
+       29.682,
+       -13.453
+      ],
+      [
+       29.832,
+       -13.053
+      ],
+      [
+       29.682,
+       -13.053
+      ],
+      [
+       29.832,
+       -12.653
+      ],
+      [
+       29.682,
+       -12.653
+      ],
+      [
+       29.832,
+       -12.253
+      ],
+      [
+       29.682,
+       -12.253
+      ],
+      [
+       29.832,
+       -11.853
+      ],
+      [
+       29.682,
+       -11.853
+      ],
+      [
+       29.832,
+       -11.453
+      ],
+      [
+       29.682,
+       -11.453
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 574, floor 4"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      29.832,
+      -7.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -7.653
+      ],
+      [
+       29.682,
+       -7.653
+      ],
+      [
+       29.832,
+       -8.053
+      ],
+      [
+       29.682,
+       -8.053
+      ],
+      [
+       29.832,
+       -8.453
+      ],
+      [
+       29.682,
+       -8.453
+      ],
+      [
+       29.832,
+       -8.853
+      ],
+      [
+       29.682,
+       -8.853
+      ],
+      [
+       29.832,
+       -9.253
+      ],
+      [
+       29.682,
+       -9.253
+      ],
+      [
+       29.832,
+       -9.653
+      ],
+      [
+       29.682,
+       -9.653
+      ],
+      [
+       29.832,
+       -10.053
+      ],
+      [
+       29.682,
+       -10.053
+      ],
+      [
+       29.832,
+       -10.453
+      ],
+      [
+       29.682,
+       -10.453
+      ],
+      [
+       29.832,
+       -10.853
+      ],
+      [
+       29.682,
+       -10.853
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      29.782,
+      -15.178
+     ],
+     "atAny": [
+      [
+       29.782,
+       -15.266
+      ],
+      [
+       29.582,
+       -15.266
+      ],
+      [
+       29.782,
+       -14.866
+      ],
+      [
+       29.582,
+       -14.866
+      ],
+      [
+       29.782,
+       -14.466
+      ],
+      [
+       29.582,
+       -14.466
+      ],
+      [
+       29.782,
+       -14.066
+      ],
+      [
+       29.582,
+       -14.066
+      ],
+      [
+       29.782,
+       -13.665
+      ],
+      [
+       29.582,
+       -13.665
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      29.682,
+      -11.153
+     ],
+     "atAny": [
+      [
+       29.682,
+       -11.153
+      ],
+      [
+       29.482,
+       -11.153
+      ],
+      [
+       29.682,
+       -11.553
+      ],
+      [
+       29.482,
+       -11.553
+      ],
+      [
+       29.682,
+       -11.953
+      ],
+      [
+       29.482,
+       -11.953
+      ],
+      [
+       29.682,
+       -12.353
+      ],
+      [
+       29.482,
+       -12.353
+      ],
+      [
+       29.682,
+       -12.753
+      ],
+      [
+       29.482,
+       -12.753
+      ],
+      [
+       29.682,
+       -11.153
+      ],
+      [
+       29.482,
+       -11.153
+      ],
+      [
+       29.682,
+       -10.753
+      ],
+      [
+       29.482,
+       -10.753
+      ],
+      [
+       29.682,
+       -10.353
+      ],
+      [
+       29.482,
+       -10.353
+      ],
+      [
+       29.682,
+       -9.953
+      ],
+      [
+       29.482,
+       -9.953
+      ],
+      [
+       29.682,
+       -9.553
+      ],
+      [
+       29.482,
+       -9.553
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      29.832,
+      -14.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -14.653
+      ],
+      [
+       29.682,
+       -14.653
+      ],
+      [
+       29.832,
+       -14.253
+      ],
+      [
+       29.682,
+       -14.253
+      ],
+      [
+       29.832,
+       -13.853
+      ],
+      [
+       29.682,
+       -13.853
+      ],
+      [
+       29.832,
+       -13.453
+      ],
+      [
+       29.682,
+       -13.453
+      ],
+      [
+       29.832,
+       -13.053
+      ],
+      [
+       29.682,
+       -13.053
+      ],
+      [
+       29.832,
+       -12.653
+      ],
+      [
+       29.682,
+       -12.653
+      ],
+      [
+       29.832,
+       -12.253
+      ],
+      [
+       29.682,
+       -12.253
+      ],
+      [
+       29.832,
+       -11.853
+      ],
+      [
+       29.682,
+       -11.853
+      ],
+      [
+       29.832,
+       -11.453
+      ],
+      [
+       29.682,
+       -11.453
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 573, floor 4"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      29.832,
+      -7.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -7.653
+      ],
+      [
+       29.682,
+       -7.653
+      ],
+      [
+       29.832,
+       -8.053
+      ],
+      [
+       29.682,
+       -8.053
+      ],
+      [
+       29.832,
+       -8.453
+      ],
+      [
+       29.682,
+       -8.453
+      ],
+      [
+       29.832,
+       -8.853
+      ],
+      [
+       29.682,
+       -8.853
+      ],
+      [
+       29.832,
+       -9.253
+      ],
+      [
+       29.682,
+       -9.253
+      ],
+      [
+       29.832,
+       -9.653
+      ],
+      [
+       29.682,
+       -9.653
+      ],
+      [
+       29.832,
+       -10.053
+      ],
+      [
+       29.682,
+       -10.053
+      ],
+      [
+       29.832,
+       -10.453
+      ],
+      [
+       29.682,
+       -10.453
+      ],
+      [
+       29.832,
+       -10.853
+      ],
+      [
+       29.682,
+       -10.853
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 33.8,
+     "at": [
+      29.782,
+      -15.178
+     ],
+     "atAny": [
+      [
+       29.782,
+       -7.041
+      ],
+      [
+       29.582,
+       -7.041
+      ],
+      [
+       29.782,
+       -7.441
+      ],
+      [
+       29.582,
+       -7.441
+      ],
+      [
+       29.782,
+       -7.841
+      ],
+      [
+       29.582,
+       -7.841
+      ],
+      [
+       29.782,
+       -8.241
+      ],
+      [
+       29.582,
+       -8.241
+      ],
+      [
+       29.782,
+       -8.64
+      ],
+      [
+       29.582,
+       -8.64
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    }
+   ],
+   "people": [
+    {
+     "who": "Female_Adult_06__talk",
+     "how": "standAt",
+     "role": "anyone",
+     "room": "דירה מס 573",
+     "why": "someone on an east balcony"
+    }
+   ],
+   "spaces_used": [
+    "דירה מס 568",
+    "דירה מס 555",
+    "דירה מס 574",
+    "דירה מס 573"
+   ]
+  },
+  {
+   "level": "5",
+   "levelY": 37.1,
+   "name": "floor 5 - 4 balconies",
+   "objects": [],
+   "more": [
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      4.927,
+      -18.488
+     ],
+     "atAny": [
+      [
+       4.927,
+       -18.488
+      ],
+      [
+       5.077,
+       -18.488
+      ],
+      [
+       4.927,
+       -18.088
+      ],
+      [
+       5.077,
+       -18.088
+      ],
+      [
+       4.927,
+       -17.688
+      ],
+      [
+       5.077,
+       -17.688
+      ],
+      [
+       4.927,
+       -17.288
+      ],
+      [
+       5.077,
+       -17.288
+      ],
+      [
+       4.927,
+       -16.888
+      ],
+      [
+       5.077,
+       -16.888
+      ],
+      [
+       4.927,
+       -16.488
+      ],
+      [
+       5.077,
+       -16.488
+      ],
+      [
+       4.927,
+       -16.088
+      ],
+      [
+       5.077,
+       -16.088
+      ],
+      [
+       4.927,
+       -15.688
+      ],
+      [
+       5.077,
+       -15.688
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 569, floor 5"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      4.927,
+      -11.968
+     ],
+     "atAny": [
+      [
+       4.927,
+       -11.968
+      ],
+      [
+       5.077,
+       -11.968
+      ],
+      [
+       4.927,
+       -12.368
+      ],
+      [
+       5.077,
+       -12.368
+      ],
+      [
+       4.927,
+       -12.768
+      ],
+      [
+       5.077,
+       -12.768
+      ],
+      [
+       4.927,
+       -13.168
+      ],
+      [
+       5.077,
+       -13.168
+      ],
+      [
+       4.927,
+       -13.568
+      ],
+      [
+       5.077,
+       -13.568
+      ],
+      [
+       4.927,
+       -13.968
+      ],
+      [
+       5.077,
+       -13.968
+      ],
+      [
+       4.927,
+       -14.368
+      ],
+      [
+       5.077,
+       -14.368
+      ],
+      [
+       4.927,
+       -14.768
+      ],
+      [
+       5.077,
+       -14.768
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      4.977,
+      -18.977
+     ],
+     "atAny": [
+      [
+       4.977,
+       -19.059
+      ],
+      [
+       5.177,
+       -19.059
+      ],
+      [
+       4.977,
+       -18.659
+      ],
+      [
+       5.177,
+       -18.659
+      ],
+      [
+       4.977,
+       -18.259
+      ],
+      [
+       5.177,
+       -18.259
+      ],
+      [
+       4.977,
+       -17.858
+      ],
+      [
+       5.177,
+       -17.858
+      ],
+      [
+       4.977,
+       -17.459
+      ],
+      [
+       5.177,
+       -17.459
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      4.927,
+      -10.338
+     ],
+     "atAny": [
+      [
+       4.927,
+       -10.338
+      ],
+      [
+       5.077,
+       -10.338
+      ],
+      [
+       4.927,
+       -9.938
+      ],
+      [
+       5.077,
+       -9.938
+      ],
+      [
+       4.927,
+       -9.538
+      ],
+      [
+       5.077,
+       -9.538
+      ],
+      [
+       4.927,
+       -9.138
+      ],
+      [
+       5.077,
+       -9.138
+      ],
+      [
+       4.927,
+       -8.738
+      ],
+      [
+       5.077,
+       -8.738
+      ],
+      [
+       4.927,
+       -8.338
+      ],
+      [
+       5.077,
+       -8.338
+      ],
+      [
+       4.927,
+       -7.938
+      ],
+      [
+       5.077,
+       -7.938
+      ],
+      [
+       4.927,
+       -7.538
+      ],
+      [
+       5.077,
+       -7.538
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 557, floor 5"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      4.927,
+      -3.818
+     ],
+     "atAny": [
+      [
+       4.927,
+       -3.818
+      ],
+      [
+       5.077,
+       -3.818
+      ],
+      [
+       4.927,
+       -4.218
+      ],
+      [
+       5.077,
+       -4.218
+      ],
+      [
+       4.927,
+       -4.618
+      ],
+      [
+       5.077,
+       -4.618
+      ],
+      [
+       4.927,
+       -5.018
+      ],
+      [
+       5.077,
+       -5.018
+      ],
+      [
+       4.927,
+       -5.418
+      ],
+      [
+       5.077,
+       -5.418
+      ],
+      [
+       4.927,
+       -5.818
+      ],
+      [
+       5.077,
+       -5.818
+      ],
+      [
+       4.927,
+       -6.218
+      ],
+      [
+       5.077,
+       -6.218
+      ],
+      [
+       4.927,
+       -6.618
+      ],
+      [
+       5.077,
+       -6.618
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      4.977,
+      -10.827
+     ],
+     "atAny": [
+      [
+       4.977,
+       -3.248
+      ],
+      [
+       5.177,
+       -3.248
+      ],
+      [
+       4.977,
+       -3.648
+      ],
+      [
+       5.177,
+       -3.648
+      ],
+      [
+       4.977,
+       -4.048
+      ],
+      [
+       5.177,
+       -4.048
+      ],
+      [
+       4.977,
+       -4.448
+      ],
+      [
+       5.177,
+       -4.448
+      ],
+      [
+       4.977,
+       -4.848
+      ],
+      [
+       5.177,
+       -4.848
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      5.077,
+      -7.078
+     ],
+     "atAny": [
+      [
+       5.077,
+       -7.078
+      ],
+      [
+       5.277,
+       -7.078
+      ],
+      [
+       5.077,
+       -7.478
+      ],
+      [
+       5.277,
+       -7.478
+      ],
+      [
+       5.077,
+       -7.878
+      ],
+      [
+       5.277,
+       -7.878
+      ],
+      [
+       5.077,
+       -8.278
+      ],
+      [
+       5.277,
+       -8.278
+      ],
+      [
+       5.077,
+       -8.678
+      ],
+      [
+       5.277,
+       -8.678
+      ],
+      [
+       5.077,
+       -7.078
+      ],
+      [
+       5.277,
+       -7.078
+      ],
+      [
+       5.077,
+       -6.678
+      ],
+      [
+       5.277,
+       -6.678
+      ],
+      [
+       5.077,
+       -6.278
+      ],
+      [
+       5.277,
+       -6.278
+      ],
+      [
+       5.077,
+       -5.878
+      ],
+      [
+       5.277,
+       -5.878
+      ],
+      [
+       5.077,
+       -5.478
+      ],
+      [
+       5.277,
+       -5.478
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      29.832,
+      -14.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -14.653
+      ],
+      [
+       29.682,
+       -14.653
+      ],
+      [
+       29.832,
+       -14.253
+      ],
+      [
+       29.682,
+       -14.253
+      ],
+      [
+       29.832,
+       -13.853
+      ],
+      [
+       29.682,
+       -13.853
+      ],
+      [
+       29.832,
+       -13.453
+      ],
+      [
+       29.682,
+       -13.453
+      ],
+      [
+       29.832,
+       -13.053
+      ],
+      [
+       29.682,
+       -13.053
+      ],
+      [
+       29.832,
+       -12.653
+      ],
+      [
+       29.682,
+       -12.653
+      ],
+      [
+       29.832,
+       -12.253
+      ],
+      [
+       29.682,
+       -12.253
+      ],
+      [
+       29.832,
+       -11.853
+      ],
+      [
+       29.682,
+       -11.853
+      ],
+      [
+       29.832,
+       -11.453
+      ],
+      [
+       29.682,
+       -11.453
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 576, floor 5"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      29.832,
+      -7.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -7.653
+      ],
+      [
+       29.682,
+       -7.653
+      ],
+      [
+       29.832,
+       -8.053
+      ],
+      [
+       29.682,
+       -8.053
+      ],
+      [
+       29.832,
+       -8.453
+      ],
+      [
+       29.682,
+       -8.453
+      ],
+      [
+       29.832,
+       -8.853
+      ],
+      [
+       29.682,
+       -8.853
+      ],
+      [
+       29.832,
+       -9.253
+      ],
+      [
+       29.682,
+       -9.253
+      ],
+      [
+       29.832,
+       -9.653
+      ],
+      [
+       29.682,
+       -9.653
+      ],
+      [
+       29.832,
+       -10.053
+      ],
+      [
+       29.682,
+       -10.053
+      ],
+      [
+       29.832,
+       -10.453
+      ],
+      [
+       29.682,
+       -10.453
+      ],
+      [
+       29.832,
+       -10.853
+      ],
+      [
+       29.682,
+       -10.853
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      29.782,
+      -15.178
+     ],
+     "atAny": [
+      [
+       29.782,
+       -15.266
+      ],
+      [
+       29.582,
+       -15.266
+      ],
+      [
+       29.782,
+       -14.866
+      ],
+      [
+       29.582,
+       -14.866
+      ],
+      [
+       29.782,
+       -14.466
+      ],
+      [
+       29.582,
+       -14.466
+      ],
+      [
+       29.782,
+       -14.066
+      ],
+      [
+       29.582,
+       -14.066
+      ],
+      [
+       29.782,
+       -13.665
+      ],
+      [
+       29.582,
+       -13.665
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      29.832,
+      -14.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -14.653
+      ],
+      [
+       29.682,
+       -14.653
+      ],
+      [
+       29.832,
+       -14.253
+      ],
+      [
+       29.682,
+       -14.253
+      ],
+      [
+       29.832,
+       -13.853
+      ],
+      [
+       29.682,
+       -13.853
+      ],
+      [
+       29.832,
+       -13.453
+      ],
+      [
+       29.682,
+       -13.453
+      ],
+      [
+       29.832,
+       -13.053
+      ],
+      [
+       29.682,
+       -13.053
+      ],
+      [
+       29.832,
+       -12.653
+      ],
+      [
+       29.682,
+       -12.653
+      ],
+      [
+       29.832,
+       -12.253
+      ],
+      [
+       29.682,
+       -12.253
+      ],
+      [
+       29.832,
+       -11.853
+      ],
+      [
+       29.682,
+       -11.853
+      ],
+      [
+       29.832,
+       -11.453
+      ],
+      [
+       29.682,
+       -11.453
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 575, floor 5"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      29.832,
+      -7.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -7.653
+      ],
+      [
+       29.682,
+       -7.653
+      ],
+      [
+       29.832,
+       -8.053
+      ],
+      [
+       29.682,
+       -8.053
+      ],
+      [
+       29.832,
+       -8.453
+      ],
+      [
+       29.682,
+       -8.453
+      ],
+      [
+       29.832,
+       -8.853
+      ],
+      [
+       29.682,
+       -8.853
+      ],
+      [
+       29.832,
+       -9.253
+      ],
+      [
+       29.682,
+       -9.253
+      ],
+      [
+       29.832,
+       -9.653
+      ],
+      [
+       29.682,
+       -9.653
+      ],
+      [
+       29.832,
+       -10.053
+      ],
+      [
+       29.682,
+       -10.053
+      ],
+      [
+       29.832,
+       -10.453
+      ],
+      [
+       29.682,
+       -10.453
+      ],
+      [
+       29.832,
+       -10.853
+      ],
+      [
+       29.682,
+       -10.853
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      29.782,
+      -15.178
+     ],
+     "atAny": [
+      [
+       29.782,
+       -7.041
+      ],
+      [
+       29.582,
+       -7.041
+      ],
+      [
+       29.782,
+       -7.441
+      ],
+      [
+       29.582,
+       -7.441
+      ],
+      [
+       29.782,
+       -7.841
+      ],
+      [
+       29.582,
+       -7.841
+      ],
+      [
+       29.782,
+       -8.241
+      ],
+      [
+       29.582,
+       -8.241
+      ],
+      [
+       29.782,
+       -8.64
+      ],
+      [
+       29.582,
+       -8.64
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 37.1,
+     "at": [
+      29.682,
+      -11.153
+     ],
+     "atAny": [
+      [
+       29.682,
+       -11.153
+      ],
+      [
+       29.482,
+       -11.153
+      ],
+      [
+       29.682,
+       -11.553
+      ],
+      [
+       29.482,
+       -11.553
+      ],
+      [
+       29.682,
+       -11.953
+      ],
+      [
+       29.482,
+       -11.953
+      ],
+      [
+       29.682,
+       -12.353
+      ],
+      [
+       29.482,
+       -12.353
+      ],
+      [
+       29.682,
+       -12.753
+      ],
+      [
+       29.482,
+       -12.753
+      ],
+      [
+       29.682,
+       -11.153
+      ],
+      [
+       29.482,
+       -11.153
+      ],
+      [
+       29.682,
+       -10.753
+      ],
+      [
+       29.482,
+       -10.753
+      ],
+      [
+       29.682,
+       -10.353
+      ],
+      [
+       29.482,
+       -10.353
+      ],
+      [
+       29.682,
+       -9.953
+      ],
+      [
+       29.482,
+       -9.953
+      ],
+      [
+       29.682,
+       -9.553
+      ],
+      [
+       29.482,
+       -9.553
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    }
+   ],
+   "people": [],
+   "spaces_used": [
+    "דירה מס 569",
+    "דירה מס 557",
+    "דירה מס 576",
+    "דירה מס 575"
+   ]
+  },
+  {
+   "level": "6",
+   "levelY": 40.4,
+   "name": "floor 6 - 4 balconies",
+   "objects": [],
+   "more": [
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      5.952,
+      -17.673
+     ],
+     "atAny": [
+      [
+       5.952,
+       -17.673
+      ],
+      [
+       6.102,
+       -17.673
+      ],
+      [
+       5.952,
+       -17.273
+      ],
+      [
+       6.102,
+       -17.273
+      ],
+      [
+       5.952,
+       -16.873
+      ],
+      [
+       6.102,
+       -16.873
+      ],
+      [
+       5.952,
+       -16.473
+      ],
+      [
+       6.102,
+       -16.473
+      ],
+      [
+       5.952,
+       -16.073
+      ],
+      [
+       6.102,
+       -16.073
+      ],
+      [
+       5.952,
+       -15.673
+      ],
+      [
+       6.102,
+       -15.673
+      ],
+      [
+       5.952,
+       -15.273
+      ],
+      [
+       6.102,
+       -15.273
+      ],
+      [
+       5.952,
+       -14.873
+      ],
+      [
+       6.102,
+       -14.873
+      ],
+      [
+       5.952,
+       -14.473
+      ],
+      [
+       6.102,
+       -14.473
+      ],
+      [
+       5.952,
+       -14.073
+      ],
+      [
+       6.102,
+       -14.073
+      ],
+      [
+       5.952,
+       -13.673
+      ],
+      [
+       6.102,
+       -13.673
+      ],
+      [
+       5.952,
+       -13.273
+      ],
+      [
+       6.102,
+       -13.273
+      ],
+      [
+       5.952,
+       -12.873
+      ],
+      [
+       6.102,
+       -12.873
+      ],
+      [
+       5.952,
+       -12.473
+      ],
+      [
+       6.102,
+       -12.473
+      ],
+      [
+       5.952,
+       -12.073
+      ],
+      [
+       6.102,
+       -12.073
+      ],
+      [
+       5.952,
+       -11.673
+      ],
+      [
+       6.102,
+       -11.673
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 580, floor 6"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      5.952,
+      -4.633
+     ],
+     "atAny": [
+      [
+       5.952,
+       -4.633
+      ],
+      [
+       6.102,
+       -4.633
+      ],
+      [
+       5.952,
+       -5.033
+      ],
+      [
+       6.102,
+       -5.033
+      ],
+      [
+       5.952,
+       -5.433
+      ],
+      [
+       6.102,
+       -5.433
+      ],
+      [
+       5.952,
+       -5.833
+      ],
+      [
+       6.102,
+       -5.833
+      ],
+      [
+       5.952,
+       -6.233
+      ],
+      [
+       6.102,
+       -6.233
+      ],
+      [
+       5.952,
+       -6.633
+      ],
+      [
+       6.102,
+       -6.633
+      ],
+      [
+       5.952,
+       -7.033
+      ],
+      [
+       6.102,
+       -7.033
+      ],
+      [
+       5.952,
+       -7.433
+      ],
+      [
+       6.102,
+       -7.433
+      ],
+      [
+       5.952,
+       -7.833
+      ],
+      [
+       6.102,
+       -7.833
+      ],
+      [
+       5.952,
+       -8.233
+      ],
+      [
+       6.102,
+       -8.233
+      ],
+      [
+       5.952,
+       -8.633
+      ],
+      [
+       6.102,
+       -8.633
+      ],
+      [
+       5.952,
+       -9.033
+      ],
+      [
+       6.102,
+       -9.033
+      ],
+      [
+       5.952,
+       -9.433
+      ],
+      [
+       6.102,
+       -9.433
+      ],
+      [
+       5.952,
+       -9.833
+      ],
+      [
+       6.102,
+       -9.833
+      ],
+      [
+       5.952,
+       -10.233
+      ],
+      [
+       6.102,
+       -10.233
+      ],
+      [
+       5.952,
+       -10.633
+      ],
+      [
+       6.102,
+       -10.633
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      6.002,
+      -18.651
+     ],
+     "atAny": [
+      [
+       6.002,
+       -18.814
+      ],
+      [
+       6.202,
+       -18.814
+      ],
+      [
+       6.002,
+       -18.414
+      ],
+      [
+       6.202,
+       -18.414
+      ],
+      [
+       6.002,
+       -18.014
+      ],
+      [
+       6.202,
+       -18.014
+      ],
+      [
+       6.002,
+       -17.614
+      ],
+      [
+       6.202,
+       -17.614
+      ],
+      [
+       6.002,
+       -17.214
+      ],
+      [
+       6.202,
+       -17.214
+      ],
+      [
+       6.002,
+       -16.814
+      ],
+      [
+       6.202,
+       -16.814
+      ],
+      [
+       6.002,
+       -16.414
+      ],
+      [
+       6.202,
+       -16.414
+      ],
+      [
+       6.002,
+       -16.014
+      ],
+      [
+       6.202,
+       -16.014
+      ],
+      [
+       6.002,
+       -15.614
+      ],
+      [
+       6.202,
+       -15.614
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      6.102,
+      -11.153
+     ],
+     "atAny": [
+      [
+       6.102,
+       -11.153
+      ],
+      [
+       6.302,
+       -11.153
+      ],
+      [
+       6.102,
+       -11.553
+      ],
+      [
+       6.302,
+       -11.553
+      ],
+      [
+       6.102,
+       -11.953
+      ],
+      [
+       6.302,
+       -11.953
+      ],
+      [
+       6.102,
+       -12.353
+      ],
+      [
+       6.302,
+       -12.353
+      ],
+      [
+       6.102,
+       -12.753
+      ],
+      [
+       6.302,
+       -12.753
+      ],
+      [
+       6.102,
+       -13.153
+      ],
+      [
+       6.302,
+       -13.153
+      ],
+      [
+       6.102,
+       -13.553
+      ],
+      [
+       6.302,
+       -13.553
+      ],
+      [
+       6.102,
+       -13.953
+      ],
+      [
+       6.302,
+       -13.953
+      ],
+      [
+       6.102,
+       -14.353
+      ],
+      [
+       6.302,
+       -14.353
+      ],
+      [
+       6.102,
+       -11.153
+      ],
+      [
+       6.302,
+       -11.153
+      ],
+      [
+       6.102,
+       -10.753
+      ],
+      [
+       6.302,
+       -10.753
+      ],
+      [
+       6.102,
+       -10.353
+      ],
+      [
+       6.302,
+       -10.353
+      ],
+      [
+       6.102,
+       -9.953
+      ],
+      [
+       6.302,
+       -9.953
+      ],
+      [
+       6.102,
+       -9.553
+      ],
+      [
+       6.302,
+       -9.553
+      ],
+      [
+       6.102,
+       -9.153
+      ],
+      [
+       6.302,
+       -9.153
+      ],
+      [
+       6.102,
+       -8.753
+      ],
+      [
+       6.302,
+       -8.753
+      ],
+      [
+       6.102,
+       -8.353
+      ],
+      [
+       6.302,
+       -8.353
+      ],
+      [
+       6.102,
+       -7.953
+      ],
+      [
+       6.302,
+       -7.953
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      5.952,
+      -17.673
+     ],
+     "atAny": [
+      [
+       5.952,
+       -17.673
+      ],
+      [
+       6.102,
+       -17.673
+      ],
+      [
+       5.952,
+       -17.273
+      ],
+      [
+       6.102,
+       -17.273
+      ],
+      [
+       5.952,
+       -16.873
+      ],
+      [
+       6.102,
+       -16.873
+      ],
+      [
+       5.952,
+       -16.473
+      ],
+      [
+       6.102,
+       -16.473
+      ],
+      [
+       5.952,
+       -16.073
+      ],
+      [
+       6.102,
+       -16.073
+      ],
+      [
+       5.952,
+       -15.673
+      ],
+      [
+       6.102,
+       -15.673
+      ],
+      [
+       5.952,
+       -15.273
+      ],
+      [
+       6.102,
+       -15.273
+      ],
+      [
+       5.952,
+       -14.873
+      ],
+      [
+       6.102,
+       -14.873
+      ],
+      [
+       5.952,
+       -14.473
+      ],
+      [
+       6.102,
+       -14.473
+      ],
+      [
+       5.952,
+       -14.073
+      ],
+      [
+       6.102,
+       -14.073
+      ],
+      [
+       5.952,
+       -13.673
+      ],
+      [
+       6.102,
+       -13.673
+      ],
+      [
+       5.952,
+       -13.273
+      ],
+      [
+       6.102,
+       -13.273
+      ],
+      [
+       5.952,
+       -12.873
+      ],
+      [
+       6.102,
+       -12.873
+      ],
+      [
+       5.952,
+       -12.473
+      ],
+      [
+       6.102,
+       -12.473
+      ],
+      [
+       5.952,
+       -12.073
+      ],
+      [
+       6.102,
+       -12.073
+      ],
+      [
+       5.952,
+       -11.673
+      ],
+      [
+       6.102,
+       -11.673
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 579, floor 6"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      5.952,
+      -4.633
+     ],
+     "atAny": [
+      [
+       5.952,
+       -4.633
+      ],
+      [
+       6.102,
+       -4.633
+      ],
+      [
+       5.952,
+       -5.033
+      ],
+      [
+       6.102,
+       -5.033
+      ],
+      [
+       5.952,
+       -5.433
+      ],
+      [
+       6.102,
+       -5.433
+      ],
+      [
+       5.952,
+       -5.833
+      ],
+      [
+       6.102,
+       -5.833
+      ],
+      [
+       5.952,
+       -6.233
+      ],
+      [
+       6.102,
+       -6.233
+      ],
+      [
+       5.952,
+       -6.633
+      ],
+      [
+       6.102,
+       -6.633
+      ],
+      [
+       5.952,
+       -7.033
+      ],
+      [
+       6.102,
+       -7.033
+      ],
+      [
+       5.952,
+       -7.433
+      ],
+      [
+       6.102,
+       -7.433
+      ],
+      [
+       5.952,
+       -7.833
+      ],
+      [
+       6.102,
+       -7.833
+      ],
+      [
+       5.952,
+       -8.233
+      ],
+      [
+       6.102,
+       -8.233
+      ],
+      [
+       5.952,
+       -8.633
+      ],
+      [
+       6.102,
+       -8.633
+      ],
+      [
+       5.952,
+       -9.033
+      ],
+      [
+       6.102,
+       -9.033
+      ],
+      [
+       5.952,
+       -9.433
+      ],
+      [
+       6.102,
+       -9.433
+      ],
+      [
+       5.952,
+       -9.833
+      ],
+      [
+       6.102,
+       -9.833
+      ],
+      [
+       5.952,
+       -10.233
+      ],
+      [
+       6.102,
+       -10.233
+      ],
+      [
+       5.952,
+       -10.633
+      ],
+      [
+       6.102,
+       -10.633
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      6.002,
+      -18.651
+     ],
+     "atAny": [
+      [
+       6.002,
+       -3.492
+      ],
+      [
+       6.202,
+       -3.492
+      ],
+      [
+       6.002,
+       -3.892
+      ],
+      [
+       6.202,
+       -3.892
+      ],
+      [
+       6.002,
+       -4.292
+      ],
+      [
+       6.202,
+       -4.292
+      ],
+      [
+       6.002,
+       -4.692
+      ],
+      [
+       6.202,
+       -4.692
+      ],
+      [
+       6.002,
+       -5.092
+      ],
+      [
+       6.202,
+       -5.092
+      ],
+      [
+       6.002,
+       -5.492
+      ],
+      [
+       6.202,
+       -5.492
+      ],
+      [
+       6.002,
+       -5.892
+      ],
+      [
+       6.202,
+       -5.892
+      ],
+      [
+       6.002,
+       -6.292
+      ],
+      [
+       6.202,
+       -6.292
+      ],
+      [
+       6.002,
+       -6.692
+      ],
+      [
+       6.202,
+       -6.692
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      29.832,
+      -14.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -14.653
+      ],
+      [
+       29.682,
+       -14.653
+      ],
+      [
+       29.832,
+       -14.253
+      ],
+      [
+       29.682,
+       -14.253
+      ],
+      [
+       29.832,
+       -13.853
+      ],
+      [
+       29.682,
+       -13.853
+      ],
+      [
+       29.832,
+       -13.453
+      ],
+      [
+       29.682,
+       -13.453
+      ],
+      [
+       29.832,
+       -13.053
+      ],
+      [
+       29.682,
+       -13.053
+      ],
+      [
+       29.832,
+       -12.653
+      ],
+      [
+       29.682,
+       -12.653
+      ],
+      [
+       29.832,
+       -12.253
+      ],
+      [
+       29.682,
+       -12.253
+      ],
+      [
+       29.832,
+       -11.853
+      ],
+      [
+       29.682,
+       -11.853
+      ],
+      [
+       29.832,
+       -11.453
+      ],
+      [
+       29.682,
+       -11.453
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 578, floor 6"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      29.832,
+      -7.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -7.653
+      ],
+      [
+       29.682,
+       -7.653
+      ],
+      [
+       29.832,
+       -8.053
+      ],
+      [
+       29.682,
+       -8.053
+      ],
+      [
+       29.832,
+       -8.453
+      ],
+      [
+       29.682,
+       -8.453
+      ],
+      [
+       29.832,
+       -8.853
+      ],
+      [
+       29.682,
+       -8.853
+      ],
+      [
+       29.832,
+       -9.253
+      ],
+      [
+       29.682,
+       -9.253
+      ],
+      [
+       29.832,
+       -9.653
+      ],
+      [
+       29.682,
+       -9.653
+      ],
+      [
+       29.832,
+       -10.053
+      ],
+      [
+       29.682,
+       -10.053
+      ],
+      [
+       29.832,
+       -10.453
+      ],
+      [
+       29.682,
+       -10.453
+      ],
+      [
+       29.832,
+       -10.853
+      ],
+      [
+       29.682,
+       -10.853
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      29.782,
+      -15.178
+     ],
+     "atAny": [
+      [
+       29.782,
+       -15.266
+      ],
+      [
+       29.582,
+       -15.266
+      ],
+      [
+       29.782,
+       -14.866
+      ],
+      [
+       29.582,
+       -14.866
+      ],
+      [
+       29.782,
+       -14.466
+      ],
+      [
+       29.582,
+       -14.466
+      ],
+      [
+       29.782,
+       -14.066
+      ],
+      [
+       29.582,
+       -14.066
+      ],
+      [
+       29.782,
+       -13.665
+      ],
+      [
+       29.582,
+       -13.665
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    },
+    {
+     "item": "outdoor_table_chair_set_01",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      29.682,
+      -11.153
+     ],
+     "atAny": [
+      [
+       29.682,
+       -11.153
+      ],
+      [
+       29.482,
+       -11.153
+      ],
+      [
+       29.682,
+       -11.553
+      ],
+      [
+       29.482,
+       -11.553
+      ],
+      [
+       29.682,
+       -11.953
+      ],
+      [
+       29.482,
+       -11.953
+      ],
+      [
+       29.682,
+       -12.353
+      ],
+      [
+       29.482,
+       -12.353
+      ],
+      [
+       29.682,
+       -12.753
+      ],
+      [
+       29.482,
+       -12.753
+      ],
+      [
+       29.682,
+       -11.153
+      ],
+      [
+       29.482,
+       -11.153
+      ],
+      [
+       29.682,
+       -10.753
+      ],
+      [
+       29.482,
+       -10.753
+      ],
+      [
+       29.682,
+       -10.353
+      ],
+      [
+       29.482,
+       -10.353
+      ],
+      [
+       29.682,
+       -9.953
+      ],
+      [
+       29.482,
+       -9.953
+      ],
+      [
+       29.682,
+       -9.553
+      ],
+      [
+       29.482,
+       -9.553
+      ]
+     ],
+     "yaw": 0,
+     "why": "a small table and two chairs along the railing"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      29.832,
+      -14.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -14.653
+      ],
+      [
+       29.682,
+       -14.653
+      ],
+      [
+       29.832,
+       -14.253
+      ],
+      [
+       29.682,
+       -14.253
+      ],
+      [
+       29.832,
+       -13.853
+      ],
+      [
+       29.682,
+       -13.853
+      ],
+      [
+       29.832,
+       -13.453
+      ],
+      [
+       29.682,
+       -13.453
+      ],
+      [
+       29.832,
+       -13.053
+      ],
+      [
+       29.682,
+       -13.053
+      ],
+      [
+       29.832,
+       -12.653
+      ],
+      [
+       29.682,
+       -12.653
+      ],
+      [
+       29.832,
+       -12.253
+      ],
+      [
+       29.682,
+       -12.253
+      ],
+      [
+       29.832,
+       -11.853
+      ],
+      [
+       29.682,
+       -11.853
+      ],
+      [
+       29.832,
+       -11.453
+      ],
+      [
+       29.682,
+       -11.453
+      ]
+     ],
+     "yaw": 90,
+     "why": "a planter along the railing of balcony דירה מס 577, floor 6"
+    },
+    {
+     "item": "planter_box_02",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      29.832,
+      -7.653
+     ],
+     "atAny": [
+      [
+       29.832,
+       -7.653
+      ],
+      [
+       29.682,
+       -7.653
+      ],
+      [
+       29.832,
+       -8.053
+      ],
+      [
+       29.682,
+       -8.053
+      ],
+      [
+       29.832,
+       -8.453
+      ],
+      [
+       29.682,
+       -8.453
+      ],
+      [
+       29.832,
+       -8.853
+      ],
+      [
+       29.682,
+       -8.853
+      ],
+      [
+       29.832,
+       -9.253
+      ],
+      [
+       29.682,
+       -9.253
+      ],
+      [
+       29.832,
+       -9.653
+      ],
+      [
+       29.682,
+       -9.653
+      ],
+      [
+       29.832,
+       -10.053
+      ],
+      [
+       29.682,
+       -10.053
+      ],
+      [
+       29.832,
+       -10.453
+      ],
+      [
+       29.682,
+       -10.453
+      ],
+      [
+       29.832,
+       -10.853
+      ],
+      [
+       29.682,
+       -10.853
+      ]
+     ],
+     "yaw": 90,
+     "why": "a second planter along the railing"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "at",
+     "level": 40.4,
+     "at": [
+      29.782,
+      -15.178
+     ],
+     "atAny": [
+      [
+       29.782,
+       -7.041
+      ],
+      [
+       29.582,
+       -7.041
+      ],
+      [
+       29.782,
+       -7.441
+      ],
+      [
+       29.582,
+       -7.441
+      ],
+      [
+       29.782,
+       -7.841
+      ],
+      [
+       29.582,
+       -7.841
+      ],
+      [
+       29.782,
+       -8.241
+      ],
+      [
+       29.582,
+       -8.241
+      ],
+      [
+       29.782,
+       -8.64
+      ],
+      [
+       29.582,
+       -8.64
+      ]
+     ],
+     "yaw": 0,
+     "why": "a tall plant at one end"
+    }
+   ],
+   "people": [],
+   "spaces_used": [
+    "דירה מס 580",
+    "דירה מס 579",
+    "דירה מס 578",
+    "דירה מס 577"
+   ]
+  }
+ ],
+ "roles": {
+  "anyone": [
+   ""
+  ]
+ },
+ "peopleMove": true,
+ "shine": {
+  "maxRough": 0.5,
+  "env": 1.0,
+  "metalEnv": 1.2,
+  "probe": [
+   18.0,
+   22.200000000000003,
+   -10.0
+  ],
+  "delay": 7500,
+  "glassRoom": 0.35
+ },
+ "outdoor": [
+  {
+   "item": "island_tree_02",
+   "at": [
+    [
+     6.764,
+     -25.287
+    ],
+    [
+     10.85,
+     -25.167
+    ],
+    [
+     35.098,
+     -5.088
+    ],
+    [
+     34.259,
+     1.172
+    ],
+    [
+     35.895,
+     -10.115
+    ],
+    [
+     36.119,
+     -12.85
+    ],
+    [
+     34.149,
+     -21.682
+    ],
+    [
+     -2.059,
+     -16.151
+    ]
+   ],
+   "on": [
+    "hk-grass",
+    "hk-sidewalk",
+    "hk-synth",
+    "hk-paving",
+    "hk-stone"
+   ],
+   "scaleMin": 1.7,
+   "scaleMax": 2.0,
+   "foot": 0.06,
+   "sink": 0.01,
+   "keep": 0.3,
+   "apart": -9,
+   "seed": 1,
+   "why": "the trees the architect keeps (tree symbol 'shimor'), at his points"
+  },
+  {
+   "item": "island_tree_02",
+   "at": [
+    [
+     31.309,
+     -1.137
+    ],
+    [
+     32.123,
+     -9.062
+    ],
+    [
+     19.997,
+     -21.003
+    ],
+    [
+     0.997,
+     -20.009
+    ],
+    [
+     0.997,
+     -15.144
+    ],
+    [
+     6.541,
+     -20.482
+    ],
+    [
+     0.997,
+     -7.448
+    ],
+    [
+     -1.503,
+     -28.142
+    ]
+   ],
+   "on": [
+    "hk-grass",
+    "hk-sidewalk",
+    "hk-synth",
+    "hk-paving",
+    "hk-stone"
+   ],
+   "scaleMin": 1.1,
+   "scaleMax": 1.3,
+   "foot": 0.06,
+   "sink": 0.01,
+   "keep": 0.3,
+   "apart": -9,
+   "seed": 2,
+   "why": "the new trees of the landscape plan ('OR 2d tree 09'), at his points"
+  },
+  {
+   "item": "shrub_02",
+   "nodes": [
+    "shrub_02_a",
+    "shrub_02_b",
+    "shrub_02_c",
+    "shrub_02_d"
+   ],
+   "count": 5,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    0.4,
+    -22.0,
+    9.0,
+    -13.4
+   ],
+   "scaleMin": 0.7,
+   "scaleMax": 1.1,
+   "apart": 1.2,
+   "keep": 0.4,
+   "seed": 30,
+   "why": "shrubs on lawn 0"
+  },
+  {
+   "item": "fern_02",
+   "nodes": [
+    "fern_02_b",
+    "fern_02_c",
+    "fern_02_a"
+   ],
+   "count": 4,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    0.4,
+    -22.0,
+    9.0,
+    -13.4
+   ],
+   "scaleMin": 0.8,
+   "scaleMax": 1.2,
+   "apart": 0.5,
+   "keep": 0.3,
+   "seed": 40,
+   "why": "ferns on lawn 0"
+  },
+  {
+   "item": "grass_medium_01",
+   "nodes": [
+    "grass_medium_01_tall_a_LOD0",
+    "grass_medium_01_large_a_LOD0",
+    "grass_medium_01_mid_a_LOD0"
+   ],
+   "count": 10,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    0.4,
+    -22.0,
+    9.0,
+    -13.4
+   ],
+   "scaleMin": 1.2,
+   "scaleMax": 2.0,
+   "apart": 0.5,
+   "keep": 0.4,
+   "seed": 50,
+   "why": "tufts of taller grass on lawn 0"
+  },
+  {
+   "item": "shrub_02",
+   "nodes": [
+    "shrub_02_a",
+    "shrub_02_b",
+    "shrub_02_c",
+    "shrub_02_d"
+   ],
+   "count": 5,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    0.4,
+    -11.2,
+    7.7,
+    -6.9
+   ],
+   "scaleMin": 0.7,
+   "scaleMax": 1.1,
+   "apart": 1.2,
+   "keep": 0.4,
+   "seed": 31,
+   "why": "shrubs on lawn 1"
+  },
+  {
+   "item": "fern_02",
+   "nodes": [
+    "fern_02_b",
+    "fern_02_c",
+    "fern_02_a"
+   ],
+   "count": 4,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    0.4,
+    -11.2,
+    7.7,
+    -6.9
+   ],
+   "scaleMin": 0.8,
+   "scaleMax": 1.2,
+   "apart": 0.5,
+   "keep": 0.3,
+   "seed": 41,
+   "why": "ferns on lawn 1"
+  },
+  {
+   "item": "grass_medium_01",
+   "nodes": [
+    "grass_medium_01_tall_a_LOD0",
+    "grass_medium_01_large_a_LOD0",
+    "grass_medium_01_mid_a_LOD0"
+   ],
+   "count": 10,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    0.4,
+    -11.2,
+    7.7,
+    -6.9
+   ],
+   "scaleMin": 1.2,
+   "scaleMax": 2.0,
+   "apart": 0.5,
+   "keep": 0.4,
+   "seed": 51,
+   "why": "tufts of taller grass on lawn 1"
+  },
+  {
+   "item": "shrub_02",
+   "nodes": [
+    "shrub_02_a",
+    "shrub_02_b",
+    "shrub_02_c",
+    "shrub_02_d"
+   ],
+   "count": 5,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    31.2,
+    -22.0,
+    33.4,
+    -0.4
+   ],
+   "scaleMin": 0.7,
+   "scaleMax": 1.1,
+   "apart": 1.2,
+   "keep": 0.4,
+   "seed": 32,
+   "why": "shrubs on lawn 2"
+  },
+  {
+   "item": "fern_02",
+   "nodes": [
+    "fern_02_b",
+    "fern_02_c",
+    "fern_02_a"
+   ],
+   "count": 4,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    31.2,
+    -22.0,
+    33.4,
+    -0.4
+   ],
+   "scaleMin": 0.8,
+   "scaleMax": 1.2,
+   "apart": 0.5,
+   "keep": 0.3,
+   "seed": 42,
+   "why": "ferns on lawn 2"
+  },
+  {
+   "item": "grass_medium_01",
+   "nodes": [
+    "grass_medium_01_tall_a_LOD0",
+    "grass_medium_01_large_a_LOD0",
+    "grass_medium_01_mid_a_LOD0"
+   ],
+   "count": 10,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    31.2,
+    -22.0,
+    33.4,
+    -0.4
+   ],
+   "scaleMin": 1.2,
+   "scaleMax": 2.0,
+   "apart": 0.5,
+   "keep": 0.4,
+   "seed": 52,
+   "why": "tufts of taller grass on lawn 2"
+  },
+  {
+   "item": "shrub_02",
+   "nodes": [
+    "shrub_02_a",
+    "shrub_02_b",
+    "shrub_02_c",
+    "shrub_02_d"
+   ],
+   "count": 5,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    10.4,
+    -22.0,
+    18.3,
+    -19.4
+   ],
+   "scaleMin": 0.7,
+   "scaleMax": 1.1,
+   "apart": 1.2,
+   "keep": 0.4,
+   "seed": 33,
+   "why": "shrubs on lawn 3"
+  },
+  {
+   "item": "fern_02",
+   "nodes": [
+    "fern_02_b",
+    "fern_02_c",
+    "fern_02_a"
+   ],
+   "count": 4,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    10.4,
+    -22.0,
+    18.3,
+    -19.4
+   ],
+   "scaleMin": 0.8,
+   "scaleMax": 1.2,
+   "apart": 0.5,
+   "keep": 0.3,
+   "seed": 43,
+   "why": "ferns on lawn 3"
+  },
+  {
+   "item": "grass_medium_01",
+   "nodes": [
+    "grass_medium_01_tall_a_LOD0",
+    "grass_medium_01_large_a_LOD0",
+    "grass_medium_01_mid_a_LOD0"
+   ],
+   "count": 10,
+   "on": [
+    "hk-grass"
+   ],
+   "box": [
+    10.4,
+    -22.0,
+    18.3,
+    -19.4
+   ],
+   "scaleMin": 1.2,
+   "scaleMax": 2.0,
+   "apart": 0.5,
+   "keep": 0.4,
+   "seed": 53,
+   "why": "tufts of taller grass on lawn 3"
+  },
+  {
+   "item": "modular_street_seating",
+   "at": [
+    [
+     -2.3,
+     -9.0
+    ]
+   ],
+   "yaw": 90,
+   "on": [
+    "hk-sidewalk"
+   ],
+   "scaleMin": 1,
+   "scaleMax": 1,
+   "foot": 0.3,
+   "keep": 0.2,
+   "apart": -9,
+   "seed": 5,
+   "why": "a street bench on the sidewalk, beside the entrance"
+  }
+ ]
+}
