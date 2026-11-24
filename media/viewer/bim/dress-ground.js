@@ -49,6 +49,32 @@
         out.made.push({ cat: cat, finish: id, tris: b.P.length / 9 }); });
       mesh.visible = false; mesh.userData.dressHidden = true;       // the copy is shown in its place (a switch, never a change of the pack)
     });
+    // THE GENERATED GROUND (2026-11-24, helsinki 16 - a model with NO terrain at all: its two basements stood bare over an empty
+    // world). plan.ground.plane = { y, box: [x0, z0, x1, z1], rects: [{ finish, rect }], finish }: one flat plane at street level.
+    // Each rect takes its finish where no EARLIER rect lies (first match wins - the entrance path before the garden it crosses);
+    // the rest of the box takes 'finish'. Exact rectangles, never a grid: the edges are the plan's (read from the site plan).
+    // Lit by the same baked picture as a terrain (bake_any.py bakes the same plane as 'GroundPlane'). Asked 'ground_finish' too.
+    if (G.plane) { var GP = G.plane, gy = GP.y, regs = [], done = [];
+      var sub = function (a, b) { if (b[0] >= a[2] || b[2] <= a[0] || b[1] >= a[3] || b[3] <= a[1]) return [a]; var r = [];
+        if (b[1] > a[1]) r.push([a[0], a[1], a[2], b[1]]); if (b[3] < a[3]) r.push([a[0], b[3], a[2], a[3]]);
+        var za = Math.max(a[1], b[1]), zb = Math.min(a[3], b[3]); if (b[0] > a[0]) r.push([a[0], za, b[0], zb]); if (b[2] < a[2]) r.push([b[2], za, a[2], zb]); return r; };
+      var clip = function (a) { return [Math.max(Math.min(a[0], a[2]), GP.box[0]), Math.max(Math.min(a[1], a[3]), GP.box[1]), Math.min(Math.max(a[0], a[2]), GP.box[2]), Math.min(Math.max(a[1], a[3]), GP.box[3])]; };
+      (GP.rects || []).concat([{ finish: GP.finish, rect: GP.box }]).forEach(function (r) { var parts = [clip(r.rect)];
+        done.forEach(function (d) { var nx = []; parts.forEach(function (p) { nx = nx.concat(sub(p, d)); }); parts = nx; });
+        // a rect with NO finish is a hole (the plot: its own Revit floors - lawns, decks, the parking ramp - are the ground there)
+        parts.forEach(function (p) { if (r.finish && p[2] - p[0] > 1e-3 && p[3] - p[1] > 1e-3) regs.push({ finish: r.finish, rect: p, lift: r.lift || 0 }); }); done.push(clip(r.rect)); });
+      if (Q) { var rg = Q.ask('ground_finish', { given: { has_ground: regs.length * 2, has_light: !!lm }, all: true }, {});
+        if (!rg.ok) { Q.refuse('the generated ground', 'ground_finish', 'the site', 1, {}, rg); out.refused = rg.failed; return out; } Q.record('the generated ground', 'the site', rg, [0, gy, 0]); }
+      var byF = {}; regs.forEach(function (R) { var b = byF[R.finish] || (byF[R.finish] = { P: [], U0: [], U1: [] }), p = R.rect, yy = gy + R.lift;
+        [[p[0], p[1]], [p[0], p[3]], [p[2], p[3]], [p[0], p[1]], [p[2], p[3]], [p[2], p[1]]].forEach(function (c, ci) {
+          b.P.push(c[0], yy, c[1]); b.U0.push(c[0] / 2, c[1] / 2); if (lm) b.U1.push((c[0] - lm.box[0]) / (lm.box[2] - lm.box[0]), (c[1] - lm.box[1]) / (lm.box[3] - lm.box[1])); else b.U1.push(0.5, 0.5);
+          if (ci % 3 === 2) { var o9 = b.P.length - 9; for (var k = 0; k < 9; k++) H.push(b.P[o9 + k]); HF.push(R.finish); } }); });
+      Object.keys(byF).forEach(function (id) { var b = byF[id], pm = (PLAN.materials || []).filter(function (m) { return m.id === id; })[0] || {}, ge = new T.BufferGeometry();
+        ge.setAttribute('position', new T.BufferAttribute(new Float32Array(b.P), 3)); ge.setAttribute('uv', new T.BufferAttribute(new Float32Array(b.U0), 2)); ge.setAttribute('uv1', new T.BufferAttribute(new Float32Array(b.U1), 2)); ge.computeVertexNormals();
+        var m = window.WMPaint.materialFor(id + '~p'); m.side = T.DoubleSide; if (pm.tint) m.color.set(pm.tint);
+        if (ltex) { m.lightMap = ltex; m.lightMapIntensity = lm.scale * lm.exposure; m.envMapIntensity = 0; if ('specularIntensity' in m) m.specularIntensity = 0; } m.needsUpdate = true;
+        var o = new T.Mesh(ge, m); o.name = 'dress-ground:plane:' + id; o.userData.notPack = true; o.userData.dressPlan = true; o.frustumCulled = false; o.receiveShadow = true; WM.scene.add(o);
+        out.made.push({ cat: 'plane', finish: id, tris: b.P.length / 9 }); }); }
     // THE SITE'S OWN FLOORS (plan.ground.site): a Revit model draws its lawn, parking, pavements and flower beds as FLOOR elements
     // and names them (type 'lawn - parking', material 'Site - Grass' ...). Each takes the finish of the first rule its type or
     // material names match - painted by the viewer's own paint (it keeps the element's baked light) - and its upward faces join
@@ -119,17 +145,20 @@
     list.forEach(function (o, oi) { var s = SIZES[o.item], nodes = o.nodes || (o.node ? [o.node] : [null]), on = o.on || [grows], fb = o.on && window.__dressGroundFinishBox ? window.__dressGroundFinishBox(on) : null;
       var bx = o.box || (fb ? [Math.max(fb[0], site[0]), Math.max(fb[1], site[1]), Math.min(fb[2], site[2]), Math.min(fb[3], site[3])] : site);
       if (!s) { Q.refuse(o.item, 'ground_item', 'the site', 0, { no_model: 1 }); return no(o.item, 'no such model'); }
-      for (var n = 0; n < (o.count || 1); n++) { var done = false, tally = {}, last = null, tried = 0, node = nodes[(n + (o.seed || 0)) % nodes.length], ss = node && s.nodes && s.nodes[node] ? s.nodes[node] : s;
+      // o.at (2026-11-24, helsinki 16): the architect's own points (his 2D tree symbols) - each point is tried where it is drawn, then
+      // nudged up to 1.2 m by the same fixed rule; every try is asked the same list. No point = the scattered spots as before.
+      for (var n = 0; n < (o.at ? o.at.length : (o.count || 1)); n++) { var done = false, tally = {}, last = null, tried = 0, node = nodes[(n + (o.seed || 0)) % nodes.length], ss = node && s.nodes && s.nodes[node] ? s.nodes[node] : s;
         for (var tr = 0; tr < 40 && !done; tr++) { var seed = (oi + 1) * 100003 + n * 61 + tr * 7 + (o.seed || 0) * 13, px = bx[0] + h01(seed, 1) * (bx[2] - bx[0]), pz = bx[1] + h01(seed, 2) * (bx[3] - bx[1]);
+          if (o.at) { var rr = tr === 0 ? 0 : 0.25 + 0.95 * h01(seed, 5), aa = h01(seed, 6) * Math.PI * 2; px = o.at[n][0] + rr * Math.cos(aa); pz = o.at[n][1] + rr * Math.sin(aa); }
           var sc = (o.scaleMin || o.scale || 1) + h01(seed, 3) * ((o.scaleMax || o.scale || 1) - (o.scaleMin || o.scale || 1)), rad = Math.max(ss.max[0] - ss.min[0], ss.max[2] - ss.min[2]) / 2 * sc * (o.foot || 0.6), hgt = (ss.max[1] - ss.min[1]) * sc;
           var g = GA(px, pz), cl = clearAt(px, pz), gap = 99; placed.forEach(function (q) { var dd = Math.hypot(q.x - px, q.z - pz) - q.r - rad; if (dd < gap) gap = dd; });
           var res = Q.ask('ground_item', { given: { on_ground: !!g, its_ground: !!g && on.indexOf(g.finish) >= 0, not_steep: g ? +g.slope.toFixed(1) : null, clear: cl != null && cl - rad >= (o.keep || 0.5),
             near_enough: o.within == null ? true : (cl != null && cl <= o.within), apart: +(gap - (o.apart || 0)).toFixed(2), in_light: !LB || (px > LB[0] + 1 && px < LB[2] - 1 && pz > LB[1] + 1 && pz < LB[3] - 1) }, all: true }, {});
           tried++; last = res; if (!res.ok) { tally[res.failed] = (tally[res.failed] || 0) + 1; continue; }
-          var it = { file: o.item + '/' + o.item + '.gltf', pos: [px, g.y - (o.sink || 0) * hgt + 0.01, pz], quat: S.yawQ(h01(seed, 4) * Math.PI * 2), scale: [sc, sc, sc], outdoor: true }; if (node) it.node = node;
+          var it = { file: o.item + '/' + o.item + '.gltf', pos: [px, g.y - (o.sink || 0) * hgt + 0.01, pz], quat: S.yawQ(o.yaw != null ? o.yaw * Math.PI / 180 : h01(seed, 4) * Math.PI * 2), scale: [sc, sc, sc], outdoor: true };   // o.yaw: a bench faces the street if (node) it.node = node;
           out.push(it); placed.push({ x: px, z: pz, r: rad }); Q.record(o.item, 'the site', res, [px, g.y, pz]); ok(o.item); done = true; }
         if (!done) { Q.refuse(o.item, 'ground_item', 'the site', tried, tally, last); no(o.item, 'no spot passes: ' + Object.keys(tally).sort(function (a, b) { return tally[b] - tally[a]; })[0]); } } });
-    S.load(out);
+    S.load(out); window.__dressOutdoorItems = out;      // what was planted (2026-11-24: the trees are baked into the ground's light from this list)
     var rep = { site: site.map(function (v) { return +v.toFixed(1); }), cells: nx * nz, marked: nMark, mapMs: mapMs, placed: log.placed, refused: log.refused };
     window.__dressOutdoorMap = { site: site, C: C, nx: nx, nz: nz, occ: occ, dist: D, placed: placed };
     console.log('[dress] outdoor: ' + JSON.stringify(rep));

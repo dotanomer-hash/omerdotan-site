@@ -38,7 +38,9 @@
       // of.skipIds (2026-11-24): these elements get nothing - asked AFTER the counting, so every other element keeps what it had
       if (o.of.skipIds && o.of.skipIds.indexOf(el.id) >= 0) return; if (fn(el, ei) !== false) n++; }); return n; }
     function tally(res) { var t = {}; res.answers.forEach(function (a) { if (!a.pass) t[a.id] = a.value; }); return t; }
-    PLAN.more.forEach(function (o) {
+    PLAN.__moreOne = function (o) { one(o); };
+    PLAN.more.forEach(one);
+    function one(o) {
       var hs = size(o), name = o.item + (o.node ? ':' + o.node.replace(o.item + '_', '') : '');
       if (o.how === 'onTopOf') {
         // the flat top of the furniture: its highest surface, the same height (2 cm) under the item's whole base
@@ -81,13 +83,21 @@
             S.spots.push({ x: x, z: z, r: rad }); S.placedBoxes.push([[x - rad, y0 + 0.05, z - rad], [x + rad, y0 + hs[1], z + rad]]);
             put(o, x, y0, z, yawF, { by: el.id }); withs(o, x, y0, z, yawF, hs[1]); Q.record(name, 'beside ' + where, res, [x, y0, z]); ok(name); return true; }
           Q.refuse(name, 'free_floor_item', 'beside ' + where, tried, tl, last); no(name, 'no free side by ' + el.name); return false; });
+      } else if (o.how === 'at' && o.atAny && !o.__one) {
+        // o.atAny (2026-11-24, helsinki 16): a row of proposals (along a balcony's railing) - each is asked the same list, in order; the
+        // first that passes is the place. Nothing passes = refused, with the last answers.
+        var got = false; for (var ai = 0; ai < o.atAny.length && !got; ai++) { var o1 = Object.assign({}, o, { at: o.atAny[ai], __one: true, __quiet: ai < o.atAny.length - 1 }), before = out.length;
+          PLAN.__moreOne(o1); got = out.length > before; }
+        if (!got) no(name, 'none of ' + o.atAny.length + ' points along the edge passes');
       } else if (o.how === 'at') {
         var M = o.level ? Q.map(o.level) : map, fy = M.floorAt(o.at[0], o.at[1]), yaw = (o.yaw || 0) * Math.PI / 180, rad = Math.max(hs[0], hs[2]), where = 'the point ' + o.at.join(', ');
         if (fy == null) { Q.refuse(name, 'free_floor_item', where, 0, { floor_under: 0 }); return no(name, 'no floor at ' + where); }
         var ux = Math.cos(yaw), uz = -Math.sin(yaw);
-        var res = Q.ask('free_floor_item', { map: M, x: o.at[0], z: o.at[1], hx: Math.min(hs[0], hs[2]) * 0.8, hz: Math.min(hs[0], hs[2]) * 0.8, r: rad, reachR: rad + 0.5, all: true, turn: { x: o.at[0], z: o.at[1], ux: ux, uz: uz }, box: [[-hs[0], fy + 0.05, -hs[2]], [hs[0], fy + Math.max(0.2, hs[1]), hs[2]]] }, ctx);
-        if (!res.ok) { Q.refuse(name, 'free_floor_item', where, 1, tally(res), res); return no(name, where + ' fails ' + JSON.stringify(tally(res))); }
-        S.spots.push({ x: o.at[0], z: o.at[1], r: rad }); put(o, o.at[0], fy + 0.004, o.at[1], yaw, {}); withs(o, o.at[0], fy + 0.004, o.at[1], yaw, hs[1]); Q.record(name, where, res, [o.at[0], fy, o.at[1]]); ok(name);
+        // o.drawn (2026-11-24): the ARCHITECT drew it there (a chair of his dining table, his living set) - where it stands is his call, so it
+        // is asked 'drawn_item': floor, flat, its space empty, clear of everything but its own group. A proposal of ours asks the full list.
+        var res = Q.ask(o.drawn ? 'drawn_item' : 'free_floor_item', { map: M, x: o.at[0], z: o.at[1], hx: Math.min(hs[0], hs[2]) * 0.8, hz: Math.min(hs[0], hs[2]) * 0.8, r: rad, reachR: rad + 0.5, all: true, group: o.group, turn: { x: o.at[0], z: o.at[1], ux: ux, uz: uz }, box: [[-hs[0], fy + 0.05, -hs[2]], [hs[0], fy + Math.max(0.2, hs[1]), hs[2]]] }, ctx);
+        if (!res.ok) { if (o.__quiet) return; Q.refuse(name, o.drawn ? 'drawn_item' : 'free_floor_item', where, 1, tally(res), res); return no(name, where + ' fails ' + JSON.stringify(tally(res))); }
+        S.spots.push({ x: o.at[0], z: o.at[1], r: rad, group: o.group }); put(o, o.at[0], fy + 0.004, o.at[1], yaw, {}); withs(o, o.at[0], fy + 0.004, o.at[1], yaw, hs[1]); Q.record(name, where, res, [o.at[0], fy, o.at[1]]); ok(name);
       } else if (o.how === 'bed') {
         // THE GARDEN: in a planting bed of a floor (plan.floors[..].beds). The spots come from a fixed rule (a hash of the
         // bed and the piece), the same on every load; each is asked 'garden_item'. gspots = what already stands in the garden.
@@ -125,7 +135,7 @@
         S.spots.push({ x: okW.pts[0][0], z: okW.pts[0][1], r: 0.25, person: true });
         Q.record(o.who, whereW + (okW.off ? ' moved ' + okW.off + ' m sideways' : ''), okW.res, [okW.pts[0][0], fyW, okW.pts[0][1]]); ok(o.who);
       }
-    });
+    }
     S.load(out);
     if (window.__dressPlan) window.__dressPlan.placed = (window.__dressPlan.placed || []).concat(out);
     window.__dressAnswers = Q.answers();

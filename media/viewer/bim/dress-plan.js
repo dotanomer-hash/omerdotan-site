@@ -131,7 +131,9 @@
     var unlit = [];
     FAST = isFast(); if (FAST) quietHelper(window.WM);
     window.__dressStairsEnter = !!PLAN.stairsEnter;                 // dress-questions.js: a stair arriving at a floor is an entrance
-    window.__dressRoofCovers = !!PLAN.roofCovers;                   // dress-floors.js: a roof over a floor makes it indoors
+    window.__dressRoofCovers = !!PLAN.roofCovers;
+    window.__dressFloorWindowsEnter = !!PLAN.floorWindowsEnter;
+    if (PLAN.wallCats) window.__dressWallCats = PLAN.wallCats;      // dress-objects.js: what a planter may stand against (helsinki 16: + Railings)   // dress-questions.js: a floor-height window is a door (helsinki 16)                   // dress-floors.js: a roof over a floor makes it indoors
     // MEASURED SPACES (2026-11-24, the WS house: ONE Revit room for a whole home): plan.spaces = a point inside each space the
     // model does not name, read from plan cuts of the model (its walls at 1.2 m over each floor). They join the room list as rooms
     // of their level, marked measured; a Revit room is never replaced. Every placement in them still asks its questions (law D1).
@@ -244,6 +246,8 @@
     // runs once per level with that level's name, objects, extras and people; the question record is kept from level to level.
     if (PLAN.levelPlans) { rep.levels = []; var SZ = getJSON('bakelib/dress/_sizes.json'); window.__dressPlan.placed = [];
       PLAN.levelPlans.forEach(function (lp, li) { var sub = Object.assign({}, PLAN, lp, { __keepQ: li > 0, levelPlans: null }), lr = { level: lp.name || lp.level };
+        // the furniture built from the architect's 2D symbols (dress-kit.js, 2026-11-24) comes first: what is placed later keeps clear of it
+        try { if (window.__dressKit && lp.kit && lp.kit.length) lr.kit = window.__dressKit(sub); } catch (e) { console.error('[dress] kit failed on ' + lr.level, e); }
         try { var pl = window.__dressPlaceObjects(sub, SZ, zoneOf); lr.objects = pl.log; window.__dressPlan.placed = window.__dressPlan.placed.concat(pl.placed); window.__dressPlan.answers = pl.answers; } catch (e) { console.error('[dress] objects failed on ' + lr.level, e); }
         try { if (window.__dressMore && sub.more && sub.more.length) lr.more = window.__dressMore(sub); } catch (e) { console.error('[dress] more failed on ' + lr.level, e); }
         try { if (window.__dressTVs && PLAN.screens) lr.screens = window.__dressTVs(sub, MATS); } catch (e) { console.error('[dress] screens failed on ' + lr.level, e); }
@@ -256,8 +260,11 @@
     // own paint gives a floor element ONE finish on all its faces, so the basement and the bedrooms looked up at an OAK ceiling).
     // plan.slabCeilings = { finish, drop }: every downward face of a floor slab gets a copy 4 mm below it in the plan's finish, lit by
     // the slab's own baked light (the same atlas texels). The slab itself is not touched.
-    try { if (PLAN.slabCeilings) (function () { var T = WM.THREE, F = WM.pack.meshes.get('Floors'), SC = PLAN.slabCeilings; if (!F) return;
+    // a TILED light pack (helsinki 16: 3 x 3 tiles joined into one 12288 picture) gets its light AFTER the dressing has run: the ceiling
+    // layer waits for the slab's light (every 0.5 s, 20 s at most) instead of reporting 'no light layout'
+    try { if (PLAN.slabCeilings) (function slabTry(tries) { var T = WM.THREE, F = WM.pack.meshes.get('Floors'), SC = PLAN.slabCeilings; if (!F) return;
       var g0 = F.geometry, p = g0.getAttribute('position'), u1 = g0.getAttribute('uv1') || g0.getAttribute('uv2'), ix = g0.getIndex(), own = (Array.isArray(F.material) ? F.material : [F.material]).filter(function (m) { return m && m.lightMap; })[0];
+      if (u1 && ix && !own && (tries || 0) < 40) { rep.slabCeilings = 'waiting for the light'; return setTimeout(function () { slabTry((tries || 0) + 1); }, 500); }
       if (!u1 || !own || !ix) { rep.slabCeilings = 'no light layout'; return; }
       var P = [], U = [], D = SC.drop || 0.004, n = ix.count / 3;
       for (var t = 0; t < n; t++) { var a = ix.getX(t * 3), b = ix.getX(t * 3 + 1), c = ix.getX(t * 3 + 2);
@@ -269,7 +276,7 @@
       var pm = (PLAN.materials || []).filter(function (m) { return m.id === SC.finish; })[0] || {}, m = new T.MeshStandardMaterial({ color: new T.Color(pm.color || '#f2efe8'), roughness: 0.9, metalness: 0, side: T.DoubleSide });
       m.lightMap = own.lightMap; m.lightMapIntensity = own.lightMapIntensity; m.envMapIntensity = 0;
       var o = new T.Mesh(g, m); o.matrixAutoUpdate = false; o.matrix.copy(F.matrixWorld); o.name = 'dress-slab-ceilings'; o.userData.notPack = true; o.userData.dressPlan = true; o.frustumCulled = false; WM.scene.add(o); OV['slab-ceilings'] = o;
-      rep.slabCeilings = P.length / 9; })(); } catch (e) { console.error('[dress] slab ceilings failed', e); }
+      rep.slabCeilings = P.length / 9; })(0); } catch (e) { console.error('[dress] slab ceilings failed', e); }
     try { if (window.__dressMore && PLAN.more) rep.more = window.__dressMore(PLAN); } catch (e) { console.error('[dress] more failed', e); }
     try { if (window.__dressPatches && PLAN.patches) rep.patches = window.__dressPatches(PLAN); } catch (e) { console.error('[dress] patches failed', e); }
     try { if (window.__dressTVs && PLAN.screens && !PLAN.levelPlans) rep.screens = window.__dressTVs(PLAN, MATS); } catch (e) { console.error('[dress] screens failed', e); }

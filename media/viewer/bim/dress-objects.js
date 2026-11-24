@@ -11,9 +11,13 @@
   'use strict';
   var WT = null;
   function wallTris() {                                   // the Walls triangles as plain numbers (41k: a direct loop is fast enough)
-    if (WT) return WT; var W = window.WM.pack.meshes.get('Walls'), pos = W.geometry.getAttribute('position'), idx = W.geometry.getIndex(), n = idx.count;
-    WT = new Float32Array(n * 3); for (var i = 0; i < n; i++) { var v = idx.getX(i); WT[i * 3] = pos.getX(v); WT[i * 3 + 1] = pos.getY(v); WT[i * 3 + 2] = pos.getZ(v); }
-    return WT;
+    if (WT) return WT;
+    // plan.wallCats (2026-11-24, helsinki 16): a balcony's edge is its RAILING - a planter stands against it as against a wall.
+    // Default: the Walls only, as before.
+    var cats = window.__dressWallCats || ['Walls'], all = [];
+    cats.forEach(function (c) { var W = window.WM.pack.meshes.get(c); if (!W) return; var pos = W.geometry.getAttribute('position'), idx = W.geometry.getIndex(), n = idx ? idx.count : pos.count;
+      for (var i = 0; i < n; i++) { var v = idx ? idx.getX(i) : i; all.push(pos.getX(v), pos.getY(v), pos.getZ(v)); } });
+    WT = new Float32Array(all); return WT;
   }
   function rayWall(ox, oy, oz, dx, dz, far) {             // a horizontal ray -> { d, align } on the nearest wall face (both sides count)
     var T = wallTris(), best = far, al = 0, bnx = 0, bnz = 0;
@@ -32,6 +36,7 @@
   }
   // (the old element-BOX test 'boxFree' is gone: law D1's questions measure the real triangles - dress-questions.js hitBox)
   var placedBoxes = [];
+  window.__dressPlacedBoxes = placedBoxes;      // dress-kit.js (2026-11-24) adds the pieces it built from 2D symbols: nothing is placed into them
   function mineFree(lo, hi) { for (var i = 0; i < placedBoxes.length; i++) { var b = placedBoxes[i];
     if (b[0][0] < hi[0] && b[1][0] > lo[0] && b[0][1] < hi[1] && b[1][1] > lo[1] && b[0][2] < hi[2] && b[1][2] > lo[2]) return false; } return true; }
   function topUnder(mesh, tris, x, z) {                    // the highest surface of these triangles under (x, z)
@@ -91,7 +96,9 @@
       if (Math.abs(y - y0) > 0.02) { console.log('[dress] level ' + PLAN.level + ': the rooms say ' + y0 + ', the floor under them is at ' + y + ' (' + pick.n + ' of ' + hits.length + ' rays) - the measured floor is used'); y0 = y; } })();
     // two level plans on ONE floor (rooms of one Revit level, furniture of another): the second knows what the first placed
     var sameFloor = PLAN.__keepQ && window.__dressShared && Math.abs(window.__dressShared.y0 - y0) < 0.3;
-    var map = Q.map(y0), spots = sameFloor ? window.__dressShared.spots : [], ctx = { plan: PLAN, spots: spots };
+    // the pieces dress-kit.js built on this floor are spots too (2026-11-24): a plant or a person keeps clear of a bed or a counter
+    var kitSpots = []; Object.keys(window.__dressKitSpots || {}).forEach(function (k) { if (Math.abs(+k - y0) < 0.3) kitSpots = kitSpots.concat(window.__dressKitSpots[k]); });
+    var map = Q.map(y0), spots = sameFloor ? window.__dressShared.spots : kitSpots, ctx = { plan: PLAN, spots: spots };
     function elIndex(el) { return WM.pack.elements.indexOf(el); }
     var OPENING = { 'Doors': 1, 'Windows': 1, 'Curtain Panels': 1 };
     function openFree(lo, hi, pad) {                          // no door, window or glass panel box inside this box

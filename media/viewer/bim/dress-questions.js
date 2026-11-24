@@ -131,6 +131,14 @@
       var i0 = Math.max(0, Math.floor((b.min[0] - 0.6 - x0) / C)), i1 = Math.min(nx - 1, Math.floor((b.max[0] + 0.6 - x0) / C)), k0 = Math.max(0, Math.floor((b.min[2] - 0.6 - z0) / C)), k1 = Math.min(nz - 1, Math.floor((b.max[2] + 0.6 - z0) / C));
       for (var k = k0; k <= k1; k++) for (var i = i0; i <= i1; i++) { var c = comp[k * nx + i]; if (c >= 0) M.doorComp[c] = 1; } });
 
+    // A WINDOW THAT REACHES THE FLOOR IS A DOOR (2026-11-24, helsinki 16: every balcony and private deck opens through a tall sliding
+    // glass door that Revit files under Windows / Curtain Panels - every balcony item was refused 'reach'). With plan.floorWindowsEnter,
+    // a window or glass panel whose foot is within 0.15 m of this floor and that stands 1.8 m tall marks the walk regions around it.
+    if (window.__dressFloorWindowsEnter) window.WM.pack.elements.forEach(function (e) { if ((e.cat !== 'Windows' && e.cat !== 'Curtain Panels') || !e.bbox) return; var b = e.bbox;
+      if (Math.abs(b.min[1] - y0) > 0.15 || b.max[1] - b.min[1] < 1.8) return; M.doors.push([b.min[0], b.min[2], b.max[0], b.max[2]]);
+      var i0 = Math.max(0, Math.floor((b.min[0] - 0.6 - x0) / C)), i1 = Math.min(nx - 1, Math.floor((b.max[0] + 0.6 - x0) / C)), k0 = Math.max(0, Math.floor((b.min[2] - 0.6 - z0) / C)), k1 = Math.min(nz - 1, Math.floor((b.max[2] + 0.6 - z0) / C));
+      for (var k = k0; k <= k1; k++) for (var i = i0; i <= i1; i++) { var c = comp[k * nx + i]; if (c >= 0) M.doorComp[c] = 1; } });
+
     // ---- what the questions ask of the map ----
     function cell(x, z) { var i = Math.floor((x - x0) / C), k = Math.floor((z - z0) / C); return (i < 0 || k < 0 || i >= nx || k >= nz) ? -1 : k * nx + i; }
     M.cell = cell;
@@ -193,7 +201,8 @@
     hits: function (c) { if (!c.box) return null; var h = hitBox(c.box[0], c.box[1], c.skipEl, c.turn); return { value: h.n, note: h.n ? Object.keys(h.who).slice(0, 3).join('; ') : undefined }; },
     door_dist: function (c) { return c.map.doorDist(c.x, c.z) - Math.max(c.hx, c.hz); },
     reach: function (c) { return c.map.reach(c.x, c.z, c.reachR || 0); },
-    apart: function (c, ctx) { var best = 99; (ctx.spots || []).forEach(function (s) { var d = Math.hypot(s.x - c.x, s.z - c.z) - s.r - (c.r || 0); if (d < best) best = d; }); return best; },
+    // c.group (2026-11-24): a chair is not 'too close' to its own table, nor a sofa to its own living set - the group was drawn together
+    apart: function (c, ctx) { var best = 99; (ctx.spots || []).forEach(function (s) { if (c.group && s.group === c.group) return; var d = Math.hypot(s.x - c.x, s.z - c.z) - s.r - (c.r || 0); if (d < best) best = d; }); return best; },
     way_split: function (c, ctx) { return c.map.splits(c.x, c.z, (c.r || Math.max(c.hx, c.hz)) + 0.45, ctx.spots); },
     open_ahead: function (c) { return c.facesPerson ? { value: 99, note: 'faces a person' } : c.map.openAhead(c.x, c.z, c.yaw); },
     room_fit: function (c, ctx) { var w = ctx.plan && ctx.plan.roles && ctx.plan.roles[c.role]; if (!w || !c.roomName) return null;

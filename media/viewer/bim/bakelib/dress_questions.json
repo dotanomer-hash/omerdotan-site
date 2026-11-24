@@ -139,6 +139,19 @@
    {"id": "apart", "text": "Does it stand clear of the other planted things (the gap left after the plan's own spacing, in metres)?", "measure": "given", "min": 0},
    {"id": "in_light", "text": "Does the baked light picture of the ground reach this spot (so it stands on lit ground, with its shadow)?", "measure": "given", "is": true},
    {"id": "natural", "stage": "after", "text": "Does the planting read as grown there - no row, no plant on a path - in a picture from above and at eye height?"}
+  ],
+  "drawn_item": [
+   {"id": "floor_under", "text": "The architect drew it here (a chair of his dining table, a piece of his living set): is there a floor under the whole item?", "measure": "floor_cover", "min": 1},
+   {"id": "floor_flat", "text": "Is the floor flat under it?", "measure": "floor_spread", "max": 0.02},
+   {"id": "apart", "text": "Is it clear of every other placed thing - except its own group (a chair may tuck in at its own table)?", "measure": "apart", "min": 0},
+   {"id": "space_free", "text": "Is the space it fills empty, against the real surfaces (walls, doors, columns), turned as it is turned?", "measure": "hits", "max": 0},
+   {"id": "natural", "stage": "after", "text": "Does it look like his drawing in a picture?"}
+  ],
+  "kit_piece": [
+   {"id": "on_floor", "text": "Is there a floor under it, at the level of the symbol the architect drew (within 8 cm)?", "measure": "given", "is": true},
+   {"id": "back_to_wall", "text": "A bed's head, a wardrobe's or a kitchen counter's back: is a wall there (the gap in metres, by rays from the middle of each side at 1.2 m)? A table or a bin has no back (0). Run 2: two beds the architect drew 0.41 and 0.45 m off the wall - 0.5 m.", "measure": "given", "max": 0.5},
+   {"id": "free", "text": "Does its body stand clear of the model's own walls, doors and columns (the real triangles inside its box, 3 cm in from the symbol's edge)?", "measure": "hits", "max": 0},
+   {"id": "natural", "stage": "after", "text": "Does it read as that piece of furniture, standing where the plan drew it, in a picture?"}
   ]
  }
 }

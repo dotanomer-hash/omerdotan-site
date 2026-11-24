@@ -91,6 +91,12 @@
     var F = WM.pack.meshes.get('Floors'); if (!F || !Q) return out;
     var fg = F.geometry, fpos = fg.getAttribute('position'), fidx = fg.getIndex(), fuv = fg.getAttribute('uv1') || fg.getAttribute('uv2');
     var own = (Array.isArray(F.material) ? F.material : [F.material]).filter(function (m) { return m && m.lightMap; })[0];
+    // a TILED light pack (helsinki 16) joins its tiles AFTER the dressing has run: the floor layers were made without light and the sky
+    // alone lit them - every floor read blue (measured: lightMap false). They take the slab's light as soon as it is there (20 s at most)
+    if (!own) (function late(n) { var o2 = (Array.isArray(F.material) ? F.material : [F.material]).filter(function (m) { return m && m.lightMap; })[0];
+      if (!o2) { if (n < 40) setTimeout(function () { late(n + 1); }, 500); return; }
+      Object.keys(MAT).forEach(function (k) { var m = MAT[k]; m.lightMap = o2.lightMap; m.lightMapIntensity = o2.lightMapIntensity; m.envMapIntensity = o2.envMapIntensity; if ('specularIntensity' in m) m.specularIntensity = 0; m.needsUpdate = true; });
+      console.log('[dress] floors: the light came ' + (n * 0.5) + ' s late - ' + Object.keys(MAT).length + ' floor finishes lit'); })(0);
     var kind = 'floor_finish', regions = [];
     // A BREAK LINE (plan.floorBreaks): where one open space holds two directions of walls (a corridor that opens into a turned
     // lobby, no door between them) the planner draws the line a tiler would put a threshold strip on. It works as a door does:
