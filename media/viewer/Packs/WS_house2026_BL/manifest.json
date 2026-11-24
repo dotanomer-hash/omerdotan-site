@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "packId": "WS_house2026",
+  "source": "WS_house2026",
+  "exported": "2026-11-24T01:39:38",
+  "units": "m",
+  "up": "Y",
+  "counts": {
+    "elements": 424,
+    "tris": 34444,
+    "context": 0
+  },
+  "scopeBox": null,
+  "bounds": {
+    "min": [
+      -15,
+      -1.8,
+      -16.615
+    ],
+    "max": [
+      15.3,
+      8.873,
+      2.635
+    ]
+  },
+  "categories": [
+    "Furniture",
+    "Floors",
+    "Walls",
+    "Generic Models",
+    "Curtain Panels",
+    "Curtain Wall Mullions",
+    "Doors",
+    "Specialty Equipment",
+    "Roofs",
+    "Structural Columns",
+    "Stairs",
+    "Railings"
+  ],
+  "levels": [
+    "00",
+    "0.5",
+    "01",
+    "-01"
+  ],
+  "rooms": [
+    {
+      "level": "00",
+      "number": "01",
+      "pos": [
+        0,
+        0,
+        -10.919
+      ],
+      "name": "living room"
+    }
+  ],
+  "materials": [
+    {
+      "name": "Wood - Cherry",
+      "color": "#e2b180"
+    },
+    {
+      "name": "Textile - Linen, Smooth",
+      "color": "#f9efe6"
+    },
+    {
+      "name": "_RvZ Concrete",
+      "color": "#ffffff"
+    },
+    {
+      "name": "_RvZ Wood - Timber",
+      "color": "#d4b371"
+    },
+    {
+      "name": "white",
+      "color": "#ffffff"
+    },
+    {
+      "name": "Laminate - Linen, Matte",
+      "color": "#f9efe6"
+    },
+    {
+      "name": "Wood - Pine",
+      "color": "#dfc086"
+    },
+    {
+      "name": "Metal - Chrome",
+      "color": "#111111"
+    },
+    {
+      "name": "Textile - Bamboo Weave",
+      "color": "#f6df70"
+    },
+    {
+      "name": "Glass",
+      "color": "#e6f2ff"
+    },
+    {
+      "name": "Metal - Aluminium",
+      "color": "#c0c0c0"
+    },
+    {
+      "name": "Door - Panel",
+      "color": "#d29f5f"
+    },
+    {
+      "name": "Glass - Clear, Grey",
+      "color": "#fcffff"
+    },
+    {
+      "name": "Wood - Teak",
+      "color": "#784913"
+    },
+    {
+      "name": "Metal - Paint Finish - Ivory, Glossy",
+      "color": "#f7f7ef"
+    },
+    {
+      "name": "Door - Frame",
+      "color": "#764633"
+    },
+    {
+      "name": "Site - Grass light",
+      "color": "#bed398"
+    },
+    {
+      "name": "Concrete - Cast-in-Place Concrete",
+      "color": "#c0c0c0"
+    },
+    {
+      "name": "Metal - Steel",
+      "color": "#f7f7f7"
+    },
+    {
+      "name": "Site - Water",
+      "color": "#75bfce"
+    },
+    {
+      "name": "Site - Grass light 2",
+      "color": "#d7e69d"
+    }
+  ],
+  "files": {
+    "model": "model.glb",
+    "elements": "elements.json"
+  }
+}

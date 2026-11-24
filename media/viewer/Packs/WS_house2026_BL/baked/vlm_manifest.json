@@ -1,0 +1,44 @@
+{
+ "Curtain Panels": {
+  "verts": 1818,
+  "file": "vlm_Curtain_Panels_h2.bin",
+  "maxIrradiance": 0.0,
+  "exp": 4.0
+ },
+ "Curtain Wall Mullions": {
+  "verts": 5488,
+  "file": "vlm_Curtain_Wall_Mullions_h2.bin",
+  "maxIrradiance": 6.177,
+  "exp": 2.3
+ },
+ "Doors": {
+  "verts": 1032,
+  "file": "vlm_Doors_h2.bin",
+  "maxIrradiance": 6.969,
+  "exp": 2.3
+ },
+ "Furniture": {
+  "verts": 21588,
+  "file": "vlm_Furniture_h2.bin",
+  "maxIrradiance": 6.288,
+  "exp": 2.3
+ },
+ "Generic Models": {
+  "verts": 2430,
+  "file": "vlm_Generic_Models_h2.bin",
+  "maxIrradiance": 1.862,
+  "exp": 2.3
+ },
+ "Railings": {
+  "verts": 3296,
+  "file": "vlm_Railings_h2.bin",
+  "maxIrradiance": 4.931,
+  "exp": 2.3
+ },
+ "Specialty Equipment": {
+  "verts": 204,
+  "file": "vlm_Specialty_Equipment_h2.bin",
+  "maxIrradiance": 3.7,
+  "exp": 2.3
+ }
+}

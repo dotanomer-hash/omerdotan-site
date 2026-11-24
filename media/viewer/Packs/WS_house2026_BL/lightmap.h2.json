@@ -1,0 +1,32 @@
+{
+ "version": 1,
+ "channel": 1,
+ "bakeDirect": true,
+ "exposure": 2.3,
+ "encode": "srgbK",
+ "gamma": 1,
+ "set": "h2",
+ "cats": [
+  "Walls",
+  "Floors",
+  "Casework",
+  "Ceilings",
+  "Stairs",
+  "Structural Columns",
+  "Structural Framing",
+  "Roofs"
+ ],
+ "flippedV": false,
+ "uv1": "plane-charts",
+ "toneMappingExposureAssumed": 1.7,
+ "saturation": 1.0,
+ "made": "2026-11-24T02:18",
+ "source": "Blender 5.1 Cycles (OptiX) - bake_any.py, WS house (family home)",
+ "file": "lightmap.h2.png",
+ "scale": 2.3470078461977915,
+ "atlas": 4096,
+ "mmPerTexel": 21.8,
+ "texels": 8795506,
+ "clippedPct": 1.58,
+ "denoised": true
+}

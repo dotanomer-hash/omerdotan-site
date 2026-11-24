@@ -1,0 +1,1093 @@
+{
+ "version": 1,
+ "made": "2026-11-24",
+ "by": "AI planner (text only)",
+ "building": "WS house: a family home on four floor heights - living, dining and the patio on the ground floor, a TV corner and three bedrooms with a bath on the split level, the parents' room above, a children's room in the basement; a lawn, a pool and a swing",
+ "level": "00",
+ "levelY": 0.0,
+ "levelNames": [
+  "00",
+  "0.5",
+  "01",
+  "-01"
+ ],
+ "levelYs": [
+  0.0,
+  1.68,
+  4.44,
+  -1.6
+ ],
+ "principles": [
+  "A home, not a showroom: things in use - a bowl of fruit, a book left open, a pillow out of line.",
+  "Light oak floors, white walls (the model's own), natural fabrics; colour on the cushions only.",
+  "One accent per floor: terracotta for the day (ground), sage for the night (bedrooms), ochre in the children's room.",
+  "The Breuer chair keeps its cane seat on a black frame, inside and on the patio.",
+  "Outside: a green lawn, light paving, blue water, teak; plants soften the walls and the fence."
+ ],
+ "spaces": [
+  {
+   "number": "G-din",
+   "name": "dining corner",
+   "level": "00",
+   "pos": [
+    -0.3,
+    0.0,
+    -5.2
+   ]
+  },
+  {
+   "number": "G-patio",
+   "name": "patio under the pergola",
+   "level": "00",
+   "pos": [
+    -4.0,
+    0.0,
+    -2.0
+   ]
+  },
+  {
+   "number": "G-garden",
+   "name": "the lawn",
+   "level": "00",
+   "pos": [
+    -11.0,
+    -0.05,
+    -3.0
+   ]
+  },
+  {
+   "number": "U-master",
+   "name": "the parents' room",
+   "level": "01",
+   "pos": [
+    6.8,
+    4.44,
+    -6.8
+   ]
+  },
+  {
+   "number": "S-tv",
+   "name": "TV corner",
+   "level": "0.5",
+   "pos": [
+    0.8,
+    1.68,
+    -5.6
+   ]
+  },
+  {
+   "number": "S-bed1",
+   "name": "bedroom 1",
+   "level": "0.5",
+   "pos": [
+    7.3,
+    1.68,
+    -6.7
+   ]
+  },
+  {
+   "number": "S-bed2",
+   "name": "bedroom 2",
+   "level": "0.5",
+   "pos": [
+    1.9,
+    1.68,
+    -1.9
+   ]
+  },
+  {
+   "number": "S-bed3",
+   "name": "bedroom 3",
+   "level": "0.5",
+   "pos": [
+    7.6,
+    1.68,
+    -2.0
+   ]
+  },
+  {
+   "number": "S-bath",
+   "name": "bathroom",
+   "level": "0.5",
+   "pos": [
+    4.9,
+    1.68,
+    -1.4
+   ]
+  },
+  {
+   "number": "B-play",
+   "name": "children's room",
+   "level": "-01",
+   "pos": [
+    5.0,
+    -1.6,
+    -3.5
+   ]
+  }
+ ],
+ "zones": [
+  {
+   "id": "children",
+   "name": "Basement - the children's room",
+   "test": {
+    "yMax": -0.9
+   },
+   "accent": "hm-fab-ochre",
+   "family": [
+    "hm-fab-ochre",
+    "hm-fab-oat",
+    "hm-cane"
+   ]
+  },
+  {
+   "id": "night",
+   "name": "Split level and upper floor - bedrooms",
+   "test": {
+    "yMin": 1.2
+   },
+   "accent": "hm-fab-sage",
+   "family": [
+    "hm-fab-sage",
+    "hm-fab-oat",
+    "hm-fab-stone"
+   ]
+  },
+  {
+   "id": "day",
+   "name": "Ground floor and outdoors",
+   "test": {},
+   "accent": "hm-fab-terra",
+   "family": [
+    "hm-fab-terra",
+    "hm-fab-oat",
+    "hm-cane"
+   ]
+  }
+ ],
+ "woods": [
+  "hm-wood-oak",
+  "hm-wood-walnut"
+ ],
+ "materials": [
+  {
+   "id": "hm-fab-oat",
+   "name": "Fabric - oatmeal linen",
+   "color": "#d8cdb8",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "hm-fab-terra",
+   "name": "Fabric - soft terracotta",
+   "color": "#e8a07a",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "hm-fab-sage",
+   "name": "Fabric - sage",
+   "color": "#a3ae6c",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "hm-fab-ochre",
+   "name": "Fabric - ochre",
+   "color": "#d9a441",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "hm-fab-stone",
+   "name": "Fabric - stone grey",
+   "color": "#c4c0b6",
+   "rough": 0.95,
+   "detail": "../bim/bakelib/tex/_made/d_wool.jpg",
+   "detailM": 0.4,
+   "detailMean": 0.7382
+  },
+  {
+   "id": "hm-cane",
+   "name": "Cane - natural",
+   "color": "#d2ae72",
+   "rough": 0.8,
+   "detail": "../bim/bakelib/tex/_made/d_linen.jpg",
+   "detailM": 0.25,
+   "detailMean": 0.7591
+  },
+  {
+   "id": "hm-steel-black",
+   "name": "Steel - black (matte)",
+   "color": "#2b2c2e",
+   "rough": 0.5
+  },
+  {
+   "id": "hm-steel",
+   "name": "Stainless steel",
+   "color": "#b9bdc0",
+   "rough": 0.3
+  },
+  {
+   "id": "hm-wood-oak",
+   "name": "Wood - light oak",
+   "color": "#c9a06a",
+   "rough": 0.55,
+   "detail": "../bim/bakelib/tex/_made/d_oak.jpg",
+   "detailM": 0.9,
+   "detailMean": 0.7802
+  },
+  {
+   "id": "hm-wood-walnut",
+   "name": "Wood - walnut",
+   "color": "#6f4a2e",
+   "rough": 0.5,
+   "detail": "../bim/bakelib/tex/_made/d_walnut.jpg",
+   "detailM": 1.0,
+   "detailMean": 0.7836
+  },
+  {
+   "id": "hm-wood-teak",
+   "name": "Wood - teak (outdoor)",
+   "color": "#b98552",
+   "rough": 0.65,
+   "detail": "../bim/bakelib/tex/_made/d_ash.jpg",
+   "detailM": 0.9,
+   "detailMean": 0.783
+  },
+  {
+   "id": "hm-white",
+   "name": "White (matte)",
+   "color": "#f2efe8",
+   "rough": 0.5
+  },
+  {
+   "id": "hm-ceramic",
+   "name": "Ceramic - white",
+   "color": "#f3f1ec",
+   "rough": 0.25
+  },
+  {
+   "id": "hm-stone",
+   "name": "Concrete - light",
+   "color": "#c9c4ba",
+   "rough": 0.85
+  },
+  {
+   "id": "dr-floor-oak",
+   "name": "Floor - oak parquet (matte)",
+   "color": "#a97c50",
+   "rough": 0.6,
+   "from": "oak-light"
+  },
+  {
+   "id": "dr-floor-tile",
+   "name": "Floor - porcelain tile 60 x 60 (matte)",
+   "color": "#7d7767",
+   "rough": 0.75,
+   "tex": "bakelib/tex/_made/dr_tile_60.jpg",
+   "texM": 2.4,
+   "tileM": 0.6,
+   "detail": "../bim/bakelib/tex/_made/g_paving.jpg",
+   "detailM": 3.6,
+   "detailMean": 0.6593
+  },
+  {
+   "id": "hm-grass",
+   "name": "Ground - lawn",
+   "color": "#7d9c4c",
+   "rough": 1.0,
+   "tint": "#8db35a",
+   "detail": "../bim/bakelib/tex/_made/g_grass.jpg",
+   "detailM": 3.0,
+   "detailMean": 0.617
+  },
+  {
+   "id": "hm-paving",
+   "name": "Ground - light paving slabs",
+   "color": "#c8bfae",
+   "rough": 0.9,
+   "detail": "../bim/bakelib/tex/_made/g_paving.jpg",
+   "detailM": 2.4,
+   "detailMean": 0.6593
+  },
+  {
+   "id": "hm-water",
+   "name": "Pool - water",
+   "color": "#3f8fb0",
+   "rough": 0.05
+  }
+ ],
+ "rules": [
+  {
+   "cat": "Furniture",
+   "name": "72\"",
+   "what": "sofa",
+   "base": "hm-fab-oat",
+   "parts": {
+    "Wood - Cherry": "hm-wood-walnut",
+    "Textile - Linen, Smooth": "hm-fab-oat"
+   },
+   "why": "an oatmeal linen sofa on walnut: the pillows bring the colour"
+  },
+  {
+   "cat": "Furniture",
+   "name": "Chair-Breuer",
+   "what": "Breuer chair",
+   "base": "hm-steel-black",
+   "parts": {
+    "Metal - Chrome": "hm-steel-black",
+    "Textile - Bamboo Weave": "hm-cane"
+   },
+   "why": "black steel and a cane seat"
+  },
+  {
+   "cat": "Furniture",
+   "name": "60\" Diameter",
+   "what": "patio table",
+   "base": "hm-wood-teak",
+   "parts": {
+    "Laminate - Linen, Matte": "hm-white",
+    "Wood - Pine": "hm-wood-teak"
+   },
+   "why": "a white top on teak, outdoors"
+  },
+  {
+   "cat": "Furniture",
+   "name": "1",
+   "what": "table",
+   "base": "$wood",
+   "parts": {
+    "Glass - Clear, Grey": "$wood",
+    "Metal - Chrome": "hm-steel-black",
+    "Wood - Teak": "$wood",
+    "Wood - Cherry": "$wood",
+    "Textile - Linen, Smooth": "$accent"
+   },
+   "why": "a glass top reads as nothing: wood, on a black frame"
+  },
+  {
+   "cat": "Furniture",
+   "name": "2",
+   "what": "table / armchair",
+   "base": "$wood",
+   "parts": {
+    "Glass - Clear, Grey": "$wood",
+    "Metal - Chrome": "hm-steel-black",
+    "Wood - Teak": "$wood",
+    "Wood - Cherry": "hm-wood-walnut",
+    "Textile - Linen, Smooth": "$accent"
+   },
+   "why": "wood; any cushion in the floor's accent"
+  },
+  {
+   "cat": "Furniture",
+   "name": "3",
+   "what": "low console",
+   "base": "$wood",
+   "parts": {
+    "Glass - Clear, Grey": "$wood",
+    "Metal - Chrome": "hm-steel-black",
+    "Wood - Teak": "$wood",
+    "Wood - Cherry": "$wood",
+    "Textile - Linen, Smooth": "$accent"
+   },
+   "why": "wood on black"
+  },
+  {
+   "cat": "Furniture",
+   "name": "4",
+   "what": "side table",
+   "base": "$wood",
+   "parts": {
+    "Glass - Clear, Grey": "$wood",
+    "Metal - Chrome": "hm-steel-black",
+    "Wood - Teak": "$wood",
+    "Wood - Cherry": "$wood",
+    "Textile - Linen, Smooth": "$accent"
+   },
+   "why": "wood on black"
+  },
+  {
+   "cat": "Furniture",
+   "name": "nadneda",
+   "what": "swing",
+   "base": "hm-wood-teak",
+   "why": "a teak swing on the lawn"
+  },
+  {
+   "cat": "Furniture",
+   "name": "bench_hm",
+   "what": "garden bench",
+   "base": "hm-wood-teak",
+   "why": "teak benches by the fence"
+  },
+  {
+   "cat": "Furniture",
+   "name": "Furniture 1",
+   "what": "planter",
+   "base": "hm-stone",
+   "why": "a light concrete planter on the balcony"
+  },
+  {
+   "cat": "Furniture",
+   "match": "",
+   "what": "other furniture",
+   "base": "$wood",
+   "why": "default: wood"
+  },
+  {
+   "cat": "Specialty Equipment",
+   "match": "",
+   "what": "fridge",
+   "base": "hm-steel",
+   "parts": {
+    "Metal - Paint Finish - Ivory, Glossy": "hm-steel",
+    "Metal - Chrome": "hm-steel"
+   },
+   "why": "a stainless fridge"
+  },
+  {
+   "cat": "Generic Models",
+   "name": "150/150",
+   "what": "pergola",
+   "base": "hm-wood-teak",
+   "why": "the pergola: teak slats give the patio its striped shade"
+  },
+  {
+   "cat": "Generic Models",
+   "name": "Model Text 1",
+   "what": "house letters",
+   "base": "hm-steel-black",
+   "why": "black steel letters on the wall"
+  }
+ ],
+ "start": {
+  "pos": [
+   -8.0,
+   1.6,
+   0.3
+  ],
+  "floor": 0.0,
+  "look": [
+   0.0,
+   -8.0
+  ]
+ },
+ "paintNoLevel": true,
+ "stairsEnter": true,
+ "roofCovers": true,
+ "slabCeilings": {
+  "finish": "hm-white"
+ },
+ "darkFill": 0.55,
+ "ground": {
+  "cats": [],
+  "finishes": [
+   {
+    "match": "",
+    "finish": "hm-grass"
+   }
+  ],
+  "site": [
+   {
+    "match": "POOL",
+    "finish": "hm-water"
+   },
+   {
+    "match": "grass",
+    "finish": "hm-grass"
+   },
+   {
+    "match": "מדרכה|Concrete|Timber",
+    "finish": "hm-paving"
+   }
+  ],
+  "why": "his words: do the same to another project - a home with a garden"
+ },
+ "outdoorSite": {
+  "box": [
+   -15.0,
+   -16.6,
+   15.3,
+   2.6
+  ]
+ },
+ "floors": [
+  {
+   "id": "bath",
+   "level": 1.68,
+   "seed": [
+    4.9,
+    -1.4
+   ],
+   "maxArea": 15,
+   "finish": "dr-floor-tile",
+   "why": "a bathroom floor is tile"
+  }
+ ],
+ "floorDefault": {
+  "finish": "dr-floor-oak",
+  "levels": [
+   -1.6,
+   0.0,
+   1.68,
+   4.44
+  ],
+  "minArea": 1.5,
+  "why": "light oak through the home, laid from the walls"
+ },
+ "levelPlans": [
+  {
+   "level": "00",
+   "levelY": 0.0,
+   "name": "ground floor - living, dining, the patio and the garden",
+   "objects": [
+    {
+     "item": "painting",
+     "how": "painting",
+     "height": 1.55,
+     "maxW": 1.0,
+     "maxH": 0.8,
+     "border": 0.05,
+     "frameColor": "#2b2c2e",
+     "rooms": [
+      "01",
+      "01",
+      "G-din"
+     ],
+     "why": "pictures on the living and dining walls"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "byWall",
+     "off": 0.45,
+     "rooms": [
+      "01",
+      "01"
+     ],
+     "why": "tall plants in the living room (the pachira model is a row of 3 plants, 6.9 m - refused size_sane, run 1)"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "byWall",
+     "off": 0.45,
+     "rooms": [
+      "G-din"
+     ],
+     "why": "a plant by the dining table"
+    },
+    {
+     "item": "wall_clock",
+     "how": "onWall",
+     "height": 1.9,
+     "rooms": [
+      "G-din"
+     ],
+     "why": "a kitchen clock"
+    }
+   ],
+   "more": [
+    {
+     "item": "throw_pillows_01",
+     "node": "throw_pillows_01_pillow02",
+     "scale": 0.62,
+     "how": "onSeat",
+     "of": {
+      "names": [
+       "72\""
+      ]
+     },
+     "back": 0.12,
+     "why": "a pillow on each sofa (run 1: as a table-top item the top of the sofa is its back, 0.81 m - refused)"
+    },
+    {
+     "item": "ceramic_vase_04",
+     "how": "onTopOf",
+     "of": {
+      "names": [
+       "2"
+      ]
+     },
+     "why": "a vase on the coffee table"
+    },
+    {
+     "item": "book_encyclopedia_set_01",
+     "how": "onTopOf",
+     "of": {
+      "names": [
+       "3"
+      ]
+     },
+     "skipCentre": true,
+     "why": "books on the low console"
+    },
+    {
+     "item": "wooden_lantern_01",
+     "how": "onTopOf",
+     "of": {
+      "names": [
+       "3"
+      ]
+     },
+     "skipCentre": true,
+     "why": "a lantern beside the books"
+    },
+    {
+     "item": "wooden_bowl_01",
+     "how": "onTopOf",
+     "of": {
+      "names": [
+       "1"
+      ]
+     },
+     "max": 1,
+     "with": [
+      {
+       "item": "food_apple_01",
+       "dx": -0.06,
+       "dz": 0.02,
+       "dy": 0.03
+      },
+      {
+       "item": "lemon",
+       "dx": 0.05,
+       "dz": 0.06,
+       "dy": 0.03
+      },
+      {
+       "item": "food_apple_01",
+       "dx": 0.04,
+       "dz": -0.06,
+       "dy": 0.03,
+       "yaw": 120
+      }
+     ],
+     "why": "a bowl of fruit on the dining table"
+    },
+    {
+     "item": "jug_01",
+     "how": "onTopOf",
+     "of": {
+      "names": [
+       "1"
+      ]
+     },
+     "skipCentre": true,
+     "max": 1,
+     "why": "a water jug"
+    },
+    {
+     "item": "tea_set_01",
+     "node": "tea_set_01_cup_small_01",
+     "how": "onTopOf",
+     "of": {
+      "names": [
+       "60\" Diameter"
+      ]
+     },
+     "skipCentre": true,
+     "why": "a cup on the patio table"
+    },
+    {
+     "item": "croissant",
+     "how": "onTopOf",
+     "of": {
+      "names": [
+       "60\" Diameter"
+      ]
+     },
+     "skipCentre": true,
+     "why": "breakfast outside"
+    },
+    {
+     "how": "walk",
+     "item": "person",
+     "who": "Female_Adult_14__walk__anim",
+     "route": [
+      [
+       -14.0,
+       -4.5
+      ],
+      [
+       -10.0,
+       -4.5
+      ]
+     ],
+     "speed": 0.8,
+     "why": "a walk across the lawn"
+    }
+   ],
+   "people": [
+    {
+     "who": "Female_Adult_02__sit_table",
+     "how": "sitAt",
+     "of": {
+      "name": "Chair-Breuer"
+     },
+     "set": 5,
+     "why": "at the dining table"
+    },
+    {
+     "who": "Male_Adult_03__sit_table",
+     "how": "sitAt",
+     "of": {
+      "name": "Chair-Breuer"
+     },
+     "set": 8,
+     "why": "opposite, at the dining table"
+    },
+    {
+     "who": "Male_Adult_13__sit_table",
+     "how": "sitAt",
+     "of": {
+      "name": "Chair-Breuer"
+     },
+     "set": 0,
+     "why": "breakfast on the patio"
+    },
+    {
+     "who": "Female_Adult_06__sit_table",
+     "how": "sitAt",
+     "of": {
+      "name": "Chair-Breuer"
+     },
+     "set": 2,
+     "why": "with him on the patio"
+    },
+    {
+     "who": "Female_Adult_09__sit_chair",
+     "how": "sitAt",
+     "of": {
+      "name": "72\""
+     },
+     "set": 0,
+     "why": "reading on the sofa"
+    },
+    {
+     "who": "Gardener_Male_01__talk",
+     "how": "standAt",
+     "role": "anyone",
+     "room": "G-garden",
+     "why": "someone in the garden"
+    }
+   ]
+  },
+  {
+   "level": "0.5",
+   "levelY": 1.68,
+   "name": "split level - the TV corner, three bedrooms, the bath",
+   "objects": [
+    {
+     "item": "painting",
+     "how": "painting",
+     "height": 1.5,
+     "maxW": 0.8,
+     "maxH": 0.7,
+     "border": 0.05,
+     "frameColor": "#c9a06a",
+     "rooms": [
+      "S-tv",
+      "S-bed1",
+      "S-bed2",
+      "S-bed3"
+     ],
+     "why": "a picture in every room"
+    },
+    {
+     "item": "potted_plant_04",
+     "how": "byWall",
+     "off": 0.4,
+     "rooms": [
+      "S-tv"
+     ],
+     "why": "a plant in the TV corner (calathea = a row of plants, refused size_sane)"
+    },
+    {
+     "item": "potted_plant_02",
+     "how": "byWall",
+     "off": 0.45,
+     "rooms": [
+      "S-bed1",
+      "S-bed2",
+      "S-bed3"
+     ],
+     "why": "a plant in each bedroom"
+    },
+    {
+     "item": "wicker_basket_01",
+     "how": "byWall",
+     "off": 0.35,
+     "rooms": [
+      "S-bed1",
+      "S-bed2",
+      "S-bed3"
+     ],
+     "why": "a laundry basket"
+    },
+    {
+     "item": "potted_plant_04",
+     "how": "byWall",
+     "off": 0.35,
+     "rooms": [
+      "S-bath"
+     ],
+     "why": "a small plant in the bath"
+    }
+   ],
+   "more": [
+    {
+     "item": "throw_pillows_01",
+     "node": "throw_pillows_01_pillow02",
+     "scale": 0.62,
+     "how": "onSeat",
+     "of": {
+      "names": [
+       "72\""
+      ]
+     },
+     "back": 0.12,
+     "why": "a pillow on the sofa"
+    },
+    {
+     "item": "ceramic_vase_02",
+     "how": "onTopOf",
+     "of": {
+      "names": [
+       "1"
+      ]
+     },
+     "why": "a vase on the coffee table"
+    },
+    {
+     "item": "book_encyclopedia_set_01",
+     "how": "onTopOf",
+     "of": {
+      "names": [
+       "4"
+      ]
+     },
+     "why": "books on the side table"
+    }
+   ],
+   "people": []
+  },
+  {
+   "level": "01",
+   "levelY": 4.44,
+   "name": "upper floor - the parents' room and its balcony",
+   "objects": [
+    {
+     "item": "painting",
+     "how": "painting",
+     "height": 1.5,
+     "maxW": 1.0,
+     "maxH": 0.8,
+     "border": 0.05,
+     "frameColor": "#c9a06a",
+     "rooms": [
+      "U-master"
+     ],
+     "why": "a picture over the bed wall"
+    },
+    {
+     "item": "potted_plant_01",
+     "how": "byWall",
+     "off": 0.45,
+     "rooms": [
+      "U-master"
+     ],
+     "why": "a tall plant"
+    },
+    {
+     "item": "wicker_basket_01",
+     "how": "byWall",
+     "off": 0.35,
+     "rooms": [
+      "U-master"
+     ],
+     "why": "a basket"
+    }
+   ],
+   "more": [
+    {
+     "item": "planter_pot_clay",
+     "how": "onTopOf",
+     "of": {
+      "names": [
+       "Furniture 1"
+      ]
+     },
+     "grid": 7,
+     "skipCentre": true,
+     "max": 1,
+     "minTop": 0.15,
+     "why": "a clay pot on the balcony planter"
+    }
+   ],
+   "people": []
+  },
+  {
+   "level": "-01",
+   "levelY": -1.6,
+   "name": "basement - the children's room",
+   "objects": [
+    {
+     "item": "painting",
+     "how": "painting",
+     "height": 1.4,
+     "maxW": 0.8,
+     "maxH": 0.7,
+     "border": 0.05,
+     "frameColor": "#d9a441",
+     "rooms": [
+      "B-play",
+      "B-play"
+     ],
+     "why": "bright pictures"
+    },
+    {
+     "item": "standing_chalkboard_01",
+     "how": "byWall",
+     "off": 0.4,
+     "rooms": [
+      "B-play"
+     ],
+     "why": "a chalkboard to draw on"
+    },
+    {
+     "item": "Ukulele_01",
+     "how": "byWall",
+     "off": 0.25,
+     "rooms": [
+      "B-play"
+     ],
+     "why": "a ukulele against the wall"
+    },
+    {
+     "item": "wicker_basket_01",
+     "how": "byWall",
+     "off": 0.35,
+     "rooms": [
+      "B-play"
+     ],
+     "why": "a toy basket"
+    },
+    {
+     "item": "potted_plant_04",
+     "how": "byWall",
+     "off": 0.4,
+     "rooms": [
+      "B-play"
+     ],
+     "why": "a plant"
+    }
+   ],
+   "more": [],
+   "people": []
+  }
+ ],
+ "roles": {
+  "anyone": [
+   ""
+  ]
+ },
+ "peopleMove": true,
+ "shine": {
+  "maxRough": 0.5,
+  "env": 1.0,
+  "metalEnv": 1.2,
+  "probe": [
+   0.0,
+   1.6,
+   -10.0
+  ],
+  "delay": 7500,
+  "glassRoom": 0.35
+ },
+ "outdoor": [
+  {
+   "item": "shrub_02",
+   "nodes": [
+    "shrub_02_a",
+    "shrub_02_b",
+    "shrub_02_c",
+    "shrub_02_d"
+   ],
+   "count": 12,
+   "on": [
+    "hm-grass"
+   ],
+   "scaleMin": 0.7,
+   "scaleMax": 1.1,
+   "apart": 1.6,
+   "keep": 0.6,
+   "within": 1.6,
+   "seed": 2,
+   "why": "shrubs along the fence and the walls"
+  },
+  {
+   "item": "fern_02",
+   "nodes": [
+    "fern_02_b",
+    "fern_02_c",
+    "fern_02_a"
+   ],
+   "count": 14,
+   "on": [
+    "hm-grass"
+   ],
+   "scaleMin": 0.8,
+   "scaleMax": 1.2,
+   "apart": 0.5,
+   "keep": 0.4,
+   "within": 1.4,
+   "seed": 3,
+   "why": "ferns at the foot of the walls"
+  },
+  {
+   "item": "grass_medium_01",
+   "nodes": [
+    "grass_medium_01_tall_a_LOD0",
+    "grass_medium_01_large_a_LOD0",
+    "grass_medium_01_mid_a_LOD0"
+   ],
+   "count": 40,
+   "on": [
+    "hm-grass"
+   ],
+   "scaleMin": 1.2,
+   "scaleMax": 2.0,
+   "apart": 0.5,
+   "keep": 0.6,
+   "seed": 7,
+   "why": "tufts of taller grass: a lawn is not a carpet"
+  },
+  {
+   "item": "rock_moss_set_01",
+   "nodes": [
+    "rock_moss_set_01_rock04",
+    "rock_moss_set_01_rock02"
+   ],
+   "count": 4,
+   "on": [
+    "hm-grass"
+   ],
+   "scaleMin": 0.2,
+   "scaleMax": 0.35,
+   "apart": 2.5,
+   "keep": 1.0,
+   "sink": 0.15,
+   "seed": 11,
+   "why": "a few stones in the lawn"
+  }
+ ]
+}
