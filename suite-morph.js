@@ -39,8 +39,8 @@
       sub: 'יצירת משפחות רוויט דינמיות מטקסט ו/או מקובץ.',
       /* what the window looks like back in the suite grid - the back face of the return flip */
       ix: '03',
-      video: 'media/lab/kitchen-lab.mp4',
-      poster: 'media/lab/kitchen-lab-poster.jpg',
+      video: 'media/lab/fc-plan-loop.mp4?v=1',
+      poster: 'media/lab/fc-plan-loop-poster.jpg?v=1',
       oneline: 'יצירת משפחות דינמיות לרוויט'
     },
     /* Type Studio was the one product still missing here, so its window navigated flat
