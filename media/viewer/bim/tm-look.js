@@ -5,7 +5,17 @@
 //   Which element gets which = the MAJORITY material of its triangles in that scene file (per element, not per face yet).
 (function () {
   'use strict';
-  if (!/[?&]tm=1/.test(location.search)) return;
+  if (!/[?&]tm=1/.test(location.search)) {
+    // THE FLOOR MIRROR WITHOUT TWINMOTION (2026-11-24, the apartment building: his "the floor shining has the same defect as
+    // Dir El Asad"): measured - the mirror only ever started inside tm=1&tmall=1, so on any other building a floor finish with
+    // `mirror` in its plan never reflected anything. ?floorrefl=<k> alone now starts it, as soon as the pack's floors are in -
+    // BEFORE the dressing lays its floor finishes, so dress-floors.js finds window.__blMirror and patches them.
+    if (/[?&]floorrefl=[0-9.]+/.test(location.search)) (function waitFloors(n) {
+      if (window.WM && window.WM.pack && window.WM.pack.meshes && window.WM.pack.meshes.get('Floors')) return mirror();
+      if (n < 600) setTimeout(function () { waitFloors(n + 1); }, 100);
+    })(0);
+    return;
+  }
   var T = '../bim/bakelib/tm/';                         // relative to the catalogue's own folder (../Library/)
   function e(id, en, color, maps, scaleM, rough, metal) {
     return { id: id, name: en, nameEn: en, color: color, maps: maps || {}, scaleM: scaleM, rough: rough, metal: metal || 0, finish: 'matte', tags: ['tm'] };
